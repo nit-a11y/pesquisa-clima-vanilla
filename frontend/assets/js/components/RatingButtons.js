@@ -4,16 +4,13 @@
  */
 
 function renderRatingButtons(questionId, selectedScore, isNegative, onRate) {
-  const labels = isNegative 
-    ? ['Concordo muito (problema)', 'Concordo', 'Discordo', 'Discordo muito (positivo)']
-    : RATING_LABELS;
-  
-  const emojis = isNegative
-    ? ['😡 Problema grave', '😟 Problema', '😐 OK', '🤩 Bom']
-    : RATING_EMOJIS.map((emoji, i) => `${emoji} ${RATING_LABELS[i]}`);
+  // Mesmo padrão visual para todas as perguntas (normal e invertidas)
+  // A inversão de score é tratada apenas no backend
+  const labels = RATING_LABELS;
+  const emojis = RATING_EMOJIS.map((emoji, i) => `${emoji} ${RATING_LABELS[i]}`);
   
   return `
-    <div class="rating-buttons ${isNegative ? 'inverted' : ''}">
+    <div class="rating-buttons ${isNegative ? 'is-negative' : ''}">
       ${[1, 2, 3, 4].map((score, index) => {
         const isSelected = selectedScore === score;
         const label = labels[index];
