@@ -1,0 +1,19 @@
+{
+  "name": "pesquisa-clima-vanilla",
+  "version": "2.0.0",
+  "description": "Pesquisa de Clima Organizacional - Nordeste Locações (Arquitetura Modular)",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "echo 'Tests not implemented'"
+  },
+  "author": "NIT - Núcleo de Inteligência e Tecnologia",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "sqlite3": "^5.1.7"
+  }
+}
