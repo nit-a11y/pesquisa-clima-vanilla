@@ -1,6 +1,11 @@
 import { db } from '../database/connection.js';
 import { getPillarByQuestionId, questions, NEGATIVE_QUESTIONS } from '../../shared/constants.js';
 
+// Inverter score para perguntas negativas (1↔4, 2↔3)
+function invertScore(score) {
+  return 5 - score;
+}
+
 // Buscar todas as respostas com filtro opcional por unidade
 export function getAllResponses(unidade = null) {
   return new Promise((resolve, reject) => {
@@ -85,9 +90,17 @@ export function clearAllResponses() {
 }
 
 // Obter estatísticas administrativas
-export async function getAdminStats() {
+export async function getAdminStats(unitFilter = null) {
   const rows = await new Promise((resolve, reject) => {
-    db.all('SELECT * FROM survey_responses', [], (err, rows) => {
+    let query = 'SELECT * FROM survey_responses';
+    const params = [];
+    
+    if (unitFilter && unitFilter !== 'all') {
+      query += ' WHERE unidade = ?';
+      params.push(unitFilter);
+    }
+    
+    db.all(query, params, (err, rows) => {
       if (err) reject(err);
       else resolve(rows);
     });
@@ -125,9 +138,13 @@ function calculateStats(responses, totalCount) {
 
     Object.entries(response.answers).forEach(([qId, answer]) => {
       const questionId = parseInt(qId);
-      const score = typeof answer === 'object' ? answer.score : answer;
+      let score = typeof answer === 'object' ? answer.score : answer;
 
       if (score) {
+        // Inverter score para perguntas negativas
+        if (NEGATIVE_QUESTIONS.includes(questionId)) {
+          score = invertScore(score);
+        }
         unitStats[unit].scores.push(score);
 
         const pillar = getPillarByQuestionId(questionId);
@@ -199,7 +216,12 @@ function calculateCriticalAlerts(responses, questionStats) {
       const responsesWithQ = responses.filter(r => r.answers && r.answers[q.question_id]);
       const discordCount = responsesWithQ.filter(r => {
         const answer = r.answers[q.question_id];
-        const score = typeof answer === 'object' ? answer.score : answer;
+        let score = typeof answer === 'object' ? answer.score : answer;
+        // Para perguntas negativas, score 4 é crítico (após inversão vira 1)
+        // Para perguntas normais, score 1 é crítico
+        if (NEGATIVE_QUESTIONS.includes(q.question_id)) {
+          score = invertScore(score);
+        }
         return score === 1;
       }).length;
       return responsesWithQ.length > 0 && (discordCount / responsesWithQ.length) > 0.3;
@@ -208,7 +230,10 @@ function calculateCriticalAlerts(responses, questionStats) {
       const responsesWithQ = responses.filter(r => r.answers && r.answers[q.question_id]);
       const discordCount = responsesWithQ.filter(r => {
         const answer = r.answers[q.question_id];
-        const score = typeof answer === 'object' ? answer.score : answer;
+        let score = typeof answer === 'object' ? answer.score : answer;
+        if (NEGATIVE_QUESTIONS.includes(q.question_id)) {
+          score = invertScore(score);
+        }
         return score === 1;
       }).length;
       return {
@@ -226,9 +251,19 @@ function calculateEngagementRate(responses, questionStats) {
 }
 
 // Buscar respostas formatadas para admin
-export async function getAdminResponses() {
+export async function getAdminResponses(unitFilter = null) {
   const rows = await new Promise((resolve, reject) => {
-    db.all('SELECT * FROM survey_responses ORDER BY timestamp DESC', [], (err, rows) => {
+    let query = 'SELECT * FROM survey_responses';
+    const params = [];
+    
+    if (unitFilter && unitFilter !== 'all') {
+      query += ' WHERE unidade = ?';
+      params.push(unitFilter);
+    }
+    
+    query += ' ORDER BY timestamp DESC';
+    
+    db.all(query, params, (err, rows) => {
       if (err) reject(err);
       else resolve(rows);
     });

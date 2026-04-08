@@ -1,23 +1,35 @@
-# 🚀 Guia Completo: Deploy de Sistemas Node.js na VPS Hostinger
+# 🚀 Guia Completo: Deploy na VPS Hostinger
+> **Última atualização:** 08/04/2026 - Deploy do Sistema Pesquisa de Clima
 
 ## 📋 Informações da VPS
 
-- **Servidor:** srv1566743.hstgr.cloud
-- **IP:** 147.93.10.11
-- **Usuário:** root
-- **Localização:** Brazil - São Paulo
-- **Plano:** KVM 2 (2 CPU, 8 GB RAM, 100 GB SSD)
+| Item | Valor |
+|------|-------|
+| **Servidor** | srv1566743.hstgr.cloud |
+| **IP** | 147.93.10.11 |
+| **Usuário** | root |
+| **Localização** | Brazil - São Paulo |
+| **Plano** | KVM 2 (2 CPU, 8 GB RAM, 100 GB SSD) |
+| **OS** | Ubuntu 24.04.4 LTS |
 
-### 🔒 Configuração de Domínios e SSL
+## � Informações do GitHub
 
-**Domínio Principal:** `nordesteloc.com.br`
+| Item | Valor |
+|------|-------|
+| **Usuário** | nit-a11y |
+| **Repositório** | pesquisa-clima-vanilla |
+| **URL** | https://github.com/nit-a11y/pesquisa-clima-vanilla |
+| **Branch** | main |
 
-**Subdomínios dos Sistemas:**
-- `app1.nordesteloc.com.br` → Sistema na porta 3000
-- `app2.nordesteloc.com.br` → Sistema na porta 3001
-- `app3.nordesteloc.com.br` → Sistema na porta 3002
+## 🌐 Sistema Deployado
 
-> **Importante:** Todos os sistemas usarão **HTTPS obrigatório** com certificados SSL gratuitos (Let's Encrypt via Certbot).
+| Sistema | Domínio | Porta | Status |
+|---------|---------|-------|--------|
+| Pesquisa de Clima | `pesquisadeclima.nordesteloc.cloud` | 3000 | ✅ Online |
+
+> **Acesso:** https://pesquisadeclima.nordesteloc.cloud
+> **SSL:** Let's Encrypt (válido até 07/07/2026)
+> **Auto-renovação:** Ativada
 
 ---
 
@@ -1397,5 +1409,124 @@ free -h  # Memória
 
 ---
 
-**Documento criado em:** 2026-04-07  
-**VPS:** srv1566743.hstgr.cloud (KVM 2 - 8GB RAM / 100GB SSD)
+---
+
+## 📝 RESUMO DO DEPLOY REALIZADO (08/04/2026)
+
+### Sistema Deployado
+- **Nome:** Pesquisa de Clima Organizacional
+- **Domínio:** https://pesquisadeclima.nordesteloc.cloud
+- **Porta:** 3000
+- **Stack:** Node.js + Express + SQLite
+
+### Comandos de Acesso Rápido
+
+```bash
+# Acessar VPS
+ssh root@147.93.10.11
+
+# Ver status do sistema
+cd /var/www/sistemas/pesquisa-clima
+pm2 status
+pm2 logs pesquisa-clima
+
+# Ver logs Nginx
+tail -f /var/log/nginx/error.log
+
+# Atualizar código (pull do GitHub)
+cd /var/www/sistemas/pesquisa-clima
+git pull
+pm2 restart pesquisa-clima
+```
+
+### Estrutura Real de Pastas
+
+```
+/var/www/sistemas/
+└── pesquisa-clima/                 # Código do projeto
+    ├── backend/
+    │   ├── controllers/
+    │   ├── database/
+    │   ├── routes/
+    │   └── services/
+    ├── frontend/
+    │   ├── assets/
+    │   │   ├── css/
+    │   │   ├── images/
+    │   │   └── js/
+    │   └── index.html
+    ├── ecosystem.config.cjs        # Config PM2
+    ├── package.json
+    └── server.js
+
+/var/data/
+├── databases/
+│   └── pesquisa-clima.db            # Banco SQLite
+└── uploads/
+    └── pesquisa-clima/              # Uploads (se houver)
+
+/var/log/pm2/
+├── pesquisa-clima-out.log
+├── pesquisa-clima-error.log
+└── pesquisa-clima.log
+```
+
+### Troubleshooting Comum
+
+| Problema | Causa | Solução |
+|----------|-------|---------|
+| 502 Bad Gateway | Node.js parado | `pm2 restart pesquisa-clima` |
+| 502 Bad Gateway | Porta errada | Verificar `process.env.PORT` |
+| SSL_ERROR | Certificado expirado | `certbot renew` |
+| SQLITE_CANTOPEN | Permissão/pasta | `mkdir -p /var/data/databases` |
+
+### Arquivos de Configuração Importantes
+
+**ecosystem.config.cjs:**
+```javascript
+module.exports = {
+  apps: [{
+    name: 'pesquisa-clima',
+    cwd: '/var/www/sistemas/pesquisa-clima',
+    script: 'npm',
+    args: 'start',
+    env: {
+      NODE_ENV: 'production',
+      PORT: 3000,
+      DB_PATH: '/var/data/databases/pesquisa-clima.db',
+      PUBLIC_URL: 'https://pesquisadeclima.nordesteloc.cloud',
+      TRUST_PROXY: 'loopback, linklocal, uniquelocal'
+    },
+    autorestart: true
+  }]
+};
+```
+
+**Nginx (/etc/nginx/sites-available/pesquisa-clima):**
+```nginx
+server {
+    listen 80;
+    server_name pesquisadeclima.nordesteloc.cloud;
+    return 301 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name pesquisadeclima.nordesteloc.cloud;
+    
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+---
+
+**Documento atualizado em:** 2026-04-08  
+**VPS:** srv1566743.hstgr.cloud (KVM 2 - 8GB RAM / 100GB SSD)  
+**GitHub:** https://github.com/nit-a11y/pesquisa-clima-vanilla

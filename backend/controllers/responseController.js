@@ -43,7 +43,8 @@ export async function deleteResponses(req, res) {
 // Obter estatísticas de admin
 export async function getStats(req, res) {
   try {
-    const stats = await getAdminStats();
+    const { unit } = req.query;
+    const stats = await getAdminStats(unit);
     res.json(stats);
   } catch (error) {
     console.error('Error fetching stats:', error);
@@ -54,7 +55,8 @@ export async function getStats(req, res) {
 // Obter respostas para admin
 export async function getResponses(req, res) {
   try {
-    const responses = await getAdminResponses();
+    const { unit } = req.query;
+    const responses = await getAdminResponses(unit);
     res.json(responses);
   } catch (error) {
     console.error('Error fetching admin responses:', error);

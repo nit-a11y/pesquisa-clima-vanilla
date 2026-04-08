@@ -15,7 +15,8 @@ const state = {
   selectedQuestionId: null,
   isExporting: false,
   isClearing: false,
-  adminFilterUnit: 'all'
+  adminFilterUnit: 'all',
+  adminFilterPillar: null // Filtro de pilar para o gráfico de tendência
 };
 
 const app = document.getElementById('app');
@@ -62,12 +63,16 @@ function render() {
         isExporting: state.isExporting,
         isClearing: state.isClearing,
         selectedUnit: state.adminFilterUnit,
+        selectedPillar: state.adminFilterPillar,
         onSelectQuestion: 'selectQuestion',
         onClearDatabase: 'clearDatabase',
         onExport: 'exportData',
         onFilterUnit: 'filterByUnit',
+        onClearPillarFilter: 'clearPillarFilter',
         onBack: 'goToLanding'
       });
+      // Reinicializar gráficos após renderizar
+      setTimeout(initCharts, 50);
       break;
   }
 }
@@ -180,9 +185,11 @@ async function submitSurvey() {
 // Ações do Admin
 async function loadAdminData() {
   try {
+    const unitParam = state.adminFilterUnit !== 'all' ? `?unit=${encodeURIComponent(state.adminFilterUnit)}` : '';
+    
     const [statsData, responsesData] = await Promise.all([
-      fetch(`${API_BASE}/api/admin/stats`).then(r => r.json()),
-      fetch(`${API_BASE}/api/admin/responses`).then(r => r.json())
+      fetch(`${API_BASE}/api/admin/stats${unitParam}`).then(r => r.json()),
+      fetch(`${API_BASE}/api/admin/responses${unitParam}`).then(r => r.json())
     ]);
     
     state.stats = statsData;
@@ -203,6 +210,21 @@ function selectQuestion(questionId) {
 function filterByUnit(unit) {
   state.adminFilterUnit = unit;
   loadAdminData().then(() => render());
+}
+
+function filterByPillar(pillarName) {
+  // Toggle: se clicar no mesmo pilar, desfiltra; se clicar em outro, troca o filtro
+  if (state.adminFilterPillar === pillarName) {
+    state.adminFilterPillar = null; // Desfiltrar
+  } else {
+    state.adminFilterPillar = pillarName; // Filtrar pelo novo pilar
+  }
+  render();
+}
+
+function clearPillarFilter() {
+  state.adminFilterPillar = null;
+  render();
 }
 
 async function clearDatabase() {
@@ -267,13 +289,20 @@ function initTrendChart() {
   const ctx = document.getElementById('trendChart');
   if (!ctx) return;
   
+  // Filtrar dados por pilar se houver filtro selecionado
+  let questionStats = state.stats.questionStats || [];
+  if (state.adminFilterPillar) {
+    const pillarQuestions = questions.filter(q => q.pillar === state.adminFilterPillar).map(q => q.id);
+    questionStats = questionStats.filter(s => pillarQuestions.includes(s.question_id));
+  }
+  
   new Chart(ctx, {
     type: 'line',
     data: {
-      labels: state.stats.questionStats?.map(s => `Q${s.question_id}`) || [],
+      labels: questionStats.map(s => `Q${s.question_id}`) || [],
       datasets: [{
         label: 'Média',
-        data: state.stats.questionStats?.map(s => s.average) || [],
+        data: questionStats.map(s => s.average) || [],
         borderColor: '#dc2626',
         backgroundColor: 'rgba(220, 38, 38, 0.1)',
         borderWidth: 3,
@@ -376,20 +405,38 @@ function initPillarChart() {
   const ctx = document.getElementById('pillarChart');
   if (!ctx) return;
   
+  // Mapeamento reverso de labels abreviados para nomes completos
+  const pillarNameMap = {
+    'Comprom. Org.': 'Comprometimento Organizacional',
+    'Gestão de Pessoas': 'Gestão do Capital Humano'
+  };
+  
+  // Verificar qual pilar está filtrado para destacar visualmente
+  const labels = state.stats.pillarStats?.map(s => {
+    const name = s.pillar;
+    if (name === 'Comprometimento Organizacional') return 'Comprom. Org.';
+    if (name === 'Gestão do Capital Humano') return 'Gestão de Pessoas';
+    return name;
+  }) || [];
+  
+  const backgroundColors = labels.map(label => {
+    const fullName = pillarNameMap[label] || label;
+    // Se não houver filtro, todas as barras são vermelhas
+    // Se houver filtro, a barra filtrada é vermelha escura, as outras ficam claras
+    if (!state.adminFilterPillar) {
+      return '#dc2626'; // Vermelho padrão (todas iguais)
+    }
+    return fullName === state.adminFilterPillar ? '#b91c1c' : '#fca5a5'; // Escuro = selecionado, claro = não selecionado
+  });
+  
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: state.stats.pillarStats?.map(s => {
-        // Abreviar nomes longos
-        const name = s.pillar;
-        if (name === 'Comprometimento Organizacional') return 'Comprom. Org.';
-        if (name === 'Gestão do Capital Humano') return 'Gestão de Pessoas';
-        return name;
-      }) || [],
+      labels: labels,
       datasets: [{
         label: 'Média',
         data: state.stats.pillarStats?.map(s => s.average) || [],
-        backgroundColor: '#dc2626',
+        backgroundColor: backgroundColors,
         borderRadius: 8
       }]
     },
@@ -425,6 +472,18 @@ function initPillarChart() {
           borderColor: '#e5e7eb',
           borderWidth: 1
         }
+      },
+      onClick: (event, elements) => {
+        if (elements.length > 0) {
+          const index = elements[0].index;
+          const label = event.chart.data.labels[index];
+          // Converter label abreviado de volta para nome completo
+          const pillarName = pillarNameMap[label] || label;
+          filterByPillar(pillarName);
+        }
+      },
+      onHover: (event, elements) => {
+        event.native.target.style.cursor = elements.length > 0 ? 'pointer' : 'default';
       }
     }
   });
@@ -448,6 +507,8 @@ window.prevQuestion = prevQuestion;
 window.submitSurvey = submitSurvey;
 window.selectQuestion = selectQuestion;
 window.filterByUnit = filterByUnit;
+window.filterByPillar = filterByPillar;
+window.clearPillarFilter = clearPillarFilter;
 window.clearDatabase = clearDatabase;
 window.exportData = exportData;
 window.render = render;

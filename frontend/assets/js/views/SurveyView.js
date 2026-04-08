@@ -72,6 +72,7 @@ function renderSurveyView({
             <button 
               onclick="${onSubmit}()" 
               class="btn btn-primary btn-lg"
+              ${answeredInPillar < totalInPillar ? 'disabled' : ''}
             >
               Finalizar Pesquisa
               ${icons.send}
@@ -80,6 +81,7 @@ function renderSurveyView({
             <button 
               onclick="${onNext}()" 
               class="btn btn-primary btn-lg"
+              ${answeredInPillar < totalInPillar ? 'disabled' : ''}
             >
               Próximo
               ${icons.chevronRight}

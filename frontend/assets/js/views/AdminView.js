@@ -10,10 +10,12 @@ function renderAdminView({
   isExporting, 
   isClearing,
   selectedUnit,
+  selectedPillar,
   onSelectQuestion, 
   onClearDatabase, 
   onExport,
   onFilterUnit,
+  onClearPillarFilter,
   onBack
 }) {
   if (!stats) {
@@ -81,6 +83,18 @@ function renderAdminView({
           </button>
         </div>
       </header>
+      
+      ${selectedPillar ? `
+        <div class="pillar-filter-banner">
+          <div class="pillar-filter-content">
+            ${icons.filter}
+            <span>Filtrando por: <strong>${selectedPillar}</strong> · Gráficos e questões filtrados · Clique novamente no pilar para desfiltrar</span>
+            <button onclick="${onClearPillarFilter}()" class="btn-clear-filter">
+              ${icons.x} Limpar filtro
+            </button>
+          </div>
+        </div>
+      ` : ''}
       
       <main class="admin-main">
         <!-- Cards de estatísticas -->
@@ -161,44 +175,54 @@ function renderAdminView({
             <div class="questions-header">
               <h3 class="card-title">
                 ${icons.barChart}
-                Todas as Questões
+                ${selectedPillar ? `Questões: ${selectedPillar}` : 'Todas as Questões'}
               </h3>
               <span class="questions-hint">Clique para ver comentários</span>
             </div>
+            <div class="questions-legend">
+              <span class="legend-item inverted-legend" title="Perguntas onde Concordo = negativo e Discordo = positivo">
+                <span class="legend-marker yellow"></span>
+                Perguntas invertidas (↔️ Concordo/Discordo invertidos)
+              </span>
+            </div>
             
             <div class="questions-list">
-              ${[...questions].sort((a, b) => {
-                const aStat = stats.questionStats?.find(s => s.question_id === a.id);
-                const bStat = stats.questionStats?.find(s => s.question_id === b.id);
-                return (bStat?.comment_count || 0) - (aStat?.comment_count || 0);
-              }).map(q => {
-                const qStat = stats.questionStats?.find(s => s.question_id === q.id);
-                const isSelected = selectedQuestion === q.id;
-                return `
-                  <button
-                    onclick="${onSelectQuestion}(${q.id})"
-                    class="question-list-item ${isSelected ? 'selected' : ''}"
-                  >
-                    <div class="question-info">
-                      <span class="q-number">${q.id}</span>
-                      <p class="q-text">${q.text}</p>
-                    </div>
-                    <div class="question-meta">
-                      ${qStat?.average ? `
-                        <span class="q-average" style="color: ${getScoreColor(qStat.average)}">
-                          ${qStat.average.toFixed(1)}
-                        </span>
-                      ` : ''}
-                      ${qStat?.comment_count > 0 ? `
-                        <span class="q-comments">
-                          ${icons.messageSquare}
-                          ${qStat.comment_count}
-                        </span>
-                      ` : ''}
-                    </div>
-                  </button>
-                `;
-              }).join('')}
+              ${[...questions]
+                .filter(q => !selectedPillar || q.pillar === selectedPillar)
+                .sort((a, b) => {
+                  const aStat = stats.questionStats?.find(s => s.question_id === a.id);
+                  const bStat = stats.questionStats?.find(s => s.question_id === b.id);
+                  return (bStat?.comment_count || 0) - (aStat?.comment_count || 0);
+                }).map(q => {
+                  const qStat = stats.questionStats?.find(s => s.question_id === q.id);
+                  const isSelected = selectedQuestion === q.id;
+                  const isInverted = q.isNegative;
+                  return `
+                    <button
+                      onclick="${onSelectQuestion}(${q.id})"
+                      class="question-list-item ${isSelected ? 'selected' : ''} ${isInverted ? 'inverted' : ''}"
+                    >
+                      <div class="question-info">
+                        <span class="q-number">${q.id}</span>
+                        <p class="q-text">${q.text}</p>
+                        ${isInverted ? `<span class="q-inverted-badge" title="Pergunta invertida: Concordo = negativo, Discordo = positivo">↔️ Invertida</span>` : ''}
+                      </div>
+                      <div class="question-meta">
+                        ${qStat?.average ? `
+                          <span class="q-average" style="color: ${getScoreColor(qStat.average)}">
+                            ${qStat.average.toFixed(1)}
+                          </span>
+                        ` : ''}
+                        ${qStat?.comment_count > 0 ? `
+                          <span class="q-comments">
+                            ${icons.messageSquare}
+                            ${qStat.comment_count}
+                          </span>
+                        ` : ''}
+                      </div>
+                    </button>
+                  `;
+                }).join('')}
             </div>
           </div>
           
