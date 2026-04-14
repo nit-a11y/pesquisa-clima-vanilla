@@ -98,7 +98,7 @@ function renderSuccessView(onBackToHome) {
         
         <div class="success-actions">
           <p class="success-hint-text">
-            Obrigado por compartilhar sua opinião! Sua avaliação foi registrada com sucesso.
+            <strong>✓ Sua avaliação foi registrada com sucesso!</strong>
             <br><br>
             Informe a conclusão a um <span class="hidden-restart" onclick="${onBackToHome}()" title="Clique para voltar ao início">responsável</span> e retorne às suas atividades.
           </p>

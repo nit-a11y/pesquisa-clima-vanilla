@@ -34,7 +34,7 @@ function renderLandingView(onStartSurvey, onGoToAdmin) {
                 <div class="feature-icon">🔒</div>
                 <span>100% Anônimo</span>
               </div>
-              <div class="feature-item">
+              <div class="feature-item" onclick="window.location.href=questions.length <= 3 ? 'index.html' : 'index-demo.html'" style="cursor: pointer;" title="Clique para alternar versão">
                 <div class="feature-icon">⚡</div>
                 <span>5 minutos</span>
               </div>
