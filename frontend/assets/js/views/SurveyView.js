@@ -152,7 +152,8 @@ function renderQuestionInBlock(question, currentAnswer, onRate, onComment, quest
       ${isNegative ? `
         <div class="question-block-warning">
           ${icons.alertCircle}
-          <span>Esta é uma questão invertida. "Concordo" ou "Concordo Muito" indica um problema.</span>
+          <span class="warning-text-highlight">⚠️ ATENÇÃO:</span>
+          <span>Esta é uma questão <strong>invertida</strong>. Responder "Concordo" ou "Concordo Muito" indica um <strong>problema</strong> no ambiente de trabalho.</span>
         </div>
       ` : ''}
       

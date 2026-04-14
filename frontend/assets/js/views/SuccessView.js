@@ -97,10 +97,11 @@ function renderSuccessView(onBackToHome) {
         </p>
         
         <div class="success-actions">
-          <button onclick="${onBackToHome}()" class="btn btn-outline btn-lg">
-            ${icons.home}
-            Voltar ao Início
-          </button>
+          <p class="success-hint-text">
+            Obrigado por compartilhar sua opinião! Sua avaliação foi registrada com sucesso.
+            <br><br>
+            Informe a conclusão a um <span class="hidden-restart" onclick="${onBackToHome}()" title="Clique para voltar ao início">responsável</span> e retorne às suas atividades.
+          </p>
         </div>
         
         <footer class="success-footer">
