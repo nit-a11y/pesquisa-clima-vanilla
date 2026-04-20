@@ -81,7 +81,8 @@ function renderAdminView({
               ? `<span class="spinner-sm"></span> Exportando...` 
               : `${icons.download} Exportar CSV`}
           </button>
-        </div>
+          
+                  </div>
       </header>
       
       ${selectedPillar ? `
@@ -108,20 +109,20 @@ function renderAdminView({
           })}
           ${renderStatsCard({
             label: 'Média de Satisfação',
-            value: avgPillar.toFixed(1),
+            value: `${avgPillar.toFixed(1)} (${((avgPillar - 1) / 3 * 100).toFixed(1)}%)`,
             icon: 'trendingUp',
             color: 'yellow',
             delay: 0.1
           })}
           ${renderStatsCard({
-            label: 'Taxa de Engajamento',
-            value: `${stats.engagementRate?.toFixed(1) || 0}%`,
-            icon: 'zap',
+            label: 'Taxa de Favorabilidade',
+            value: `${stats.globalFavorability?.toFixed(1) || 0}%`,
+            icon: 'thumbsUp',
             color: 'green',
-            sub: 'Comentários / Respostas possíveis',
-            delay: 0.2
+            sub: '% Concordo + Concordo muito',
+            delay: 0.15
           })}
-          ${renderStatsCard({
+                    ${renderStatsCard({
             label: 'Questão + Comentada',
             value: `Q${questionWithMostComments?.question_id || '-'}`,
             icon: 'messageSquare',
@@ -131,11 +132,24 @@ function renderAdminView({
           })}
         </div>
         
+        <!-- Heatmap por Pilar -->
+        <div class="heatmap-section">
+          <div class="card">
+            <h3 class="card-title">
+              ${icons.barChart}
+              Heatmap de Desempenho por Pilar
+            </h3>
+            <div class="heatmap-container">
+              ${renderHeatmap(stats.pillarStats || [])}
+            </div>
+          </div>
+        </div>
+        
         <!-- Gráficos -->
         <div class="charts-grid">
           ${renderChartContainer({
-            title: 'Tendência por Pergunta',
-            icon: 'trendingUp',
+            title: 'Distribuição das Respostas (Escala Likert)',
+            icon: 'barChart',
             chartId: 'trendChart',
             size: 'large'
           })}
@@ -147,7 +161,7 @@ function renderAdminView({
           })}
           
           ${renderChartContainer({
-            title: 'Satisfação por Pilar',
+            title: 'Favorabilidade por Pilar',
             icon: 'barChart',
             chartId: 'pillarChart'
           })}
@@ -158,6 +172,25 @@ function renderAdminView({
               Alertas Críticos
             </h3>
             ${renderAlertList(stats.criticalAlerts, questions)}
+          </div>
+        </div>
+        
+        <!-- Rankings de Perguntas -->
+        <div class="rankings-section">
+          <div class="card worst-questions-card">
+            <h3 class="card-title">
+              ${icons.frown}
+              Top Piores Perguntas
+            </h3>
+            ${renderWorstQuestions(stats.questionStats || [], questions)}
+          </div>
+          
+          <div class="card best-questions-card">
+            <h3 class="card-title">
+              ${icons.smile}
+              Top Melhores Perguntas
+            </h3>
+            ${renderBestQuestions(stats.questionStats || [], questions)}
           </div>
         </div>
         
@@ -236,6 +269,83 @@ function renderAdminView({
         </div>
       </main>
     </div>
+    
+    <!-- Botão Flutuante Nitai -->
+    <div id="nitaiFloatButton" class="nitai-float-button" onclick="window.toggleNitaiChat()" title="Abrir chat com Nitai">
+      <span class="button-text">💬 Nitai</span>
+      <span class="minimize-icon">${icons.minus}</span>
+    </div>
+    
+    <!-- Widget de Chat Flutuante -->
+    <div id="nitaiChatWidget" class="chat-widget-container hidden">
+      <!-- Indicador de resize canto superior esquerdo -->
+      <div id="widgetResizeHandleTopLeft" class="widget-resize-handle-top-left" title="Arraste para redimensionar">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 10L4 8M2 8L4 6M2 8L6 8" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      
+      <!-- Indicador de resize canto inferior esquerdo -->
+      <div id="widgetResizeHandleBottomLeft" class="widget-resize-handle-bottom-left" title="Arraste para redimensionar">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 2L4 4M2 4L4 6M2 4L6 4" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      
+      <!-- Indicador de resize meio superior -->
+      <div id="widgetResizeHandleTop" class="widget-resize-handle-top" title="Arraste para mover para cima/baixo">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M6 2L4 4M6 2L8 4M6 2V10" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      
+      <div class="widget-header">
+        <div class="widget-title">
+          ${icons.messageSquare}
+          <span class="nitai-badge">Nitai - Assistente de Clima</span>
+        </div>
+        <div class="widget-controls">
+          <button onclick="window.toggleNitaiChat()" class="btn btn-outline btn-xs">
+            ${icons.x}
+          </button>
+        </div>
+      </div>
+      
+      <div class="widget-body">
+        <div class="widget-actions">
+          <button onclick="window.gerarRelatorioCompleto(this)" class="btn btn-purple btn-xs" title="Gerar relatório completo com IA">
+            ${icons.fileText} Gerar Relatório Completo
+          </button>
+        </div>
+        
+        <div class="chat-messages" id="widgetChatMessages">
+          <div class="welcome-message">
+            🌟 <strong>Olá! Sou a Nitai, sua assistente de Clima Organizacional!</strong><br><br>
+            Estou aqui para ajudá-lo a entender melhor os resultados da pesquisa de clima da Nordeste Locações.
+          </div>
+        </div>
+        
+        <div class="widget-input">
+          <textarea 
+            id="widgetChatInput" 
+            placeholder="💬 Converse com a Nitai sobre liderança, cultura, benefícios..."
+            onkeypress="window.handleWidgetChatKeyPress(event)"
+            class="widget-input-textarea"
+            rows="2"
+          ></textarea>
+          <button onclick="window.enviarWidgetMessage()" class="btn btn-primary">
+            ${icons.send}
+          </button>
+        </div>
+      </div>
+      
+      <!-- Indicador de resize -->
+      <div id="widgetResizeHandle" class="widget-resize-handle" title="Arraste para redimensionar">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M10 10L8 8M8 10L6 8M8 8L10 6" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
   `;
 }
 
@@ -245,5 +355,148 @@ function getScoreColor(score) {
   return 'var(--red-500)';
 }
 
+function renderHeatmap(pillarStats) {
+  if (!pillarStats || pillarStats.length === 0) {
+    return '<p class="no-data">Sem dados disponíveis</p>';
+  }
+  
+  const getColorClass = (favorability) => {
+    const value = parseFloat(favorability) || 0;
+    if (value >= 75) return 'heatmap-green';
+    if (value >= 50) return 'heatmap-yellow';
+    return 'heatmap-red';
+  };
+  
+  const getEmoji = (favorability) => {
+    const value = parseFloat(favorability) || 0;
+    if (value >= 75) return '🟢';
+    if (value >= 50) return '🟡';
+    return '🔴';
+  };
+  
+  return `
+    <div class="heatmap-table">
+      <div class="heatmap-row heatmap-header">
+        <div class="heatmap-cell">Pilar</div>
+        <div class="heatmap-cell">Favorabilidade</div>
+        <div class="heatmap-cell">Status</div>
+      </div>
+      ${pillarStats.map(pillar => `
+        <div class="heatmap-row">
+          <div class="heatmap-cell pillar-name">
+            ${pillar.pillar === 'Comprometimento Organizacional' ? 'Comprom. Org.' : 
+              pillar.pillar === 'Gestão do Capital Humano' ? 'Gestão de Pessoas' : 
+              pillar.pillar}
+          </div>
+          <div class="heatmap-cell ${getColorClass(pillar.favorabilidade)}">
+            ${parseFloat(pillar.favorabilidade || 0).toFixed(1)}%
+          </div>
+          <div class="heatmap-cell">
+            ${getEmoji(pillar.favorabilidade)} ${parseFloat(pillar.favorabilidade || 0) >= 75 ? 'Ótimo' : 
+              parseFloat(pillar.favorabilidade || 0) >= 50 ? 'Atenção' : 'Crítico'}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+    <div class="heatmap-legend">
+      <div class="legend-item">
+        <span class="legend-color heatmap-green"></span>
+        <span>≥ 75% (Ótimo)</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color heatmap-yellow"></span>
+        <span>50-74% (Atenção)</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color heatmap-red"></span>
+        <span>&lt; 50% (Crítico)</span>
+      </div>
+    </div>
+  `;
+}
+
+function renderWorstQuestions(questionStats, allQuestions) {
+  const worstQuestions = [...questionStats]
+    .sort((a, b) => (a.favorabilidade || 0) - (b.favorabilidade || 0))
+    .slice(0, 5);
+  
+  if (worstQuestions.length === 0) {
+    return '<p class="no-data">Sem dados disponíveis</p>';
+  }
+  
+  return `
+    <div class="ranking-table">
+      <div class="ranking-header">
+        <div>Pergunta</div>
+        <div>Favorabilidade</div>
+      </div>
+      ${worstQuestions.map((q, index) => {
+        const question = allQuestions.find(qq => qq.id === q.question_id);
+        const questionText = question ? question.text.substring(0, 80) + '...' : 'Pergunta não encontrada';
+        const favorability = q.favorabilidade || 0;
+        const colorClass = favorability >= 75 ? 'ranking-green' : favorability >= 50 ? 'ranking-yellow' : 'ranking-red';
+        
+        return `
+          <div class="ranking-row">
+            <div class="ranking-question">
+              <span class="ranking-position">${index + 1}.</span>
+              <div>
+                <strong>Q${q.question_id}:</strong> ${questionText}
+                <div class="ranking-pillar">${question?.pillar || ''}</div>
+              </div>
+            </div>
+            <div class="ranking-value ${colorClass}">
+              ${favorability.toFixed(1)}%
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+function renderBestQuestions(questionStats, allQuestions) {
+  const bestQuestions = [...questionStats]
+    .sort((a, b) => (b.favorabilidade || 0) - (a.favorabilidade || 0))
+    .slice(0, 5);
+  
+  if (bestQuestions.length === 0) {
+    return '<p class="no-data">Sem dados disponíveis</p>';
+  }
+  
+  return `
+    <div class="ranking-table">
+      <div class="ranking-header">
+        <div>Pergunta</div>
+        <div>Favorabilidade</div>
+      </div>
+      ${bestQuestions.map((q, index) => {
+        const question = allQuestions.find(qq => qq.id === q.question_id);
+        const questionText = question ? question.text.substring(0, 80) + '...' : 'Pergunta não encontrada';
+        const favorability = q.favorabilidade || 0;
+        const colorClass = favorability >= 75 ? 'ranking-green' : favorability >= 50 ? 'ranking-yellow' : 'ranking-red';
+        
+        return `
+          <div class="ranking-row">
+            <div class="ranking-question">
+              <span class="ranking-position">${index + 1}.</span>
+              <div>
+                <strong>Q${q.question_id}:</strong> ${questionText}
+                <div class="ranking-pillar">${question?.pillar || ''}</div>
+              </div>
+            </div>
+            <div class="ranking-value ${colorClass}">
+              ${favorability.toFixed(1)}%
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
 window.renderAdminView = renderAdminView;
 window.getScoreColor = getScoreColor;
+window.renderHeatmap = renderHeatmap;
+window.renderWorstQuestions = renderWorstQuestions;
+window.renderBestQuestions = renderBestQuestions;

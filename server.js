@@ -2,36 +2,63 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import apiRoutes from './backend/routes/api.js';
-import { initDatabase } from './backend/database/connection.js';
+import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const envPath = new URL('.env', import.meta.url);
+if (fs.existsSync(envPath)) {
+  const envContent = fs.readFileSync(envPath, 'utf-8');
+  envContent.split('\n').forEach(line => {
+    const [key, ...values] = line.split('=');
+    if (key && values.length && !line.startsWith('#')) {
+      process.env[key.trim()] = values.join('=').trim();
+    }
+  });
+}
+
+console.log('OPENROUTER_API_KEY:', process.env.OPENROUTER_API_KEY ? 'OK' : 'MISSING');
+console.log('OPENROUTER_BASE_URL:', process.env.OPENROUTER_BASE_URL);
+console.log('OPENROUTER_MODEL:', process.env.OPENROUTER_MODEL);
+
+import apiRoutes from './backend/routes/api.js';
+import climaRoutes from './backend/routes/clima.routes.js';
+import chatRoutes from './backend/routes/chat.routes.js';
+import landingIARoutes from './backend/routes/landing-ia.routes.js';
+import { initDatabase } from './backend/database/connection.js';
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Confia no proxy (Nginx) para obter IP real do cliente
-if (process.env.TRUST_PROXY) {
-  app.set('trust proxy', process.env.TRUST_PROXY);
+if (process.env.TRUST_PROXY === 'true') {
+  app.set('trust proxy', true);
 }
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Servir arquivos estáticos do frontend
+// Middleware de logging para debug
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
+
 app.use(express.static(path.join(__dirname, 'frontend')));
 
-// Rotas da API
 app.use('/api', apiRoutes);
+app.use('/api/clima', climaRoutes);
+app.use('/api/chat', chatRoutes);
+app.use('/api/landing-ia', landingIARoutes);
 
-// Rota principal - serve o frontend
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'frontend/index.html'));
 });
 
-// Health check
+app.get('/relatorio/:id', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend/relatorio.html'));
+});
+
 app.get('/health', (req, res) => {
   res.json({ 
     status: 'ok', 
@@ -40,7 +67,6 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Inicialização
 async function startServer() {
   try {
     await initDatabase();

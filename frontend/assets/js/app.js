@@ -16,8 +16,13 @@ const state = {
   isExporting: false,
   isClearing: false,
   adminFilterUnit: 'all',
-  adminFilterPillar: null // Filtro de pilar para o gráfico de tendência
+  adminFilterPillar: null, // Filtro de pilar para o gráfico de tendência
+  isLoadingRelatorio: false,
+  relatorioData: null
 };
+
+// Histórico do chat
+let chatHistory = [];
 
 const app = document.getElementById('app');
 
@@ -73,6 +78,14 @@ function render() {
       });
       // Reinicializar gráficos após renderizar
       setTimeout(initCharts, 50);
+      break;
+    case 'relatorio-fullscreen':
+      app.innerHTML = renderRelatorioFullscreen({
+        relatorioData: state.relatorioData,
+        isLoading: state.isLoadingRelatorio,
+        onBackToAdmin: 'goToAdmin',
+        onGenerateReport: 'gerarRelatorioCompleto'
+      });
       break;
   }
 }
@@ -280,9 +293,21 @@ function exportData() {
 function initCharts() {
   if (!state.stats) return;
   
+  // Destruir gráficos anteriores antes de recriar
+  destroyChart('trendChart');
+  destroyChart('unitChart');
+  destroyChart('pillarChart');
+  
   initTrendChart();
   initUnitChart();
   initPillarChart();
+}
+
+function destroyChart(chartId) {
+  const chart = Chart.getChart(chartId);
+  if (chart) {
+    chart.destroy();
+  }
 }
 
 function initTrendChart() {
@@ -296,23 +321,47 @@ function initTrendChart() {
     questionStats = questionStats.filter(s => pillarQuestions.includes(s.question_id));
   }
   
+  // Preparar dados para barras empilhadas (distribuição)
+  const labels = questionStats.map(s => `Q${s.question_id}`);
+  const discordoMuito = questionStats.map(s => parseFloat(s.distribuicao?.['1'] || 0));
+  const discordo = questionStats.map(s => parseFloat(s.distribuicao?.['2'] || 0));
+  const concordo = questionStats.map(s => parseFloat(s.distribuicao?.['3'] || 0));
+  const concordoMuito = questionStats.map(s => parseFloat(s.distribuicao?.['4'] || 0));
+  
   new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
-      labels: questionStats.map(s => `Q${s.question_id}`) || [],
-      datasets: [{
-        label: 'Média',
-        data: questionStats.map(s => s.average) || [],
-        borderColor: '#dc2626',
-        backgroundColor: 'rgba(220, 38, 38, 0.1)',
-        borderWidth: 3,
-        fill: true,
-        tension: 0.4,
-        pointRadius: 4,
-        pointBackgroundColor: '#dc2626',
-        pointBorderColor: '#fff',
-        pointBorderWidth: 2
-      }]
+      labels: labels,
+      datasets: [
+        {
+          label: 'Discordo muito',
+          data: discordoMuito,
+          backgroundColor: '#ef4444',
+          borderColor: '#dc2626',
+          borderWidth: 1
+        },
+        {
+          label: 'Discordo',
+          data: discordo,
+          backgroundColor: '#f87171',
+          borderColor: '#ef4444',
+          borderWidth: 1
+        },
+        {
+          label: 'Concordo',
+          data: concordo,
+          backgroundColor: '#fbbf24',
+          borderColor: '#f59e0b',
+          borderWidth: 1
+        },
+        {
+          label: 'Concordo muito',
+          data: concordoMuito,
+          backgroundColor: '#10b981',
+          borderColor: '#059669',
+          borderWidth: 1
+        }
+      ]
     },
     options: {
       responsive: true,
@@ -323,18 +372,34 @@ function initTrendChart() {
       },
       scales: {
         x: {
+          stacked: true,
           grid: { display: false },
-          ticks: { font: { weight: '600' }, color: '#6b7280' }
+          ticks: { font: { weight: '600' }, color: '#6b7280', maxRotation: 45 }
         },
         y: {
-          min: 1,
-          max: 4,
+          stacked: true,
+          min: 0,
+          max: 100,
           grid: { color: '#e5e7eb' },
-          ticks: { font: { weight: '600' }, color: '#6b7280' }
+          ticks: { 
+            font: { weight: '600' }, 
+            color: '#6b7280',
+            callback: function(value) {
+              return value + '%';
+            }
+          }
         }
       },
       plugins: {
-        legend: { display: false },
+        legend: { 
+          position: 'top',
+          labels: {
+            font: { weight: '600' },
+            color: '#374151',
+            padding: 15,
+            usePointStyle: true
+          }
+        },
         tooltip: {
           backgroundColor: 'white',
           titleColor: '#111827',
@@ -345,7 +410,11 @@ function initTrendChart() {
           cornerRadius: 8,
           borderColor: '#e5e7eb',
           borderWidth: 1,
-          displayColors: false
+          callbacks: {
+            label: function(context) {
+              return `${context.dataset.label}: ${context.parsed.y.toFixed(1)}%`;
+            }
+          }
         }
       }
     }
@@ -419,14 +488,14 @@ function initPillarChart() {
     return name;
   }) || [];
   
-  const backgroundColors = labels.map(label => {
+  const backgroundColors = labels.map((label, index) => {
     const fullName = pillarNameMap[label] || label;
-    // Se não houver filtro, todas as barras são vermelhas
-    // Se houver filtro, a barra filtrada é vermelha escura, as outras ficam claras
-    if (!state.adminFilterPillar) {
-      return '#dc2626'; // Vermelho padrão (todas iguais)
-    }
-    return fullName === state.adminFilterPillar ? '#b91c1c' : '#fca5a5'; // Escuro = selecionado, claro = não selecionado
+    const favorability = parseFloat(state.stats.pillarStats?.[index]?.favorabilidade) || 0;
+    
+    // Cores baseadas na favorabilidade
+    if (favorability >= 75) return '#10b981'; // verde
+    if (favorability >= 50) return '#f59e0b'; // amarelo
+    return '#ef4444'; // vermelho
   });
   
   new Chart(ctx, {
@@ -434,8 +503,8 @@ function initPillarChart() {
     data: {
       labels: labels,
       datasets: [{
-        label: 'Média',
-        data: state.stats.pillarStats?.map(s => s.average) || [],
+        label: 'Favorabilidade',
+        data: state.stats.pillarStats?.map(s => parseFloat(s.favorabilidade) || 0) || [],
         backgroundColor: backgroundColors,
         borderRadius: 8
       }]
@@ -454,9 +523,15 @@ function initPillarChart() {
         },
         y: {
           min: 0,
-          max: 4,
+          max: 100,
           grid: { color: '#e5e7eb' },
-          ticks: { font: { weight: '600' }, color: '#6b7280' }
+          ticks: { 
+            font: { weight: '600' }, 
+            color: '#6b7280',
+            callback: function(value) {
+              return value + '%';
+            }
+          }
         }
       },
       plugins: {
@@ -470,7 +545,12 @@ function initPillarChart() {
           padding: 12,
           cornerRadius: 8,
           borderColor: '#e5e7eb',
-          borderWidth: 1
+          borderWidth: 1,
+          callbacks: {
+            label: function(context) {
+              return `Favorabilidade: ${context.parsed.y.toFixed(1)}%`;
+            }
+          }
         }
       },
       onClick: (event, elements) => {
@@ -487,6 +567,1935 @@ function initPillarChart() {
       }
     }
   });
+}
+
+// Sistema Unificado de IA com Contexto e SVG
+
+/**
+ * Inicia nova sessão de chat unificado
+ */
+async function iniciarChatUnificado() {
+  try {
+    const response = await fetch('/api/chat/iniciar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ unidade: state.adminFilterUnit || 'all' })
+    });
+    
+    const data = await response.json();
+    
+    if (data.sucesso) {
+      chatSession = data.session;
+      currentContext = data.dados;
+      state.ultimaAnalise = null;
+      
+      // Mostrar modal com chat em segundo plano
+      showAnalysisModal();
+      updateAnalysisModal({ 
+        isLoading: false, 
+        analysis: null 
+      });
+      
+      // Iniciar chat automaticamente com análise completa
+      setTimeout(() => {
+        toggleChat();
+        // Gerar análise automática com SVG
+        enviarMensagemUnificadaAnalise();
+      }, 100);
+      
+      return { success: true, session: data.session, dados: data.dados };
+    } else {
+      throw new Error(data.erro || 'Erro ao iniciar chat');
+    }
+    
+  } catch (error) {
+    console.error('Erro ao iniciar chat:', error);
+    throw error;
+  }
+}
+
+/**
+ * Envia mensagem para análise automática com SVG
+ */
+async function enviarMensagemUnificadaAnalise() {
+  try {
+    addMessageToChat('user', 'Por favor, faça uma análise completa da pesquisa de clima organizacional com gráficos visuais.');
+    
+    const dadosParaAPI = {
+      mensagem: 'Faça uma análise completa da pesquisa de clima organizacional. Inclua: resumo executivo, diagnóstico geral, pontos fortes, pontos de atenção, análise por dimensão, leitura estratégica e recomendação de ações. Gere também um gráfico SVG可视化 de barras mostrando a favorabilidade por pilar.',
+      gerarSVG: true,
+      tipoAnalise: 'completa',
+      incluirContexto: true
+    };
+    
+    const response = await fetch('/api/chat/enviar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dadosParaAPI)
+    });
+    
+    const data = await response.json();
+    
+    if (data.sucesso) {
+      addMessageToChat('assistant', data.resposta);
+      
+      if (data.temSVG && data.codigoSVG) {
+        addSVGMensagem(data.codigoSVG);
+      }
+      
+    } else {
+      throw new Error(data.erro || 'Erro desconhecido');
+    }
+    
+  } catch (error) {
+    console.error('Erro ao gerar análise:', error);
+    addMessageToChat('system', `❌ Erro: ${error.message}`);
+  }
+}
+
+/**
+ * Envia mensagem para chat unificado
+ */
+async function enviarMensagemUnificada() {
+  const input = document.getElementById('chatInput');
+  const pergunta = input?.value?.trim();
+  
+  if (!pergunta) return;
+  
+  try {
+    // Adicionar mensagem do usuário ao chat
+    addMessageToChat('user', pergunta);
+    input.value = '';
+    
+    // Preparar dados para API
+    const dadosParaAPI = {
+      mensagem: pergunta,
+      gerarSVG: false,
+      tipoAnalise: 'completa',
+      incluirContexto: true
+    };
+    
+    // Chamar API
+    const response = await fetch('/api/chat/enviar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dadosParaAPI)
+    });
+    
+    const data = await response.json();
+    
+    if (data.sucesso) {
+      // Adicionar resposta ao chat
+      addMessageToChat('assistant', data.resposta);
+      
+      // Se tiver SVG, exibir
+      if (data.temSVG && data.codigoSVG) {
+        addMessageToChat('system', `📊 Análise visual gerada com sucesso!`);
+      }
+      
+    } else {
+      throw new Error(data.erro || 'Erro desconhecido');
+    }
+    
+  } catch (error) {
+    console.error('Erro ao enviar mensagem:', error);
+    addMessageToChat('system', `❌ Erro: ${error.message}`);
+  }
+}
+
+/**
+ * Gera análise visual em SVG
+ */
+async function gerarAnaliseVisualUnificada() {
+  try {
+    addMessageToChat('system', '🔄 Gerando análise visual em SVG...');
+    
+    const response = await fetch('/api/chat/analise-visual', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        unidade: state.adminFilterUnit || 'all',
+        tipo: 'completa'
+      })
+    });
+    
+    const data = await response.json();
+    
+    if (data.sucesso) {
+      // Adicionar análise ao chat
+      addMessageToChat('assistant', data.analise);
+      
+      // Se tiver SVG, exibir
+      if (data.analiseProcessada?.hasSVG && data.analiseProcessada?.svgCode) {
+        const svgContainer = document.createElement('div');
+        svgContainer.className = 'message-svg';
+        svgContainer.innerHTML = `
+          <div class="svg-container">
+            ${data.analiseProcessada.svgCode}
+          </div>
+          <div class="message-actions">
+            <button onclick="window.baixarSVG('${encodeURIComponent(data.analiseProcessada.svgCode)}')" class="btn btn-outline btn-xs">
+              ${icons.download} Baixar SVG
+            </button>
+            <button onclick="window.copiarSVG('${encodeURIComponent(data.analiseProcessada.svgCode)}')" class="btn btn-outline btn-xs">
+              ${icons.clipboard} Copiar SVG
+            </button>
+          </div>
+        `;
+        
+        const messagesContainer = document.getElementById('chatMessages');
+        if (messagesContainer) {
+          messagesContainer.appendChild(svgContainer);
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+      }
+      
+    } else {
+      throw new Error(data.erro || 'Erro ao gerar análise visual');
+    }
+    
+  } catch (error) {
+    console.error('Erro ao gerar análise visual:', error);
+    addMessageToChat('system', `❌ Erro: ${error.message}`);
+  }
+}
+
+/**
+ * Limpa contexto do chat
+ */
+async function limparContextoUnificado() {
+  try {
+    const response = await fetch('/api/chat/contexto', {
+      method: 'DELETE'
+    });
+    
+    const data = await response.json();
+    
+    if (data.sucesso) {
+      chatSession = null;
+      currentContext = null;
+      
+      addMessageToChat('system', '🔄 Contexto limpo com sucesso.');
+      
+    } else {
+      throw new Error(data.erro || 'Erro ao limpar contexto');
+    }
+    
+  } catch (error) {
+    console.error('Erro ao limpar contexto:', error);
+    addMessageToChat('system', `❌ Erro: ${error.message}`);
+  }
+}
+
+/**
+ * Gera relatório completo em background com experiência natural de chat e animações do robô
+ */
+async function gerarRelatorioCompleto(buttonElement) {
+  try {
+    // Evitar cliques múltiplos - desabilitar botão temporariamente
+    if (buttonElement) {
+      buttonElement.disabled = true;
+      buttonElement.textContent = 'Gerando...';
+      buttonElement.style.opacity = '0.6';
+    }
+    
+    // Abrir widget se estiver fechado
+    const widget = document.getElementById('nitaiChatWidget');
+    const floatButton = document.getElementById('nitaiFloatButton');
+    
+    if (widget && widget.classList.contains('hidden')) {
+      widget.classList.remove('hidden');
+      widget.classList.add('visible');
+      floatButton.classList.add('active');
+      
+      // Focar no input
+      const input = document.getElementById('widgetChatInput');
+      if (input) {
+        setTimeout(() => input.focus(), 300);
+      }
+    }
+    
+    // Adicionar mensagem natural como se fosse uma conversa
+    addMessageToChat('user', 'Por favor, gere um relatório completo da pesquisa de clima organizacional.');
+    
+    // Adicionar resposta da Nitai com robô pensando
+    const loadingMessageId = 'loading-relatorio-' + Date.now();
+    const progressId = 'progress-' + Date.now();
+    
+    addMessageToChat('assistant', `
+      <div id="${loadingMessageId}" class="chat-loading-message">
+        <div class="robot-container">
+          <div class="robot-thinking">
+            <div class="robot-head">
+              <div class="robot-eyes">
+                <div class="robot-eye"></div>
+                <div class="robot-eye"></div>
+              </div>
+              <div class="robot-mouth"></div>
+            </div>
+            <div class="thought-bubble"></div>
+          </div>
+        </div>
+        <div class="loading-header">
+          <h4>Estou pensando... analisando a pesquisa de clima completa! </h4>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div id="${progressId}" class="progress-fill" style="width: 0%"></div>
+          </div>
+          <div class="progress-text">
+            <span id="${progressId}-percent">0%</span> - <span id="${progressId}-status">Reunindo informações...</span>
+          </div>
+        </div>
+        <p class="loading-subtitle">Deixe eu processar tudo com cuidado para te dar o melhor relatório! </p>
+      </div>
+    `);
+    
+    // Simular progresso animado
+    let progress = 0;
+    const progressInterval = setInterval(() => {
+      progress += Math.random() * 12; // Incremento mais suave
+      
+      if (progress >= 90) {
+        progress = 90; // Fica em 90% até terminar
+        clearInterval(progressInterval);
+      }
+      
+      const progressElement = document.getElementById(progressId);
+      const percentElement = document.getElementById(progressId + '-percent');
+      const statusElement = document.getElementById(progressId + '-status');
+      
+      if (progressElement) progressElement.style.width = progress + '%';
+      if (percentElement) percentElement.textContent = Math.round(progress) + '%';
+      
+      // Status dinâmico baseado no progresso
+      if (statusElement) {
+        if (progress < 20) {
+          statusElement.textContent = 'Coletando todas as respostas...';
+        } else if (progress < 40) {
+          statusElement.textContent = 'Analisando comentários e sentimentos...';
+        } else if (progress < 60) {
+          statusElement.textContent = 'Gerando insights com minha IA especializada...';
+        } else if (progress < 80) {
+          statusElement.textContent = 'Estruturando o relatório estratégico...';
+        } else {
+          statusElement.textContent = 'Finalizando os detalhes finais...';
+        }
+      }
+    }, 600); // Intervalo mais natural
+    
+    const response = await fetch('/api/clima/relatorio/landing-page', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ unidade: state.adminFilterUnit || 'all' })
+    });
+    
+    const data = await response.json();
+    
+    // Completar progresso para 100%
+    clearInterval(progressInterval);
+    
+    const progressElement = document.getElementById(progressId);
+    const percentElement = document.getElementById(progressId + '-percent');
+    const statusElement = document.getElementById(progressId + '-status');
+    
+    if (progressElement) progressElement.style.width = '100%';
+    if (percentElement) percentElement.textContent = '100%';
+    if (statusElement) statusElement.textContent = 'Finalizando os últimos detalhes...';
+    
+    // Pequena pausa para mostrar 100%
+    await new Promise(resolve => setTimeout(resolve, 800));
+    
+    // Mostrar robô feliz antes de entregar o resultado
+    const loadingElement = document.getElementById(loadingMessageId);
+    if (loadingElement) {
+      loadingElement.innerHTML = `
+        <div class="robot-container">
+          <div class="robot-happy">
+            <div class="robot-head">
+              <div class="robot-eyes">
+                <div class="robot-eye"></div>
+                <div class="robot-eye"></div>
+              </div>
+              <div class="robot-mouth"></div>
+              <div class="sparkle"></div>
+              <div class="sparkle"></div>
+              <div class="sparkle"></div>
+            </div>
+          </div>
+        </div>
+        <div class="loading-header">
+          <h4>Prontinho! Consegui gerar seu relatório completo! </h4>
+        </div>
+        <p class="loading-subtitle">Aqui está tudo que você precisa saber sobre o clima da sua empresa! </p>
+      `;
+      
+      // Pequena pausa para mostrar robô feliz
+      await new Promise(resolve => setTimeout(resolve, 1500));
+    }
+    
+    // Remover mensagem de loading
+    if (loadingElement) {
+      loadingElement.remove();
+    }
+    
+    if (data.sucesso) {
+      // Salvar dados do relatório para download
+      state.relatorioData = data.dados;
+      state.relatorioId = data.relatorio_id;
+      state.relatorioUrl = data.url_acesso;
+      
+      // Adicionar resposta final da Nitai com card compacto e link para landing page
+      addMessageToChat('assistant', `
+        <div class="relatorio-card-compact">
+          <div class="relatorio-card-compact-header">
+            <div class="relatorio-card-compact-title">
+              ${icons.fileText}
+              <span>Relatório Completo de Clima Organizacional</span>
+            </div>
+            <div class="relatorio-card-compact-status">
+              ${icons.checkCircle} Relatório gerado com sucesso!
+            </div>
+          </div>
+          <div class="relatorio-card-compact-description">
+            Seu relatório interativo está pronto! Experimente nossa nova landing page com visualizações impressionantes e navegação fluida.
+          </div>
+          <div class="relatorio-card-compact-actions">
+            <button onclick="window.abrirRelatorioLanding()" class="btn btn-purple btn-sm">
+              ${icons.maxus} Abrir Relatório Interativo
+            </button>
+            <button onclick="window.baixarRelatorio()" class="btn btn-success btn-sm">
+              ${icons.download} Baixar agora
+            </button>
+          </div>
+        </div>
+      `);
+      
+    } else {
+      addMessageToChat('system', `Ops! Encontrei um erro ao gerar o relatório: ${data.erro || 'Erro desconhecido'}`);
+    }
+    
+  } catch (error) {
+    console.error('Erro ao gerar relatório:', error);
+    addMessageToChat('system', `Ops! Ocorreu um erro inesperado: ${error.message}`);
+  } finally {
+    // Restaurar botão independentemente do resultado
+    if (buttonElement) {
+      buttonElement.disabled = false;
+      buttonElement.textContent = 'Gerar Relatório Completo';
+      buttonElement.style.opacity = '1';
+    }
+  }
+}
+
+/**
+ * Inicia análise com analista de RH especializado
+ */
+async function iniciarAnaliseComAnalista() {
+  try {
+    showAnalysisModal();
+    updateAnalysisModal({ isLoading: true });
+    await iniciarChatUnificado();
+  } catch (error) {
+    console.error('Erro ao iniciar análise com analista:', error);
+    updateAnalysisModal({ 
+      isLoading: false,
+      analysis: `<div class="error-message">
+        <h3>❌ Erro ao iniciar análise</h3>
+        <p>${error.message}</p>
+        <p>Tente novamente em alguns instantes.</p>
+      </div>`
+    });
+  }
+}
+
+/**
+ * Gera análise tradicional (mantida para compatibilidade)
+ */
+async function gerarAnaliseInteligente(tipo = 'completa') {
+  try {
+    // Mostrar modal com loading
+    showAnalysisModal();
+    updateAnalysisModal({ isLoading: true });
+    
+    // Preparar dados para enviar
+    const dadosParaAPI = {
+      tipo,
+      unidade: state.adminFilterUnit || 'all'
+    };
+    
+    // Chamar API
+    const response = await fetch('/api/clima/analise', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dadosParaAPI)
+    });
+    
+    const data = await response.json();
+    
+    if (data.sucesso) {
+      updateAnalysisModal({ 
+        isLoading: false, 
+        analysis: data.analise 
+      });
+      state.ultimaAnalise = data.analise;
+    } else {
+      throw new Error(data.erro || 'Erro desconhecido');
+    }
+    
+  } catch (error) {
+    console.error('Erro ao gerar análise:', error);
+    updateAnalysisModal({ 
+      isLoading: false,
+      analysis: `<div class="error-message">
+        <h3>❌ Erro ao gerar análise</h3>
+        <p>${error.message}</p>
+        <p>Verifique as configurações da API e tente novamente.</p>
+      </div>`
+    });
+  }
+}
+
+async function iniciarChatClima() {
+  const chatSection = document.getElementById('chatSection');
+  if (chatSection) {
+    chatSection.style.display = chatSection.style.display === 'none' ? 'block' : 'none';
+    
+    if (chatSection.style.display === 'block') {
+      document.getElementById('chatInput')?.focus();
+    }
+  }
+}
+
+function fecharChat() {
+  const chatSection = document.getElementById('chatSection');
+  if (chatSection) {
+    chatSection.style.display = 'none';
+  }
+}
+
+async function enviarMensagemChat() {
+  const input = document.getElementById('chatInput');
+  const pergunta = input?.value?.trim();
+  
+  if (!pergunta) return;
+  
+  try {
+    // Adicionar mensagem do usuário ao chat
+    adicionarMensagemChat('user', pergunta);
+    input.value = '';
+    
+    // Preparar dados para API
+    const dadosParaAPI = {
+      mensagem: pergunta,
+      incluirContexto: true,
+      gerarSVG: false
+    };
+    
+    // Chamar API
+    const response = await fetch('/api/chat/enviar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dadosParaAPI)
+    });
+    
+    const data = await response.json();
+    
+    if (data.sucesso) {
+      // Adicionar resposta ao histórico e ao chat
+      chatHistory.push({ role: 'user', content: pergunta });
+      chatHistory.push({ role: 'assistant', content: data.resposta });
+      
+      adicionarMensagemChat('assistant', data.resposta);
+      
+    } else {
+      throw new Error(data.erro || 'Erro desconhecido');
+    }
+    
+  } catch (error) {
+    console.error('Erro no chat:', error);
+    adicionarMensagemChat('system', `❌ Erro: ${error.message}`);
+  }
+}
+
+function adicionarMensagemChat(tipo, mensagem) {
+  const messagesContainer = document.getElementById('chatMessages');
+  if (!messagesContainer) return;
+  
+  const messageDiv = document.createElement('div');
+  messageDiv.className = `chat-message ${tipo}`;
+  
+  const roleText = tipo === 'user' ? 'Você' : 
+                    tipo === 'assistant' ? 'Analista IA' : 'Sistema';
+  
+  messageDiv.innerHTML = `<strong>${roleText}:</strong> ${mensagem}`;
+  
+  messagesContainer.appendChild(messageDiv);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+function handleChatKeyPress(event) {
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault();
+    enviarMensagemChat();
+  }
+}
+
+function copiarAnalise() {
+  if (state.ultimaAnalise) {
+    navigator.clipboard.writeText(state.ultimaAnalise).then(() => {
+      // Mostrar feedback visual
+      const btn = event.target;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = `${icons.check} Copiado!`;
+      btn.classList.add('btn-success');
+      
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.classList.remove('btn-success');
+      }, 2000);
+    }).catch(err => {
+      console.error('Erro ao copiar:', err);
+    });
+  }
+}
+
+function baixarAnalisePDF() {
+  if (!state.ultimaAnalise) return;
+  
+  // Criar conteúdo HTML para PDF
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Análise de Clima Organizacional</title>
+      <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 40px; }
+        h1 { color: #1f2937; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; }
+        h2 { color: #374151; margin-top: 30px; }
+        h3 { color: #4b5563; margin-top: 25px; }
+        ul, ol { margin: 15px 0; }
+        li { margin: 8px 0; }
+        strong { color: #1f2937; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .footer { margin-top: 50px; text-align: center; color: #6b7280; font-size: 12px; }
+      </style>
+    </head>
+    <body>
+      <div class="header">
+        <h1>📊 Análise de Clima Organizacional</h1>
+        <h2>Nordeste Locações</h2>
+        <p>Gerado em: ${new Date().toLocaleDateString('pt-BR')}</p>
+      </div>
+      
+      <div class="content">
+        ${state.ultimaAnalise.replace(/\n/g, '<br>')}
+      </div>
+      
+      <div class="footer">
+        <p>Relatório gerado automaticamente pelo Sistema de Análise de Clima</p>
+      </div>
+    </body>
+    </html>
+  `;
+  
+  // Criar blob e baixar
+  const blob = new Blob([htmlContent], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `analise-clima-${new Date().toISOString().split('T')[0]}.html`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function toggleChat() {
+  const chatSection = document.getElementById('chatSection');
+  if (chatSection) {
+    chatSection.style.display = chatSection.style.display === 'none' ? 'block' : 'none';
+    
+    if (chatSection.style.display === 'block') {
+      document.getElementById('chatInput')?.focus();
+    }
+  }
+}
+
+function fecharModalAnalise(event) {
+  if (!event || event.target === event.currentTarget) {
+    hideAnalysisModal();
+  }
+}
+
+function incluirContexto() {
+  const input = document.getElementById('chatInput');
+  if (!input || !currentContext) return;
+  
+  const contextText = `
+Contexto da Pesquisa:
+- Total de Respostas: ${currentContext.dados_gerais?.total_respostas || 0}
+- Favorabilidade Global: ${currentContext.dados_gerais?.favorabilidade_global || 0}%
+- Data: ${currentContext.dados_gerais?.data_analise || 'N/A'}
+
+Dimensões:
+${currentContext.dimensoes?.map(d => `- ${d.nome}: ${d.favorabilidade}%`).join('\n') || ''}
+
+Top Piores:
+${currentContext.piores_perguntas?.slice(0, 3).map(p => `- Q${p.pergunta_id}: ${p.favorabilidade}%`).join('\n') || ''}
+
+Top Melhores:
+${currentContext.melhores_perguntas?.slice(0, 3).map(p => `- Q${p.pergunta_id}: ${p.favorabilidade}%`).join('\n') || ''}
+`;
+  
+  input.value = contextText;
+  input.focus();
+}
+
+function gerarSVGResposta() {
+  const input = document.getElementById('chatInput');
+  const analysisType = document.getElementById('analysisType')?.value || 'completa';
+  
+  if (!input || !input.value.trim()) {
+    alert('Digite uma mensagem antes de gerar SVG.');
+    return;
+  }
+  
+  enviarMensagemUnificada();
+}
+
+function gerarAnaliseVisual() {
+  gerarAnaliseVisualUnificada();
+}
+
+function limparContexto() {
+  limparContextoUnificado();
+}
+
+/**
+ * Toggle para abrir/fechar chat flutuante Nitai
+ */
+function toggleNitaiChat() {
+  const widget = document.getElementById('nitaiChatWidget');
+  const floatButton = document.getElementById('nitaiFloatButton');
+  
+  if (!widget || !floatButton) return;
+  
+  if (widget.classList.contains('hidden')) {
+    widget.classList.remove('hidden');
+    widget.classList.add('visible');
+    floatButton.classList.add('active');
+    
+    // Inicializar contexto e resize na primeira abertura
+    setTimeout(async () => {
+      try {
+        // Inicializar contexto completo com dados da pesquisa
+        await inicializarContextoChat();
+        
+        // Inicializar resize
+        initWidgetResize();
+        
+        // Focar no input
+        const input = document.getElementById('widgetChatInput');
+        if (input) {
+          input.focus();
+        }
+      } catch (error) {
+        console.error('Erro ao inicializar chat:', error);
+        // Mesmo com erro, inicializar resize e focar
+        initWidgetResize();
+        const input = document.getElementById('widgetChatInput');
+        if (input) {
+          input.focus();
+        }
+      }
+    }, 300);
+  } else {
+    widget.classList.remove('visible');
+    widget.classList.add('hidden');
+    floatButton.classList.remove('active');
+  }
+}
+
+/**
+ * Inicializa contexto do chat com dados completos da pesquisa
+ */
+async function inicializarContextoChat() {
+  try {
+    const response = await fetch('/api/chat/inicializar-contexto', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    const data = await response.json();
+    
+    if (data.sucesso) {
+      console.log('Contexto do chat inicializado:', data.contexto);
+      
+      // Adicionar mensagem de boas-vindas informando que o contexto está carregado
+      const messagesContainer = document.getElementById('widgetChatMessages');
+      if (messagesContainer && !messagesContainer.querySelector('.context-loaded-message')) {
+        const dashboard = data.contexto?.dashboardCompleto;
+        const contextMessage = document.createElement('div');
+        contextMessage.className = 'chat-message assistant context-loaded-message';
+        contextMessage.innerHTML = `
+          <div class="message-header">
+            <strong>Nitai</strong>
+            <span class="message-time">${new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</span>
+          </div>
+          <div class="message-content">
+            <div class="context-indicator">
+              <span class="indicator-box indicator-high">Dashboard Completo</span>
+              <span class="indicator-box indicator-medium">${dashboard?.estatisticas_gerais?.total_respostas || 0} Respostas</span>
+              <span class="indicator-box indicator-medium">${dashboard?.estatisticas_gerais?.taxa_favorabilidade?.toFixed(1) || 0}% Favorabilidade</span>
+              <span class="indicator-box indicator-medium">${dashboard?.estatisticas_gerais?.total_dimensoes || 0} Dimensões</span>
+            </div>
+            
+            <div class="dashboard-summary">
+              <h4>ANÁLISE COMPLETA DISPONÍVEL</h4>
+              <div class="summary-grid">
+                <div class="summary-item">
+                  <strong>Favorabilidade Global:</strong> ${dashboard?.estatisticas_gerais?.taxa_favorabilidade?.toFixed(1) || 0}%
+                </div>
+                <div class="summary-item">
+                  <strong>Média Satisfação:</strong> ${dashboard?.estatisticas_gerais?.media_satisfacao || 0}/4.0
+                </div>
+                <div class="summary-item">
+                  <strong>Alertas Críticos:</strong> ${dashboard?.alertas_criticos?.total_alertas || 0}
+                </div>
+                <div class="summary-item">
+                  <strong>Comentários:</strong> ${dashboard?.comentarios_qualitativos?.length || 0}
+                </div>
+              </div>
+              
+              <h5>HEATMAP POR PILAR</h5>
+              <div class="pillar-heatmap">
+                ${dashboard?.heatmap_pilares?.map(p => `
+                  <div class="pillar-item ${p.status === 'Ótimo' ? 'optimal' : p.status === 'Atenção' ? 'warning' : 'critical'}">
+                    <span class="pillar-name">${p.pilar}</span>
+                    <span class="pillar-value">${p.favorabilidade.toFixed(1)}%</span>
+                    <span class="pillar-status">${p.status}</span>
+                  </div>
+                `).join('') || ''}
+              </div>
+              
+              <h5>TOP 5 MELHORES</h5>
+              <div class="ranking-list">
+                ${dashboard?.rankings?.top_melhores_perguntas?.map((p, i) => `
+                  <div class="ranking-item">
+                    <span class="ranking-position">${i+1}.</span>
+                    <span class="ranking-value">${p.favorabilidade.toFixed(1)}%</span>
+                    <span class="ranking-pillar">${p.pilar}</span>
+                  </div>
+                `).join('') || ''}
+              </div>
+              
+              <h5>TOP 5 PIORES</h5>
+              <div class="ranking-list">
+                ${dashboard?.rankings?.top_piores_perguntas?.map((p, i) => `
+                  <div class="ranking-item">
+                    <span class="ranking-position">${i+1}.</span>
+                    <span class="ranking-value">${p.favorabilidade.toFixed(1)}%</span>
+                    <span class="ranking-pillar">${p.pilar}</span>
+                  </div>
+                `).join('') || ''}
+              </div>
+            </div>
+            
+            <p>Olá! Sou a Nitai, sua assistente de Clima Organizacional. Tenho acesso completo a TODOS os dados do dashboard incluindo estatísticas, heatmaps, rankings e comentários qualitativos.</p>
+            <p>Posso analisar qualquer aspecto do clima organizacional, gerar insights estratégicos, recomendações acionáveis e relatórios completos baseados nos dados completos.</p>
+            <p><strong>Dados carregados e prontos para análise completa. Como posso ajudar você hoje?</strong></p>
+          </div>
+        `;
+        
+        // Inserir antes da mensagem de boas-vindas
+        const welcomeMessage = messagesContainer.querySelector('.welcome-message');
+        if (welcomeMessage) {
+          messagesContainer.insertBefore(contextMessage, welcomeMessage);
+        } else {
+          messagesContainer.appendChild(contextMessage);
+        }
+      }
+      
+      return true;
+    } else {
+      console.error('Erro ao inicializar contexto:', data.erro);
+      return false;
+    }
+  } catch (error) {
+    console.error('Erro ao inicializar contexto do chat:', error);
+    return false;
+  }
+}
+
+/**
+ * Envia mensagem do widget flutuante
+ */
+async function enviarWidgetMessage() {
+  const input = document.getElementById('widgetChatInput');
+  const pergunta = input?.value?.trim();
+  
+  if (!pergunta) return;
+  
+  try {
+    // Adicionar mensagem do usuário ao chat
+    addMessageToChat('user', pergunta);
+    input.value = '';
+    
+    // Adicionar mensagem de loading com progresso rápido
+    const loadingMessageId = 'loading-chat-' + Date.now();
+    const progressId = 'progress-chat-' + Date.now();
+    
+    addMessageToChat('assistant', `
+      <div id="${loadingMessageId}" class="chat-loading-message">
+        <div class="loading-header">
+          <div class="loading-spinner"></div>
+          <h4>Nitai está pensando...</h4>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div id="${progressId}" class="progress-fill" style="width: 0%"></div>
+          </div>
+          <div class="progress-text">
+            <span id="${progressId}-percent">0%</span> - <span id="${progressId}-status">Analisando sua pergunta...</span>
+          </div>
+        </div>
+      </div>
+    `);
+    
+    // Simular progresso rápido para conversas
+    let progress = 0;
+    const progressInterval = setInterval(() => {
+      progress += Math.random() * 25; // Progresso mais rápido para conversas
+      
+      if (progress >= 85) {
+        progress = 85; // Fica em 85% até terminar
+        clearInterval(progressInterval);
+      }
+      
+      const progressElement = document.getElementById(progressId);
+      const percentElement = document.getElementById(progressId + '-percent');
+      const statusElement = document.getElementById(progressId + '-status');
+      
+      if (progressElement) progressElement.style.width = progress + '%';
+      if (percentElement) percentElement.textContent = Math.round(progress) + '%';
+      
+      // Status dinâmico para conversas
+      if (statusElement) {
+        if (progress < 30) {
+          statusElement.textContent = 'Analisando sua pergunta...';
+        } else if (progress < 60) {
+          statusElement.textContent = 'Consultando dados da pesquisa...';
+        } else {
+          statusElement.textContent = 'Gerando resposta...';
+        }
+      }
+    }, 300); // Intervalo mais rápido para conversas
+    
+    // Preparar dados para API
+    const dadosParaAPI = {
+      mensagem: pergunta,
+      incluirContexto: true,
+      gerarSVG: false
+    };
+    
+    // Chamar API
+    const response = await fetch('/api/chat/enviar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dadosParaAPI)
+    });
+    
+    const data = await response.json();
+    
+    // Completar progresso para 100%
+    clearInterval(progressInterval);
+    
+    const progressElement = document.getElementById(progressId);
+    const percentElement = document.getElementById(progressId + '-percent');
+    const statusElement = document.getElementById(progressId + '-status');
+    
+    if (progressElement) progressElement.style.width = '100%';
+    if (percentElement) percentElement.textContent = '100%';
+    if (statusElement) statusElement.textContent = 'Pronto!';
+    
+    // Pequena pausa para mostrar 100%
+    await new Promise(resolve => setTimeout(resolve, 300));
+    
+    // Remover mensagem de loading
+    const loadingElement = document.getElementById(loadingMessageId);
+    if (loadingElement) {
+      loadingElement.remove();
+    }
+    
+    if (data.sucesso) {
+      addMessageToChat('assistant', data.resposta);
+      
+      if (data.temSVG && data.codigoSVG) {
+        addSVGMensagem(data.codigoSVG);
+      }
+      
+    } else {
+      throw new Error(data.erro || 'Erro desconhecido');
+    }
+    
+  } catch (error) {
+    console.error('Erro ao enviar mensagem:', error);
+    addMessageToChat('system', `❌ Erro: ${error.message}`);
+  }
+}
+
+/**
+ * Adiciona mensagem ao chat do widget flutuante
+ * @param {string} role - 'user' | 'assistant' | 'system'
+ * @param {string} content - Conteúdo da mensagem
+ */
+function addMessageToChat(role, content) {
+  const messagesContainer = document.getElementById('widgetChatMessages');
+  if (!messagesContainer) return;
+  
+  const messageDiv = document.createElement('div');
+  messageDiv.className = `chat-message ${role}`;
+  messageDiv.innerHTML = `
+    <div class="message-header">
+      <strong>${role === 'user' ? 'Você' : role === 'assistant' ? 'Nitai' : 'Sistema'}</strong>
+      <span class="message-time">${new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</span>
+    </div>
+    <div class="message-content">
+      ${content}
+    </div>
+  `;
+  
+  messagesContainer.appendChild(messageDiv);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+/**
+ * Handle keypress no widget
+ */
+function handleWidgetChatKeyPress(event) {
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault();
+    enviarWidgetMessage();
+  }
+}
+
+/**
+ * Inicializa funcionalidade de redimensionamento do widget em todos os cantos e movimento vertical
+ */
+function initWidgetResize() {
+  const widget = document.getElementById('nitaiChatWidget');
+  const resizeHandleBottomRight = document.getElementById('widgetResizeHandle');
+  const resizeHandleTopLeft = document.getElementById('widgetResizeHandleTopLeft');
+  const resizeHandleBottomLeft = document.getElementById('widgetResizeHandleBottomLeft');
+  const resizeHandleTop = document.getElementById('widgetResizeHandleTop');
+  
+  if (!widget) return;
+  
+  // Fixar posição inicial do widget
+  widget.style.top = '180px';
+  widget.style.bottom = '120px';
+  widget.style.right = '20px';
+  
+  let isResizing = false;
+  let startX = 0;
+  let startY = 0;
+  let startWidth = 0;
+  let startHeight = 0;
+  let startLeft = 0;
+  let startTop = 0;
+  let resizeType = '';
+  
+  // Função para iniciar redimensionamento
+  function startResize(e, type) {
+    isResizing = true;
+    resizeType = type;
+    startX = e.clientX;
+    startY = e.clientY;
+    startWidth = parseInt(window.getComputedStyle(widget).width, 10);
+    startHeight = parseInt(window.getComputedStyle(widget).height, 10);
+    startLeft = widget.offsetLeft;
+    startTop = widget.offsetTop;
+    
+    widget.classList.add('resizing');
+    
+    // Definir cursor baseado no tipo de resize
+    let cursor = 'nwse-resize';
+    switch(type) {
+      case 'bottom-right':
+        cursor = 'nwse-resize';
+        break;
+      case 'top-left':
+        cursor = 'nwse-resize';
+        break;
+      case 'bottom-left':
+        cursor = 'nesw-resize';
+        break;
+      case 'top':
+        cursor = 'ns-resize';
+        break;
+    }
+    
+    document.body.style.cursor = cursor;
+    document.body.style.userSelect = 'none';
+    
+    e.preventDefault();
+  }
+  
+  // Event listeners para cada handle
+  if (resizeHandleBottomRight) {
+    resizeHandleBottomRight.addEventListener('mousedown', (e) => startResize(e, 'bottom-right'));
+  }
+  
+  if (resizeHandleTopLeft) {
+    resizeHandleTopLeft.addEventListener('mousedown', (e) => startResize(e, 'top-left'));
+  }
+  
+  if (resizeHandleBottomLeft) {
+    resizeHandleBottomLeft.addEventListener('mousedown', (e) => startResize(e, 'bottom-left'));
+  }
+  
+  if (resizeHandleTop) {
+    resizeHandleTop.addEventListener('mousedown', (e) => startResize(e, 'top'));
+  }
+  
+  document.addEventListener('mousemove', (e) => {
+    if (!isResizing) return;
+    
+    const deltaX = e.clientX - startX;
+    const deltaY = e.clientY - startY;
+    
+    // Limites mínimos e máximos
+    const minWidth = 350;
+    const minHeight = 400;
+    const maxWidth = window.innerWidth * 0.8;
+    const maxHeight = window.innerHeight * 0.8;
+    
+    let newWidth = startWidth;
+    let newHeight = startHeight;
+    let newLeft = startLeft;
+    let newTop = startTop;
+    
+    switch(resizeType) {
+      case 'bottom-right':
+        newWidth = startWidth + deltaX;
+        newHeight = startHeight + deltaY;
+        break;
+      case 'top-left':
+        newWidth = startWidth - deltaX;
+        newHeight = startHeight - deltaY;
+        newLeft = startLeft + deltaX;
+        newTop = startTop + deltaY;
+        break;
+      case 'bottom-left':
+        newWidth = startWidth - deltaX;
+        newHeight = startHeight + deltaY;
+        newLeft = startLeft + deltaX;
+        break;
+      case 'top':
+        // Apenas movimento vertical, mantém largura e posição horizontal
+        newHeight = startHeight - deltaY;
+        newTop = startTop + deltaY;
+        break;
+    }
+    
+    // Aplicar limites
+    if (newWidth >= minWidth && newWidth <= maxWidth) {
+      widget.style.width = newWidth + 'px';
+    }
+    
+    if (newHeight >= minHeight && newHeight <= maxHeight) {
+      widget.style.height = newHeight + 'px';
+    }
+    
+    // Ajustar posição para resize do lado esquerdo
+    if (resizeType === 'top-left' || resizeType === 'bottom-left') {
+      if (newWidth >= minWidth && newWidth <= maxWidth) {
+        widget.style.left = newLeft + 'px';
+      }
+    }
+    
+    // Ajustar posição para resize do topo
+    if (resizeType === 'top-left' || resizeType === 'top') {
+      if (newHeight >= minHeight && newHeight <= maxHeight) {
+        widget.style.top = newTop + 'px';
+      }
+    }
+  });
+  
+  document.addEventListener('mouseup', () => {
+    if (isResizing) {
+      isResizing = false;
+      resizeType = '';
+      widget.classList.remove('resizing');
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+      
+      // Salvar tamanho preferido no localStorage
+      const widgetWidth = widget.style.width;
+      const widgetHeight = widget.style.height;
+      const widgetLeft = widget.style.left;
+      const widgetTop = widget.style.top;
+      
+      localStorage.setItem('widgetSize', JSON.stringify({ 
+        width: widgetWidth, 
+        height: widgetHeight,
+        left: widgetLeft,
+        top: widgetTop
+      }));
+    }
+  });
+  
+  // Restaurar tamanho salvo (mas manter posicionamento fixo)
+  const savedSize = localStorage.getItem('widgetSize');
+  if (savedSize) {
+    try {
+      const { width, height } = JSON.parse(savedSize);
+      if (width) widget.style.width = width;
+      if (height) widget.style.height = height;
+      
+      // Manter posicionamento fixo correto
+      widget.style.top = '180px';
+      widget.style.bottom = '120px';
+      widget.style.right = '20px';
+      widget.style.left = 'auto';
+    } catch (e) {
+      console.error('Erro ao restaurar tamanho do widget:', e);
+    }
+  }
+}
+
+/**
+ * Expande relatório em tela cheia separada
+ */
+function expandirRelatorio() {
+  if (state.relatorioData) {
+    // Criar elemento de tela cheia
+    const fullscreenDiv = document.createElement('div');
+    fullscreenDiv.className = 'relatorio-fullscreen';
+    fullscreenDiv.innerHTML = `
+      <div class="relatorio-fullscreen-header">
+        <div class="relatorio-fullscreen-title">
+          ${icons.fileText}
+          <span>Relatório Completo de Clima Organizacional</span>
+        </div>
+        <div class="relatorio-fullscreen-actions">
+          <button onclick="window.baixarRelatorio()" class="btn btn-success">
+            ${icons.download} Baixar
+          </button>
+          <button onclick="window.fecharRelatorio()" class="relatorio-fullscreen-close">
+            ${icons.x} Fechar
+          </button>
+        </div>
+      </div>
+      <div class="relatorio-fullscreen-content">
+        <div class="relatorio-card-content">
+          ${state.relatorioData}
+        </div>
+      </div>
+    `;
+    
+    // Adicionar ao body
+    document.body.appendChild(fullscreenDiv);
+    
+    // Adicionar animação de entrada
+    setTimeout(() => {
+      fullscreenDiv.style.opacity = '1';
+    }, 10);
+  }
+}
+
+/**
+ * Fecha a tela cheia do relatório
+ */
+function fecharRelatorio() {
+  const fullscreenDiv = document.querySelector('.relatorio-fullscreen');
+  if (fullscreenDiv) {
+    fullscreenDiv.style.opacity = '0';
+    setTimeout(() => {
+      fullscreenDiv.remove();
+    }, 300);
+  }
+}
+
+/**
+ * Formata o conteúdo do relatório com estilos aprimorados
+ */
+function formatarConteudoRelatorio(conteudo) {
+  if (!conteudo) return conteudo;
+  
+  let formatado = conteudo;
+  
+  // Adicionar classes para seções especiais baseadas nos títulos
+  formatado = formatado.replace(
+    /##\s+.*RESUMO.*EXECUTIVO/gi, 
+    '<div class="resumo-executivo secao-destaque">\n## RESUMO EXECUTIVO'
+  );
+  
+  formatado = formatado.replace(
+    /##\s+.*DIAGNÓSTICO.*GERAL/gi, 
+    '<div class="diagnostico-geral secao-destaque">\n## DIAGNÓSTICO GERAL'
+  );
+  
+  formatado = formatado.replace(
+    /##\s+.*PROBLEMAS.*CRÍTICOS/gi, 
+    '<div class="problemas-criticos secao-critica">\n## TOP 3 PROBLEMAS CRÍTICOS'
+  );
+  
+  formatado = formatado.replace(
+    /##\s+.*PONTOS.*FORTES/gi, 
+    '<div class="pontos-fortes secao-positiva">\n## TOP 3 PONTOS FORTES'
+  );
+  
+  formatado = formatado.replace(
+    /##\s+.*RISCOS.*ORGANIZACIONAIS/gi, 
+    '<div class="riscos secao-aviso">\n## RISCOS ORGANIZACIONAIS'
+  );
+  
+  formatado = formatado.replace(
+    /##\s+.*PLANO.*AÇÃO.*RECOMENDADO/gi, 
+    '<div class="plano-acao secao-acao">\n## PLANO DE AÇÃO RECOMENDADO'
+  );
+
+  // Seções adicionais
+  formatado = formatado.replace(
+    /##\s+.*INSIGHTS.*ADICIONAIS/gi, 
+    '<div class="insights-adicionais secao-info">\n## 💡 INSIGHTS ADICIONAIS'
+  );
+
+  formatado = formatado.replace(
+    /##\s+.*CONCLUSÃO.*|##\s+.*VISÃO.*FUTURO/gi, 
+    '<div class="conclusao-visao secao-destaque">\n## 📈 CONCLUSÃO & VISÃO DE FUTURO'
+  );
+
+  formatado = formatado.replace(
+    /##\s+.*REFERÊNCIAS|##\s+.*PESQUISAS.*ACADÊMICAS/gi, 
+    '<div class="referencias secao-info">\n## 📚 PESQUISAS E REFERÊNCIAS ACADÊMICAS'
+  );
+  
+  // Melhorar tabelas com classes
+  formatado = formatado.replace(
+    /<table>/gi, 
+    '<table class="tabela-relatorio tabela-estilizada">'
+  );
+
+  // wrap tabular cells in special styling
+  formatado = formatado.replace(
+    /<th>/gi,
+    '<th class="th-estilizado">'
+  );
+
+  formatado = formatado.replace(
+    /<td>/gi,
+    '<td class="td-estilizado">'
+  );
+  
+  // Adicionar badges para métricas importantes
+  formatado = formatado.replace(
+    /(\d+%)\s*(de\s*favorabilidade)/gi, 
+    '<span class="badge badge-success">$1</span> $2'
+  );
+
+  formatado = formatado.replace(
+    /Favorabilidade.*?(\d+%)/gi,
+    '<span class="metric-destaque">$1</span>'
+  );
+  
+  formatado = formatado.replace(
+    /(\d+,\d+)\s*(média)/gi, 
+    '<span class="metrica positiva">$1</span> $2'
+  );
+  
+  formatado = formatado.replace(
+    /(\d+)\s*(respost?as?)/gi, 
+    '<span class="badge badge-info">$1</span> $2'
+  );
+
+  // Adicionar badges para problemas (números)
+  formatado = formatado.replace(
+    /\|\s*1\s*\|/g,
+    '| <span class="numero-destaque numero-1">1</span> |'
+  );
+
+  formatado = formatado.replace(
+    /\|\s*2\s*\|/g,
+    '| <span class="numero-destaque numero-2">2</span> |'
+  );
+
+  formatado = formatado.replace(
+    /\|\s*3\s*\|/g,
+    '| <span class="numero-destaque numero-3">3</span> |'
+  );
+
+  // Melhorar listas com ícones
+  formatado = formatado.replace(
+    /<ul>/gi, 
+    '<ul class="lista-acao lista-melhorada">'
+  );
+
+  // Adicionar classes aos itens de lista
+  formatado = formatado.replace(
+    /<li>/gi,
+    '<li class="item-acao">'
+  );
+
+  // Wrap linhas de tabela em classes
+  formatado = formatado.replace(
+    /<tr>/gi,
+    '<tr class="linha-tabela">'
+  );
+  
+  // Adicionar separadores visuais antes de seções principais
+  formatado = formatado.replace(
+    /---\n/gi, 
+    '</div>\n<div class="separador-forte"></div>\n'
+  );
+
+  // Adicionar separador entre seções
+  formatado = formatado.replace(
+    /##\s+#\s+/gi,
+    '</div>\n<div class="separador-secao"></div>\n<div class="secao-adicional">\n## '
+  );
+  
+  // Fechar divs que foram abertas
+  const secoes = ['resumo-executivo', 'diagnostico-geral', 'problemas-criticos', 'pontos-fortes', 'riscos', 'plano-acao', 'insights-adicionais', 'conclusao-visao', 'referencias'];
+  secoes.forEach(secao => {
+    const regex = new RegExp(`(##\\s+(?!.*${secao}).*|<div class="separador-forte">|<div class="separador-secao">|$)`, 'gi');
+    formatado = formatado.replace(regex, (match) => {
+      if (match.includes('##') || match.includes('separador-forte') || match.includes('separador-secao') || match === '') {
+        return `</div>\n${match}`;
+      }
+      return match;
+    });
+  });
+  
+  // Adicionar div final para fechar última seção
+  if (!formatado.endsWith('</div>')) {
+    formatado += '</div>';
+  }
+  
+  return formatado;
+}
+
+/**
+ * Abre relatório em landing page interativa
+ */
+function abrirRelatorioLanding() {
+  if (state.relatorioUrl) {
+    // Abrir em nova aba
+    window.open(state.relatorioUrl, '_blank');
+  } else if (state.relatorioId) {
+    // Fallback: construir URL manualmente
+    const url = `/relatorio/${state.relatorioId}`;
+    window.open(url, '_blank');
+  }
+}
+
+/**
+ * Baixa relatório como HTML com estilos e opção de PDF
+ */
+function baixarRelatorio() {
+  if (state.relatorioData) {
+    // Criar HTML completo com estilos
+    const htmlContent = gerarHTMLRelatorio(state.relatorioData);
+    
+    // Criar blob HTML
+    const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+    const url = window.URL.createObjectURL(blob);
+    
+    // Criar link de download
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `relatorio-clima-${new Date().toISOString().split('T')[0]}.html`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+    
+    // Tentar abrir em nova janela para impressão/PDF
+    setTimeout(() => {
+      const printWindow = window.open('', '_blank');
+      if (printWindow) {
+        printWindow.document.write(htmlContent);
+        printWindow.document.close();
+        
+        // Aguardar carregamento e mostrar diálogo de impressão
+        printWindow.onload = function() {
+          setTimeout(() => {
+            printWindow.print();
+          }, 500);
+        };
+      }
+    }, 1000);
+  }
+}
+
+/**
+ * Gera HTML completo do relatório com estilos profissionais
+ */
+function gerarHTMLRelatorio(conteudo) {
+  const dataAtual = new Date().toLocaleDateString('pt-BR');
+  
+  return `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Completo de Clima Organizacional</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 50%, #991b1b 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.2);
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+        
+        .header .meta {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .content {
+            background: white;
+            border-radius: 1rem;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 3px solid #dc2626;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 2.5rem 0 1.5rem 0;
+            padding: 1rem;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left: 4px solid #f59e0b;
+            border-radius: 0.5rem;
+        }
+        
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #374151;
+            margin: 2rem 0 1rem 0;
+            padding-left: 1rem;
+            border-left: 3px solid #3b82f6;
+        }
+        
+        h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 0.9rem;
+        }
+        
+        tr:hover td {
+            background-color: #f8fafc;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        strong {
+            color: #1e293b;
+            font-weight: 600;
+        }
+        
+        .secao-especial {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid;
+        }
+        
+        .resumo-executivo {
+            background: linear-gradient(135deg, #fef3c7, #fef9c3);
+            border-color: #fbbf24;
+        }
+        
+        .diagnostico-geral {
+            background: linear-gradient(135deg, #dbeafe, #eff6ff);
+            border-color: #3b82f6;
+        }
+        
+        .problemas-criticos {
+            background: linear-gradient(135deg, #fee2e2, #fef2f2);
+            border-color: #ef4444;
+        }
+        
+        .pontos-fortes {
+            background: linear-gradient(135deg, #dcfce7, #f0fdf4);
+            border-color: #10b981;
+        }
+        
+        .riscos {
+            background: linear-gradient(135deg, #fed7aa, #ffedd5);
+            border-color: #f59e0b;
+        }
+        
+        .plano-acao {
+            background: linear-gradient(135deg, #e9d5ff, #f3e8ff);
+            border-color: #a855f7;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin: 0.25rem;
+        }
+        
+        .badge-success {
+            background: #10b981;
+            color: white;
+        }
+        
+        .badge-warning {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .badge-danger {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .badge-info {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .secao-destaque, .secao-critica, .secao-positiva, .secao-aviso, .secao-acao, .secao-info {
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 1rem;
+            position: relative;
+        }
+
+        .secao-destaque {
+            background: linear-gradient(135deg, #fef3c7, #fef9c3);
+            border: 2px solid #fbbf24;
+        }
+
+        .secao-critica {
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            border: 2px solid #ef4444;
+        }
+
+        .secao-positiva {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            border: 2px solid #22c55e;
+        }
+
+        .secao-aviso {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #f59e0b;
+        }
+
+        .secao-acao {
+            background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+            border: 2px solid #6366f1;
+        }
+
+        .secao-info {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 2px solid #0ea5e9;
+        }
+
+        .metric-destaque {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        .numero-destaque {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-weight: 700;
+            color: white;
+        }
+
+        .numero-1 { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .numero-2 { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .numero-3 { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+
+        .tabela-estilizada {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabela-estilizada th {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            padding: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .tabela-estilizada td {
+            padding: 0.875rem 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .lista-melhorada {
+            list-style: none;
+            padding: 0;
+        }
+
+        .item-acao {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background: white;
+            border-radius: 0.5rem;
+            border-left: 3px solid #6366f1;
+        }
+
+        .separador-secao {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+            margin: 2rem 0;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .container {
+                max-width: none;
+                padding: 1rem;
+            }
+            
+            .header {
+                background: #dc2626 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .secao-especial {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            th {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Relatório Completo de Clima Organizacional</h1>
+            <div class="meta">Gerado em ${dataAtual}</div>
+        </div>
+        
+        <div class="content">
+            ${conteudo}
+        </div>
+        
+        <div class="footer">
+            <p>Relatório gerado por Nitai - Assistente de Clima Organizacional</p>
+            <p>© ${new Date().getFullYear()} Nordeste Locações - Todos os direitos reservados</p>
+        </div>
+    </div>
+</body>
+</html>`;
+}
+
+// Tornar funções globais
+window.gerarAnaliseInteligente = gerarAnaliseInteligente;
+window.iniciarChatUnificado = iniciarChatUnificado;
+window.enviarMensagemUnificada = enviarMensagemUnificada;
+window.gerarAnaliseVisualUnificada = gerarAnaliseVisualUnificada;
+window.limparContextoUnificado = limparContextoUnificado;
+window.gerarRelatorioCompleto = gerarRelatorioCompleto;
+window.iniciarAnaliseComAnalista = iniciarAnaliseComAnalista;
+window.toggleChat = toggleChat;
+window.fecharModalAnalise = fecharModalAnalise;
+window.incluirContexto = incluirContexto;
+window.gerarSVGResposta = gerarSVGResposta;
+window.gerarAnaliseVisual = gerarAnaliseVisual;
+window.limparContexto = limparContexto;
+window.addMessageToChat = addMessageToChat;
+window.minimizarModal = minimizarModal;
+window.restaurarModal = restaurarModal;
+window.toggleNitaiChat = toggleNitaiChat;
+window.inicializarContextoChat = inicializarContextoChat;
+window.enviarWidgetMessage = enviarWidgetMessage;
+window.handleWidgetChatKeyPress = handleWidgetChatKeyPress;
+window.initWidgetResize = initWidgetResize;
+window.expandirRelatorio = expandirRelatorio;
+window.baixarRelatorio = baixarRelatorio;
+window.fecharRelatorio = fecharRelatorio;
+window.abrirRelatorioLanding = abrirRelatorioLanding;
+window.formatarConteudoRelatorio = formatarConteudoRelatorio;
+window.copiarAnalise = copiarAnalise;
+window.baixarAnalisePDF = baixarAnalisePDF;
+window.baixarSVG = baixarSVG;
+window.copiarSVG = copiarSVG;
+
+/**
+ * Renderiza relatório em tela cheia
+ */
+function renderRelatorioFullscreen({ relatorioData, isLoading, onBackToAdmin, onGenerateReport }) {
+  return `
+    <div class="relatorio-fullscreen-container">
+      <div class="relatorio-header">
+        <div class="relatorio-title">
+          ${icons.fileText}
+          <span>Relatório Completo de Clima Organizacional</span>
+        </div>
+        <div class="relatorio-controls">
+          <button onclick="${onBackToAdmin}()" class="btn btn-outline btn-sm">
+            ${icons.arrowLeft} Voltar ao Painel
+          </button>
+          <button onclick="${onGenerateReport}()" class="btn btn-purple btn-sm" ${isLoading ? 'disabled' : ''}>
+            ${isLoading ? '<span class="spinner-sm"></span> Gerando...' : `${icons.refresh} Gerar Novo Relatório`}
+          </button>
+        </div>
+      </div>
+      
+      <div class="relatorio-content">
+        ${isLoading ? `
+          <div class="relatorio-loading">
+            <div class="loading-spinner"></div>
+            <h3>🔄 Gerando relatório completo...</h3>
+            <p>Isso pode levar até 30 segundos. A Nitai está analisando todos os dados da pesquisa.</p>
+          </div>
+        ` : `
+          <div class="relatorio-data">
+            ${relatorioData || '<p>Nenhum relatório disponível</p>'}
+          </div>
+        `}
+      </div>
+    </div>
+  `;
 }
 
 // Inicialização

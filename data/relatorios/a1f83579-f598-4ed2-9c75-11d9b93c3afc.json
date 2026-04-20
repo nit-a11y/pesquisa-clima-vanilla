@@ -1,0 +1,45 @@
+{
+  "sucesso": true,
+  "relatorio_id": "a1f83579-f598-4ed2-9c75-11d9b93c3afc",
+  "metadados": {
+    "id": "a1f83579-f598-4ed2-9c75-11d9b93c3afc",
+    "data_geracao": "2026-04-20T16:58:06.516Z",
+    "unidade": "all",
+    "total_respostas": 1,
+    "empresa": "Nordeste Locações",
+    "setor": "Locação de Veículos",
+    "versao": "2.0"
+  },
+  "dados": {
+    "titulo": "Relatório Completo de Clima Organizacional",
+    "resumo_executivo": {
+      "visao_geral": "",
+      "diagnostico_principal": "",
+      "impacto_negocios": "",
+      "urgencia": ""
+    },
+    "diagnostico_geral": {
+      "tabela_dimensoes": [],
+      "padroes_identificados": [],
+      "comparacao_dimensoes": "",
+      "tendencia_observada": ""
+    },
+    "problemas_criticos": [],
+    "pontos_fortes": [],
+    "riscos": [],
+    "plano_acao": {
+      "imediatas": [],
+      "medio_prazo": [],
+      "estrategicas": []
+    },
+    "insights_adicionais": [],
+    "conclusao": "",
+    "metricas_principais": {
+      "favorabilidade_global": "100%",
+      "indice_engajamento": 0,
+      "total_respostas": 1,
+      "data_analise": "20/04/2026"
+    }
+  },
+  "url_acesso": "/relatorio/a1f83579-f598-4ed2-9c75-11d9b93c3afc"
+}

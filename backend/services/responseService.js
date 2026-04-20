@@ -107,7 +107,15 @@ export async function getAdminStats(unitFilter = null) {
   });
 
   const totalResult = await new Promise((resolve, reject) => {
-    db.get('SELECT COUNT(*) as total FROM survey_responses', [], (err, result) => {
+    let countQuery = 'SELECT COUNT(*) as total FROM survey_responses';
+    const countParams = [];
+    
+    if (unitFilter && unitFilter !== 'all') {
+      countQuery += ' WHERE unidade = ?';
+      countParams.push(unitFilter);
+    }
+    
+    db.get(countQuery, countParams, (err, result) => {
       if (err) reject(err);
       else resolve(result);
     });
@@ -119,6 +127,45 @@ export async function getAdminStats(unitFilter = null) {
   }));
 
   return calculateStats(responses, totalResult?.total || 0);
+}
+
+// Calcular favorabilidade e desfavorabilidade
+function calculateFavorability(responses, questionId) {
+  const responsesWithQ = responses.filter(r => r.answers && r.answers[questionId]);
+  
+  if (responsesWithQ.length === 0) {
+    return { favorabilidade: 0, desfavorabilidade: 0, distribuicao: { 1: 0, 2: 0, 3: 0, 4: 0 } };
+  }
+  
+  const distribuicao = { 1: 0, 2: 0, 3: 0, 4: 0 };
+  
+  responsesWithQ.forEach(r => {
+    const answer = r.answers[questionId];
+    let score = typeof answer === 'object' ? answer.score : answer;
+    
+    if (score) {
+      // Inverter score para perguntas negativas
+      if (NEGATIVE_QUESTIONS.includes(questionId)) {
+        score = invertScore(score);
+      }
+      distribuicao[score]++;
+    }
+  });
+  
+  const total = responsesWithQ.length;
+  const favorabilidade = ((distribuicao[3] + distribuicao[4]) / total) * 100;
+  const desfavorabilidade = ((distribuicao[1] + distribuicao[2]) / total) * 100;
+  
+  return {
+    favorabilidade: favorabilidade.toFixed(1),
+    desfavorabilidade: desfavorabilidade.toFixed(1),
+    distribuicao: {
+      1: (distribuicao[1] / total * 100).toFixed(1),
+      2: (distribuicao[2] / total * 100).toFixed(1),
+      3: (distribuicao[3] / total * 100).toFixed(1),
+      4: (distribuicao[4] / total * 100).toFixed(1)
+    }
+  };
 }
 
 // Calcular estatísticas
@@ -176,19 +223,46 @@ function calculateStats(responses, totalCount) {
     count: data.total
   }));
 
-  const pillarStatsFinal = Object.entries(pillarStats).map(([pillar, data]) => ({
-    pillar,
-    average: data.scores.reduce((a, b) => a + b, 0) / data.scores.length || 0,
-    count: data.total
-  }));
-
-  const questionStatsFinal = Object.entries(questionStats)
-    .map(([qId, data]) => ({
-      question_id: parseInt(qId),
+  const pillarStatsFinal = Object.entries(pillarStats).map(([pillar, data]) => {
+    // Calcular favorabilidade agregada para o pilar
+    const pillarQuestions = questions.filter(q => q.pillar === pillar).map(q => q.id);
+    let totalFavorabilidade = 0;
+    let totalDesfavorabilidade = 0;
+    let validQuestions = 0;
+    
+    pillarQuestions.forEach(qId => {
+      const favorabilityData = calculateFavorability(responses, qId);
+      if (favorabilityData.favorabilidade > 0 || favorabilityData.desfavorabilidade > 0) {
+        totalFavorabilidade += parseFloat(favorabilityData.favorabilidade);
+        totalDesfavorabilidade += parseFloat(favorabilityData.desfavorabilidade);
+        validQuestions++;
+      }
+    });
+    
+    return {
+      pillar,
       average: data.scores.reduce((a, b) => a + b, 0) / data.scores.length || 0,
       count: data.total,
-      comment_count: data.comments.length
-    }))
+      favorabilidade: validQuestions > 0 ? (totalFavorabilidade / validQuestions).toFixed(1) : 0,
+      desfavorabilidade: validQuestions > 0 ? (totalDesfavorabilidade / validQuestions).toFixed(1) : 0
+    };
+  });
+
+  const questionStatsFinal = Object.entries(questionStats)
+    .map(([qId, data]) => {
+      const questionId = parseInt(qId);
+      const favorabilityData = calculateFavorability(responses, questionId);
+      
+      return {
+        question_id: questionId,
+        average: data.scores.reduce((a, b) => a + b, 0) / data.scores.length || 0,
+        count: data.total,
+        comment_count: data.comments.length,
+        favorabilidade: parseFloat(favorabilityData.favorabilidade),
+        desfavorabilidade: parseFloat(favorabilityData.desfavorabilidade),
+        distribuicao: favorabilityData.distribuicao
+      };
+    })
     .sort((a, b) => a.question_id - b.question_id);
 
   const bottlenecks = [...questionStatsFinal]
@@ -197,6 +271,12 @@ function calculateStats(responses, totalCount) {
 
   const criticalAlerts = calculateCriticalAlerts(responses, questionStatsFinal);
   const engagementRate = calculateEngagementRate(responses, questionStatsFinal);
+  
+  // Calcular favorabilidade global usando todas as perguntas
+  const allQuestionsFavorability = questionStatsFinal.map(q => q.favorabilidade || 0);
+  const globalFavorability = allQuestionsFavorability.length > 0
+    ? (allQuestionsFavorability.reduce((sum, f) => sum + f, 0) / allQuestionsFavorability.length).toFixed(1)
+    : 0;
 
   return {
     totalResponses: totalCount,
@@ -205,7 +285,8 @@ function calculateStats(responses, totalCount) {
     questionStats: questionStatsFinal,
     criticalAlerts,
     bottlenecks,
-    engagementRate
+    engagementRate,
+    globalFavorability: parseFloat(globalFavorability)
   };
 }
 

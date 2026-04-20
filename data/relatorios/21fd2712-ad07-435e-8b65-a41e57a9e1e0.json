@@ -1,0 +1,280 @@
+{
+  "sucesso": true,
+  "relatorio_id": "21fd2712-ad07-435e-8b65-a41e57a9e1e0",
+  "metadados": {
+    "id": "21fd2712-ad07-435e-8b65-a41e57a9e1e0",
+    "data_geracao": "2026-04-20T17:23:10.512Z",
+    "unidade": "all",
+    "total_respostas": 1,
+    "empresa": "Nordeste Locações",
+    "setor": "Locação de Veículos",
+    "versao": "2.0"
+  },
+  "dados": {
+    "titulo": "Relatório Completo de Clima Organizacional",
+    "resumo_executivo": {
+      "situacao_atual": "favorável",
+      "favorabilidade_global": 100,
+      "principais_desafios": [],
+      "nivel_urgencia": "baixo",
+      "impacto_negocio": "baixo",
+      "recomendacao_principal": "Plano de melhoria contínua",
+      "investimento_recomendado": "R$ 30.000 - R$ 80.000",
+      "prazo_resultados": "60-90 dias"
+    },
+    "diagnostico_geral": {
+      "analise_quantitativa": {
+        "total_respondentes": 1,
+        "favorabilidade_global": 100,
+        "dimensoes_avaliadas": 6,
+        "dados_por_pilar": [
+          {
+            "pillar": "Ambiente de Trabalho",
+            "average": 4,
+            "count": 3,
+            "favorabilidade": "100.0",
+            "desfavorabilidade": "0.0"
+          },
+          {
+            "pillar": "Comprometimento Organizacional",
+            "average": 4,
+            "count": 4,
+            "favorabilidade": "100.0",
+            "desfavorabilidade": "0.0"
+          },
+          {
+            "pillar": "Comunicação",
+            "average": 4,
+            "count": 3,
+            "favorabilidade": "100.0",
+            "desfavorabilidade": "0.0"
+          },
+          {
+            "pillar": "Gestão do Capital Humano",
+            "average": 4,
+            "count": 16,
+            "favorabilidade": "100.0",
+            "desfavorabilidade": "0.0"
+          },
+          {
+            "pillar": "Liderança",
+            "average": 4,
+            "count": 15,
+            "favorabilidade": "100.0",
+            "desfavorabilidade": "0.0"
+          },
+          {
+            "pillar": "Trabalho em Equipe",
+            "average": 4,
+            "count": 4,
+            "favorabilidade": "100.0",
+            "desfavorabilidade": "0.0"
+          }
+        ]
+      },
+      "analise_qualitativa": {
+        "total_comentarios": 0,
+        "temas_frequentes": {},
+        "sentimento_geral": {
+          "positivo": 0,
+          "negativo": 0,
+          "neutro": 0
+        },
+        "problemas_mencionados": []
+      },
+      "padroes_identificados": []
+    },
+    "problemas_criticos": [],
+    "pontos_fortes": [
+      {
+        "dimensao": "Ambiente de Trabalho",
+        "nivel": "excelente",
+        "descricao": "Desempenho excepcional com 100% de favorabilidade",
+        "impacto": "Diferencial competitivo e fator de retenção",
+        "dados": {
+          "favorabilidade": 100,
+          "media": 4,
+          "respostas": 3
+        }
+      },
+      {
+        "dimensao": "Comprometimento Organizacional",
+        "nivel": "excelente",
+        "descricao": "Desempenho excepcional com 100% de favorabilidade",
+        "impacto": "Diferencial competitivo e fator de retenção",
+        "dados": {
+          "favorabilidade": 100,
+          "media": 4,
+          "respostas": 4
+        }
+      },
+      {
+        "dimensao": "Comunicação",
+        "nivel": "excelente",
+        "descricao": "Desempenho excepcional com 100% de favorabilidade",
+        "impacto": "Diferencial competitivo e fator de retenção",
+        "dados": {
+          "favorabilidade": 100,
+          "media": 4,
+          "respostas": 3
+        }
+      },
+      {
+        "dimensao": "Gestão do Capital Humano",
+        "nivel": "excelente",
+        "descricao": "Desempenho excepcional com 100% de favorabilidade",
+        "impacto": "Diferencial competitivo e fator de retenção",
+        "dados": {
+          "favorabilidade": 100,
+          "media": 4,
+          "respostas": 16
+        }
+      },
+      {
+        "dimensao": "Liderança",
+        "nivel": "excelente",
+        "descricao": "Desempenho excepcional com 100% de favorabilidade",
+        "impacto": "Diferencial competitivo e fator de retenção",
+        "dados": {
+          "favorabilidade": 100,
+          "media": 4,
+          "respostas": 15
+        }
+      },
+      {
+        "dimensao": "Trabalho em Equipe",
+        "nivel": "excelente",
+        "descricao": "Desempenho excepcional com 100% de favorabilidade",
+        "impacto": "Diferencial competitivo e fator de retenção",
+        "dados": {
+          "favorabilidade": 100,
+          "media": 4,
+          "respostas": 4
+        }
+      }
+    ],
+    "riscos": [],
+    "plano_acao": {
+      "imediatas": [],
+      "medio_prazo": [],
+      "estrategicas": [],
+      "investimento_estimado": 0,
+      "tempo_implementacao": "",
+      "kpis_sucesso": [
+        "Aumentar favorabilidade global em 15 pontos",
+        "Reduzir turnover em 20%",
+        "Aumentar engajamento para 8.0",
+        "Alcançar NPS de +40",
+        "Reduzir reclamações em 60%"
+      ]
+    },
+    "insights_adicionais": [
+      {
+        "tipo": "operacional",
+        "descricao": "A integração entre dados quantitativos e qualitativos revela padrões mais precisos",
+        "recomendacao": "Manter análise contínua de comentários para detecção precoce de problemas"
+      },
+      {
+        "tipo": "estratégico",
+        "descricao": "Problemas em comunicação e liderança têm correlação direta com turnover",
+        "recomendacao": "Investir em desenvolvimento de líderes como prioridade estratégica"
+      },
+      {
+        "tipo": "financeiro",
+        "descricao": "Investimento em clima organizacional tem ROI de 300% em 12 meses",
+        "recomendacao": "Alocar orçamento específico para programas de melhoria contínua"
+      }
+    ],
+    "conclusao": {
+      "avaliacao_geral": "Positiva com oportunidades de melhoria",
+      "proximos_passos": "Manutenção e aprimoramento contínuo",
+      "visao_futuro": "Com as intervenções recomendadas, espera-se atingir favorabilidade acima de 75% em 6 meses",
+      "sucesso_critico": "Comprometimento da liderança e alocação adequada de recursos"
+    },
+    "metricas_principais": {
+      "favorabilidade_global": {
+        "valor": 100,
+        "meta": 75,
+        "status": "atingido"
+      },
+      "engajamento": {
+        "valor": "4.0",
+        "meta": 8,
+        "status": "abaixo"
+      },
+      "total_respostas": 1,
+      "taxa_resposta": "1.0",
+      "indice_satisfacao": "70.0"
+    },
+    "graficos": {
+      "favorabilidade_por_pilar": [
+        {
+          "dimensao": "Ambiente de Trabalho",
+          "valor": 100,
+          "meta": 75
+        },
+        {
+          "dimensao": "Comprometimento Organizacional",
+          "valor": 100,
+          "meta": 75
+        },
+        {
+          "dimensao": "Comunicação",
+          "valor": 100,
+          "meta": 75
+        },
+        {
+          "dimensao": "Gestão do Capital Humano",
+          "valor": 100,
+          "meta": 75
+        },
+        {
+          "dimensao": "Liderança",
+          "valor": 100,
+          "meta": 75
+        },
+        {
+          "dimensao": "Trabalho em Equipe",
+          "valor": 100,
+          "meta": 75
+        }
+      ],
+      "distribuicao_sentimentos": {
+        "positivo": 90,
+        "neutro": 40,
+        "negativo": 10
+      },
+      "evolucao_sugerida": [
+        {
+          "mes": "Atual",
+          "valor": 100
+        },
+        {
+          "mes": "Mês 1",
+          "valor": 75
+        },
+        {
+          "mes": "Mês 2",
+          "valor": 75
+        },
+        {
+          "mes": "Mês 3",
+          "valor": 80
+        }
+      ]
+    },
+    "analise_comentarios": {
+      "total_comentarios": 0,
+      "temas_frequentes": {},
+      "sentimentos": {
+        "positivo": 0,
+        "negativo": 0,
+        "neutro": 0
+      },
+      "palavras_chave": {},
+      "problemas_mencionados": [],
+      "sugestoes_colaboradores": []
+    }
+  },
+  "url_acesso": "/relatorio/21fd2712-ad07-435e-8b65-a41e57a9e1e0"
+}

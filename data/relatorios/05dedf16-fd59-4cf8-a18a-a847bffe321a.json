@@ -1,0 +1,76 @@
+{
+  "sucesso": true,
+  "relatorio_id": "05dedf16-fd59-4cf8-a18a-a847bffe321a",
+  "metadados": {
+    "id": "05dedf16-fd59-4cf8-a18a-a847bffe321a",
+    "data_geracao": "2026-04-20T16:41:13.097Z",
+    "unidade": "all",
+    "total_respostas": 1,
+    "empresa": "Nordeste Locações",
+    "setor": "Locação de Veículos",
+    "versao": "2.0"
+  },
+  "dados": {
+    "titulo": "Relatório Completo de Clima Organizacional",
+    "resumo_executivo": {
+      "visao_geral": "Com base nos dados disponíveis (1 respostas), foi possível identificar os seguintes pontos:\n\n",
+      "diagnostico_principal": "",
+      "impacto_negocios": "",
+      "urgencia": ""
+    },
+    "diagnostico_geral": {
+      "tabela_dimensoes": [
+        {
+          "dimensao": "------------",
+          "favorabilidade": "----------------",
+          "media": "-------",
+          "respostas": "----------"
+        },
+        {
+          "dimensao": "clima_geral",
+          "favorabilidade": "N/A",
+          "media": "N/A",
+          "respostas": "0"
+        },
+        {
+          "dimensao": "favorabilidade_global",
+          "favorabilidade": "N/A",
+          "media": "N/A",
+          "respostas": "0"
+        },
+        {
+          "dimensao": "total_respostas",
+          "favorabilidade": "N/A",
+          "media": "N/A",
+          "respostas": "0"
+        },
+        {
+          "dimensao": "data_analise",
+          "favorabilidade": "N/A",
+          "media": "N/A",
+          "respostas": "0"
+        }
+      ],
+      "padroes_identificados": [],
+      "comparacao_dimensoes": "",
+      "tendencia_observada": ""
+    },
+    "problemas_criticos": [],
+    "pontos_fortes": [],
+    "riscos": [],
+    "plano_acao": {
+      "imediatas": [],
+      "medio_prazo": [],
+      "estrategicas": []
+    },
+    "insights_adicionais": [],
+    "conclusao": "",
+    "metricas_principais": {
+      "favorabilidade_global": 0,
+      "indice_engajamento": 0,
+      "total_respostas": 1,
+      "data_analise": "20/04/2026"
+    }
+  },
+  "url_acesso": "/relatorio/05dedf16-fd59-4cf8-a18a-a847bffe321a"
+}
