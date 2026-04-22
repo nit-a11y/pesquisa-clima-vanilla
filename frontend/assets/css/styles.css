@@ -2512,7 +2512,7 @@ a:focus-visible {
 }
 
 .pillar-name {
-  text-align: left;
+  text-align: center;
   font-weight: 600;
   color: var(--gray-800);
   background-color: transparent;
