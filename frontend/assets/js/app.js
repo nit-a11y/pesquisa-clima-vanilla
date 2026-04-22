@@ -18,7 +18,10 @@ const state = {
   adminFilterUnit: 'all',
   adminFilterPillar: null, // Filtro de pilar para o gráfico de tendência
   isLoadingRelatorio: false,
-  relatorioData: null
+  relatorioData: null,
+  questionSortOrder: 'asc', // 'asc' ou 'desc' para ordenação das questões
+  questionSortBy: 'id', // 'id', 'comments', 'average' para tipo de ordenação
+  questionFilterComments: 'all' // 'all', 'most', 'least' para filtro de comentários
 };
 
 // Histórico do chat
@@ -69,11 +72,16 @@ function render() {
         isClearing: state.isClearing,
         selectedUnit: state.adminFilterUnit,
         selectedPillar: state.adminFilterPillar,
+        questionSortOrder: state.questionSortOrder,
+        questionSortBy: state.questionSortBy,
+        questionFilterComments: state.questionFilterComments,
         onSelectQuestion: 'selectQuestion',
         onClearDatabase: 'clearDatabase',
         onExport: 'exportData',
         onFilterUnit: 'filterByUnit',
         onClearPillarFilter: 'clearPillarFilter',
+        onSortQuestions: 'sortQuestions',
+        onFilterComments: 'filterComments',
         onBack: 'goToLanding'
       });
       // Reinicializar gráficos após renderizar
@@ -218,6 +226,19 @@ async function loadAdminData() {
 function selectQuestion(questionId) {
   state.selectedQuestionId = questionId;
   render();
+  
+  // Fazer scroll automático até a questão selecionada após renderização
+  setTimeout(() => {
+    const selectedQuestionElement = document.querySelector(`.question-list-item.selected`);
+    if (selectedQuestionElement) {
+      // Usar scrollIntoView com comportamento suave
+      selectedQuestionElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center', // Centraliza o elemento na tela
+        inline: 'nearest'
+      });
+    }
+  }, 100); // Pequeno delay para garantir que o DOM foi atualizado
 }
 
 function filterByUnit(unit) {
@@ -287,6 +308,23 @@ function exportData() {
     state.isExporting = false;
     render();
   }, 1000);
+}
+
+// Funções de ordenação e filtro de questões
+function sortQuestions(sortBy) {
+  if (state.questionSortBy === sortBy) {
+    // Se clicar no mesmo tipo, inverte a ordem
+    state.questionSortOrder = state.questionSortOrder === 'asc' ? 'desc' : 'asc';
+  } else {
+    state.questionSortBy = sortBy;
+    state.questionSortOrder = 'asc'; // Reset para crescente ao mudar tipo
+  }
+  render();
+}
+
+function filterComments(filterType) {
+  state.questionFilterComments = filterType;
+  render();
 }
 
 // Gráficos
@@ -2520,4 +2558,6 @@ window.filterByPillar = filterByPillar;
 window.clearPillarFilter = clearPillarFilter;
 window.clearDatabase = clearDatabase;
 window.exportData = exportData;
+window.sortQuestions = sortQuestions;
+window.filterComments = filterComments;
 window.render = render;

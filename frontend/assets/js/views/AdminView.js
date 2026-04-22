@@ -11,11 +11,16 @@ function renderAdminView({
   isClearing,
   selectedUnit,
   selectedPillar,
+  questionSortOrder,
+  questionSortBy,
+  questionFilterComments,
   onSelectQuestion, 
   onClearDatabase, 
   onExport,
   onFilterUnit,
   onClearPillarFilter,
+  onSortQuestions,
+  onFilterComments,
   onBack
 }) {
   if (!stats) {
@@ -60,16 +65,6 @@ function renderAdminView({
           <button onclick="${onBack}()" class="btn btn-outline btn-sm">
             ${icons.arrowLeft}
             Voltar
-          </button>
-          
-          <button 
-            onclick="${onClearDatabase}()" 
-            class="btn btn-danger btn-sm"
-            ${isClearing ? 'disabled' : ''}
-          >
-            ${isClearing 
-              ? `<span class="spinner-sm"></span> Limpando...` 
-              : `${icons.trash} Limpar Dados`}
           </button>
           
           <button 
@@ -212,6 +207,64 @@ function renderAdminView({
               </h3>
               <span class="questions-hint">Clique para ver comentários</span>
             </div>
+            
+            <!-- Filtros e Ordenação -->
+            <div class="questions-filters">
+              <div class="filter-group">
+                <label class="filter-label">Ordenar por:</label>
+                <div class="filter-buttons">
+                  <button 
+                    onclick="${onSortQuestions}('id')" 
+                    class="btn btn-outline btn-xs ${questionSortBy === 'id' ? 'active' : ''}"
+                    title="Ordenar por número da questão"
+                  >
+                    ${icons.hash} Número 
+                    ${questionSortBy === 'id' ? (questionSortOrder === 'asc' ? '↑' : '↓') : ''}
+                  </button>
+                  <button 
+                    onclick="${onSortQuestions}('comments')" 
+                    class="btn btn-outline btn-xs ${questionSortBy === 'comments' ? 'active' : ''}"
+                    title="Ordenar por número de comentários"
+                  >
+                    ${icons.messageSquare} Comentários 
+                    ${questionSortBy === 'comments' ? (questionSortOrder === 'asc' ? '↑' : '↓') : ''}
+                  </button>
+                  <button 
+                    onclick="${onSortQuestions}('average')" 
+                    class="btn btn-outline btn-xs ${questionSortBy === 'average' ? 'active' : ''}"
+                    title="Ordenar por média de avaliação"
+                  >
+                    ${icons.trendingUp} Média 
+                    ${questionSortBy === 'average' ? (questionSortOrder === 'asc' ? '↑' : '↓') : ''}
+                  </button>
+                </div>
+              </div>
+              
+              <div class="filter-group">
+                <label class="filter-label">Filtrar comentários:</label>
+                <div class="filter-buttons">
+                  <button 
+                    onclick="${onFilterComments}('all')" 
+                    class="btn btn-outline btn-xs ${questionFilterComments === 'all' ? 'active' : ''}"
+                  >
+                    Todas
+                  </button>
+                  <button 
+                    onclick="${onFilterComments}('most')" 
+                    class="btn btn-outline btn-xs ${questionFilterComments === 'most' ? 'active' : ''}"
+                  >
+                    Mais Comentadas
+                  </button>
+                  <button 
+                    onclick="${onFilterComments}('least')" 
+                    class="btn btn-outline btn-xs ${questionFilterComments === 'least' ? 'active' : ''}"
+                  >
+                    Menos Comentadas
+                  </button>
+                </div>
+              </div>
+            </div>
+            
             <div class="questions-legend">
               <span class="legend-item inverted-legend" title="Perguntas onde Concordo = negativo e Discordo = positivo">
                 <span class="legend-marker yellow"></span>
@@ -222,9 +275,34 @@ function renderAdminView({
             <div class="questions-list">
               ${[...questions]
                 .filter(q => !selectedPillar || q.pillar === selectedPillar)
+                .filter(q => {
+                  // Filtro de comentários
+                  if (questionFilterComments === 'most') {
+                    const qStat = stats.questionStats?.find(s => s.question_id === q.id);
+                    return (qStat?.comment_count || 0) > 0;
+                  } else if (questionFilterComments === 'least') {
+                    const qStat = stats.questionStats?.find(s => s.question_id === q.id);
+                    return (qStat?.comment_count || 0) === 0;
+                  }
+                  return true; // 'all' - mostra todas
+                })
                 .sort((a, b) => {
                   const aStat = stats.questionStats?.find(s => s.question_id === a.id);
                   const bStat = stats.questionStats?.find(s => s.question_id === b.id);
+                  
+                  // Ordenação baseada no tipo selecionado
+                  if (questionSortBy === 'id') {
+                    const order = questionSortOrder === 'asc' ? 1 : -1;
+                    return (a.id - b.id) * order;
+                  } else if (questionSortBy === 'comments') {
+                    const order = questionSortOrder === 'asc' ? 1 : -1;
+                    return ((aStat?.comment_count || 0) - (bStat?.comment_count || 0)) * order;
+                  } else if (questionSortBy === 'average') {
+                    const order = questionSortOrder === 'asc' ? 1 : -1;
+                    return ((aStat?.average || 0) - (bStat?.average || 0)) * order;
+                  }
+                  
+                  // Default: ordenar por comentários (mantido para compatibilidade)
                   return (bStat?.comment_count || 0) - (aStat?.comment_count || 0);
                 }).map(q => {
                   const qStat = stats.questionStats?.find(s => s.question_id === q.id);
