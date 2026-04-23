@@ -1,0 +1,764 @@
+/**
+ * Relatório NITAI - Identidade Visual Nordeste Locações/NIT
+ * Design moderno, técnico e focado em credibilidade e inovação
+ */
+
+/* ========================================
+ * VARIÁVEIS - IDENTIDADE VISUAL NIT
+ * ======================================== */
+:root {
+  /* Cores Principais Nordeste Locações */
+  --nitai-red: #dc2626;
+  --nitai-red-light: #ef4444;
+  --nitai-red-dark: #991b1b;
+  --nitai-red-bg: #fef2f2;
+  
+  /* Cores Neutras (Cinza Grafite) */
+  --nitai-gray-50: #f9fafb;
+  --nitai-gray-100: #f3f4f6;
+  --nitai-gray-200: #e5e7eb;
+  --nitai-gray-300: #d1d5db;
+  --nitai-gray-400: #9ca3af;
+  --nitai-gray-500: #6b7280;
+  --nitai-gray-600: #4b5563;
+  --nitai-gray-700: #374151;
+  --nitai-gray-800: #1f2937;
+  --nitai-gray-900: #111827;
+  
+  /* Cores de Status */
+  --nitai-success: #22c55e;
+  --nitai-warning: #f59e0b;
+  --nitai-danger: #ef4444;
+  --nitai-info: #3b82f6;
+  
+  /* Tipografia */
+  --nitai-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --nitai-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  /* Espaçamento */
+  --nitai-space-xs: 0.25rem;
+  --nitai-space-sm: 0.5rem;
+  --nitai-space-md: 1rem;
+  --nitai-space-lg: 1.5rem;
+  --nitai-space-xl: 2rem;
+  --nitai-space-2xl: 3rem;
+  --nitai-space-3xl: 4rem;
+  
+  /* Sombras */
+  --nitai-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --nitai-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --nitai-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --nitai-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --nitai-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* Bordas */
+  --nitai-radius-sm: 0.25rem;
+  --nitai-radius: 0.5rem;
+  --nitai-radius-md: 0.75rem;
+  --nitai-radius-lg: 1rem;
+  --nitai-radius-xl: 1.5rem;
+  
+  /* Transições */
+  --nitai-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================
+ * RESET E BASE
+ * ======================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--nitai-font-sans);
+  line-height: 1.6;
+  color: var(--nitai-gray-800);
+  background: var(--nitai-gray-50);
+  font-weight: 400;
+}
+
+/* ========================================
+ * CONTAINER
+ * ======================================== */
+.nitai-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--nitai-space-lg);
+}
+
+@media (min-width: 768px) {
+  .nitai-container {
+    padding: 0 var(--nitai-space-xl);
+  }
+}
+
+/* ========================================
+ * HEADER NIT
+ * ======================================== */
+.nitai-header {
+  background: white;
+  border-bottom: 1px solid var(--nitai-gray-200);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.nitai-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--nitai-space-md) 0;
+  min-height: 80px;
+}
+
+.nitai-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--nitai-space-md);
+}
+
+.nitai-brand-text h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--nitai-gray-900);
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.nitai-brand-text span {
+  font-size: 0.875rem;
+  color: var(--nitai-gray-600);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.nitai-header-actions {
+  display: flex;
+  gap: var(--nitai-space-sm);
+}
+
+/* ========================================
+ * BUTTONS NIT
+ * ======================================== */
+.nitai-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nitai-space-xs);
+  padding: var(--nitai-space-sm) var(--nitai-space-md);
+  font-family: var(--nitai-font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--nitai-radius);
+  cursor: pointer;
+  transition: var(--nitai-transition);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.nitai-btn-primary {
+  background: var(--nitai-red);
+  color: white;
+  box-shadow: var(--nitai-shadow-sm);
+}
+
+.nitai-btn-primary:hover {
+  background: var(--nitai-red-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--nitai-shadow-md);
+}
+
+.nitai-btn-outline {
+  background: transparent;
+  color: var(--nitai-gray-700);
+  border: 1px solid var(--nitai-gray-300);
+}
+
+.nitai-btn-outline:hover {
+  background: var(--nitai-gray-50);
+  border-color: var(--nitai-gray-400);
+}
+
+.nitai-btn-sm {
+  padding: var(--nitai-space-xs) var(--nitai-space-sm);
+  font-size: 0.75rem;
+}
+
+.nitai-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+
+/* ========================================
+ * HERO SECTION
+ * ======================================== */
+.nitai-hero {
+  background: linear-gradient(135deg, var(--nitai-red-bg) 0%, white 100%);
+  padding: var(--nitai-space-3xl) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.nitai-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--nitai-red) 0%, transparent 70%);
+  opacity: 0.05;
+  border-radius: 50%;
+}
+
+.nitai-hero-content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--nitai-space-2xl);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.nitai-badge {
+  display: inline-block;
+  padding: var(--nitai-space-xs) var(--nitai-space-sm);
+  background: var(--nitai-red);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: var(--nitai-radius-sm);
+  margin-bottom: var(--nitai-space-md);
+}
+
+.nitai-hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--nitai-gray-900);
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  margin-bottom: var(--nitai-space-lg);
+}
+
+.nitai-hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--nitai-gray-600);
+  margin-bottom: var(--nitai-space-xl);
+  font-weight: 500;
+}
+
+.nitai-hero-meta {
+  display: flex;
+  gap: var(--nitai-space-xl);
+  flex-wrap: wrap;
+}
+
+.nitai-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nitai-space-xs);
+}
+
+.nitai-meta-label {
+  font-size: 0.75rem;
+  color: var(--nitai-gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.nitai-meta-value {
+  font-size: 1rem;
+  color: var(--nitai-gray-900);
+  font-weight: 700;
+}
+
+.nitai-status-success {
+  color: var(--nitai-success);
+}
+
+.nitai-hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nitai-lamp-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ========================================
+ * MÉTRICS
+ * ======================================== */
+.nitai-metrics {
+  padding: var(--nitai-space-2xl) 0;
+  background: white;
+  border-top: 1px solid var(--nitai-gray-200);
+}
+
+.nitai-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--nitai-space-lg);
+}
+
+.nitai-metric-card {
+  background: white;
+  border: 1px solid var(--nitai-gray-200);
+  border-radius: var(--nitai-radius-lg);
+  padding: var(--nitai-space-xl);
+  text-align: center;
+  transition: var(--nitai-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.nitai-metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--nitai-red);
+}
+
+.nitai-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--nitai-shadow-lg);
+}
+
+.nitai-metric-icon {
+  margin-bottom: var(--nitai-space-md);
+  display: flex;
+  justify-content: center;
+}
+
+.nitai-metric-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--nitai-gray-900);
+  margin-bottom: var(--nitai-space-xs);
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+}
+
+.nitai-metric-label {
+  font-size: 0.875rem;
+  color: var(--nitai-gray-600);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  margin-bottom: var(--nitai-space-sm);
+}
+
+.nitai-metric-change {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.nitai-positive {
+  color: var(--nitai-success);
+}
+
+.nitai-neutral {
+  color: var(--nitai-gray-500);
+}
+
+/* ========================================
+ * NAVIGATION
+ * ======================================== */
+.nitai-nav {
+  background: white;
+  border-bottom: 1px solid var(--nitai-gray-200);
+  position: sticky;
+  top: 80px;
+  z-index: 90;
+  overflow-x: auto;
+}
+
+.nitai-nav-list {
+  display: flex;
+  gap: var(--nitai-space-md);
+  padding: var(--nitai-space-md) 0;
+  min-width: max-content;
+}
+
+.nitai-nav-link {
+  display: block;
+  padding: var(--nitai-space-sm) var(--nitai-space-md);
+  color: var(--nitai-gray-600);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  border-radius: var(--nitai-radius);
+  transition: var(--nitai-transition);
+  position: relative;
+}
+
+.nitai-nav-link:hover,
+.nitai-nav-link.active {
+  color: var(--nitai-red);
+  background: var(--nitai-red-bg);
+}
+
+.nitai-nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--nitai-red);
+}
+
+/* ========================================
+ * CONTENT SECTIONS
+ * ======================================== */
+.nitai-main {
+  background: var(--nitai-gray-50);
+  padding: var(--nitai-space-2xl) 0;
+}
+
+.nitai-content {
+  display: grid;
+  gap: var(--nitai-space-2xl);
+}
+
+.nitai-section {
+  background: white;
+  border-radius: var(--nitai-radius-lg);
+  box-shadow: var(--nitai-shadow);
+  overflow: hidden;
+}
+
+.nitai-section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--nitai-space-md);
+  padding: var(--nitai-space-xl);
+  border-bottom: 1px solid var(--nitai-gray-200);
+  background: linear-gradient(135deg, var(--nitai-gray-50) 0%, white 100%);
+}
+
+.nitai-section-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--nitai-red);
+  border-radius: var(--nitai-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.nitai-section-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--nitai-gray-900);
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  flex: 1;
+}
+
+.nitai-section-badge {
+  padding: var(--nitai-space-xs) var(--nitai-space-sm);
+  background: var(--nitai-red);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: var(--nitai-radius-sm);
+}
+
+.nitai-badge-danger {
+  background: var(--nitai-danger);
+}
+
+.nitai-badge-success {
+  background: var(--nitai-success);
+}
+
+.nitai-section-content {
+  padding: var(--nitai-space-xl);
+}
+
+/* ========================================
+ * LOADING
+ * ======================================== */
+.nitai-loading {
+  text-align: center;
+  padding: var(--nitai-space-2xl);
+  color: var(--nitai-gray-500);
+}
+
+.nitai-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--nitai-gray-200);
+  border-top: 3px solid var(--nitai-red);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto var(--nitai-space-md);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ========================================
+ * COMMENTS SECTION
+ * ======================================== */
+.nitai-comments {
+  background: white;
+  padding: var(--nitai-space-2xl) 0;
+}
+
+.nitai-comments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--nitai-space-lg);
+}
+
+.nitai-comments-card {
+  background: var(--nitai-gray-50);
+  border: 1px solid var(--nitai-gray-200);
+  border-radius: var(--nitai-radius-lg);
+  padding: var(--nitai-space-xl);
+}
+
+.nitai-comments-card h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--nitai-gray-900);
+  margin-bottom: var(--nitai-space-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+/* ========================================
+ * FOOTER
+ * ======================================== */
+.nitai-footer {
+  background: var(--nitai-gray-900);
+  color: white;
+  padding: var(--nitai-space-2xl) 0;
+  margin-top: var(--nitai-space-3xl);
+}
+
+.nitai-footer-content {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: var(--nitai-space-xl);
+  align-items: center;
+}
+
+.nitai-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--nitai-space-md);
+}
+
+.nitai-footer-text h3 {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+}
+
+.nitai-footer-text p {
+  font-size: 0.875rem;
+  color: var(--nitai-gray-400);
+  font-weight: 500;
+}
+
+.nitai-footer-info {
+  text-align: center;
+}
+
+.nitai-footer-info p {
+  font-size: 0.875rem;
+  color: var(--nitai-gray-400);
+  margin-bottom: var(--nitai-space-xs);
+}
+
+.nitai-footer-actions {
+  display: flex;
+  gap: var(--nitai-space-sm);
+}
+
+/* ========================================
+ * RESPONSIVE
+ * ======================================== */
+@media (max-width: 768px) {
+  .nitai-hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--nitai-space-xl);
+  }
+  
+  .nitai-hero-title {
+    font-size: 2rem;
+  }
+  
+  .nitai-metrics-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  
+  .nitai-hero-meta {
+    justify-content: center;
+  }
+  
+  .nitai-footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--nitai-space-lg);
+  }
+  
+  .nitai-header-content {
+    flex-direction: column;
+    gap: var(--nitai-space-md);
+    text-align: center;
+  }
+  
+  .nitai-section-header {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--nitai-space-sm);
+  }
+}
+
+/* ========================================
+ * PRINT STYLES
+ * ======================================== */
+@media print {
+  .nitai-header-actions,
+  .nitai-footer-actions,
+  .nitai-nav {
+    display: none;
+  }
+  
+  .nitai-header {
+    position: static;
+    background: white;
+  }
+  
+  .nitai-nav {
+    position: static;
+  }
+  
+  .nitai-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  
+  .nitai-hero {
+    background: white;
+  }
+  
+  body {
+    background: white;
+  }
+  
+  .nitai-main {
+    background: white;
+  }
+}
+
+/* ========================================
+ * CONTENT FORMATTING
+ * ======================================== */
+.nitai-section-content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--nitai-gray-900);
+  margin-bottom: var(--nitai-space-md);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.nitai-section-content h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--nitai-gray-800);
+  margin-bottom: var(--nitai-space-sm);
+}
+
+.nitai-section-content p {
+  margin-bottom: var(--nitai-space-md);
+  line-height: 1.7;
+}
+
+.nitai-section-content ul,
+.nitai-section-content ol {
+  margin-bottom: var(--nitai-space-md);
+  padding-left: var(--nitai-space-lg);
+}
+
+.nitai-section-content li {
+  margin-bottom: var(--nitai-space-xs);
+  line-height: 1.6;
+}
+
+.nitai-section-content strong {
+  color: var(--nitai-red);
+  font-weight: 700;
+}
+
+.nitai-section-content blockquote {
+  border-left: 4px solid var(--nitai-red);
+  padding-left: var(--nitai-space-md);
+  margin: var(--nitai-space-md) 0;
+  font-style: italic;
+  color: var(--nitai-gray-600);
+}
+
+/* ========================================
+ * CHARTS PLACEHOLDER
+ * ======================================== */
+#categorias-chart,
+#sentimento-chart,
+#keywords-cloud {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--nitai-gray-50);
+  border-radius: var(--nitai-radius);
+  color: var(--nitai-gray-400);
+  font-size: 0.875rem;
+}

@@ -77,6 +77,15 @@ function renderAdminView({
               : `${icons.download} Exportar CSV`}
           </button>
           
+          <button 
+            onclick="window.open('dashboard-comparativo-embedded.html', '_blank')" 
+            class="btn btn-secondary btn-sm"
+            title="Abrir Dashboard Comparativo 2025 vs 2026"
+          >
+            ${icons.barChart}
+            Dashboard Comparativo
+          </button>
+          
                   </div>
       </header>
       
@@ -110,11 +119,11 @@ function renderAdminView({
             delay: 0.1
           })}
           ${renderStatsCard({
-            label: 'Taxa de Favorabilidade',
+            label: 'Satisfação Geral',
             value: `${stats.globalFavorability?.toFixed(1) || 0}%`,
             icon: 'thumbsUp',
             color: 'green',
-            sub: '% Concordo + Concordo muito',
+            sub: '% Concordo + Concordo Muito',
             delay: 0.15
           })}
                     ${renderStatsCard({
@@ -348,11 +357,11 @@ function renderAdminView({
       </main>
     </div>
     
-    <!-- Botão Flutuante Nitai -->
-    <div id="nitaiFloatButton" class="nitai-float-button" onclick="window.toggleNitaiChat()" title="Abrir chat com Nitai">
+    <!-- Botão Flutuante Nitai (desativado) -->
+    <!-- <div id="nitaiFloatButton" class="nitai-float-button" onclick="window.toggleNitaiChat()" title="Abrir chat com Nitai">
       <span class="button-text">💬 Nitai</span>
       <span class="minimize-icon">${icons.minus}</span>
-    </div>
+    </div> -->
     
     <!-- Widget de Chat Flutuante -->
     <div id="nitaiChatWidget" class="chat-widget-container hidden">

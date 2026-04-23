@@ -1,0 +1,239 @@
+{
+  "metadata": {
+    "ano": "2025",
+    "fonte": "pesquisa de clima (dados de 2025 + analises)",
+    "arquivo_origem": "PCO - Tabulação - Geral.xlsx",
+    "data_analise": "22/02/2025",
+    "total_respondentes": 92,
+    "versao": "1.0.0"
+  },
+  "resumo_executivo": {
+    "satisfacao_geral": "82,83%",
+    "insatisfacao_geral": "17,17%",
+    "favorabilidade": "84,72%",
+    "media_escore": 3.3,
+    "total_perguntas": 50,
+    "status_geral": "Positivo com áreas de melhoria"
+  },
+  "pilares_2025": [
+    {
+      "nome": "Liderança",
+      "satisfacao_media": "85%",
+      "status": "Bom",
+      "perguntas": [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34],
+      "foco": "Relacionamento com líder, comunicação, feedback",
+      "destaques": [
+        "Relacionamento sólido com liderança",
+        "Comunicação estabelecida",
+        "Feedback presente"
+      ]
+    },
+    {
+      "nome": "Ambiente de Trabalho",
+      "satisfacao_media": "87%",
+      "status": "Ótimo",
+      "perguntas": [1, 2, 45],
+      "foco": "Condições físicas, recursos, ambiente geral",
+      "destaques": [
+        "Ambiente físico adequado",
+        "Recursos disponíveis",
+        "Condições favoráveis"
+      ]
+    },
+    {
+      "nome": "Comprometimento Organizacional",
+      "satisfacao_media": "85%",
+      "status": "Bom",
+      "perguntas": [3, 9, 10, 11, 12, 13],
+      "foco": "Engajamento, orgulho, vontade de trabalhar",
+      "destaques": [
+        "Alto engajamento",
+        "Orgulho de trabalhar",
+        "Vontade de permanecer"
+      ]
+    },
+    {
+      "nome": "Gestão do Capital Humano",
+      "satisfacao_media": "80%",
+      "status": "Bom",
+      "perguntas": [5, 6, 7, 8, 15, 16, 43, 44, 48, 50],
+      "foco": "Desenvolvimento, reconhecimento, valorização",
+      "destaques": [
+        "Oportunidades de desenvolvimento",
+        "Reconhecimento presente",
+        "Valorização profissional"
+      ]
+    },
+    {
+      "nome": "Trabalho em Equipe",
+      "satisfacao_media": "78%",
+      "status": "Atenção",
+      "perguntas": [4, 37, 38, 39, 40, 49],
+      "foco": "Colaboração, espírito de equipe, relacionamento",
+      "desafios": [
+        "Rivalidade interna detectada",
+        "Politicagem presente",
+        "Clima competitivo"
+      ]
+    },
+    {
+      "nome": "Comunicação",
+      "satisfacao_media": "68%",
+      "status": "Crítico",
+      "perguntas": [14, 41, 42, 46, 47],
+      "foco": "Canais de comunicação, relacionamento com diretoria",
+      "desafios": [
+        "Canais mal definidos",
+        "Comunicação com diretoria fraca",
+        "Falta de transparência"
+      ]
+    }
+  ],
+  "top_melhores_perguntas_2025": [
+    {
+      "posicao": 1,
+      "percentual": "98,91%",
+      "pergunta": "Eu sou bem tratado, independente de minha função na empresa",
+      "pilar": "Gestão do Capital Humano"
+    },
+    {
+      "posicao": 2,
+      "percentual": "97,83%",
+      "pergunta": "Meu trabalho tem um sentido especial. Para mim, não é só 'mais um emprego'",
+      "pilar": "Comprometimento Organizacional"
+    },
+    {
+      "posicao": 3,
+      "percentual": "97,83%",
+      "pergunta": "Pretendo trabalhar aqui ainda por muito tempo",
+      "pilar": "Comprometimento Organizacional"
+    },
+    {
+      "posicao": 4,
+      "percentual": "95,65%",
+      "pergunta": "Sinto-me seguro para expressar minhas opiniões e ideias aqui",
+      "pilar": "Liderança"
+    },
+    {
+      "posicao": 5,
+      "percentual": "94,57%",
+      "pergunta": "Meu líder me dá feedback regular sobre meu desempenho",
+      "pilar": "Liderança"
+    }
+  ],
+  "top_piores_perguntas_2025": [
+    {
+      "posicao": 1,
+      "percentual": "25,00%",
+      "pergunta": "Existe fofoca por aqui",
+      "pilar": "Trabalho em Equipe"
+    },
+    {
+      "posicao": 2,
+      "percentual": "55,43%",
+      "pergunta": "Existem canais de comunicação bem definidos para que os colaboradores possam expressar suas sugestões e reivindicações",
+      "pilar": "Comunicação"
+    },
+    {
+      "posicao": 3,
+      "percentual": "60,87%",
+      "pergunta": "As pessoas fazem 'politicagem' (puxa saco) como forma de obter resultados",
+      "pilar": "Trabalho em Equipe"
+    },
+    {
+      "posicao": 4,
+      "percentual": "67,39%",
+      "pergunta": "A empresa oferece treinamentos ou oportunidades de desenvolvimento para o meu crescimento profissional",
+      "pilar": "Gestão do Capital Humano"
+    },
+    {
+      "posicao": 5,
+      "percentual": "68,48%",
+      "pergunta": "As pessoas aqui nesta empresa são remuneradas adequadamente em relação a outras empresas do mesmo segmento de mercado",
+      "pilar": "Gestão do Capital Humano"
+    }
+  ],
+  "areas_criticas_2025": [
+    {
+      "nome": "Comunicação",
+      "satisfacao": "68%",
+      "urgencia": "Alta",
+      "problemas": [
+        "Canais mal definidos (55,43%)",
+        "Falta de transparência",
+        "Comunicação com diretoria fraca"
+      ]
+    },
+    {
+      "nome": "Trabalho em Equipe",
+      "satisfacao": "78%",
+      "urgencia": "Média",
+      "problemas": [
+        "Fofoca (25%)",
+        "Politicagem (60,87%)",
+        "Rivalidade interna (75%)"
+      ]
+    },
+    {
+      "nome": "Remuneração",
+      "satisfacao": "68,48%",
+      "urgencia": "Média",
+      "problemas": [
+        "Salário abaixo do mercado",
+        "Falta de alinhamento competitivo"
+      ]
+    }
+  ],
+  "comentarios_qualitativos_2025": {
+    "sugestoes_melhoria": {
+      "beneficios": "Melhoria em vale alimentação, academia, combustível",
+      "salario": "Reajuste para alinhar com mercado",
+      "treinamentos": "Mais oportunidades de desenvolvimento profissional",
+      "infraestrutura": "Banheiros individuais, área de descanso"
+    },
+    "elogios": {
+      "ambiente": "Bom ambiente de trabalho",
+      "lideranca": "Líderes acessíveis e prestativos",
+      "colegas": "Bom relacionamento com colegas",
+      "oportunidades": "Oportunidades de crescimento"
+    },
+    "reclamacoes": {
+      "comunicacao": "Falta de comunicação clara",
+      "reconhecimento": "Pouco reconhecimento",
+      "beneficios": "Benefícios insuficientes",
+      "infraestrutura": "Infraestrutura limitada"
+    }
+  },
+  "plano_acao_recomendado_2025": [
+    {
+      "prioridade": "Crítica",
+      "area": "Comunicação",
+      "acoes": [
+        "Criar canais formais de comunicação",
+        "Estabelecer reuniões periódicas com diretoria",
+        "Implementar sistema de feedback anônimo"
+      ],
+      "prazo": "0-3 meses"
+    },
+    {
+      "prioridade": "Alta",
+      "area": "Trabalho em Equipe",
+      "acoes": [
+        "Programa anti-fofoca e politicagem",
+        "Atividades de integração",
+        "Mediação de conflitos"
+      ],
+      "prazo": "3-6 meses"
+    },
+    {
+      "prioridade": "Média",
+      "area": "Remuneração e Benefícios",
+      "acoes": [
+        "Análise salarial de mercado",
+        "Revisão de pacote de benefícios",
+        "Programa de reconhecimento"
+      ],
+      "prazo": "6-12 meses"
+    }
+  ]
+}

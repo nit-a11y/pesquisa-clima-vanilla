@@ -24,8 +24,8 @@ console.log('OPENROUTER_MODEL:', process.env.OPENROUTER_MODEL);
 
 import apiRoutes from './backend/routes/api.js';
 import climaRoutes from './backend/routes/clima.routes.js';
-import chatRoutes from './backend/routes/chat.routes.js';
-import landingIARoutes from './backend/routes/landing-ia.routes.js';
+import landingIaRoutes from './backend/routes/landing-ia.routes.js';
+import nitaiLocalRoutes from './backend/routes/nitai-local.routes.js';
 import { initDatabase } from './backend/database/connection.js';
 
 const app = express();
@@ -48,8 +48,8 @@ app.use(express.static(path.join(__dirname, 'frontend')));
 
 app.use('/api', apiRoutes);
 app.use('/api/clima', climaRoutes);
-app.use('/api/chat', chatRoutes);
-app.use('/api/landing-ia', landingIARoutes);
+app.use('/api/landing-ia', landingIaRoutes);
+app.use('/api/nitai-local', nitaiLocalRoutes);
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'frontend/index.html'));

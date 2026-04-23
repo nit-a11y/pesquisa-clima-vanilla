@@ -1,0 +1,407 @@
+{
+  "metadata": {
+    "titulo": "Análise Comparativa - Pesquisa de Clima Organizacional",
+    "periodo": "2025 vs 2026",
+    "data_geracao": "23/04/2026",
+    "versao": "1.0.0",
+    "fontes": [
+      "pesquisa de clima (dados de 2025 + analises)",
+      "frontend/assets/data/interface-ia"
+    ]
+  },
+  "resumo_geral": {
+    "participacao": {
+      "2025": {
+        "respondentes": 92,
+        "percentual": "100%"
+      },
+      "2026": {
+        "respondentes": 96,
+        "percentual": "100%"
+      },
+      "variacao": "+4 respondentes (+4.3%)"
+    },
+    "satisfacao_geral": {
+      "2025": "82.83%",
+      "2026": "88.4%",
+      "variacao": "+5.57pp",
+      "interpretacao": "Melhora na satisfação usando mesma metodologia"
+    },
+    "favorabilidade": {
+      "2025": "84.72%",
+      "2026": "88.4%",
+      "variacao": "+3.68pp",
+      "nota": "Em 2026, satisfação e favorabilidade usam mesma fórmula (% concordância)"
+    },
+    "status_geral": {
+      "2025": "Positivo com áreas de melhoria",
+      "2026": "Positivo com pontos críticos identificados",
+      "interpretacao": "Maturidade aumentada, problemas mais específicos identificados"
+    }
+  },
+  "comparativo_pilares": [
+    {
+      "pilar": "Liderança",
+      "2025": {
+        "satisfacao": "85%",
+        "status": "Bom",
+        "posicao_ranking": 3
+      },
+      "2026": {
+        "satisfacao": "93.3%",
+        "status": "Excelente",
+        "posicao_ranking": 1
+      },
+      "variacao": "+8.3pp",
+      "interpretacao": "🚀 **MELHORIA EXPRESSIVA** - Liderança tornou-se o pilar mais forte",
+      "fatores": [
+        "Clareza sobre líder (99.0%)",
+        "Ética e honestidade reforçadas (97.9%)",
+        "Comunicação da liderança (96.9%)"
+      ]
+    },
+    {
+      "pilar": "Comprometimento Organizacional",
+      "2025": {
+        "satisfacao": "85%",
+        "status": "Bom",
+        "posicao_ranking": 3
+      },
+      "2026": {
+        "satisfacao": "93.0%",
+        "status": "Excelente",
+        "posicao_ranking": 2
+      },
+      "variacao": "+8.0pp",
+      "interpretacao": "🚀 **MELHORIA SIGNIFICATIVA** - Engajamento mantido e fortalecido",
+      "fatores": [
+        "Alto engajamento preservado",
+        "Forte comprometimento com organização",
+        "Vontade de permanecer elevada"
+      ]
+    },
+    {
+      "pilar": "Ambiente de Trabalho",
+      "2025": {
+        "satisfacao": "87%",
+        "status": "Ótimo",
+        "posicao_ranking": 1
+      },
+      "2026": {
+        "satisfacao": "91.7%",
+        "status": "Excelente",
+        "posicao_ranking": 3
+      },
+      "variacao": "+4.7pp",
+      "interpretacao": "✅ **MELHORIA MODERADA** - Ambiente físico mantido e aprimorado",
+      "fatores": [
+        "Condições físicas adequadas",
+        "Recursos disponíveis mantidos",
+        "Ambiente organizacional positivo"
+      ]
+    },
+    {
+      "pilar": "Comunicação",
+      "2025": {
+        "satisfacao": "68%",
+        "status": "Crítico",
+        "posicao_ranking": 6
+      },
+      "2026": {
+        "satisfacao": "80.9%",
+        "status": "Bom",
+        "posicao_ranking": 6
+      },
+      "variacao": "+12.9pp",
+      "interpretacao": "🎯 **MELHORIA MAIS EXPRESSIVA** - Comunicação saiu da zona crítica",
+      "fatores": [
+        "Canais mais definidos (67.7% vs 55.43%)",
+        "Comunicação da liderança (96.9%)",
+        "Redução da lacuna de comunicação"
+      ]
+    },
+    {
+      "pilar": "Gestão do Capital Humano",
+      "2025": {
+        "satisfacao": "80%",
+        "status": "Bom",
+        "posicao_ranking": 4
+      },
+      "2026": {
+        "satisfacao": "84.6%",
+        "status": "Bom",
+        "posicao_ranking": 4
+      },
+      "variacao": "+4.6pp",
+      "interpretacao": "📈 **MELHORIA MODERADA** - GCH evoluiu mas mantém desafios",
+      "fatores": [
+        "Cultura de acolhimento fortalecida (96.9%)",
+        "Tratamento igualitário mantido (96.9%)",
+        "Benefícios e remuneração ainda críticos"
+      ]
+    },
+    {
+      "pilar": "Trabalho em Equipe",
+      "2025": {
+        "satisfacao": "78%",
+        "status": "Atenção",
+        "posicao_ranking": 5
+      },
+      "2026": {
+        "satisfacao": "84.1%",
+        "status": "Bom",
+        "posicao_ranking": 5
+      },
+      "variacao": "+6.1pp",
+      "interpretacao": "📈 **MELHORIA CONSISTENTE** - Colaboração melhorou",
+      "fatores": [
+        "Redução da rivalidade interna",
+        "Politicagem ainda presente (65.6%)",
+        "Espírito de equipe fortalecido"
+      ]
+    }
+  ],
+  "analise_melhorias": [
+    {
+      "categoria": "Liderança",
+      "destaque": "MAIOR MELHORIA",
+      "descricao": "Liderança evoluiu de Bom (85%) para Excelente (93.3%)",
+      "impacto": "Tornou-se o pilar mais forte da organização",
+      "fatores_sucesso": [
+        "Clareza organizacional estabelecida",
+        "Ética e honestidade valorizadas",
+        "Comunicação eficaz implementada"
+      ]
+    },
+    {
+      "categoria": "Comunicação",
+      "destaque": "MAIOR IMPACTO",
+      "descricao": "Comunicação saiu da zona crítica (68% → 80.9%)",
+      "impacto": "Redução significativa de um dos principais problemas de 2025",
+      "fatores_sucesso": [
+        "Canais mais bem definidos",
+        "Comunicação da liderança fortalecida",
+        "Maior transparência"
+      ]
+    },
+    {
+      "categoria": "Comprometimento",
+      "destaque": "CONSISTÊNCIA",
+      "descricao": "Comprometimento mantido e fortalecido (85% → 93.0%)",
+      "impacto": "Engajamento dos colaboradores preservado",
+      "fatores_sucesso": [
+        "Clima organizacional positivo",
+        "Oportunidades de crescimento",
+        "Reconhecimento adequado"
+      ]
+    }
+  ],
+  "analise_pioras": [
+    {
+      "categoria": "Benefícios",
+      "destaque": "NOVO PROBLEMA CRÍTICO",
+      "descricao": "Benefícios tornaram-se a principal fonte de insatisfação (58.3%)",
+      "impacto": "64 comentários negativos, risco de turnover",
+      "fatores_piora": [
+        "Inflação impactando vale alimentação",
+        "Expectativas não atendidas",
+        "Concorrência de mercado"
+      ]
+    },
+    {
+      "categoria": "Remuneração",
+      "destaque": "PROBLEMA PERSISTENTE",
+      "descricao": "Remuneração continua crítica (59.4%)",
+      "impacto": "Risco de perda de talentos",
+      "fatores_piora": [
+        "Mercado aquecido",
+        "Falta de alinhamento competitivo",
+        "Inflação e custo de vida"
+      ]
+    },
+    {
+      "categoria": "Assédio",
+      "destaque": "PROBLEMA REVELADO",
+      "descricao": "Assédio identificado como área crítica (9.38%)",
+      "impacto": "~9 pessoas afetadas, risco legal e cultural",
+      "fatores_piora": [
+        "Maior consciência e reporte",
+        "Ambiente psicológico prejudicado",
+        "Necessidade de ação imediata"
+      ]
+    }
+  ],
+  "top_perguntas_comparativo": {
+    "melhorias_significativas": [
+      {
+        "pergunta": "Canais de comunicação bem definidos",
+        "2025": "55.43%",
+        "2026": "67.7%",
+        "variacao": "+12.27pp",
+        "interpretacao": "Grande melhoria na estruturação de canais"
+      },
+      {
+        "pergunta": "Clareza sobre líder",
+        "2025": "Não medido diretamente",
+        "2026": "99.0%",
+        "interpretacao": "Excelente clareza organizacional"
+      },
+      {
+        "pergunta": "Ética e honestidade da liderança",
+        "2025": "Não medido diretamente",
+        "2026": "97.9%",
+        "interpretacao": "Valores culturais fortalecidos"
+      }
+    ],
+    "problemas_persistentes": [
+      {
+        "pergunta": "Remuneração adequada",
+        "2025": "68.48%",
+        "2026": "59.4%",
+        "variacao": "-9.08pp",
+        "interpretacao": "Piorou devido ao mercado competitivo"
+      },
+      {
+        "pergunta": "Politicagem",
+        "2025": "60.87%",
+        "2026": "65.6%",
+        "variacao": "+4.73pp",
+        "interpretacao": "Problema cultural persistente"
+      }
+    ]
+  },
+  "insights_estrategicos": [
+    {
+      "insight": "Maturidade Organizacional",
+      "descricao": "A empresa evoluiu de problemas genéricos para problemas específicos e maduros",
+      "evidencia": "Em 2025: 'Comunicação ruim'. Em 2026: 'Benefícios insuficientes'",
+      "implicacao": "Maior precisão no diagnóstico, ações mais direcionadas"
+    },
+    {
+      "insight": "Força da Liderança",
+      "descricao": "Liderança tornou-se o principal ativo da organização",
+      "evidencia": "Evolutiva de 85% para 93.3%, tornando-se pilar #1",
+      "implicacao": "Base sólida para implementação de mudanças"
+    },
+    {
+      "insight": "Trade-off Satisfação vs Favorabilidade",
+      "descricao": "Satisfação caiu mas favorabilidade aumentou",
+      "evidencia": "Satisfação: 82.83% → 88.4% (+5.57pp). Ambos usando % de concordância.",
+      "implicacao": "Colaboradores mais engajados apesar de mais críticos"
+    }
+  ],
+  "plano_acao_integrado": {
+    "acoes_imediatas": [
+      {
+        "prioridade": "CRÍTICA",
+        "area": "Assédio",
+        "acao": "Investigação imediata dos 9.38% de casos reportados",
+        "prazo": "1 semana",
+        "responsavel": "RH + Diretoria",
+        "justificativa": "Risco legal e cultural iminente"
+      },
+      {
+        "prioridade": "CRÍTICA",
+        "area": "Benefícios",
+        "acao": "Revisão completa do pacote considerando inflação",
+        "prazo": "30 dias",
+        "responsavel": "RH + Financeiro",
+        "justificativa": "64 comentários negativos, principal fonte de insatisfação"
+      }
+    ],
+    "acoes_curto_prazo": [
+      {
+        "prioridade": "ALTA",
+        "area": "Remuneração",
+        "acao": "Análise salarial de mercado e plano de reajuste",
+        "prazo": "60 dias",
+        "responsavel": "RH + Financeiro",
+        "justificativa": "Risco de perda de talentos competitivos"
+      },
+      {
+        "prioridade": "ALTA",
+        "area": "Politicagem",
+        "acao": "Programa cultural anti-politicagem",
+        "prazo": "90 dias",
+        "responsavel": "Liderança + RH",
+        "justificativa": "Problema cultural persistente (65.6%)"
+      }
+    ],
+    "acoes_medio_prazo": [
+      {
+        "prioridade": "MÉDIA",
+        "area": "Manutenção de Ganhos",
+        "acao": "Fortalecer pilares que melhoraram (Liderança, Comunicação)",
+        "prazo": "180 dias",
+        "responsavel": "Liderança",
+        "justificativa": "Sustentar os ganhos obtidos"
+      }
+    ]
+  },
+  "recomendacoes_estrategicas": [
+    {
+      "recomendacao": "Capitalizar na Liderança Forte",
+      "descricao": "Usar a liderança (93.3%) como agente de mudança",
+      "acoes": [
+        "Líderes como embaixadores das mudanças",
+        "Comunicação direta dos problemas críticos",
+        "Engajamento da liderança nas soluções"
+      ]
+    },
+    {
+      "recomendacao": "Focar em Problemas Específicos",
+      "descricao": "Abordar benefícios e remuneração com precisão cirúrgica",
+      "acoes": [
+        "Pesquisa de mercado detalhada",
+        "Análise de custo-benefício",
+        "Comunicação transparente de limitações"
+      ]
+    },
+    {
+      "recomendacao": "Monitorar Trade-off Satisfação/Favorabilidade",
+      "descricao": "Entender por que favorabilidade aumentou apesar da queda na satisfação",
+      "acoes": [
+        "Pesquisa qualitativa profunda",
+        "Análise de comentários",
+        "Grupos focais com colaboradores"
+      ]
+    }
+  ],
+  "projecoes_futuras": {
+    "cenario_otimista": {
+      "descricao": "Implementação completa do plano de ação",
+      "resultados_esperados": [
+        "Satisfação geral > 85%",
+        "Benefícios > 80%",
+        "Remuneração > 75%",
+        "Assédio < 5%"
+      ],
+      "prazo": "12 meses"
+    },
+    "cenario_realista": {
+      "descricao": "Implementação parcial focando no crítico",
+      "resultados_esperados": [
+        "Satisfação geral ~80%",
+        "Benefícios ~70%",
+        "Remuneração ~70%",
+        "Assédio ~7%"
+      ],
+      "prazo": "12 meses"
+    },
+    "cenario_pessimista": {
+      "descricao": "Sem ações corretivas",
+      "resultados_esperados": [
+        "Satisfação geral < 75%",
+        "Turnover > 15%",
+        "Clima deteriorado",
+        "Problemas culturais aprofundados"
+      ],
+      "prazo": "12 meses"
+    }
+  },
+  "conclusao": {
+    "sintese": "A organização evoluiu significativamente entre 2025 e 2026, com ganhos expressivos em Liderança (+8.3pp) e Comunicação (+12.9pp). No entanto, novos desafios críticos emergiram (Benefícios 58.3%, Assédio 9.38%), exigindo ações imediatas. A maturidade aumentou, permitindo diagnóstico mais preciso e ações mais direcionadas.",
+    "mensagem_chave": "A empresa está mais madura e preparada para enfrentar desafios específicos, com liderança forte como base para mudanças.",
+    "proximos_passos": "Foco imediato em Assédio e Benefícios, mantendo os ganhos em Liderança e Comunicação."
+  }
+}

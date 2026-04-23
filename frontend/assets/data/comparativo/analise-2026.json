@@ -1,0 +1,271 @@
+{
+  "metadata": {
+    "ano": "2026",
+    "fonte": "frontend/assets/data/interface-ia",
+    "data_analise": "23/04/2026",
+    "total_respondentes": 96,
+    "versao": "2.0.0",
+    "nota_metodologica": "Satisfação usa % de concordância (mesma metodologia 2025)"
+  },
+  "resumo_executivo": {
+    "satisfacao_geral": "88.4%",
+    "favorabilidade": "88.4%",
+    "media_escore": 3.3,
+    "total_perguntas": 45,
+    "status_geral": "Positivo com evolução confirmada",
+    "variacao_respondentes": "+4.3% vs 2025",
+    "variacao_satisfacao": "+5.57pp vs 2025 (mesma metodologia)"
+  },
+  "pilares_2026": [
+    {
+      "nome": "Liderança",
+      "satisfacao": "93.3%",
+      "status": "Excelente",
+      "perguntas": 15,
+      "foco": "Relacionamento com líder, comunicação, feedback",
+      "destaques": [
+        "Clareza sobre líder (99.0%)",
+        "Ética e honestidade (97.9%)",
+        "Comunicação eficaz (96.9%)",
+        "Interesse sincero (97.9%)"
+      ],
+      "variacao_vs_2025": "+8.3pp"
+    },
+    {
+      "nome": "Comprometimento Organizacional",
+      "satisfacao": "93.0%",
+      "status": "Excelente",
+      "perguntas": 6,
+      "foco": "Engajamento, orgulho, vontade de trabalhar",
+      "destaques": [
+        "Alto engajamento mantido",
+        "Forte comprometimento",
+        "Vontade de permanecer"
+      ],
+      "variacao_vs_2025": "+8.0pp"
+    },
+    {
+      "nome": "Ambiente de Trabalho",
+      "satisfacao": "91.7%",
+      "status": "Excelente",
+      "perguntas": 3,
+      "foco": "Condições físicas, recursos, ambiente geral",
+      "destaques": [
+        "Ambiente físico mantido",
+        "Boas condições",
+        "Recursos adequados"
+      ],
+      "variacao_vs_2025": "+4.7pp"
+    },
+    {
+      "nome": "Gestão do Capital Humano",
+      "satisfacao": "84.6%",
+      "status": "Bom",
+      "perguntas": 10,
+      "foco": "Desenvolvimento, reconhecimento, valorização",
+      "desafios": [
+        "Benefícios (58.3%)",
+        "Remuneração (59.4%)",
+        "Reconhecimento (72.9%)"
+      ],
+      "variacao_vs_2025": "+4.6pp"
+    },
+    {
+      "nome": "Trabalho em Equipe",
+      "satisfacao": "84.1%",
+      "status": "Bom",
+      "perguntas": 6,
+      "foco": "Colaboração, espírito de equipe, relacionamento",
+      "desafios": [
+        "Politicagem (65.6%)",
+        "Competição interna"
+      ],
+      "variacao_vs_2025": "+6.1pp"
+    },
+    {
+      "nome": "Comunicação",
+      "satisfacao": "80.9%",
+      "status": "Bom",
+      "perguntas": 5,
+      "foco": "Canais de comunicação, relacionamento com diretoria",
+      "melhorias": [
+        "Canais mais definidos (67.7%)",
+        "Comunicação da liderança (96.9%)"
+      ],
+      "variacao_vs_2025": "+12.9pp"
+    }
+  ],
+  "top_melhores_perguntas_2026": [
+    {
+      "posicao": 1,
+      "favorabilidade": "99.0%",
+      "pergunta": "Q27: Você sabe com clareza quem é seu líder (superior imediato)",
+      "pilar": "Liderança"
+    },
+    {
+      "posicao": 2,
+      "favorabilidade": "97.9%",
+      "pergunta": "Q29: Seu líder demonstra comprometimento com o negócio, agindo com ética e honestidade",
+      "pilar": "Liderança"
+    },
+    {
+      "posicao": 3,
+      "favorabilidade": "96.9%",
+      "pergunta": "Q10: O seu líder lhe mantém informado sobre assuntos importantes e sobre mudanças na empresa",
+      "pilar": "Liderança"
+    },
+    {
+      "posicao": 4,
+      "favorabilidade": "96.9%",
+      "pergunta": "Q16: Quando é contratado um funcionário novo, as pessoas fazem com que ele se sinta bem-vindo",
+      "pilar": "Gestão do Capital Humano"
+    },
+    {
+      "posicao": 5,
+      "favorabilidade": "96.9%",
+      "pergunta": "Q19: As pessoas aqui na empresa são bem tratadas independentemente da sua idade, cor, religião ou sexo",
+      "pilar": "Gestão do Capital Humano"
+    }
+  ],
+  "top_piores_perguntas_2026": [
+    {
+      "posicao": 1,
+      "favorabilidade": "58.3%",
+      "pergunta": "Q15: Estou satisfeito com o pacote de benefícios que a empresa oferece",
+      "pilar": "Gestão do Capital Humano",
+      "comentarios": 64,
+      "urgencia": "Crítica"
+    },
+    {
+      "posicao": 2,
+      "favorabilidade": "59.4%",
+      "pergunta": "Q14: As pessoas aqui nesta empresa são remuneradas adequadamente em relação a outras empresas do mesmo segmento de mercado",
+      "pilar": "Gestão do Capital Humano",
+      "urgencia": "Alta"
+    },
+    {
+      "posicao": 3,
+      "favorabilidade": "65.6%",
+      "pergunta": "Q45: As pessoas fazem 'politicagem' (puxa saco) como forma de obter resultados",
+      "pilar": "Trabalho em Equipe",
+      "urgencia": "Média"
+    },
+    {
+      "posicao": 4,
+      "favorabilidade": "67.7%",
+      "pergunta": "Q8: Existem canais de comunicação bem definidos para que os colaboradores possam expressar suas sugestões e reivindicações",
+      "pilar": "Comunicação",
+      "urgencia": "Alerta"
+    },
+    {
+      "posicao": 5,
+      "favorabilidade": "72.9%",
+      "pergunta": "Q21: Nós sempre comemoramos as metas atingidas e os eventos especiais",
+      "pilar": "Gestão do Capital Humano",
+      "urgencia": "Alerta"
+    }
+  ],
+  "areas_criticas_2026": [
+    {
+      "nome": "Benefícios",
+      "satisfacao": "58.3%",
+      "urgencia": "Crítica",
+      "problemas": [
+        "Pacote insatisfatório",
+        "64 comentários negativos",
+        "Principal fonte de insatisfação"
+      ],
+      "impacto": "Alto risco de turnover"
+    },
+    {
+      "nome": "Remuneração",
+      "satisfacao": "59.4%",
+      "urgencia": "Alta",
+      "problemas": [
+        "Abaixo do mercado",
+        "Falta de competitividade",
+        "Impacta retenção"
+      ],
+      "impacto": "Risco de perda de talentos"
+    },
+    {
+      "nome": "Assédio",
+      "satisfacao": "9.38%",
+      "urgencia": "Crítica",
+      "problemas": [
+        "Casos de humilhação reportados",
+        "~9 pessoas afetadas",
+        "Ambiente psicológico prejudicado"
+      ],
+      "impacto": "Risco legal e cultural"
+    }
+  ],
+  "comentarios_qualitativos_2026": {
+    "sugestoes_melhoria": {
+      "beneficios": "Revisão completa do pacote de benefícios",
+      "remuneracao": "Alinhamento salarial com mercado",
+      "comunicacao": "Melhoria de canais existentes",
+      "politica": "Programa anti-politicagem"
+    },
+    "pontos_fortes": {
+      "lideranca": "Liderança clara e acessível",
+      "etica": "Ética e honestidade valorizadas",
+      "integracao": "Cultura de acolhimento",
+      "respeito": "Tratamento igualitário"
+    },
+    "preocupacoes": {
+      "assedio": "Casos de humilhação precisam atenção",
+      "beneficios": "Insatisfação generalizada",
+      "remuneracao": "Competitividade comprometida"
+    }
+  },
+  "plano_acao_2026": [
+    {
+      "prioridade": "Crítica",
+      "area": "Assédio",
+      "acoes": [
+        "Investigação imediata de casos reportados",
+        "Implementação de canal de denúncias",
+        "Treinamento sobre respeito e diversidade"
+      ],
+      "prazo": "1 semana",
+      "responsavel": "RH + Diretoria"
+    },
+    {
+      "prioridade": "Crítica",
+      "area": "Benefícios",
+      "acoes": [
+        "Pesquisa de mercado de benefícios",
+        "Análise de vale alimentação vs inflação",
+        "Proposta de plano de saúde",
+        "Programa de auxílios"
+      ],
+      "prazo": "30 dias",
+      "responsavel": "RH + Financeiro"
+    },
+    {
+      "prioridade": "Alta",
+      "area": "Remuneração",
+      "acoes": [
+        "Pesquisa salarial de mercado",
+        "Análise de estrutura de cargos",
+        "Plano de reajustes",
+        "Política de bonificação"
+      ],
+      "prazo": "60 dias",
+      "responsavel": "RH + Financeiro"
+    },
+    {
+      "prioridade": "Alta",
+      "area": "Comunicação",
+      "acoes": [
+        "Mapeamento de canais existentes",
+        "Criação de canais formais",
+        "Reuniões semanais de alinhamento",
+        "Sistema de feedback anônimo"
+      ],
+      "prazo": "45 dias",
+      "responsavel": "Liderança + RH"
+    }
+  ]
+}
