@@ -36,7 +36,7 @@ jobs:
           git checkout --orphan gh-pages
           git rm -rf .
           
-          # Copy frontend files
+          # Copy frontend files FIRST (before cleaning)
           cp -r frontend/* ./
           
           # Create index.html redirect
