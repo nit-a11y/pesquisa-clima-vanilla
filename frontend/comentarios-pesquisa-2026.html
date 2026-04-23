@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comentários da Pesquisa de Clima 2026 - Nordeste Locações</title>
+  <meta name="description" content="Todos os comentários da pesquisa de clima organizacional 2026">
+  
+  <link rel="stylesheet" href="assets/css/relatorio-landing.css">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #6366f1;
+      --secondary: #8b5cf6;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --border: #e2e8f0;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    
+    .header {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .header-brand img {
+      height: 40px;
+    }
+    
+    .header-brand span {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--dark);
+    }
+    
+    .header-back {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    
+    .header-back:hover {
+      background: #f1f5f9;
+    }
+    
+    .stats-bar {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .stat-item {
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--gray);
+    }
+    
+    .filters {
+      background: white;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .filters-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .filter-label {
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--gray);
+    }
+    
+    .filter-select {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.875rem;
+      background: white;
+      min-width: 200px;
+    }
+    
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    .filter-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    .main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .perguntas-grid {
+      display: grid;
+      gap: 2rem;
+    }
+    
+    .pergunta-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .pergunta-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .pergunta-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    
+    .pergunta-id {
+      background: var(--primary);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    
+    .pergunta-categoria {
+      background: #f1f5f9;
+      color: var(--gray);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    
+    .pergunta-nota {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .nota-valor {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+    
+    .nota-stars {
+      display: flex;
+      gap: 0.125rem;
+    }
+    
+    .star {
+      width: 20px;
+      height: 20px;
+      color: #fbbf24;
+    }
+    
+    .star.empty {
+      color: #d1d5db;
+    }
+    
+    .pergunta-texto {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+    
+    .comentarios-count {
+      font-size: 0.875rem;
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+    
+    .reviews-list {
+      display: grid;
+      gap: 1rem;
+    }
+    
+    .review-card {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 1rem;
+      border-left: 4px solid var(--border);
+    }
+    
+    .review-card.positivo {
+      border-left-color: var(--success);
+    }
+    
+    .review-card.negativo {
+      border-left-color: var(--danger);
+    }
+    
+    .review-card.neutro {
+      border-left-color: var(--gray);
+    }
+    
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .review-sentimento {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+    }
+    
+    .review-sentimento.positivo {
+      background: #d1fae5;
+      color: #065f46;
+    }
+    
+    .review-sentimento.negativo {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+    
+    .review-sentimento.neutro {
+      background: #f3f4f6;
+      color: #4b5563;
+    }
+    
+    .review-unidade {
+      font-size: 0.75rem;
+      color: var(--gray);
+      background: #f1f5f9;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+    }
+    
+    .review-date {
+      font-size: 0.75rem;
+      color: var(--gray);
+    }
+    
+    .review-text {
+      font-size: 0.9375rem;
+      color: var(--dark);
+      line-height: 1.5;
+    }
+    
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .page-btn {
+      min-width: 40px;
+      height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    
+    .page-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    .page-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    
+    .page-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 4rem;
+      color: var(--gray);
+    }
+    
+    @media (max-width: 768px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .pergunta-header {
+        flex-direction: column;
+      }
+      
+      .header {
+        padding: 1rem;
+      }
+      
+      .main {
+        padding: 1rem;
+      }
+      
+      .filters-container {
+        flex-direction: column;
+      }
+      
+      .filter-select {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-brand">
+      <img src="assets/images/nordeste-logo.svg" alt="Nordeste Locações">
+      <span>Nordeste Locações</span>
+    </div>
+    <a href="relatorio-clima-2026.html" class="header-back">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+      </svg>
+      Voltar ao Relatório
+    </a>
+  </header>
+  
+  <div class="stats-bar">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-value" id="totalPerguntas">-</div>
+        <div class="stat-label">Perguntas Avaliadas</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="totalComentarios">-</div>
+        <div class="stat-label">Total de Comentários</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="mediaGeral">-</div>
+        <div class="stat-label">Média Geral</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="comentariosPositivos">-</div>
+        <div class="stat-label">Feedbacks Positivos</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="filters">
+    <div class="filters-container">
+      <div class="filter-group">
+        <span class="filter-label">Filtrar:</span>
+        <select class="filter-select" id="categoriaFilter">
+          <option value="todas">Todas as Categorias</option>
+          <option value="Ambiente de Trabalho">Ambiente de Trabalho</option>
+          <option value="Comprometimento Organizacional">Comprometimento</option>
+          <option value="Comunicação">Comunicação</option>
+          <option value="Gestão do Capital Humano">Gestão do Capital Humano</option>
+          <option value="Liderança">Liderança</option>
+          <option value="Trabalho em Equipe">Trabalho em Equipe</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Sentimento:</span>
+        <select class="filter-select" id="sentimentoFilter">
+          <option value="todos">Todos</option>
+          <option value="positivo">Positivos (4)</option>
+          <option value="neutro">Neutros (3)</option>
+          <option value="negativo">Negativos (1-2)</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Ordenar por:</span>
+        <select class="filter-select" id="ordemFilter">
+          <option value="comentarios-desc">Mais Comentadas</option>
+          <option value="comentarios-asc">Menos Comentadas</option>
+          <option value="nota-desc">Melhor Avaliação</option>
+          <option value="nota-asc">Pior Avaliação</option>
+        </select>
+      </div>
+      <button class="filter-btn" id="applyFilter">Aplicar Filtros</button>
+    </div>
+  </div>
+  
+  <main class="main">
+    <div class="perguntas-grid" id="perguntasContainer">
+      <div class="loading">Carregando comentários...</div>
+    </div>
+    
+    <div class="pagination" id="pagination"></div>
+  </main>
+  
+  <script>
+    (function() {
+      var API_URL = '/api/admin/comentarios';
+      
+      var app = {
+        dados: null,
+        perguntas: [],
+        filtros: {
+          categoria: 'todas',
+          sentimento: 'todos',
+          ordem: 'comentarios-desc'
+        },
+        paginaAtual: 1,
+        itensPorPagina: 10,
+        
+        async init() {
+          await this.carregarDados();
+          this.calcularEstatisticas();
+          this.renderizar();
+          this.configurarFiltros();
+        },
+        
+        async carregarDados() {
+          try {
+            var response = await fetch(API_URL);
+            var data = await response.json();
+            
+            if (data.sucesso) {
+              this.dados = data.perguntas;
+            } else {
+              console.error('Erro na API:', data.error);
+              this.dados = [];
+            }
+          } catch (error) {
+            console.error('Erro ao carregar dados:', error);
+            this.dados = [];
+          }
+        },
+        
+        calcularEstatisticas() {
+          var totalComentarios = 0;
+          var somaNotas = 0;
+          var positivos = 0;
+          
+          var self = this;
+          this.perguntas = this.dados.map(function(p) {
+            var notaMedia = 0;
+            if (p.comentarios.length > 0) {
+              notaMedia = p.comentarios.reduce(function(sum, c) {
+                return sum + c.nota;
+              }, 0) / p.comentarios.length;
+            }
+            
+            totalComentarios += p.comentarios.length;
+            somaNotas += p.comentarios.reduce(function(sum, c) { return sum + c.nota; }, 0);
+            positivos += p.comentarios.filter(function(c) { return c.sentimento === 'positivo'; }).length;
+            
+            return {
+              pergunta_id: p.pergunta_id,
+              pergunta_texto: p.pergunta_texto,
+              categoria: p.categoria,
+              comentarios: p.comentarios,
+              notaMedia: notaMedia,
+              totalComentarios: p.comentarios.length
+            };
+          });
+          
+          document.getElementById('totalPerguntas').textContent = this.perguntas.length;
+          document.getElementById('totalComentarios').textContent = totalComentarios;
+          
+          var mediaGeral = totalComentarios > 0 ? somaNotas / totalComentarios : 0;
+          document.getElementById('mediaGeral').textContent = mediaGeral.toFixed(1);
+          document.getElementById('comentariosPositivos').textContent = Math.round((positivos / totalComentarios) * 100) + '%';
+        },
+        
+        filtrarPerguntas() {
+          var filtered = this.perguntas;
+          
+          if (this.filtros.categoria !== 'todas') {
+            filtered = filtered.filter(function(p) { return p.categoria === this.filtros.categoria; }.bind(this));
+          }
+          
+          if (this.filtros.sentimento !== 'todos') {
+            filtered = filtered.filter(function(p) {
+              return p.comentarios.some(function(c) { return c.sentimento === this.filtros.sentimento; }.bind(this));
+            }.bind(this));
+          }
+          
+          var ordem = this.filtros.ordem;
+          if (ordem === 'comentarios-desc') {
+            filtered.sort(function(a, b) { return b.totalComentarios - a.totalComentarios; });
+          } else if (ordem === 'comentarios-asc') {
+            filtered.sort(function(a, b) { return a.totalComentarios - b.totalComentarios; });
+          } else if (ordem === 'nota-desc') {
+            filtered.sort(function(a, b) { return b.notaMedia - a.notaMedia; });
+          } else if (ordem === 'nota-asc') {
+            filtered.sort(function(a, b) { return a.notaMedia - b.notaMedia; });
+          }
+          
+          return filtered;
+        },
+        
+        renderizar() {
+          var filtered = this.filtrarPerguntas();
+          var container = document.getElementById('perguntasContainer');
+          
+          var inicio = (this.paginaAtual - 1) * this.itensPorPagina;
+          var fim = inicio + this.itensPorPagina;
+          var paginated = filtered.slice(inicio, fim);
+          
+          if (paginated.length === 0) {
+            container.innerHTML = '<div class="loading">Nenhum comentário encontrado com os filtros selecionados.</div>';
+            return;
+          }
+          
+          var self = this;
+          container.innerHTML = paginated.map(function(p) { return self.renderizarPergunta(p); }).join('');
+          
+          this.renderizarPagination(filtered.length);
+        },
+        
+        renderizarPergunta: function(pergunta) {
+          var stars = this.renderizarStars(pergunta.notaMedia);
+          
+          var comentariosOrdenados = pergunta.comentarios.slice(0, 5).sort(function(a, b) {
+            if (a.sentimento === 'negativo' && b.sentimento !== 'negativo') return 1;
+            if (b.sentimento === 'positivo' && a.sentimento !== 'positivo') return -1;
+            return 0;
+          });
+          
+          var reviewsHtml = comentariosOrdenados.map(function(c) { return this.renderizarReview(c); }.bind(this)).join('');
+          
+          return '<div class="pergunta-card">' +
+            '<div class="pergunta-header">' +
+              '<div class="pergunta-meta">' +
+                '<span class="pergunta-id">P' + pergunta.pergunta_id + '</span>' +
+                '<span class="pergunta-categoria">' + pergunta.categoria + '</span>' +
+              '</div>' +
+              '<div class="pergunta-nota">' +
+                '<span class="nota-valor">' + pergunta.notaMedia.toFixed(1) + '</span>' +
+                '<div class="nota-stars">' + stars + '</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="pergunta-texto">' + pergunta.pergunta_texto + '</div>' +
+            '<div class="comentarios-count">' + pergunta.totalComentarios + ' comentário' + (pergunta.totalComentarios !== 1 ? 's' : '') + '</div>' +
+            '<div class="reviews-list">' + reviewsHtml + '</div>' +
+          '</div>';
+        },
+        
+        renderizarStars: function(nota) {
+          var estrelas = Math.round(nota);
+          if (estrelas < 1) estrelas = 1;
+          if (estrelas > 4) estrelas = 4;
+          
+          var html = '';
+          for (var i = 1; i <= 4; i++) {
+            if (i <= estrelas) {
+              html += '<svg class="star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>';
+            } else {
+              html += '<svg class="star empty" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>';
+            }
+          }
+          return html;
+        },
+        
+        renderizarReview: function(comentario) {
+          var dataObj = new Date(comentario.data);
+          var data = dataObj.toLocaleDateString('pt-BR');
+          var label = comentario.nota + (comentario.nota === 1 ? ' estrela' : ' estrelas');
+          
+          return '<div class="review-card ' + comentario.sentimento + '">' +
+            '<div class="review-header">' +
+              '<span class="review-sentimento ' + comentario.sentimento + '">' +
+                this.getEmojiSentimento(comentario.sentimento) + ' ' + this.getLabelSentimento(comentario.sentimento) +
+              '</span>' +
+              '<span class="review-unidade">' + comentario.unidade + '</span>' +
+              '<span class="review-date">' + data + ' • ' + label + '</span>' +
+            '</div>' +
+            '<div class="review-text">' + comentario.comentario + '</div>' +
+          '</div>';
+        },
+        
+        getEmojiSentimento: function(sentimento) {
+          var map = {
+            'positivo': '😊',
+            'neutro': '😐',
+            'negativo': '😞'
+          };
+          return map[sentimento] || '💬';
+        },
+        
+        getLabelSentimento: function(sentimento) {
+          var map = {
+            'positivo': 'Positivo',
+            'neutro': 'Neutro',
+            'negativo': 'Negativo'
+          };
+          return map[sentimento] || 'Desconhecido';
+        },
+        
+        renderizarPagination: function(total) {
+          var totalPaginas = Math.ceil(total / this.itensPorPagina);
+          var pagination = document.getElementById('pagination');
+          
+          if (totalPaginas <= 1) {
+            pagination.innerHTML = '';
+            return;
+          }
+          
+          var html = '';
+          html += '<button class="page-btn" onclick="app.mudarPagina(' + (this.paginaAtual - 1) + ')" ' + (this.paginaAtual === 1 ? 'disabled' : '') + '>‹</button>';
+          
+          var inicio = Math.max(1, this.paginaAtual - 2);
+          var fim = Math.min(totalPaginas, this.paginaAtual + 2);
+          
+          for (var i = inicio; i <= fim; i++) {
+            html += '<button class="page-btn ' + (i === this.paginaAtual ? 'active' : '') + '" onclick="app.mudarPagina(' + i + ')">' + i + '</button>';
+          }
+          
+          html += '<button class="page-btn" onclick="app.mudarPagina(' + (this.paginaAtual + 1) + ')" ' + (this.paginaAtual === totalPaginas ? 'disabled' : '') + '>›</button>';
+          
+          pagination.innerHTML = html;
+        },
+        
+        mudarPagina: function(pagina) {
+          this.paginaAtual = pagina;
+          this.renderizar();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        },
+        
+        configurarFiltros: function() {
+          var self = this;
+          document.getElementById('applyFilter').addEventListener('click', function() {
+            self.filtros.categoria = document.getElementById('categoriaFilter').value;
+            self.filtros.sentimento = document.getElementById('sentimentoFilter').value;
+            self.filtros.ordem = document.getElementById('ordemFilter').value;
+            self.paginaAtual = 1;
+            self.renderizar();
+          });
+        }
+      };
+      
+      app.init();
+    })();
+  </script>
+</body>
+</html>

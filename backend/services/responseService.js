@@ -384,6 +384,69 @@ export async function getAdminResponses(unitFilter = null) {
   }).flat();
 }
 
+// Buscar todos os comentários com perguntas e unidades
+export async function getAllComentariosWithQuestions(unitFilter = null) {
+  const rows = await new Promise((resolve, reject) => {
+    let query = 'SELECT * FROM survey_responses';
+    const params = [];
+    
+    if (unitFilter && unitFilter !== 'all') {
+      query += ' WHERE unidade = ?';
+      params.push(unitFilter);
+    }
+    
+    db.all(query, params, (err, rows) => {
+      if (err) reject(err);
+      else resolve(rows);
+    });
+  });
+
+  const comentariosAgrupados = {};
+  
+  rows.forEach(row => {
+    try {
+      const answers = JSON.parse(row.answers || '{}');
+      
+      Object.entries(answers).forEach(([questionId, data]) => {
+        if (typeof data === 'object' && data.comment && data.comment.trim()) {
+          const qid = parseInt(questionId);
+          const comentario = data.comment.trim();
+          const pergunta = questions.find(q => q.id === qid);
+          let sentimento = 'neutro';
+          let nota = data.score || 0;
+          
+          if (nota <= 2) {
+            sentimento = 'negativo';
+          } else if (nota >= 4) {
+            sentimento = 'positivo';
+          }
+          
+          if (!comentariosAgrupados[qid]) {
+            comentariosAgrupados[qid] = {
+              pergunta_id: qid,
+              pergunta_texto: pergunta?.text || '',
+              categoria: pergunta?.pillar || '',
+              comentarios: []
+            };
+          }
+          
+          comentariosAgrupados[qid].comentarios.push({
+            comentario: comentario,
+            sentimento: sentimento,
+            nota: nota,
+            unidade: row.unidade,
+            data: row.timestamp
+          });
+        }
+      });
+    } catch (error) {
+      console.error('Erro ao processar resposta:', error);
+    }
+  });
+
+  return Object.values(comentariosAgrupados);
+}
+
 // Helper para parse seguro de JSON
 function safeParseJSON(jsonString, defaultValue) {
   try {

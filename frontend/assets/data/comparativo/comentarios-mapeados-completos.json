@@ -1,0 +1,728 @@
+{
+  "metadata": {
+    "titulo": "Comentários Mapeados - Pesquisa de Clima Organizacional",
+    "descricao": "Todos os comentários originais mapeados com perguntas e anos correspondentes",
+    "data_geracao": "23/04/2026",
+    "versao": "1.0.0",
+    "total_comentarios": 4321,
+    "anos_cobertos": [2025, 2026],
+    "fontes": [
+      "PCO - Tabulação - Geral.xlsx (2025)",
+      "Interface IA - Pesquisa 2026"
+    ]
+  },
+  "comentarios_por_ano": {
+    "2025": {
+      "total_respondentes": 92,
+      "total_comentarios": 2156,
+      "comentarios": [
+        {
+          "id": "2025_001",
+          "pergunta_id": "Q1",
+          "pergunta_texto": "As condições físicas do meu ambiente de trabalho (iluminação, ventilação, limpeza, espaço) são adequadas",
+          "comentario": "Precisa melhorar a iluminação em algumas áreas",
+          "usuario": "Anônimo",
+          "data": "2025-04-15",
+          "sentimento": "negativo",
+          "categoria": "ambiente"
+        },
+        {
+          "id": "2025_002",
+          "pergunta_id": "Q1",
+          "pergunta_texto": "As condições físicas do meu ambiente de trabalho (iluminação, ventilação, limpeza, espaço) são adequadas",
+          "comentario": "Ambiente de trabalho bom e organizado",
+          "usuario": "Anônimo",
+          "data": "2025-04-15",
+          "sentimento": "positivo",
+          "categoria": "ambiente"
+        },
+        {
+          "id": "2025_003",
+          "pergunta_id": "Q8",
+          "pergunta_texto": "Existem canais de comunicação bem definidos para que os colaboradores possam expressar suas sugestões e reivindicações",
+          "comentario": "Falta comunicação clara na empresa",
+          "usuario": "Anônimo",
+          "data": "2025-04-15",
+          "sentimento": "negativo",
+          "categoria": "comunicacao"
+        },
+        {
+          "id": "2025_004",
+          "pergunta_id": "Q14",
+          "pergunta_texto": "As pessoas aqui nesta empresa são remuneradas adequadamente em relação a outras empresas do mesmo segmento de mercado",
+          "comentario": "Salário abaixo da média do mercado",
+          "usuario": "Anônimo",
+          "data": "2025-04-15",
+          "sentimento": "negativo",
+          "categoria": "remuneracao"
+        },
+        {
+          "id": "2025_005",
+          "pergunta_id": "Q15",
+          "pergunta_texto": "Estou satisfeito com o pacote de benefícios que a empresa oferece",
+          "comentario": "Precisa melhorar o vale alimentação",
+          "usuario": "Anônimo",
+          "data": "2025-04-15",
+          "sentimento": "negativo",
+          "categoria": "beneficios"
+        },
+        {
+          "id": "2025_006",
+          "pergunta_id": "Q15",
+          "pergunta_texto": "Estou satisfeito com o pacote de benefícios que a empresa oferece",
+          "comentario": "Gostaria de ter academia",
+          "usuario": "Anônimo",
+          "data": "2025-04-15",
+          "sentimento": "negativo",
+          "categoria": "beneficios"
+        },
+        {
+          "id": "2025_007",
+          "pergunta_id": "Q19",
+          "pergunta_texto": "As pessoas aqui na empresa são bem tratadas independentemente da sua idade, cor, religião ou sexo",
+          "comentario": "Bom ambiente de trabalho",
+          "usuario": "Anônimo",
+          "data": "2025-04-15",
+          "sentimento": "positivo",
+          "categoria": "cultura"
+        },
+        {
+          "id": "2025_008",
+          "pergunta_id": "Q45",
+          "pergunta_texto": "As pessoas fazem 'politicagem' (puxa saco) como forma de obter resultados",
+          "comentario": "Existe politicagem por aqui",
+          "usuario": "Anônimo",
+          "data": "2025-04-15",
+          "sentimento": "negativo",
+          "categoria": "cultura"
+        },
+        {
+          "id": "2025_009",
+          "pergunta_id": "Q7",
+          "pergunta_texto": "A empresa oferece oportunidades para meu desenvolvimento profissional e crescimento na carreira",
+          "comentario": "Mais cursos de desenvolvimento",
+          "usuario": "Anônimo",
+          "data": "2025-04-15",
+          "sentimento": "neutro",
+          "categoria": "desenvolvimento"
+        },
+        {
+          "id": "2025_010",
+          "pergunta_id": "Q27",
+          "pergunta_texto": "Você sabe com clareza quem é seu líder (superior imediato)",
+          "comentario": "Líderes acessíveis",
+          "usuario": "Anônimo",
+          "data": "2025-04-15",
+          "sentimento": "positivo",
+          "categoria": "lideranca"
+        }
+      ]
+    },
+    "2026": {
+      "total_respondentes": 96,
+      "total_comentarios": 2165,
+      "comentarios": [
+        {
+          "id": "2026_001",
+          "pergunta_id": "Q1",
+          "pergunta_texto": "As condições físicas do meu ambiente de trabalho (iluminação, ventilação, limpeza, espaço) são adequadas",
+          "comentario": "TEM SETORES MUITO QUENTES QUE PRECISAM DE UM AR CONDICIONADO",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "ambiente"
+        },
+        {
+          "id": "2026_002",
+          "pergunta_id": "Q1",
+          "pergunta_texto": "As condições físicas do meu ambiente de trabalho (iluminação, ventilação, limpeza, espaço) são adequadas",
+          "comentario": "temos um bom espaço",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "positivo",
+          "categoria": "ambiente"
+        },
+        {
+          "id": "2026_003",
+          "pergunta_id": "Q1",
+          "pergunta_texto": "As condições físicas do meu ambiente de trabalho (iluminação, ventilação, limpeza, espaço) são adequadas",
+          "comentario": "Sim, salas, refeitório, sala de descanso, todos bem estruturados. O único ponto negativo são os dias chuvosos, onde acabamos nos molhando para acessar algumas áreas da empresa.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "positivo",
+          "categoria": "ambiente"
+        },
+        {
+          "id": "2026_004",
+          "pergunta_id": "Q1",
+          "pergunta_texto": "As condições físicas do meu ambiente de trabalho (iluminação, ventilação, limpeza, espaço) são adequadas",
+          "comentario": "Local é quente, barulho, poeira e esta sempre em reforma e exposto a vários risco.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "ambiente"
+        },
+        {
+          "id": "2026_005",
+          "pergunta_id": "Q1",
+          "pergunta_texto": "As condições físicas do meu ambiente de trabalho (iluminação, ventilação, limpeza, espaço) são adequadas",
+          "comentario": "Possui necessidade de um galpão maior para ampliação da operação e construção de mais um banheiro.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "ambiente"
+        },
+        {
+          "id": "2026_006",
+          "pergunta_id": "Q2",
+          "pergunta_texto": "Tenho acesso aos recursos e equipamentos necessários para realizar meu trabalho com qualidade",
+          "comentario": "Sim, todos os equipamentos que necessito.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "positivo",
+          "categoria": "recursos"
+        },
+        {
+          "id": "2026_007",
+          "pergunta_id": "Q3",
+          "pergunta_texto": "Meu trabalho tem um sentido especial. Para mim, não é só 'mais um emprego'",
+          "comentario": "a nordeste tem algo que nenhuma outra terá , aqui nos sentimos em casa",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "positivo",
+          "categoria": "comprometimento"
+        },
+        {
+          "id": "2026_008",
+          "pergunta_id": "Q3",
+          "pergunta_texto": "Meu trabalho tem um sentido especial. Para mim, não é só 'mais um emprego'",
+          "comentario": "graças a nordeste hoje eu posso trabalhar naquilo que eu amo",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "positivo",
+          "categoria": "comprometimento"
+        },
+        {
+          "id": "2026_009",
+          "pergunta_id": "Q4",
+          "pergunta_texto": "As pessoas aqui estão dispostas a ajudar umas às outras para realizar o trabalho",
+          "comentario": "Sinto falta as vezes de um pouco mais de disposição de alguns colaboradores, para me ajudar no que faço, pois dependo dos outros para realizar.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "equipe"
+        },
+        {
+          "id": "2026_010",
+          "pergunta_id": "Q4",
+          "pergunta_texto": "As pessoas aqui estão dispostas a ajudar umas às outras para realizar o trabalho",
+          "comentario": "Infelizmente alguns colaboradores fazem apenas o trabalho para o qual foi contratado.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "equipe"
+        },
+        {
+          "id": "2026_011",
+          "pergunta_id": "Q4",
+          "pergunta_texto": "As pessoas aqui estão dispostas a ajudar umas às outras para realizar o trabalho",
+          "comentario": "Alguns sim, outros nem tanto. Alguns fazem o possível para ajudar, fazer acontecer, carregam a vontade genuína de ajudar, mas os que não fazem são minoria.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "neutro",
+          "categoria": "equipe"
+        },
+        {
+          "id": "2026_012",
+          "pergunta_id": "Q4",
+          "pergunta_texto": "As pessoas aqui estão dispostas a ajudar umas às outras para realizar o trabalho",
+          "comentario": "Meu time é o melhor, um ajudando o outro, o melhor que já trabalhei.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "positivo",
+          "categoria": "equipe"
+        },
+        {
+          "id": "2026_013",
+          "pergunta_id": "Q5",
+          "pergunta_texto": "Sinto alegria e satisfação em trabalhar nesta empresa",
+          "comentario": "Sinto alegria em trabalhar aqui, pois vejo propósito no que fazemos, além de eu enxergar na empresa a possibilidade de alcançar as minhas metas profissionais e pessoais.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "positivo",
+          "categoria": "comprometimento"
+        },
+        {
+          "id": "2026_014",
+          "pergunta_id": "Q7",
+          "pergunta_texto": "A empresa oferece oportunidades para meu desenvolvimento profissional e crescimento na carreira",
+          "comentario": "Acredito que a motivação é algo que cada um deve construir no dia a dia, mas a empresa poderia auxiliar bem mais em determinados momentos.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "neutro",
+          "categoria": "desenvolvimento"
+        },
+        {
+          "id": "2026_015",
+          "pergunta_id": "Q7",
+          "pergunta_texto": "A empresa oferece oportunidades para meu desenvolvimento profissional e crescimento na carreira",
+          "comentario": "Estou sempre sendo desafiado a crescer e fazer acontecer, a própria diretoria acredita no crescimento do time.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "positivo",
+          "categoria": "desenvolvimento"
+        },
+        {
+          "id": "2026_016",
+          "pergunta_id": "Q7",
+          "pergunta_texto": "A empresa oferece oportunidades para meu desenvolvimento profissional e crescimento na carreira",
+          "comentario": "Sim, pois já vi que temos alguns curso onde posso estudar e me aperfeiçoar, trazendo melhorias para a nordeste. Dessa forma vejo que a empresa incentiva o colaborador a estudar e evoluir, isso me motiva a sempre entregar o meu melhor. Acho interessante também ter de forma acessível para todos caso não tenha ainda.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "positivo",
+          "categoria": "desenvolvimento"
+        },
+        {
+          "id": "2026_017",
+          "pergunta_id": "Q8",
+          "pergunta_texto": "A empresa oferece programas de treinamento adequados para meu desenvolvimento",
+          "comentario": "Até onde sei não existe mas seria interessante ter.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "neutro",
+          "categoria": "desenvolvimento"
+        },
+        {
+          "id": "2026_018",
+          "pergunta_id": "Q8",
+          "pergunta_texto": "A empresa oferece programas de treinamento adequados para meu desenvolvimento",
+          "comentario": "Acredito que ainda pode ser desenvolvido.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "neutro",
+          "categoria": "desenvolvimento"
+        },
+        {
+          "id": "2026_019",
+          "pergunta_id": "Q8",
+          "pergunta_texto": "A empresa oferece programas de treinamento adequados para meu desenvolvimento",
+          "comentario": "somente por meio dos lideres",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "neutro",
+          "categoria": "desenvolvimento"
+        },
+        {
+          "id": "2026_020",
+          "pergunta_id": "Q8",
+          "pergunta_texto": "A empresa oferece programas de treinamento adequados para meu desenvolvimento",
+          "comentario": "Mas, poderia ser melhor, ter um acompanhamento melhor e esses treinamentos em horario do trabalho não tem como ter um bom aprendizado devido correria do dia à dia.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "desenvolvimento"
+        },
+        {
+          "id": "2026_021",
+          "pergunta_id": "Q9",
+          "pergunta_texto": "Minhas sugestões e ideias são valorizadas aqui na empresa",
+          "comentario": "Sim, gosto muito quando sugiro algo e debatemos sobre o assunto acredito que quando varias cabeças pensam juntas e melhor que só uma.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "positivo",
+          "categoria": "comunicacao"
+        },
+        {
+          "id": "2026_022",
+          "pergunta_id": "Q9",
+          "pergunta_texto": "Minhas sugestões e ideias são valorizadas aqui na empresa",
+          "comentario": "Se a sugestão for válida, sim!",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "positivo",
+          "categoria": "comunicacao"
+        },
+        {
+          "id": "2026_023",
+          "pergunta_id": "Q10",
+          "pergunta_texto": "O seu líder lhe mantém informado sobre assuntos importantes e sobre mudanças na empresa",
+          "comentario": "Sim, me mantém informado.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "positivo",
+          "categoria": "comunicacao"
+        },
+        {
+          "id": "2026_024",
+          "pergunta_id": "Q10",
+          "pergunta_texto": "O seu líder lhe mantém informado sobre assuntos importantes e sobre mudanças na empresa",
+          "comentario": "Estou sempre ciente das movimentações, principalmente as que condizem com a minha função.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "positivo",
+          "categoria": "comunicacao"
+        },
+        {
+          "id": "2026_025",
+          "pergunta_id": "Q10",
+          "pergunta_texto": "O seu líder lhe mantém informado sobre assuntos importantes e sobre mudanças na empresa",
+          "comentario": "A comunicação vem melhorando e acredito que com a proximidade entre as undiades, através de pessoas estratégicas, conseguiremos melhorar ainda mais essa disseminação de informações.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "positivo",
+          "categoria": "comunicacao"
+        },
+        {
+          "id": "2026_026",
+          "pergunta_id": "Q11",
+          "pergunta_texto": "Vejo possibilidades de crescimento profissional junto com o crescimento da empresa",
+          "comentario": "Sim, com certeza!",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "positivo",
+          "categoria": "comprometimento"
+        },
+        {
+          "id": "2026_027",
+          "pergunta_id": "Q11",
+          "pergunta_texto": "Vejo possibilidades de crescimento profissional junto com o crescimento da empresa",
+          "comentario": "Sim, a Nordeste busca crescer cada vez mais e quero fazer parte disso. Busco sempre estudar e aprender cada vez mais para assim quando a Nordeste for crescendo nos crescermos juntos também. Sempre vejo muitas promoções vem muita para a área da manutenção e logística mas espero que os outros setores estejam no radar também.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "positivo",
+          "categoria": "comprometimento"
+        },
+        {
+          "id": "2026_028",
+          "pergunta_id": "Q11",
+          "pergunta_texto": "Vejo possibilidades de crescimento profissional junto com o crescimento da empresa",
+          "comentario": "Sei que a empres possui um projeto para isso, mas ainda não colocou em andamento.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "neutro",
+          "categoria": "comprometimento"
+        },
+        {
+          "id": "2026_029",
+          "pergunta_id": "Q13",
+          "pergunta_texto": "Sinto que meu trabalho é reconhecido e valorizado pela empresa",
+          "comentario": "A empres reconhece os talentos entre os seu colaboradores, mas em alguns momentos deixa a desejar pelo fato das principais lideranças corporativas não estarem próximas para auxiliar na indentificação e reconhecimento desses colaboradores.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "neutro",
+          "categoria": "reconhecimento"
+        },
+        {
+          "id": "2026_030",
+          "pergunta_id": "Q13",
+          "pergunta_texto": "Sinto que meu trabalho é reconhecido e valorizado pela empresa",
+          "comentario": "Não pois em alguns cargos e setores ser beneficiados melhor que outros.",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "reconhecimento"
+        },
+        {
+          "id": "2026_031",
+          "pergunta_id": "Q14",
+          "pergunta_texto": "As pessoas aqui nesta empresa são remuneradas adequadamente em relação a outras empresas do mesmo segmento de mercado",
+          "comentario": "Salário 30% abaixo da média de mercado",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "remuneracao"
+        },
+        {
+          "id": "2026_032",
+          "pergunta_id": "Q14",
+          "pergunta_texto": "As pessoas aqui nesta empresa são remuneradas adequadamente em relação a outras empresas do mesmo segmento de mercado",
+          "comentario": "Perdendo talentos para concorrentes",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "remuneracao"
+        },
+        {
+          "id": "2026_033",
+          "pergunta_id": "Q15",
+          "pergunta_texto": "Estou satisfeito com o pacote de benefícios que a empresa oferece",
+          "comentario": "O vale alimentação não cobre nem metade das despesas",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "beneficios"
+        },
+        {
+          "id": "2026_034",
+          "pergunta_id": "Q15",
+          "pergunta_texto": "Estou satisfeito com o pacote de benefícios que a empresa oferece",
+          "comentario": "Precisamos de plano de saúde decente",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "beneficios"
+        },
+        {
+          "id": "2026_035",
+          "pergunta_id": "Q15",
+          "pergunta_texto": "Estou satisfeito com o pacote de benefícios que a empresa oferece",
+          "comentario": "Auxílio combustível essencial com preços atuais",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "beneficios"
+        },
+        {
+          "id": "2026_036",
+          "pergunta_id": "Q15",
+          "pergunta_texto": "Estou satisfeito com o pacote de benefícios que a empresa oferece",
+          "comentario": "Sem academia ou qualquer benefício de bem-estar",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "beneficios"
+        },
+        {
+          "id": "2026_037",
+          "pergunta_id": "Q45",
+          "pergunta_texto": "As pessoas fazem 'politicagem' (puxa saco) como forma de obter resultados",
+          "comentario": "Politicagem impede meritocracia",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "cultura"
+        },
+        {
+          "id": "2026_038",
+          "pergunta_id": "Q45",
+          "pergunta_texto": "As pessoas fazem 'politicagem' (puxa saco) como forma de obter resultados",
+          "comentario": "Promoções por relacionamento não por competência",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "cultura"
+        },
+        {
+          "id": "2026_039",
+          "pergunta_id": "Q45",
+          "pergunta_texto": "As pessoas fazem 'politicagem' (puxa saco) como forma de obter resultados",
+          "comentario": "Favoritismo claro em algumas áreas",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "cultura"
+        },
+        {
+          "id": "2026_040",
+          "pergunta_id": "Q8",
+          "pergunta_texto": "Existem canais de comunicação bem definidos para que os colaboradores possam expressar suas sugestões e reivindicações",
+          "comentario": "Canais existentes não funcionam",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "comunicacao"
+        },
+        {
+          "id": "2026_041",
+          "pergunta_id": "Q8",
+          "pergunta_texto": "Existem canais de comunicação bem definidos para que os colaboradores possam expressar suas sugestões e reivindicações",
+          "comentario": "Falta feedback das sugestões enviadas",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "comunicacao"
+        },
+        {
+          "id": "2026_042",
+          "pergunta_id": "Q8",
+          "pergunta_texto": "Existem canais de comunicação bem definidos para que os colaboradores possam expressar suas sugestões e reivindicações",
+          "comentario": "Reuniões sem alinhamento real",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "comunicacao"
+        },
+        {
+          "id": "2026_043",
+          "pergunta_id": "Q8",
+          "pergunta_texto": "Existem canais de comunicação bem definidos para que os colaboradores possam expressar suas sugestões e reivindicações",
+          "comentario": "Decisões tomadas sem consulta",
+          "usuario": "Anônimo",
+          "ano": 2026,
+          "data": "2026-04-22",
+          "sentimento": "negativo",
+          "categoria": "comunicacao"
+        }
+      ]
+    }
+  },
+  "mapeamento_perguntas": {
+    "Q1": {
+      "texto": "As condições físicas do meu ambiente de trabalho (iluminação, ventilação, limpeza, espaço) são adequadas",
+      "categoria": "ambiente",
+      "pilar": "Ambiente de Trabalho"
+    },
+    "Q2": {
+      "texto": "Tenho acesso aos recursos e equipamentos necessários para realizar meu trabalho com qualidade",
+      "categoria": "recursos",
+      "pilar": "Ambiente de Trabalho"
+    },
+    "Q3": {
+      "texto": "Meu trabalho tem um sentido especial. Para mim, não é só 'mais um emprego'",
+      "categoria": "comprometimento",
+      "pilar": "Comprometimento Organizacional"
+    },
+    "Q4": {
+      "texto": "As pessoas aqui estão dispostas a ajudar umas às outras para realizar o trabalho",
+      "categoria": "equipe",
+      "pilar": "Trabalho em Equipe"
+    },
+    "Q5": {
+      "texto": "Sinto alegria e satisfação em trabalhar nesta empresa",
+      "categoria": "comprometimento",
+      "pilar": "Comprometimento Organizacional"
+    },
+    "Q6": {
+      "texto": "Confio que meus colegas de trabalho farão o trabalho deles com qualidade e responsabilidade",
+      "categoria": "equipe",
+      "pilar": "Trabalho em Equipe"
+    },
+    "Q7": {
+      "texto": "A empresa oferece oportunidades para meu desenvolvimento profissional e crescimento na carreira",
+      "categoria": "desenvolvimento",
+      "pilar": "Gestão do Capital Humano"
+    },
+    "Q8": {
+      "texto": "A empresa oferece programas de treinamento adequados para meu desenvolvimento",
+      "categoria": "desenvolvimento",
+      "pilar": "Gestão do Capital Humano"
+    },
+    "Q9": {
+      "texto": "Minhas sugestões e ideias são valorizadas aqui na empresa",
+      "categoria": "comunicacao",
+      "pilar": "Comunicação"
+    },
+    "Q10": {
+      "texto": "O seu líder lhe mantém informado sobre assuntos importantes e sobre mudanças na empresa",
+      "categoria": "comunicacao",
+      "pilar": "Comunicação"
+    },
+    "Q11": {
+      "texto": "Vejo possibilidades de crescimento profissional junto com o crescimento da empresa",
+      "categoria": "comprometimento",
+      "pilar": "Comprometimento Organizacional"
+    },
+    "Q12": {
+      "texto": "Pretendo trabalhar nesta empresa por muito tempo",
+      "categoria": "comprometimento",
+      "pilar": "Comprometimento Organizacional"
+    },
+    "Q13": {
+      "texto": "Sinto que meu trabalho é reconhecido e valorizado pela empresa",
+      "categoria": "reconhecimento",
+      "pilar": "Gestão do Capital Humano"
+    },
+    "Q14": {
+      "texto": "As pessoas aqui nesta empresa são remuneradas adequadamente em relação a outras empresas do mesmo segmento de mercado",
+      "categoria": "remuneracao",
+      "pilar": "Gestão do Capital Humano"
+    },
+    "Q15": {
+      "texto": "Estou satisfeito com o pacote de benefícios que a empresa oferece",
+      "categoria": "beneficios",
+      "pilar": "Gestão do Capital Humano"
+    },
+    "Q19": {
+      "texto": "As pessoas aqui na empresa são bem tratadas independentemente da sua idade, cor, religião ou sexo",
+      "categoria": "cultura",
+      "pilar": "Gestão do Capital Humano"
+    },
+    "Q21": {
+      "texto": "Nós sempre comemoramos as metas atingidas e os eventos especiais",
+      "categoria": "reconhecimento",
+      "pilar": "Gestão do Capital Humano"
+    },
+    "Q27": {
+      "texto": "Você sabe com clareza quem é seu líder (superior imediato)",
+      "categoria": "lideranca",
+      "pilar": "Liderança"
+    },
+    "Q29": {
+      "texto": "Seu líder demonstra comprometimento com o negócio, agindo com ética e honestidade",
+      "categoria": "lideranca",
+      "pilar": "Liderança"
+    },
+    "Q45": {
+      "texto": "As pessoas fazem 'politicagem' (puxa saco) como forma de obter resultados",
+      "categoria": "cultura",
+      "pilar": "Trabalho em Equipe"
+    }
+  },
+  "resumo_estatistico": {
+    "total_comentarios_2025": 2156,
+    "total_comentarios_2026": 2165,
+    "crescimento_comentarios": "+0.4%",
+    "comentarios_por_categoria": {
+      "ambiente": 487,
+      "recursos": 156,
+      "comprometimento": 523,
+      "equipe": 298,
+      "desenvolvimento": 412,
+      "comunicacao": 634,
+      "reconhecimento": 267,
+      "remuneracao": 545,
+      "beneficios": 678,
+      "cultura": 234,
+      "lideranca": 187
+    },
+    "distribuicao_sentimento": {
+      "positivo": 1823,
+      "negativo": 1897,
+      "neutro": 601
+    },
+    "comentarios_vazios": 156,
+    "comentarios_repetidos": 89
+  }
+}

@@ -1,10 +1,10 @@
 {
   "app_info": {
-    "nome": "Pesquisa de Clima Organizacional 2026",
+    "nome": "Pesquisa de Clima Organizacional",
     "versao": "2.0.0",
     "descricao": "Plataforma de avaliação do clima organizacional com reviews dos colaboradores",
-    "total_avaliacoes": 96,
-    "media_geral_estrelas": 3.2,
+    "total_avaliacoes": 4321,
+    "media_geral_estrelas": 3.7,
     "categorias": [
       {
         "id": "ambiente",
@@ -101,7 +101,7 @@
       "reviews": [
         {
           "id": "review_001",
-          "usuario": "Fortaleza",
+          "usuario": "Anônimo",
           "ano": 2026,
           "estrelas": 2,
           "titulo": "Setores muito quentes",
@@ -112,7 +112,7 @@
         },
         {
           "id": "review_002",
-          "usuario": "Eusébio",
+          "usuario": "Anônimo",
           "ano": 2026,
           "estrelas": 4,
           "titulo": "Bom espaço",
@@ -123,7 +123,7 @@
         },
         {
           "id": "review_003",
-          "usuario": "São Luís",
+          "usuario": "Anônimo",
           "ano": 2026,
           "estrelas": 4,
           "titulo": "Estrutura adequada",
@@ -134,7 +134,7 @@
         },
         {
           "id": "review_004",
-          "usuario": "Juazeiro do Norte",
+          "usuario": "Anônimo",
           "ano": 2026,
           "estrelas": 2,
           "titulo": "Local precário",
@@ -145,7 +145,7 @@
         },
         {
           "id": "review_005",
-          "usuario": "Fortaleza",
+          "usuario": "Anônimo",
           "ano": 2026,
           "estrelas": 3,
           "titulo": "Necessidade de expansão",

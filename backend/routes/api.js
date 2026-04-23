@@ -1,5 +1,5 @@
 import express from 'express';
-import { listResponses, createResponse, deleteResponses, getStats, getResponses } from '../controllers/responseController.js';
+import { listResponses, createResponse, deleteResponses, getStats, getResponses, getComentarios } from '../controllers/responseController.js';
 
 const router = express.Router();
 
@@ -11,5 +11,6 @@ router.delete('/responses', deleteResponses);
 // Rotas administrativas
 router.get('/admin/stats', getStats);
 router.get('/admin/responses', getResponses);
+router.get('/admin/comentarios', getComentarios);
 
 export default router;

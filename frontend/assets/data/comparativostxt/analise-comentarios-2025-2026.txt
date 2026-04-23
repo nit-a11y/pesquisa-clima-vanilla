@@ -12,7 +12,7 @@
   },
   "resumo_executivo": {
     "sintese": "Os comentários evoluíram de reclamações genéricas para preocupações específicas e críticas, indicando maior maturidade na organização e capacidade de diagnóstico mais preciso.",
-    "mudanca_principal": "De problemas estruturais (comunicação) para questões específicas (benefícios, comunicação interna)",
+    "mudanca_principal": "De problemas estruturais (comunicação) para questões específicas (benefícios, assédio)",
     "evolucao": "Maior detalhamento e especificidade nas manifestações",
     "impacto": "Permite ações mais direcionadas e eficazes"
   },
@@ -244,16 +244,17 @@
         }
       },
       "preocupacoes_criticas": {
-        "comunicacao_interna": {
-          "frequencia": "Média",
+        "assedio_moral": {
+          "frequencia": "Crítica",
           "comentarios_tipicos": [
-            "Canais de comunicação não funcionam bem",
-            "Falta feedback das sugestões enviadas",
-            "Decisões tomadas sem consulta prévia"
+            "Presenciei casos de humilhação pública",
+            "Líderes que humilham subordinados",
+            "Ambiente de assédio em algumas áreas",
+            "Medo de denunciar por retaliação"
           ],
-          "gravidade": "Moderada",
-          "impacto": "Desalinhamento organizacional",
-          "dados_quantitativos": "Comentários esporádicos sobre melhoria na comunicação"
+          "gravidade": "Extrema",
+          "impacto": "Risco legal e cultural",
+          "dados_quantitativos": "~9 pessoas afetadas, 9.38% ocorrência"
         },
         "turnover_risco": {
           "frequencia": "Alta",
@@ -289,7 +290,7 @@
       ],
       "negativos": [
         "Crise de benefícios e remuneração",
-        "Comunicação interna precisa melhorar",
+        "Casos documentados de assédio",
         "Politicagem persistente",
         "Risco elevado de turnover",
         "Cultura competitiva excessiva"
@@ -329,11 +330,11 @@
     "mudancas_tematicas": {
       "temas_emergentes_2026": [
         {
-          "tema": "Comunicação Interna",
-          "status_2025": "Crítico",
-          "status_2026": "Em melhoria com foco em canais efetivos",
-          "impacto": "Alinhamento organizacional",
-          "acao_necessaria": "Otimizar canais existentes"
+          "tema": "Assédio Moral",
+          "status_2025": "Não mencionado",
+          "status_2026": "Crítico com casos documentados",
+          "impacto": "Risco legal e cultural extremo",
+          "acao_necessaria": "Intervenção imediata"
         },
         {
           "tema": "Turnover Iminente",
@@ -447,10 +448,10 @@
     },
     "riscos_criticos": {
       "imediato": {
-        "risco": "Comunicação Ineficaz",
-        "probabilidade": "Média",
-        "impacto": "Moderado",
-        "acao": "Otimizar canais de comunicação"
+        "risco": "Assédio Moral",
+        "probabilidade": "Alta",
+        "impacto": "Extremo",
+        "acao": "Investigação imediata e intervenção"
       },
       "curto_prazo": {
         "risco": "Turnover em Massa",
@@ -488,10 +489,10 @@
   },
   "recomendacoes_estrategicas": {
     "imediato_1_semana": [
-      "Mapeamento de canais de comunicação existentes",
-      "Reunião de alinhamento com lideranças",
-      "Criação de canal de feedback efetivo",
-      "Comunicação sobre melhorias planejadas"
+      "Investigação de casos de assédio reportados",
+      "Comunicação transparente sobre investigações",
+      "Criação de canal seguro de denúncias",
+      "Suporte psicólogico para afetados"
     ],
     "curto_prazo_30_dias": [
       "Análise completa de mercado de benefícios",
@@ -514,7 +515,7 @@
   },
   "conclusao": {
     "sintese_final": "Os comentários de 2025 para 2026 mostram uma organização em transição: mais madura, mais crítica, mais exigente, mas também mais preparada para mudanças reais. A especificidade dos problemas permite ações direcionadas, enquanto a força da liderança oferece base para transformação.",
-    "mensagem_chave": "A urgência das questões críticas (benefícios, comunicação, turnover) exige ação imediata, mas a maturidade alcançada permite soluções estruturais e duradouras.",
+    "mensagem_chave": "A urgência das questões críticas (assédio, benefícios, turnover) exige ação imediata, mas a maturidade alcançada permite soluções estruturais e duradouras.",
     "fator_sucesso": "Usar a força da liderança (93.3%) como agente de mudança para resolver as questões críticas identificadas nos comentários específicos de 2026."
   }
 }

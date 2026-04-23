@@ -1,4 +1,4 @@
-import { getAllResponses, saveResponse, clearAllResponses, getAdminStats, getAdminResponses } from '../services/responseService.js';
+import { getAllResponses, saveResponse, clearAllResponses, getAdminStats, getAdminResponses, getAllComentariosWithQuestions } from '../services/responseService.js';
 
 // Listar respostas
 export async function listResponses(req, res) {
@@ -61,5 +61,22 @@ export async function getResponses(req, res) {
   } catch (error) {
     console.error('Error fetching admin responses:', error);
     res.status(500).json({ error: 'Failed to fetch admin responses' });
+  }
+}
+
+// Obter todos os comentários com perguntas
+export async function getComentarios(req, res) {
+  try {
+    const { unidade } = req.query;
+    const comentarios = await getAllComentariosWithQuestions(unidade);
+    res.json({
+      sucesso: true,
+      total_perguntas: comentarios.length,
+      total_comentarios: comentarios.reduce((sum, p) => sum + p.comentarios.length, 0),
+      perguntas: comentarios
+    });
+  } catch (error) {
+    console.error('Error fetching comentarios:', error);
+    res.status(500).json({ error: 'Failed to fetch comentarios' });
   }
 }

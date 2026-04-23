@@ -1,0 +1,144 @@
+{
+  "unidades": {
+    "eusebio": {
+      "nome": "Eusébio",
+      "total_respostas": 6,
+      "media_satisfacao": 3.5,
+      "percentual_satisfacao": 83.5,
+      "satisfacao_geral": 92.2,
+      "questao_comentada": "Q15",
+      "comentarios": 4,
+      "pilares": {
+        "ambiente_trabalho": {
+          "favorabilidade": 100.0,
+          "status": "Ótimo"
+        },
+        "comprometimento_organizacional": {
+          "favorabilidade": 100.0,
+          "status": "Ótimo"
+        },
+        "comunicacao": {
+          "favorabilidade": 83.3,
+          "status": "Ótimo"
+        },
+        "gestao_pessoas": {
+          "favorabilidade": 87.5,
+          "status": "Ótimo"
+        },
+        "lideranca": {
+          "favorabilidade": 96.7,
+          "status": "Ótimo"
+        },
+        "trabalho_equipe": {
+          "favorabilidade": 87.5,
+          "status": "Ótimo"
+        }
+      }
+    },
+    "fortaleza": {
+      "nome": "Fortaleza",
+      "total_respostas": 64,
+      "media_satisfacao": 3.3,
+      "percentual_satisfacao": 76.3,
+      "satisfacao_geral": 87.1,
+      "questao_comentada": "Q15",
+      "comentarios": 44,
+      "pilares": {
+        "ambiente_trabalho": {
+          "favorabilidade": 90.6,
+          "status": "Ótimo"
+        },
+        "comprometimento_organizacional": {
+          "favorabilidade": 92.2,
+          "status": "Ótimo"
+        },
+        "comunicacao": {
+          "favorabilidade": 79.2,
+          "status": "Ótimo"
+        },
+        "gestao_pessoas": {
+          "favorabilidade": 83.3,
+          "status": "Ótimo"
+        },
+        "lideranca": {
+          "favorabilidade": 92.0,
+          "status": "Ótimo"
+        },
+        "trabalho_equipe": {
+          "favorabilidade": 82.0,
+          "status": "Ótimo"
+        }
+      }
+    },
+    "sao_luis": {
+      "nome": "São Luís",
+      "total_respostas": 16,
+      "media_satisfacao": 3.4,
+      "percentual_satisfacao": 79.3,
+      "satisfacao_geral": 90.6,
+      "questao_comentada": "Q15",
+      "comentarios": 11,
+      "pilares": {
+        "ambiente_trabalho": {
+          "favorabilidade": 89.6,
+          "status": "Ótimo"
+        },
+        "comprometimento_organizacional": {
+          "favorabilidade": 93.8,
+          "status": "Ótimo"
+        },
+        "comunicacao": {
+          "favorabilidade": 85.4,
+          "status": "Ótimo"
+        },
+        "gestao_pessoas": {
+          "favorabilidade": 86.0,
+          "status": "Ótimo"
+        },
+        "lideranca": {
+          "favorabilidade": 96.7,
+          "status": "Ótimo"
+        },
+        "trabalho_equipe": {
+          "favorabilidade": 87.5,
+          "status": "Ótimo"
+        }
+      }
+    },
+    "juazeiro_do_norte": {
+      "nome": "Juazeiro do Norte",
+      "total_respostas": 10,
+      "media_satisfacao": 3.5,
+      "percentual_satisfacao": 81.8,
+      "satisfacao_geral": 91.3,
+      "questao_comentada": "Q15",
+      "comentarios": 5,
+      "pilares": {
+        "ambiente_trabalho": {
+          "favorabilidade": 96.7,
+          "status": "Ótimo"
+        },
+        "comprometimento_organizacional": {
+          "favorabilidade": 92.5,
+          "status": "Ótimo"
+        },
+        "comunicacao": {
+          "favorabilidade": 83.3,
+          "status": "Ótimo"
+        },
+        "gestao_pessoas": {
+          "favorabilidade": 89.4,
+          "status": "Ótimo"
+        },
+        "lideranca": {
+          "favorabilidade": 94.0,
+          "status": "Ótimo"
+        },
+        "trabalho_equipe": {
+          "favorabilidade": 90.0,
+          "status": "Ótimo"
+        }
+      }
+    }
+  }
+}

@@ -220,14 +220,14 @@
       ]
     },
     {
-      "categoria": "Comunicação Interna",
-      "destaque": "ÁREA DE ATENÇÃO",
-      "descricao": "Comunicação interna precisa de otimização (67.7%)",
-      "impacto": "Canais existentes não funcionam bem",
+      "categoria": "Assédio",
+      "destaque": "PROBLEMA REVELADO",
+      "descricao": "Assédio identificado como área crítica (9.38%)",
+      "impacto": "~9 pessoas afetadas, risco legal e cultural",
       "fatores_piora": [
-        "Falta feedback das sugestões",
-        "Decisões tomadas sem consulta",
-        "Necessidade de canais efetivos"
+        "Maior consciência e reporte",
+        "Ambiente psicológico prejudicado",
+        "Necessidade de ação imediata"
       ]
     }
   ],
@@ -293,12 +293,12 @@
   "plano_acao_integrado": {
     "acoes_imediatas": [
       {
-        "prioridade": "ALTA",
-        "area": "Comunicação",
-        "acao": "Mapeamento e otimização de canais existentes",
+        "prioridade": "CRÍTICA",
+        "area": "Assédio",
+        "acao": "Investigação imediata dos 9.38% de casos reportados",
         "prazo": "1 semana",
-        "responsavel": "Liderança + RH",
-        "justificativa": "Canais não funcionam bem, impacto na organização"
+        "responsavel": "RH + Diretoria",
+        "justificativa": "Risco legal e cultural iminente"
       },
       {
         "prioridade": "CRÍTICA",
@@ -374,7 +374,7 @@
         "Satisfação geral > 85%",
         "Benefícios > 80%",
         "Remuneração > 75%",
-        "Comunicação > 75%"
+        "Assédio < 5%"
       ],
       "prazo": "12 meses"
     },
@@ -384,7 +384,7 @@
         "Satisfação geral ~80%",
         "Benefícios ~70%",
         "Remuneração ~70%",
-        "Comunicação ~70%"
+        "Assédio ~7%"
       ],
       "prazo": "12 meses"
     },
@@ -400,8 +400,8 @@
     }
   },
   "conclusao": {
-    "sintese": "A organização evoluiu significativamente entre 2025 e 2026, com ganhos expressivos em Liderança (+8.3pp) e Comunicação (+12.9pp). No entanto, novos desafios críticos emergiram (Benefícios 58.3%, Remuneração 59.4%), exigindo ações imediatas. A maturidade aumentou, permitindo diagnóstico mais preciso e ações mais direcionadas.",
+    "sintese": "A organização evoluiu significativamente entre 2025 e 2026, com ganhos expressivos em Liderança (+8.3pp) e Comunicação (+12.9pp). No entanto, novos desafios críticos emergiram (Benefícios 58.3%, Assédio 9.38%), exigindo ações imediatas. A maturidade aumentou, permitindo diagnóstico mais preciso e ações mais direcionadas.",
     "mensagem_chave": "A empresa está mais madura e preparada para enfrentar desafios específicos, com liderança forte como base para mudanças.",
-    "proximos_passos": "Foco imediato em Benefícios e Remuneração, mantendo os ganhos em Liderança e Comunicação."
+    "proximos_passos": "Foco imediato em Assédio e Benefícios, mantendo os ganhos em Liderança e Comunicação."
   }
 }

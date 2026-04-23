@@ -1,1158 +1,509 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Comparativo - Pesquisa de Clima 2025 vs 2026</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/dashboard-comparativo.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    <link rel="icon" type="image/svg+xml" href="assets/images/nordeste-logo.svg">
-</head>
-<body class="dashboard-page">
-    <!-- Loading Screen -->
-    <div id="loadingScreen" class="loading-screen">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <h2>Carregando Dashboard Comparativo...</h2>
-            <p>Analisando dados e gerando insights</p>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
-    <header class="hero-section">
-        <div class="hero-content">
-            <div class="hero-header">
-                <div class="hero-title-group">
-                    <h1 class="typewriter">Dashboard Comparativo</h1>
-                    <p class="hero-subtitle">Análise Completa: Pesquisa de Clima 2025 vs 2026</p>
-                </div>
-                <button onclick="window.history.back()" class="btn btn-outline btn-sm">
-                    ← Voltar ao Painel
-                </button>
+<div class="dashboard-layout">
+    <!-- Sidebar Fixa -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <path d="M8 12L20 8L32 12L20 16L8 12Z" fill="#dc2626"/>
+                    <path d="M8 20L20 16L32 20L20 24L8 20Z" fill="#6b7280"/>
+                    <path d="M8 28L20 24L32 28L20 32L8 28Z" fill="#374151"/>
+                </svg>
             </div>
+            <div class="sidebar-brand-text">
+                <h1>Nordeste</h1>
+                <span>Dashboard</span>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="sidebar-section-title">Análises</div>
+            <a href="#visaogeral" class="sidebar-link active">
+                <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="5" y="5" width="4" height="4" fill="currentColor"/></svg>
+                Visão Geral
+            </a>
+            <a href="#pilares" class="sidebar-link">
+                <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="5" y="5" width="10" height="2" fill="currentColor"/><rect x="5" y="9" width="10" height="2" fill="currentColor"/><rect x="5" y="13" width="10" height="2" fill="currentColor"/></svg>
+                Pilares
+            </a>
+            <a href="#comentarios" class="sidebar-link">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M3 4C3 3 4 2 5 2H15C16 2 17 3 17 4V14C17 15 16 16 15 16H5L2 18V4Z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                Comentários
+            </a>
+            <a href="#insights" class="sidebar-link">
+                <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 6V10L12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                Insights
+            </a>
             
-            <!-- Métricas Principais -->
-            <div class="metrics-grid">
-                <div class="metric-card" id="satisfacaoCard">
-                    <div class="metric-icon">📊</div>
-                    <div class="metric-value">77.8%</div>
-                    <div class="metric-label">Satisfação Geral</div>
-                    <div class="metric-variation negativa">-5.03pp</div>
-                </div>
-                <div class="metric-card" id="favorabilidadeCard">
-                    <div class="metric-icon">💪</div>
-                    <div class="metric-value">88.4%</div>
-                    <div class="metric-label">Favorabilidade</div>
-                    <div class="metric-variation positiva">+3.68pp</div>
-                </div>
-                <div class="metric-card" id="respondentesCard">
-                    <div class="metric-icon">👥</div>
-                    <div class="metric-value">96</div>
-                    <div class="metric-label">Total de Respondentes</div>
-                    <div class="metric-variation positiva">+4 (+4.3%)</div>
-                </div>
-                <div class="metric-card" id="pilaresCard">
-                    <div class="metric-icon">🏢</div>
-                    <div class="metric-value">6</div>
-                    <div class="metric-label">Pilares Analisados</div>
-                    <div class="metric-variation positiva">Analisados</div>
-                </div>
-            </div>
-
-            <!-- Status Geral -->
-            <div class="status-overview">
-                <div class="status-card status-2025">
-                    <h3>2025</h3>
-                    <p class="status-text">Positivo com áreas de melhoria</p>
-                    <div class="status-indicator status-good"></div>
-                </div>
-                <div class="evolution-arrow">
-                    <span class="arrow-icon">→</span>
-                    <span class="evolution-text">Evolução</span>
-                </div>
-                <div class="status-card status-2026">
-                    <h3>2026</h3>
-                    <p class="status-text">Positivo com pontos críticos identificados</p>
-                    <div class="status-indicator status-warning"></div>
-                </div>
-            </div>
+            <div class="sidebar-section-title">Prioridades</div>
+            <a href="#alertas" class="sidebar-link">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M10 2L18 17H2L10 2Z" fill="#ef4444" fill-opacity="0.2"/><path d="M10 7V11M10 13V14" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+                Alertas Críticos
+            </a>
+            <a href="#projecoes" class="sidebar-link">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M2 16L6 12L10 14L18 4" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round"/><circle cx="18" cy="4" r="2" fill="#22c55e"/></svg>
+                Projeções
+            </a>
+            <a href="#export" class="sidebar-link">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M10 2V12M10 2L7 5M10 2L13 5" stroke="currentColor" stroke-width="1.5"/><path d="M10 12V18M10 12L7 15M10 12L13 15" stroke="currentColor" stroke-width="1.5"/></svg>
+                Exportar
+            </a>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <button class="sidebar-btn" onclick="window.history.back()">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M15 10H5M5 10L10 5M5 10L10 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                Voltar ao Painel
+            </button>
         </div>
-    </header>
-
-    <!-- Navigation Flutuante -->
-    <nav class="floating-nav" id="floatingNav">
-        <div class="nav-container">
-            <a href="#secao-resumo_executivo" class="nav-item active" data-target="secao-resumo_executivo">
-                <span class="nav-icon">📊</span>
-                <span class="nav-text">Resumo</span>
-            </a>
-            <a href="#secao-comparativo_pilares" class="nav-item" data-target="secao-comparativo_pilares">
-                <span class="nav-icon">🏢</span>
-                <span class="nav-text">Pilares</span>
-            </a>
-            <a href="#secao-reviews_categoria" class="nav-item" data-target="secao-reviews_categoria">
-                <span class="nav-icon">⭐</span>
-                <span class="nav-text">Reviews</span>
-            </a>
-            <a href="#secao-analise_comentarios" class="nav-item" data-target="secao-analise_comentarios">
-                <span class="nav-icon">💬</span>
-                <span class="nav-text">Comentários</span>
-            </a>
-            <a href="#secao-insights_estrategicos" class="nav-item" data-target="secao-insights_estrategicos">
-                <span class="nav-icon">🚀</span>
-                <span class="nav-text">Insights</span>
-            </a>
-            <a href="#secao-alertas_criticos" class="nav-item" data-target="secao-alertas_criticos">
-                <span class="nav-icon">⚠️</span>
-                <span class="nav-text">Alertas</span>
-            </a>
-            <a href="#secao-projecoes_futuras" class="nav-item" data-target="secao-projecoes_futuras">
-                <span class="nav-icon">📈</span>
-                <span class="nav-text">Projeções</span>
-            </a>
-            <a href="#secao-export_tools" class="nav-item" data-target="secao-export_tools">
-                <span class="nav-icon">📥</span>
-                <span class="nav-text">Export</span>
-            </a>
-        </div>
-    </nav>
+    </aside>
 
     <!-- Main Content -->
-    <main class="dashboard-main">
-        <!-- Resumo Executivo -->
-        <section id="secao-resumo_executivo" class="dashboard-section">
-            <div class="section-header">
-                <h2>📊 Resumo Executivo</h2>
-                <p>Visão geral da evolução do clima organizacional</p>
+    <main class="main-content">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="header-title-group">
+                <h1>Dashboard Comparativo</h1>
+                <p>Pesquisa de Clima Organizacional 2025 vs 2026</p>
             </div>
-            
-            <div class="resumo-grid">
-                <div class="resumo-card">
-                    <h3>Participação</h3>
-                    <div class="participacao-comparativo">
-                        <div class="ano-data">
-                            <span class="ano-label">2025:</span>
-                            <span class="ano-value">92 respondentes</span>
-                        </div>
-                        <div class="ano-data">
-                            <span class="ano-label">2026:</span>
-                            <span class="ano-value">96 respondentes</span>
-                        </div>
-                        <div class="variacao positiva">
-                            <span class="variacao-icon">↑</span>
-                            <span class="variacao-text">+4 respondentes (+4.3%)</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="header-actions">
+                <button class="header-btn header-btn-outline" onclick="window.print()">
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 7H13V3H7V7Z" fill="currentColor"/><path d="M3 10H17V17H3V10Z" fill="currentColor"/></svg>
+                    Imprimir
+                </button>
+            </div>
+        </header>
 
-                <div class="resumo-card">
-                    <h3>Satisfação Geral</h3>
-                    <div class="satisfacao-comparativo">
-                        <div class="ano-data">
-                            <span class="ano-label">2025:</span>
-                            <span class="ano-value">82.83%</span>
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- KPIs -->
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <div class="kpi-icon red">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C10 2 4 6 4 12C4 16 7 18 10 18C13 18 16 16 16 12C16 6 10 2 10 2Z" fill="currentColor"/></svg>
                         </div>
-                        <div class="ano-data">
-                            <span class="ano-label">2026:</span>
-                            <span class="ano-value">77.8%</span>
-                        </div>
-                        <div class="variacao negativa">
-                            <span class="variacao-icon">↓</span>
-                            <span class="variacao-text">-5.03pp</span>
-                        </div>
+                        <span class="kpi-change negative">-5.03pp</span>
                     </div>
+                    <div class="kpi-value">77.8%</div>
+                    <div class="kpi-label">Satisfação Geral</div>
                 </div>
-
-                <div class="resumo-card">
-                    <h3>Favorabilidade</h3>
-                    <div class="favorabilidade-comparativo">
-                        <div class="ano-data">
-                            <span class="ano-label">2025:</span>
-                            <span class="ano-value">84.72%</span>
+                
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <div class="kpi-icon green">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4L16 10L10 16L4 10L10 4Z" fill="currentColor"/></svg>
                         </div>
-                        <div class="ano-data">
-                            <span class="ano-label">2026:</span>
-                            <span class="ano-value">88.4%</span>
-                        </div>
-                        <div class="variacao positiva">
-                            <span class="variacao-icon">↑</span>
-                            <span class="variacao-text">+3.68pp</span>
-                        </div>
+                        <span class="kpi-change positive">+3.68pp</span>
                     </div>
+                    <div class="kpi-value">88.4%</div>
+                    <div class="kpi-label">Favorabilidade</div>
                 </div>
-
-                <div class="resumo-card">
-                    <h3>Interpretação</h3>
-                    <p class="interpretacao-text">
-                        <strong>Maturidade aumentada:</strong> Problemas mais específicos identificados, 
-                        colaboradores mais engajados apesar de mais críticos.
-                    </p>
+                
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <div class="kpi-icon blue">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="7" cy="8" r="3" fill="currentColor" opacity="0.5"/><circle cx="13" cy="8" r="3" fill="currentColor" opacity="0.5"/><circle cx="10" cy="14" r="3" fill="currentColor"/></svg>
+                        </div>
+                        <span class="kpi-change positive">+4 (+4.3%)</span>
+                    </div>
+                    <div class="kpi-value">96</div>
+                    <div class="kpi-label">Respondentes</div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <div class="kpi-icon yellow">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="5" y="5" width="10" height="2" fill="currentColor"/><rect x="5" y="9" width="10" height="2" fill="currentColor"/></svg>
+                        </div>
+                        <span class="kpi-change positive">6 pilares</span>
+                    </div>
+                    <div class="kpi-value">6</div>
+                    <div class="kpi-label">Pilares Analisados</div>
                 </div>
             </div>
 
-            <!-- Gráfico de Evolução -->
-            <div class="chart-container">
-                <h3>Evolução dos Indicadores</h3>
-                <canvas id="evolucaoChart" width="400" height="200"></canvas>
+            <!-- Status Overview 2025 vs 2026 -->
+            <div class="section-card" id="visaogeral">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 20 20" fill="none"><path d="M2 16L6 12L10 14L18 4" stroke="#22c55e" stroke-width="1.5"/><circle cx="18" cy="4" r="2" fill="#22c55e"/></svg>
+                        Evolução do Clima Organizacional
+                    </h2>
+                </div>
+                <div class="section-body">
+                    <div class="status-row">
+                        <div class="status-card">
+                            <h4>2025</h4>
+                            <p>Positivo com áreas de melhoria</p>
+                        </div>
+                        <div class="evolution-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L14 7M19 12L14 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <span style="font-size: 0.7rem; margin-top: 4px;">Evolução</span>
+                        </div>
+                        <div class="status-card">
+                            <h4>2026</h4>
+                            <p>Positivo com pontos críticos identificados</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
 
-        <!-- Comparativo de Pilares -->
-        <section id="secao-comparativo_pilares" class="dashboard-section">
-            <div class="section-header">
-                <h2>🏢 Análise Comparativa de Pilares</h2>
-                <p>Evolução detalhada por pilar organizacional</p>
-            </div>
-
-            <div class="pilares-comparativo" id="pilaresComparativo">
-                <div class="pilar-comparativo-card">
-                    <div class="pilar-nome">Liderança</div>
-                    <div class="pilar-valores">
-                        <div class="ano-comparativo">
-                            <div class="ano-label">2025</div>
-                            <div class="ano-value">85%</div>
-                        </div>
-                        <div class="ano-comparativo">
-                            <div class="ano-label">2026</div>
-                            <div class="ano-value">93.3%</div>
-                        </div>
-                    </div>
-                    <div class="pilar-variacao positiva">
-                        <div class="variacao-valor">+8.3pp</div>
-                        <div class="variacao-texto">variação</div>
-                    </div>
+            <!-- Pilares -->
+            <div class="section-card" id="pilares">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="5" y="5" width="10" height="2" fill="currentColor"/><rect x="5" y="9" width="10" height="2" fill="currentColor"/></svg>
+                        Análise Comparativa de Pilares
+                    </h2>
                 </div>
-                
-                <div class="pilar-comparativo-card">
-                    <div class="pilar-nome">Comprometimento Organizacional</div>
-                    <div class="pilar-valores">
-                        <div class="ano-comparativo">
-                            <div class="ano-label">2025</div>
-                            <div class="ano-value">85%</div>
-                        </div>
-                        <div class="ano-comparativo">
-                            <div class="ano-label">2026</div>
-                            <div class="ano-value">93.0%</div>
-                        </div>
-                    </div>
-                    <div class="pilar-variacao positiva">
-                        <div class="variacao-valor">+8.0pp</div>
-                        <div class="variacao-texto">variação</div>
-                    </div>
-                </div>
-                
-                <div class="pilar-comparativo-card">
-                    <div class="pilar-nome">Ambiente de Trabalho</div>
-                    <div class="pilar-valores">
-                        <div class="ano-comparativo">
-                            <div class="ano-label">2025</div>
-                            <div class="ano-value">87%</div>
-                        </div>
-                        <div class="ano-comparativo">
-                            <div class="ano-label">2026</div>
-                            <div class="ano-value">91.7%</div>
-                        </div>
-                    </div>
-                    <div class="pilar-variacao positiva">
-                        <div class="variacao-valor">+4.7pp</div>
-                        <div class="variacao-texto">variação</div>
-                    </div>
-                </div>
-                
-                <div class="pilar-comparativo-card">
-                    <div class="pilar-nome">Comunicação</div>
-                    <div class="pilar-valores">
-                        <div class="ano-comparativo">
-                            <div class="ano-label">2025</div>
-                            <div class="ano-value">68%</div>
-                        </div>
-                        <div class="ano-comparativo">
-                            <div class="ano-label">2026</div>
-                            <div class="ano-value">80.9%</div>
-                        </div>
-                    </div>
-                    <div class="pilar-variacao positiva">
-                        <div class="variacao-valor">+12.9pp</div>
-                        <div class="variacao-texto">variação</div>
-                    </div>
-                </div>
-                
-                <div class="pilar-comparativo-card">
-                    <div class="pilar-nome">Trabalho em Equipe</div>
-                    <div class="pilar-valores">
-                        <div class="ano-comparativo">
-                            <div class="ano-label">2025</div>
-                            <div class="ano-value">82%</div>
-                        </div>
-                        <div class="ano-comparativo">
-                            <div class="ano-label">2026</div>
-                            <div class="ano-value">89.1%</div>
-                        </div>
-                    </div>
-                    <div class="pilar-variacao positiva">
-                        <div class="variacao-valor">+7.1pp</div>
-                        <div class="variacao-texto">variação</div>
-                    </div>
-                </div>
-                
-                <div class="pilar-comparativo-card">
-                    <div class="pilar-nome">Gestão do Capital Humano</div>
-                    <div class="pilar-valores">
-                        <div class="ano-comparativo">
-                            <div class="ano-label">2025</div>
-                            <div class="ano-value">79%</div>
-                        </div>
-                        <div class="ano-comparativo">
-                            <div class="ano-label">2026</div>
-                            <div class="ano-value">58.3%</div>
-                        </div>
-                    </div>
-                    <div class="pilar-variacao negativa">
-                        <div class="variacao-valor">-20.7pp</div>
-                        <div class="variacao-texto">variação</div>
-                    </div>
+                <div class="section-body">
+                    <table class="pilares-table">
+                        <thead>
+                            <tr>
+                                <th>Pilar</th>
+                                <th>2025</th>
+                                <th>2026</th>
+                                <th>Variação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="pilar-name">Liderança</td>
+                                <td class="pilar-value">85%</td>
+                                <td class="pilar-value">93.3%</td>
+                                <td><span class="pilar-variation positive">+8.3pp</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pilar-name">Comprometimento</td>
+                                <td class="pilar-value">85%</td>
+                                <td class="pilar-value">93.0%</td>
+                                <td><span class="pilar-variation positive">+8.0pp</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pilar-name">Ambiente</td>
+                                <td class="pilar-value">87%</td>
+                                <td class="pilar-value">91.7%</td>
+                                <td><span class="pilar-variation positive">+4.7pp</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pilar-name">Comunicação</td>
+                                <td class="pilar-value">68%</td>
+                                <td class="pilar-value">80.9%</td>
+                                <td><span class="pilar-variation positive">+12.9pp</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pilar-name">Trabalho em Equipe</td>
+                                <td class="pilar-value">82%</td>
+                                <td class="pilar-value">89.1%</td>
+                                <td><span class="pilar-variation positive">+7.1pp</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pilar-name">Gestão CH</td>
+                                <td class="pilar-value">79%</td>
+                                <td class="pilar-value">58.3%</td>
+                                <td><span class="pilar-variation negative">-20.7pp</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
             <!-- Gráfico de Pilares -->
-            <div class="chart-container">
-                <h3>Comparativo Visual de Pilares</h3>
-                <canvas id="pilaresChart" width="400" height="200"></canvas>
-            </div>
-        </section>
-
-        <!-- Reviews por Categoria -->
-        <section id="secao-reviews_categoria" class="dashboard-section">
-            <div class="section-header">
-                <h2>⭐ Reviews por Categoria</h2>
-                <p>Avaliações detalhadas estilo app store</p>
-            </div>
-
-            <div class="reviews-container" id="reviewsContainer">
-                <!-- Ambiente de Trabalho -->
-                <div class="review-categoria-card">
-                    <div class="review-categoria-header">
-                        <div class="categoria-info">
-                            <h3>🏢 Ambiente de Trabalho</h3>
-                            <p>Condições físicas e ambiente geral</p>
-                        </div>
-                        <div class="categoria-avaliacao">
-                            <div class="avaliacao-estrelas">3.2 ⭐</div>
-                            <div class="avaliacao-total">96 avaliações</div>
-                        </div>
+            <div class="section-card">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="5" y="5" width="10" height="2" fill="currentColor"/></svg>
+                        Visual Comparativo
+                    </h2>
+                </div>
+                <div class="section-body">
+                    <div class="chart-wrapper">
+                        <canvas id="pilaresChart"></canvas>
                     </div>
-                    <div class="review-categoria-content">
-                        <div class="produto-item">
-                            <h4>Condições Físicas do Ambiente</h4>
-                            <div class="produto-avaliacao">
-                                <span class="estrelas-produto">⭐⭐⭐</span>
-                                <span class="media-produto">3.2 (96)</span>
+                </div>
+            </div>
+
+            <!-- Gráfico de Evolução -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 20 20" fill="none"><path d="M2 16L6 12L10 14L18 4" stroke="#22c55e" stroke-width="1.5"/></svg>
+                        Evolução dos Indicadores
+                    </h2>
+                </div>
+                <div class="section-body">
+                    <div class="chart-wrapper">
+                        <canvas id="evolucaoChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alertas Críticos -->
+            <div class="section-card" id="alertas">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 20 20" fill="none"><path d="M10 2L18 17H2L10 2Z" fill="#ef4444" fill-opacity="0.2"/><path d="M10 7V11M10 13V14" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+                        Alertas Críticos
+                    </h2>
+                </div>
+                <div class="section-body">
+                    <div class="alertas-grid">
+                        <div class="alerta-card critico">
+                            <div class="alerta-header">
+                                <div class="alerta-icon">
+                                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 2L18 17H2L10 2Z" fill="#ef4444" fill-opacity="0.2"/><path d="M10 7V11M10 13V14" stroke="#ef4444" stroke-width="2"/></svg>
+                                </div>
+                                <span class="alerta-title">Assédio</span>
                             </div>
-                            <div class="distribuicao-estrelas">
-                                <div class="estrela-bar">
-                                    <div class="estrela-label">5 estrelas</div>
-                                    <div class="estrela-progress">
-                                        <div class="estrela-fill" style="width: 26.0%"></div>
-                                    </div>
-                                    <div class="estrela-count">25</div>
-                                </div>
-                                <div class="estrela-bar">
-                                    <div class="estrela-label">4 estrelas</div>
-                                    <div class="estrela-progress">
-                                        <div class="estrela-fill" style="width: 20.8%"></div>
-                                    </div>
-                                    <div class="estrela-count">20</div>
-                                </div>
-                                <div class="estrela-bar">
-                                    <div class="estrela-label">3 estrelas</div>
-                                    <div class="estrela-progress">
-                                        <div class="estrela-fill" style="width: 15.6%"></div>
-                                    </div>
-                                    <div class="estrela-count">15</div>
-                                </div>
-                                <div class="estrela-bar">
-                                    <div class="estrela-label">2 estrelas</div>
-                                    <div class="estrela-progress">
-                                        <div class="estrela-fill" style="width: 20.8%"></div>
-                                    </div>
-                                    <div class="estrela-count">20</div>
-                                </div>
-                                <div class="estrela-bar">
-                                    <div class="estrela-label">1 estrela</div>
-                                    <div class="estrela-progress">
-                                        <div class="estrela-fill" style="width: 16.7%"></div>
-                                    </div>
-                                    <div class="estrela-count">16</div>
-                                </div>
-                            </div>
-                            <div class="reviews-list">
-                                <div class="review-item">
-                                    <div class="review-header">
-                                        <span class="review-usuario">Anônimo</span>
-                                        <span class="review-estrelas">⭐⭐</span>
-                                    </div>
-                                    <div class="review-titulo">Setores muito quentes</div>
-                                    <div class="review-comentario">TEM SETORES MUITO QUENTES QUE PRECISAM DE UM AR CONDICIONADO</div>
-                                    <div class="review-data">22/04/2026</div>
-                                </div>
-                                <div class="review-item">
-                                    <div class="review-header">
-                                        <span class="review-usuario">Anônimo</span>
-                                        <span class="review-estrelas">⭐⭐⭐⭐</span>
-                                    </div>
-                                    <div class="review-titulo">Bom espaço</div>
-                                    <div class="review-comentario">temos um bom espaço</div>
-                                    <div class="review-data">22/04/2026</div>
-                                </div>
-                            </div>
+                            <div class="alerta-value">9.38%</div>
+                            <div class="alerta-desc">Aproximadamente 9 pessoas afetadas. Risco legal e cultural.</div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Recursos e Equipamentos -->
-                <div class="review-categoria-card">
-                    <div class="review-categoria-header">
-                        <div class="categoria-info">
-                            <h3>🛠️ Recursos e Equipamentos</h3>
-                            <p>Equipamentos e ferramentas de trabalho</p>
-                        </div>
-                        <div class="categoria-avaliacao">
-                            <div class="avaliacao-estrelas">3.8 ⭐</div>
-                            <div class="avaliacao-total">96 avaliações</div>
-                        </div>
-                    </div>
-                    <div class="review-categoria-content">
-                        <div class="produto-item">
-                            <h4>Acesso a Recursos e Equipamentos</h4>
-                            <div class="produto-avaliacao">
-                                <span class="estrelas-produto">⭐⭐⭐⭐</span>
-                                <span class="media-produto">3.8 (96)</span>
-                            </div>
-                            <div class="distribuicao-estrelas">
-                                <div class="estrela-bar">
-                                    <div class="estrela-label">5 estrelas</div>
-                                    <div class="estrela-progress">
-                                        <div class="estrela-fill" style="width: 46.9%"></div>
-                                    </div>
-                                    <div class="estrela-count">45</div>
-                                </div>
-                                <div class="estrela-bar">
-                                    <div class="estrela-label">4 estrelas</div>
-                                    <div class="estrela-progress">
-                                        <div class="estrela-fill" style="width: 26.0%"></div>
-                                    </div>
-                                    <div class="estrela-count">25</div>
-                                </div>
-                                <div class="estrela-bar">
-                                    <div class="estrela-label">3 estrelas</div>
-                                    <div class="estrela-progress">
-                                        <div class="estrela-fill" style="width: 15.6%"></div>
-                                    </div>
-                                    <div class="estrela-count">15</div>
-                                </div>
-                                <div class="estrela-bar">
-                                    <div class="estrela-label">2 estrelas</div>
-                                    <div class="estrela-progress">
-                                        <div class="estrela-fill" style="width: 8.3%"></div>
-                                    </div>
-                                    <div class="estrela-count">8</div>
-                                </div>
-                                <div class="estrela-bar">
-                                    <div class="estrela-label">1 estrela</div>
-                                    <div class="estrela-progress">
-                                        <div class="estrela-fill" style="width: 3.1%"></div>
-                                    </div>
-                                    <div class="estrela-count">3</div>
-                                </div>
-                            </div>
-                            <div class="reviews-list">
-                                <div class="review-item">
-                                    <div class="review-header">
-                                        <span class="review-usuario">Anônimo</span>
-                                        <span class="review-estrelas">⭐⭐⭐⭐</span>
-                                    </div>
-                                    <div class="review-titulo">Recursos adequados</div>
-                                    <div class="review-comentario">Sim, todos os equipamentos que necessito.</div>
-                                    <div class="review-data">22/04/2026</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Remuneração e Benefícios -->
-                <div class="review-categoria-card">
-                    <div class="review-categoria-header">
-                        <div class="categoria-info">
-                            <h3>💰 Remuneração e Benefícios</h3>
-                            <p>Salário, benefícios e pacote de remuneração</p>
-                        </div>
-                        <div class="categoria-avaliacao">
-                            <div class="avaliacao-estrelas">2.4 ⭐</div>
-                            <div class="avaliacao-total">96 avaliações</div>
-                        </div>
-                    </div>
-                    <div class="review-categoria-content">
-                        <div class="produto-item">
-                            <h4>Remuneração e Benefícios</h4>
-                            <div class="produto-avaliacao">
-                                <span class="estrelas-produto">⭐⭐</span>
-                                <span class="media-produto">2.4 (96)</span>
-                            </div>
-                            <div class="distribuicao-estrelas">
-                                <div class="estrela-bar">
-                                    <div class="estrela-label">5 estrelas</div>
-                                    <div class="estrela-progress">
-                                        <div class="estrela-fill" style="width: 10.4%"></div>
-                                    </div>
-                                    <div class="estrela-count">10</div>
-                                </div>
-                                <div class="estrela-bar">
-                                    <div class="estrela-label">4 estrelas</div>
-                                    <div class="estrela-progress">
-                                        <div class="estrela-fill" style="width: 14.6%"></div>
-                                    </div>
-                                    <div class="estrela-count">14</div>
-                                </div>
-                                <div class="estrela-bar">
-                                    <div class="estrela-label">3 estrelas</div>
-                                    <div class="estrela-progress">
-                                        <div class="estrela-fill" style="width: 20.8%"></div>
-                                    </div>
-                                    <div class="estrela-count">20</div>
-                                </div>
-                                <div class="estrela-bar">
-                                    <div class="estrela-label">2 estrelas</div>
-                                    <div class="estrela-progress">
-                                        <div class="estrela-fill" style="width: 31.3%"></div>
-                                    </div>
-                                    <div class="estrela-count">30</div>
-                                </div>
-                                <div class="estrela-bar">
-                                    <div class="estrela-label">1 estrela</div>
-                                    <div class="estrela-progress">
-                                        <div class="estrela-fill" style="width: 22.9%"></div>
-                                    </div>
-                                    <div class="estrela-count">22</div>
-                                </div>
-                            </div>
-                            <div class="reviews-list">
-                                <div class="review-item">
-                                    <div class="review-header">
-                                        <span class="review-usuario">Anônimo</span>
-                                        <span class="review-estrelas">⭐⭐</span>
-                                    </div>
-                                    <div class="review-titulo">Salário baixo</div>
-                                    <div class="review-comentario">Salário abaixo da média do mercado</div>
-                                    <div class="review-data">22/04/2026</div>
-                                </div>
-                                <div class="review-item">
-                                    <div class="review-header">
-                                        <span class="review-usuario">Anônimo</span>
-                                        <span class="review-estrelas">⭐</span>
-                                    </div>
-                                    <div class="review-titulo">Benefícios ruins</div>
-                                    <div class="review-comentario">Precisa melhorar vale alimentação e outros benefícios</div>
-                                    <div class="review-data">22/04/2026</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Análise de Comentários -->
-        <section id="secao-analise_comentarios" class="dashboard-section">
-            <div class="section-header">
-                <h2>💬 Análise de Comentários</h2>
-                <p>Evolução do sentimento e temas recorrentes</p>
-            </div>
-
-            <div class="comentarios-analysis">
-                <div class="sentimento-overview">
-                    <div class="sentimento-card">
-                        <h3>2025 - Características</h3>
-                        <ul class="caracteristicas-list">
-                            <li>Tom construtivo com reclamações genéricas</li>
-                            <li>Foco em infraestrutura e benefícios básicos</li>
-                            <li>Profundidade superficial</li>
-                        </ul>
-                    </div>
-                    <div class="sentimento-card">
-                        <h3>2026 - Evolução</h3>
-                        <ul class="caracteristicas-list">
-                            <li>Preocupações específicas e críticas</li>
-                            <li>Questões específicas (benefícios, assédio)</li>
-                            <li>Maior detalhamento e especificidade</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="categorias-comentarios" id="categoriasComentarios">
-                    <div class="categoria-comentarios">
-                        <h4>Benefícios</h4>
-                        <div class="comentarios-exemplos">
-                            <div class="comentario-exemplo">"Precisa melhorar o vale alimentação"</div>
-                            <div class="comentario-exemplo">"Gostaria de ter academia"</div>
-                            <div class="comentario-exemplo">"Auxílio combustível ajudaria muito"</div>
-                        </div>
-                        <div class="comentario-meta">
-                            <span class="frequencia">Frequência: Alta</span>
-                            <span class="intensidade">Intensidade: Moderada</span>
-                        </div>
-                    </div>
-                    
-                    <div class="categoria-comentarios">
-                        <h4>Salário</h4>
-                        <div class="comentarios-exemplos">
-                            <div class="comentario-exemplo">"Salário abaixo da média do mercado"</div>
-                            <div class="comentario-exemplo">"Precisa de reajuste"</div>
-                            <div class="comentario-exemplo">"Concorrência paga melhor"</div>
-                        </div>
-                        <div class="comentario-meta">
-                            <span class="frequencia">Frequência: Média</span>
-                            <span class="intensidade">Intensidade: Média</span>
-                        </div>
-                    </div>
-                    
-                    <div class="categoria-comentarios">
-                        <h4>Ambiente</h4>
-                        <div class="comentarios-exemplos">
-                            <div class="comentario-exemplo">"Setores muito quentes"</div>
-                            <div class="comentario-exemplo">"Local precário, barulho, poeira"</div>
-                            <div class="comentario-exemplo">"Necessidade de galpão maior"</div>
-                        </div>
-                        <div class="comentario-meta">
-                            <span class="frequencia">Frequência: Média</span>
-                            <span class="intensidade">Intensidade: Alta</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Insights Estratégicos -->
-        <section id="secao-insights_estrategicos" class="dashboard-section">
-            <div class="section-header">
-                <h2>🚀 Insights Estratégicos</h2>
-                <p>Descobertas importantes e plano de ação integrado</p>
-            </div>
-
-            <div class="insights-grid">
-                <div class="insight-card">
-                    <h3>🎯 Maturidade Organizacional</h3>
-                    <p><strong>2025:</strong> Problemas genéricos ("comunicação ruim")</p>
-                    <p><strong>2026:</strong> Problemas específicos ("benefícios insuficientes")</p>
-                    <p><strong>Resultado:</strong> Maior precisão no diagnóstico</p>
-                </div>
-
-                <div class="insight-card">
-                    <h3>⚖️ Trade-off Satisfação vs Favorabilidade</h3>
-                    <p><strong>Satisfação:</strong> 82.83% → 77.8% (-5.03pp)</p>
-                    <p><strong>Favorabilidade:</strong> 84.72% → 88.4% (+3.68pp)</p>
-                    <p><strong>Resultado:</strong> Colaboradores mais engajados apesar de mais críticos</p>
-                </div>
-
-                <div class="insight-card">
-                    <h3>💪 Força da Liderança</h3>
-                    <p><strong>Evolução:</strong> Bom → Excelente</p>
-                    <p><strong>Impacto:</strong> Base sólida para implementação de mudanças</p>
-                    <p><strong>Resultado:</strong> Principal ativo da organização</p>
-                </div>
-            </div>
-
-            <!-- Plano de Ação -->
-            <div class="plano-acao">
-                <h3>📋 Plano de Ação Integrado</h3>
-                <div class="acao-timeline">
-                    <div class="acao-item imediato">
-                        <div class="acao-header">
-                            <span class="acao-badge">0-30 dias</span>
-                            <h4>Imediato</h4>
-                        </div>
-                        <ul class="acao-list">
-                            <li>Investigação imediata dos casos de assédio</li>
-                            <li>Revisão completa de benefícios considerando inflação</li>
-                        </ul>
-                    </div>
-                    <div class="acao-item curto">
-                        <div class="acao-header">
-                            <span class="acao-badge">30-90 dias</span>
-                            <h4>Curto Prazo</h4>
-                        </div>
-                        <ul class="acao-list">
-                            <li>Análise salarial de mercado</li>
-                            <li>Programa cultural anti-politicagem</li>
-                        </ul>
-                    </div>
-                    <div class="acao-item medio">
-                        <div class="acao-header">
-                            <span class="acao-badge">90-180 dias</span>
-                            <h4>Médio Prazo</h4>
-                        </div>
-                        <ul class="acao-list">
-                            <li>Fortalecer pilares que melhoraram</li>
-                            <li>Monitoramento contínuo</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Alertas Críticos -->
-        <section id="secao-alertas_criticos" class="dashboard-section">
-            <div class="section-header">
-                <h2>⚠️ Alertas Críticos</h2>
-                <p>Problemas prioritários que requerem atenção imediata</p>
-            </div>
-
-            <div class="alertas-grid">
-                <div class="alerta-card critico">
-                    <div class="alerta-header">
-                        <span class="alerta-icon">🚨</span>
-                        <h3>Assédio</h3>
-                        <span class="alerta-value">9.38%</span>
-                    </div>
-                    <p>Aproximadamente 9 pessoas afetadas. Risco legal e cultural.</p>
-                    <div class="alerta-action">
-                        <strong>Ação:</strong> Investigação imediata e programa de prevenção
-                    </div>
-                </div>
-
-                <div class="alerta-card critico">
-                    <div class="alerta-header">
-                        <span class="alerta-icon">💰</span>
-                        <h3>Benefícios</h3>
-                        <span class="alerta-value">58.3%</span>
-                    </div>
-                    <p>64 comentários negativos. Principal fonte de insatisfação.</p>
-                    <div class="alerta-action">
-                        <strong>Ação:</strong> Revisão completa do pacote de benefícios
-                    </div>
-                </div>
-
-                <div class="alerta-card alto">
-                    <div class="alerta-header">
-                        <span class="alerta-icon">💵</span>
-                        <h3>Remuneração</h3>
-                        <span class="alerta-value">59.4%</span>
-                    </div>
-                    <p>Abaixo do mercado. Risco de perda de talentos.</p>
-                    <div class="alerta-action">
-                        <strong>Ação:</strong> Análise salarial e ajuste competitivo
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projeções Futuras -->
-        <section id="secao-projecoes_futuras" class="dashboard-section">
-            <div class="section-header">
-                <h2>📈 Projeções Futuras</h2>
-                <p>Cenários possíveis para os próximos 12 meses</p>
-            </div>
-
-            <div class="projecoes-grid">
-                <div class="projecao-card otimista">
-                    <div class="projecao-header">
-                        <span class="projecao-icon">🌟</span>
-                        <h3>Cenário Otimista</h3>
-                    </div>
-                    <div class="projecao-metricas">
-                        <div class="metric">
-                            <span class="metric-label">Satisfação:</span>
-                            <span class="metric-value">&gt; 85%</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-label">Benefícios:</span>
-                            <span class="metric-value">&gt; 80%</span>
-                        </div>
-                    </div>
-                    <p>Se todas as ações do plano forem implementadas com eficácia.</p>
-                </div>
-
-                <div class="projecao-card realista">
-                    <div class="projecao-header">
-                        <span class="projecao-icon">📊</span>
-                        <h3>Cenário Realista</h3>
-                    </div>
-                    <div class="projecao-metricas">
-                        <div class="metric">
-                            <span class="metric-label">Satisfação:</span>
-                            <span class="metric-value">~ 80%</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-label">Benefícios:</span>
-                            <span class="metric-value">~ 70%</span>
-                        </div>
-                    </div>
-                    <p>Implementação parcial das ações propostas.</p>
-                </div>
-
-                <div class="projecao-card pessimista">
-                    <div class="projecao-header">
-                        <span class="projecao-icon">⚠️</span>
-                        <h3>Cenário Pessimista</h3>
-                    </div>
-                    <div class="projecao-metricas">
-                        <div class="metric">
-                            <span class="metric-label">Satisfação:</span>
-                            <span class="metric-value">&lt; 75%</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-label">Turnover:</span>
-                            <span class="metric-value">&gt; 15%</span>
-                        </div>
-                    </div>
-                    <p>Se nenhuma ação for tomada para resolver os problemas críticos.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Export Tools -->
-        <section id="secao-export_tools" class="dashboard-section">
-            <div class="section-header">
-                <h2>📥 Ferramentas de Exportação</h2>
-                <p>Exporte relatórios e dados em diversos formatos</p>
-            </div>
-
-            <div class="export-grid">
-                <button onclick="exportPDF()" class="export-btn">
-                    <span class="export-icon">📄</span>
-                    <span class="export-text">Exportar PDF</span>
-                    <span class="export-desc">Relatório completo em PDF</span>
-                </button>
-
-                <button onclick="exportExcel()" class="export-btn">
-                    <span class="export-icon">📊</span>
-                    <span class="export-text">Exportar Excel</span>
-                    <span class="export-desc">Dados brutos e análises</span>
-                </button>
-
-                <button onclick="exportImages()" class="export-btn">
-                    <span class="export-icon">🖼️</span>
-                    <span class="export-text">Exportar Gráficos</span>
-                    <span class="export-desc">Imagens dos gráficos</span>
-                </button>
-
-                <button onclick="generateEmbedCode()" class="export-btn">
-                    <span class="export-icon">🔗</span>
-                    <span class="export-text">Código Embed</span>
-                    <span class="export-desc">Para incorporar em sites</span>
-                </button>
-            </div>
-        </section>
-    </main>
-
-    <!-- Scripts -->
-    <script src="assets/js/utils/icons.js"></script>
-    <script src="assets/js/utils/helpers.js"></script>
-    <script src="assets/js/components/Logo.js"></script>
-    <script src="assets/js/components/ProgressBar.js"></script>
-    <script src="assets/js/components/StatsCard.js"></script>
-    <script src="assets/js/components/ChartContainer.js"></script>
-    <script>
-        // Dashboard Simplificado com dados embutidos
-        class DashboardEmbedded {
-            constructor() {
-                this.charts = {};
-                this.init();
-            }
-
-            init() {
-                this.hideLoading();
-                this.setupEventListeners();
-                this.setupCharts();
-            }
-
-            hideLoading() {
-                const loadingScreen = document.getElementById('loadingScreen');
-                if (loadingScreen) {
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingScreen.style.display = 'none';
-                    }, 500);
-                }
-            }
-
-            setupEventListeners() {
-                // Navegação flutuante
-                const navItems = document.querySelectorAll('.nav-item');
-                navItems.forEach(item => {
-                    item.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const targetId = item.getAttribute('data-target');
-                        const targetSection = document.getElementById(targetId);
                         
-                        if (targetSection) {
-                            targetSection.scrollIntoView({ behavior: 'smooth' });
-                            
-                            // Atualizar active state
-                            navItems.forEach(nav => nav.classList.remove('active'));
-                            item.classList.add('active');
-                        }
-                    });
-                });
+                        <div class="alerta-card critico">
+                            <div class="alerta-header">
+                                <div class="alerta-icon">
+                                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="10" rx="2" stroke="#dc2626" stroke-width="1.5"/><path d="M7 8H13M7 11H10" stroke="#dc2626" stroke-width="1.5"/></svg>
+                                </div>
+                                <span class="alerta-title">Benefícios</span>
+                            </div>
+                            <div class="alerta-value">58.3%</div>
+                            <div class="alerta-desc">64 comentários negativos. Principal fonte de insatisfação.</div>
+                        </div>
+                        
+                        <div class="alerta-card alto">
+                            <div class="alerta-header">
+                                <div class="alerta-icon">
+                                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#f59e0b" stroke-width="1.5"/><path d="M10 6V10L12 12" stroke="#f59e0b" stroke-width="1.5"/></svg>
+                                </div>
+                                <span class="alerta-title">Remuneração</span>
+                            </div>
+                            <div class="alerta-value">59.4%</div>
+                            <div class="alerta-desc'>Abaixo do mercado. Risco de perda de talentos.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                // Scroll spy for navigation
-                const sections = document.querySelectorAll('.dashboard-section');
-                const observerOptions = {
-                    rootMargin: '-20% 0px -70% 0px'
-                };
+            <!-- Projeções -->
+            <div class="section-card" id="projecoes">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 20 20" fill="none"><path d="M2 16L6 12L10 14L18 4" stroke="#22c55e" stroke-width="1.5"/><circle cx="18" cy="4" r="2" fill="#22c55e"/></svg>
+                        Projeções Futuras
+                    </h2>
+                </div>
+                <div class="section-body">
+                    <div class="alertas-grid">
+                        <div class="alerta-card" style="background:#f0fdf4; border-color:#bbf7d0;">
+                            <div class="alerta-header">
+                                <div class="alerta-icon" style="background:#dcfce7; color:#22c55e;">
+                                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 2L13 9L19 9L14 13L16 19L10 15L4 19L6 13L1 9L7 9L10 2Z" fill="currentColor"/></svg>
+                                </div>
+                                <span class="alerta-title">Cenário Otimista</span>
+                            </div>
+                            <div class="alerta-value">&gt; 85%</div>
+                            <div class="alerta-desc">Se todas as ações do plano forem implementadas.</div>
+                        </div>
+                        
+                        <div class="alerta-card" style="background:#eff6ff; border-color:#bfdbfe;">
+                            <div class="alerta-header">
+                                <div class="alerta-icon" style="background:#dbeafe; color:#3b82f6;">
+                                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 8H13M7 11H13M7 14H10" stroke="currentColor" stroke-width="1.5"/></svg>
+                                </div>
+                                <span class="alerta-title">Cenário Realista</span>
+                            </div>
+                            <div class="alerta-value">~ 80%</div>
+                            <div class="alerta-desc">Implementação parcial das ações propostas.</div>
+                        </div>
+                        
+                        <div class="alerta-card" style="background:#fef2f2; border-color:#fecaca;">
+                            <div class="alerta-header">
+                                <div class="alerta-icon" style="background:#fee2e2; color:#ef4444;">
+                                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 2L18 17H2L10 2Z" fill="#ef4444" fill-opacity="0.2"/><path d="M10 7V11M10 13V14" stroke="#ef4444" stroke-width="2"/></svg>
+                                </div>
+                                <span class="alerta-title">Cenário Pessimista</span>
+                            </div>
+                            <div class="alerta-value">&lt; 75%</div>
+                            <div class="alerta-desc">Se nenhuma ação for tomada.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const targetId = entry.target.id;
-                            const correspondingNav = document.querySelector(`.nav-item[data-target="${targetId}"]`);
-                            
-                            if (correspondingNav) {
-                                navItems.forEach(nav => nav.classList.remove('active'));
-                                correspondingNav.classList.add('active');
-                            }
-                        }
-                    });
-                }, observerOptions);
+            <!-- Insight -->
+            <div class="section-card" id="insights">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M10 6V10L12 12" stroke="currentColor" stroke-width="1.5"/></svg>
+                        Insights Estratégicos
+                    </h2>
+                </div>
+                <div class="section-body">
+                    <div class="alertas-grid">
+                        <div class="alerta-card" style="background:#fdf4ff; border-color:#fbcfe8;">
+                            <div class="alerta-header">
+                                <div class="alerta-icon" style="background:#fce7f3; color:#db2777;">
+                                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 6L10 10L13 11" stroke="currentColor" stroke-width="1.5"/></svg>
+                                </div>
+                                <span class="alerta-title">Maturidade</span>
+                            </div>
+                            <div class="alerta-desc">Problemas genéricos → específicos. Maior precisão no diagnóstico.</div>
+                        </div>
+                        
+                        <div class="alerta-card" style="background:#fefce8; border-color:#fef08a;">
+                            <div class="alerta-header">
+                                <div class="alerta-icon" style="background:#fef9c3; color:#ca8a04;">
+                                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M6 10H14M10 6V14" stroke="currentColor" stroke-width="1"/></svg>
+                                </div>
+                                <span class="alerta-title">Trade-off</span>
+                            </div>
+                            <div class="alerta-desc">Satisfação caiu, mas favorabilidade subiu. Colaboradores mais engajados.</div>
+                        </div>
+                        
+                        <div class="alerta-card" style="background:#f0fdf4; border-color:#bbf7d0;">
+                            <div class="alerta-header">
+                                <div class="alerta-icon" style="background:#dcfce7; color:#16a34a;">
+                                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 3L18 10L10 17L2 10L10 3Z" fill="currentColor" opacity="0.3"/><path d="M7 10L10 13L13 10" stroke="currentColor" stroke-width="1.5"/></svg>
+                                </div>
+                                <span class="alerta-title">Liderança</span>
+                            </div>
+                            <div class="alerta-desc">Evoluiu de Bom para Excelente. Base sólida para mudanças.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                sections.forEach(section => observer.observe(section));
-            }
+            <!-- Export -->
+            <div class="section-card" id="export">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 20 20" fill="none"><path d="M10 2V12M10 2L7 5M10 2L13 5" stroke="currentColor" stroke-width="1.5"/><path d="M10 12V18M10 12L7 15M10 12L13 15" stroke="currentColor" stroke-width="1.5"/></svg>
+                        Ferramentas de Exportação
+                    </h2>
+                </div>
+                <div class="section-body">
+                    <div class="kpi-grid" style="grid-template-columns: repeat(4, 1fr);">
+                        <button class="sidebar-btn" onclick="window.print()" style="flex-direction:column; padding: 1.5rem;">
+                            <svg width="24" height="24" viewBox="0 0 20 20" fill="none" style="margin-bottom:0.5rem;"><rect x="3" y="3" width="14" height="14" rx="2" stroke="#dc2626" stroke-width="1.5"/><path d="M7 7H13V3H7V7Z" fill="#dc2626"/><path d="M3 10H17V17H3V10Z" fill="#dc2626"/></svg>
+                            <span>PDF</span>
+                        </button>
+                        <button class="sidebar-btn" onclick="exportExcel()" style="flex-direction:column; padding: 1.5rem;">
+                            <svg width="24" height="24" viewBox="0 0 20 20" fill="none" style="margin-bottom:0.5rem;"><rect x="3" y="3" width="14" height="14" rx="2" stroke="#22c55e" stroke-width="1.5"/><path d="M7 7H13M7 10H13M7 13H10" stroke="#22c55e" stroke-width="1.5"/></svg>
+                            <span>Excel</span>
+                        </button>
+                        <button class="sidebar-btn" onclick="exportImages()" style="flex-direction:column; padding: 1.5rem;">
+                            <svg width="24" height="24" viewBox="0 0 20 20" fill="none" style="margin-bottom:0.5rem;"><rect x="2" y="2" width="16" height="14" rx="2" stroke="#3b82f6" stroke-width="1.5"/><circle cx="7" cy="9" r="2" fill="#3b82f6"/><path d="M2 14L6 10L10 12L18 4" stroke="#3b82f6" stroke-width="1.5"/></svg>
+                            <span>Imagens</span>
+                        </button>
+                        <button class="sidebar-btn" onclick="generateEmbedCode()" style="flex-direction:column; padding: 1.5rem;">
+                            <svg width="24" height="24" viewBox="0 0 20 20" fill="none" style="margin-bottom:0.5rem;"><path d="M5 10H15M10 5L15 10M10 15L15 10" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            <span>Embed</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-            setupCharts() {
-                this.setupEvolucaoChart();
-                this.setupPilaresChart();
-            }
+        </div>
+    </main>
+</div>
 
-            setupEvolucaoChart() {
-                const ctx = document.getElementById('evolucaoChart');
-                if (!ctx) return;
-
-                this.charts.evolucao = new Chart(ctx.getContext('2d'), {
-                    type: 'line',
-                    data: {
-                        labels: ['2025', '2026'],
-                        datasets: [
-                            {
-                                label: 'Satisfação Geral',
-                                data: [82.83, 77.8],
-                                borderColor: '#3b82f6',
-                                backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                                tension: 0.4
-                            },
-                            {
-                                label: 'Favorabilidade',
-                                data: [84.72, 88.4],
-                                borderColor: '#22c55e',
-                                backgroundColor: 'rgba(34, 197, 94, 0.1)',
-                                tension: 0.4
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                            },
-                            title: {
-                                display: false
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: false,
-                                min: 70,
-                                max: 100,
-                                ticks: {
-                                    callback: function(value) {
-                                        return value + '%';
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-
-            setupPilaresChart() {
-                const ctx = document.getElementById('pilaresChart');
-                if (!ctx) return;
-
-                this.charts.pilares = new Chart(ctx.getContext('2d'), {
-                    type: 'bar',
-                    data: {
-                        labels: ['Liderança', 'Comprometimento', 'Ambiente', 'Comunicação', 'Equipe', 'Gestão CH'],
-                        datasets: [
-                            {
-                                label: '2025',
-                                data: [85, 85, 87, 68, 82, 79],
-                                backgroundColor: 'rgba(59, 130, 246, 0.8)',
-                            },
-                            {
-                                label: '2026',
-                                data: [93.3, 93.0, 91.7, 80.9, 89.1, 58.3],
-                                backgroundColor: 'rgba(34, 197, 94, 0.8)',
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                            },
-                            title: {
-                                display: false
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: false,
-                                min: 50,
-                                max: 100,
-                                ticks: {
-                                    callback: function(value) {
-                                        return value + '%';
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-        }
-
-        // Export Functions
-        function exportPDF() {
-            window.print();
-        }
-
-        function exportExcel() {
-            let csv = 'Métrica,2025,2026,Variação\n';
-            csv += 'Satisfação Geral,82.83%,77.8%,-5.03pp\n';
-            csv += 'Favorabilidade,84.72%,88.4%,+3.68pp\n';
-            csv += 'Participação,92,96,+4 (+4.3%)\n';
-            csv += '\n\nPilares\n';
-            csv += 'Pilar,2025,2026,Variação\n';
-            csv += 'Liderança,85%,93.3%,+8.3pp\n';
-            csv += 'Comprometimento,85%,93.0%,+8.0pp\n';
-            csv += 'Ambiente,87%,91.7%,+4.7pp\n';
-            csv += 'Comunicação,68%,80.9%,+12.9pp\n';
-            csv += 'Equipe,82%,89.1%,+7.1pp\n';
-            csv += 'Gestão CH,79%,58.3%,-20.7pp\n';
-            
-            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'dashboard-comparativo-pesquisa-clima.csv';
-            link.click();
-        }
-
-        function exportImages() {
-            Object.entries(window.dashboard.charts).forEach(([name, chart]) => {
-                const url = chart.toBase64Image();
-                const link = document.createElement('a');
-                link.href = url;
-                link.download = `chart-${name}.png`;
-                link.click();
+<script>
+    // Charts
+    const Charts = {};
+    
+    function initCharts() {
+        // Pilares Chart
+        const ctxPilares = document.getElementById('pilaresChart');
+        if (ctxPilares) {
+            Charts.pilares = new Chart(ctxPilares.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Liderança', 'Compromet.', 'Ambiente', 'Comunicação', 'Equipe', 'Gestão CH'],
+                    datasets: [
+                        { label: '2025', data: [85, 85, 87, 68, 82, 79], backgroundColor: '#94a3b8' },
+                        { label: '2026', data: [93.3, 93, 91.7, 80.9, 89.1, 58.3], backgroundColor: '#22c55e' }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'top' } },
+                    scales: { y: { beginAtZero: false, min: 50, max: 100 } }
+                }
             });
         }
-
-        function generateEmbedCode() {
-            const embedCode = `<iframe src="${window.location.href}" width="100%" height="800" frameborder="0"></iframe>`;
-            
-            const modal = document.createElement('div');
-            modal.className = 'embed-modal';
-            modal.innerHTML = `
-                <div class="embed-modal-content">
-                    <h3>Código Embed</h3>
-                    <textarea readonly>${embedCode}</textarea>
-                    <button onclick="this.copyCode()">Copiar</button>
-                    <button onclick="this.parentElement.parentElement.remove()">Fechar</button>
-                </div>
-            `;
-            
-            modal.querySelector('button').onclick = function() {
-                navigator.clipboard.writeText(embedCode);
-                this.textContent = 'Copiado!';
-                setTimeout(() => {
-                    this.textContent = 'Copiar';
-                }, 2000);
-            };
-            
-            document.body.appendChild(modal);
+        
+        // Evolução Chart
+        const ctxEvolucao = document.getElementById('evolucaoChart');
+        if (ctxEvolucao) {
+            Charts.evolucao = new Chart(ctxEvolucao.getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: ['2025', '2026'],
+                    datasets: [
+                        { label: 'Satisfação', data: [82.83, 77.8], borderColor: '#dc2626', tension: 0.4 },
+                        { label: 'Favorabilidade', data: [84.72, 88.4], borderColor: '#22c55e', tension: 0.4 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'top' } },
+                    scales: { y: { beginAtZero: false, min: 70, max: 100 } }
+                }
+            });
         }
-
-        // Inicializar dashboard quando o DOM estiver pronto
-        document.addEventListener('DOMContentLoaded', () => {
-            window.dashboard = new DashboardEmbedded();
+    }
+    
+    // Export functions
+    function exportExcel() {
+        let csv = 'Métrica,2025,2026,Variação\n';
+        csv += 'Satisfação Geral,82.83%,77.8%,-5.03pp\n';
+        csv += 'Favorabilidade,84.72%,88.4%,+3.68pp\n';
+        csv += 'Participação,92,96,+4 (+4.3%)\n';
+        csv += '\nPilares,Pilar 2025,Pilar 2026,Variação\n';
+        csv += 'Liderança,85%,93.3%,+8.3pp\n';
+        csv += 'comprometimento,85%,93.0%,+8.0pp\n';
+        csv += 'Ambiente,87%,91.7%,+4.7pp\n';
+        csv += 'Comunicação,68%,80.9%,+12.9pp\n';
+        csv += 'Equipe,82%,89.1%,+7.1pp\n';
+        csv += 'Gestão CH,79%,58.3%,-20.7pp\n';
+        
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'pesquisa-clima-comparativo.csv';
+        a.click();
+    }
+    
+    function exportImages() {
+        window.print();
+    }
+    
+    function generateEmbedCode() {
+        const code = '<iframe src="/dashboard-comparativo" width="100%" height="800" frameborder="0"></iframe>';
+        navigator.clipboard.writeText(code).then(() => {
+            alert('Código copiado!');
         });
-
-        // Adicionar estilos para o modal de embed
-        const embedStyles = `
-        .embed-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-        }
-
-        .embed-modal-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            max-width: 600px;
-            width: 90%;
-        }
-
-        .embed-modal-content h3 {
-            margin-bottom: 1rem;
-        }
-
-        .embed-modal-content textarea {
-            width: 100%;
-            height: 100px;
-            margin-bottom: 1rem;
-            padding: 0.5rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-family: monospace;
-        }
-
-        .embed-modal-content button {
-            margin-right: 1rem;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .embed-modal-content button:first-child {
-            background: #3b82f6;
-            color: white;
-        }
-
-        .embed-modal-content button:last-child {
-            background: #6b7280;
-            color: white;
-        }
-        `;
-
-        if (!document.querySelector('#embed-styles')) {
-            const styleSheet = document.createElement('style');
-            styleSheet.id = 'embed-styles';
-            styleSheet.textContent = embedStyles;
-            document.head.appendChild(styleSheet);
-        }
-    </script>
-</body>
-</html>
+    }
+    
+    // Navigation
+    document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId);
+            
+            document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+            
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    // Init
+    document.addEventListener('DOMContentLoaded', initCharts);
+</script>

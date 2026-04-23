@@ -9,7 +9,7 @@
   },
   "resumo_executivo": {
     "satisfacao_geral": "88.4%",
-    "Media_de_satisfacao": "77.8%",
+    "favorabilidade": "88.4%",
     "media_escore": 3.3,
     "total_perguntas": 45,
     "status_geral": "Positivo com evolução confirmada",
@@ -189,33 +189,15 @@
       "impacto": "Risco de perda de talentos"
     },
     {
-      "nome": "Comunicação Interna",
-      "satisfacao": "67.7%",
-      "urgencia": "Alerta",
+      "nome": "Assédio",
+      "satisfacao": "9.38%",
+      "urgencia": "Crítica",
       "problemas": [
-        "Canais existentes precisam otimização",
-        "Falta feedback das sugestões",
-        "Decisões sem consulta prévia"
+        "Casos de humilhação reportados",
+        "~9 pessoas afetadas",
+        "Ambiente psicológico prejudicado"
       ],
-      "impacto": "Desalinhamento organizacional"
-    },
-    {
-      "nome": "Tratamento Interpessoal",
-      "satisfacao": "85.4%",
-      "urgencia": "Atenção",
-      "problemas": [
-        "Chamadas de atenção em público (3 casos)",
-        "Respostas ríspidas ocasionais",
-        "Falta de privacidade em feedbacks"
-      ],
-      "impacto": "Desconforto em equipe",
-      "comentarios_analise": {
-        "total_comentarios": 12,
-        "discordo_muito": 8,
-        "discordo": 3,
-        "concordo": 3,
-        "interpretacao": "Não há assédio, mas situações de desconforto por feedbacks públicos"
-      }
+      "impacto": "Risco legal e cultural"
     }
   ],
   "comentarios_qualitativos_2026": {
@@ -232,23 +214,22 @@
       "respeito": "Tratamento igualitário"
     },
     "preocupacoes": {
-      "comunicacao": "Canais precisam funcionar melhor",
+      "assedio": "Casos de humilhação precisam atenção",
       "beneficios": "Insatisfação generalizada",
       "remuneracao": "Competitividade comprometida"
     }
   },
   "plano_acao_2026": [
     {
-      "prioridade": "Alta",
-      "area": "Comunicação",
+      "prioridade": "Crítica",
+      "area": "Assédio",
       "acoes": [
-        "Mapeamento de canais existentes",
-        "Criação de canal de feedback efetivo",
-        "Reuniões semanais de alinhamento",
-        "Sistema de sugestões anônimo"
+        "Investigação imediata de casos reportados",
+        "Implementação de canal de denúncias",
+        "Treinamento sobre respeito e diversidade"
       ],
       "prazo": "1 semana",
-      "responsavel": "Liderança + RH"
+      "responsavel": "RH + Diretoria"
     },
     {
       "prioridade": "Crítica",
