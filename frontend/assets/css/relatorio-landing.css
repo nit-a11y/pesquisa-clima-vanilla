@@ -163,6 +163,33 @@ body {
   font-weight: 700;
 }
 
+.hero-logo-destaque {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  border: 2px solid rgba(156, 163, 175, 0.4); /* borda cinza arredondada */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all var(--transition-base);
+}
+
+.hero-logo-destaque:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: rgba(156, 163, 175, 0.6);
+}
+
+.nome-destaque {
+  font-size: 2.5rem !important;
+  font-weight: 900 !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff, rgba(255, 255, 255, 0.9));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .relatorio-meta {
   text-align: right;
 }
@@ -170,13 +197,18 @@ body {
 .badge {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(40, 40, 40, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 2rem;
   font-size: 0.875rem;
   font-weight: 500;
   backdrop-filter: blur(10px);
   margin-bottom: 0.5rem;
+  /* Gradiente igual ao nome Nordeste Locações */
+  background: linear-gradient(135deg, #ffffff, rgba(255, 255, 255, 0.9));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .date {
@@ -215,38 +247,62 @@ body {
 }
 
 .metric-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1rem;
-  padding: 3rem 2rem;
-  backdrop-filter: blur(10px);
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
-  min-height: 180px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  background: rgba(255, 255, 255, 0.4); /* meio-termo de transparência */
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 1.25rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-red), var(--secondary-orange));
+  border-radius: 1.25rem 1.25rem 0 0;
+  opacity: 1; /* totalmente opaco */
 }
 
 .metric-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-xl);
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+  border-color: var(--primary-red);
 }
 
 .metric-value {
   font-size: 3rem;
   font-weight: 900;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #ffffff, rgba(255, 255, 255, 0.8));
+  background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .metric-label {
-  font-size: 0.875rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
   opacity: 0.9;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+}
+
+.metric-trend {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--success-green);
+  background: rgba(34, 197, 94, 0.25); /* mais opaco */
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  display: inline-block;
 }
 
 .hero-footer {
@@ -255,8 +311,8 @@ body {
 }
 
 .diagnostico-principal {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.4); /* mesmo tom dos cards */
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 1rem;
   padding: 1.5rem;
   backdrop-filter: blur(10px);
@@ -265,8 +321,10 @@ body {
 .diagnostico-label {
   display: block;
   font-size: 0.875rem;
-  opacity: 0.8;
+  font-weight: 700; /* negrito */
+  opacity: 0.9;
   margin-bottom: 0.5rem;
+  color: var(--text-primary);
 }
 
 .diagnostico-texto {
@@ -1163,6 +1221,55 @@ body {
   box-shadow: var(--shadow-lg);
 }
 
+.hero-actions {
+  margin-top: 2rem;
+}
+
+.hero-actions .btn {
+  padding: 1rem 2rem; /* mais espaçamento */
+  font-size: 1.1rem;
+  gap: 0.75rem; /* mais espaço entre texto e ícone */
+}
+
+/* Legenda da Tabela */
+.tabela-legenda {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tabela-legenda h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+  opacity: 0.9;
+}
+
+.legenda-itens {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.legenda-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.legenda-emoji {
+  font-size: 1rem;
+}
+
+.legenda-texto {
+  font-weight: 500;
+}
+
 .btn-outline {
   background: transparent;
   color: var(--primary-red);
@@ -1343,13 +1450,28 @@ body {
 }
 
 /* Chart Container */
-.chart-container {
-  background: white;
-  border: 1px solid var(--border-color);
-  border-radius: 1rem;
+.pilares-comparativo-container {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+  border: 1px solid rgba(156, 163, 175, 0.3);
+  border-radius: 1.5rem;
   padding: 2rem;
-  box-shadow: var(--shadow-md);
-  margin-top: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  max-width: 100%;
+  backdrop-filter: blur(20px);
+  position: relative;
+}
+
+.pilares-comparativo-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-red), var(--secondary-orange));
+  border-radius: 1.5rem 1.5rem 0 0;
 }
 
 .chart-title {
@@ -1642,7 +1764,7 @@ body {
   background: white;
   border: 1px solid var(--border-color);
   border-radius: 1rem;
-  padding: 2rem;
+  padding: 2.5rem; /* mais espaçamento vertical */
   box-shadow: var(--shadow-md);
   transition: all var(--transition-base);
 }
@@ -1656,7 +1778,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem; /* mais espaçamento vertical */
+  gap: 1rem; /* espaçamento horizontal */
 }
 
 .unidade-header h4 {
@@ -1667,7 +1790,8 @@ body {
 
 .unidade-metric {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem; /* mais espaçamento vertical */
+  padding: 1rem 0; /* espaçamento interno */
 }
 
 .metric-value {
@@ -1692,11 +1816,45 @@ body {
 .unidade-info {
   display: flex;
   justify-content: center;
+  gap: 2rem; /* mais espaçamento horizontal */
+  flex-wrap: wrap;
 }
 
 .info-item {
   font-size: 0.875rem;
   color: #000000;
+}
+
+/* Estilo para contador de comentários */
+.unidade-comentarios {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(59, 130, 246, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  color: #3b82f6;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+/* Estilo para status da unidade */
+.unidade-status {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 1rem;
+}
+
+.unidade-status.bom {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
 }
 
 /* Análise por Unidade - Tabela Comparativa */
@@ -1762,18 +1920,41 @@ body {
 /* Cards Detalhados */
 .unidades-detalhadas-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr); /* fixo 2 colunas */
+  gap: 2rem; /* gap reduzido */
   margin-bottom: 3rem;
+  align-items: stretch; /* altura igual */
+  justify-content: center; /* centralizado */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .unidades-detalhadas-grid {
+    grid-template-columns: 1fr; /* 1 coluna em mobile */
+    gap: 1.5rem;
+  }
+  
+  .unidade-detalhada-card {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .unidades-detalhadas-grid {
+    gap: 1.5rem; /* gap menor em tablets */
+  }
 }
 
 .unidade-detalhada-card {
   background: white;
   border: 1px solid var(--border-color);
   border-radius: 1rem;
-  padding: 2rem;
+  padding: 1.5rem; /* padding reduzido */
   box-shadow: var(--shadow-md);
   transition: all var(--transition-base);
+  height: 100%; /* altura igual */
+  display: flex;
+  flex-direction: column;
 }
 
 .unidade-detalhada-card:hover {
@@ -1817,35 +1998,41 @@ body {
 }
 
 .unidade-pilares h5 {
-  font-size: 0.875rem;
+  font-size: 0.9rem; /* aumentado */
   font-weight: 600;
   color: #000000;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem; /* mais espaçamento */
 }
 
 .pilares-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
+  gap: 1rem; /* aumentado espaçamento */
 }
 
 .pilar-item {
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem;
+  padding: 0.75rem 1rem; /* mais espaçamento */
   background: var(--bg-secondary);
   border-radius: 0.5rem;
+  align-items: center;
+  gap: 1rem; /* espaçamento entre nome e valor */
 }
 
 .pilar-nome {
-  font-size: 0.75rem;
+  font-size: 0.8rem; /* aumentado */
   color: #000000;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 .pilar-valor {
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.8rem; /* aumentado */
+  font-weight: 700; /* mais negrito */
   color: #dc2626;
+  text-align: right;
+  min-width: 45px;
 }
 
 /* Tabela Comparativa de Pilares */
@@ -1866,32 +2053,80 @@ body {
 
 .pilares-comparativo {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 500px;
+  max-width: 100%;
+  table-layout: fixed;
+  border-radius: 1rem;
+  overflow: hidden;
 }
 
-.pilares-comparativo th,
 .pilares-comparativo td {
-  padding: 0.75rem;
+  padding: 0.8rem 0.5rem;
   text-align: center;
-  border: 1px solid var(--border-color);
+  border: 1px solid rgba(156, 163, 175, 0.2);
+  font-size: 0.85rem;
+  vertical-align: middle;
+  background: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.pilares-comparativo td:hover {
+  background: rgba(239, 68, 68, 0.1);
+  transform: scale(1.02);
 }
 
 .pilares-comparativo th {
-  background: var(--bg-secondary);
-  font-weight: 600;
-  color: #000000;
+  background: linear-gradient(135deg, var(--primary-red), var(--primary-red-light));
+  color: white;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 1rem 0.5rem;
+  text-align: center;
+  border: none;
+  vertical-align: middle;
+  height: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+}
+
+.pilares-comparativo th:first-child {
+  background: linear-gradient(135deg, #374151, #4b5563);
+  border-radius: 1rem 0 0 0;
 }
 
 .pilares-comparativo td:first-child {
   text-align: left;
-  font-weight: 500;
-  color: #000000;
+  font-weight: 700;
+  color: #1f2937;
+  font-size: 0.85rem;
+  width: 25%;
+  white-space: normal;
+  line-height: 1.3;
+  vertical-align: middle;
+  background: rgba(243, 244, 246, 0.8);
+  border-left: 4px solid var(--primary-red);
+  padding-left: 1rem;
 }
 
 .pilar-valor {
   display: block;
-  font-weight: 600;
+  font-weight: 700;
   color: #dc2626;
+  text-align: right;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.pilar-status {
+  font-size: 0.75rem;
+  color: #059669;
+  font-weight: 600;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .pilar-status {
@@ -1899,38 +2134,100 @@ body {
   color: #666;
 }
 
-/* Tabela Comparativa de Pilares Geral */
-.tabela-pilares-geral {
-  margin-top: 3rem;
+/* Estilo Universal para Todas as Tabelas */
+.tabela-pilares-geral,
+.tabela-unidades-container {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+  border: 1px solid rgba(156, 163, 175, 0.3);
+  border-radius: 1.5rem;
   padding: 2rem;
-  background: white;
-  border-radius: 1rem;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  max-width: 100%;
+  backdrop-filter: blur(20px);
+  position: relative;
 }
 
-.tabela-pilares {
+.tabela-pilares-geral::before,
+.tabela-unidades-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-red), var(--secondary-orange));
+  border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.tabela-pilares,
+.tabela-unidades {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 500px;
+  max-width: 100%;
+  table-layout: fixed;
+  border-radius: 1rem;
+  overflow: hidden;
   margin-top: 1rem;
 }
 
 .tabela-pilares th,
-.tabela-pilares td {
-  padding: 1rem;
+.tabela-pilares td,
+.tabela-unidades th,
+.tabela-unidades td {
+  padding: 0.8rem 0.5rem;
   text-align: center;
-  border: 1px solid var(--border-color);
+  border: 1px solid rgba(156, 163, 175, 0.2);
+  font-size: 0.85rem;
+  vertical-align: middle;
+  background: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
 }
 
-.tabela-pilares th {
-  background: var(--bg-secondary);
-  font-weight: 600;
-  color: #000000;
+.tabela-pilares td:hover,
+.tabela-unidades td:hover {
+  background: rgba(239, 68, 68, 0.1);
+  transform: scale(1.02);
 }
 
-.tabela-pilares td:first-child {
+.tabela-pilares th,
+.tabela-unidades th {
+  background: linear-gradient(135deg, var(--primary-red), var(--primary-red-light));
+  color: white;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 1rem 0.5rem;
+  text-align: center;
+  border: none;
+  vertical-align: middle;
+  height: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+}
+
+.tabela-pilares th:first-child,
+.tabela-unidades th:first-child {
+  background: linear-gradient(135deg, #374151, #4b5563);
+  border-radius: 1rem 0 0 0;
+}
+
+.tabela-pilares td:first-child,
+.tabela-unidades td:first-child {
   text-align: left;
-  font-weight: 500;
-  color: #000000;
+  font-weight: 700;
+  color: #1f2937;
+  font-size: 0.85rem;
+  width: 25%;
+  white-space: normal;
+  line-height: 1.3;
+  vertical-align: middle;
+  background: rgba(243, 244, 246, 0.8);
+  border-left: 4px solid var(--primary-red);
+  padding-left: 1rem;
 }
 
 .variacao-positiva {

@@ -37,7 +37,6 @@
     <nav class="nav">
       <div class="nav-brand">
         <img src="assets/images/nordeste-logo.svg" alt="Nordeste Locações" class="brand-logo">
-        <span class="brand-text">Nordeste Locações</span>
       </div>
           </nav>
   </header>
@@ -49,11 +48,11 @@
       </div>
       
       <div class="hero-content container">
-        <div class="hero-header">
-          <div class="logo">
-            <img src="assets/images/nordeste-logo.svg" alt="Nordeste Locações">
-            <h1>Nordeste Locações</h1>
-          </div>
+          <div class="hero-header">
+            <div class="logo hero-logo-destaque">
+              <img src="assets/images/nordeste-logo.svg" alt="Nordeste Locações">
+              <h1><span class="nome-destaque">Nordeste Locações</span></h1>
+            </div>
           <div class="relatorio-meta">
             <span class="badge">Relatório Estratégico</span>
             <span class="date">Abril 2026</span>
@@ -61,7 +60,6 @@
         </div>
         <div class="hero-main">
           <div class="hero-badge">
-            <span class="badge-icon">📊</span>
             Pesquisa de Clima Organizacional 2026
           </div>
           
@@ -320,6 +318,25 @@
               </tr>
             </tbody>
           </table>
+          
+          <!-- Legenda da Tabela -->
+          <div class="tabela-legenda">
+            <h4>Legenda de Tendência:</h4>
+            <div class="legenda-itens">
+              <div class="legenda-item">
+                <span class="legenda-emoji">📈</span>
+                <span class="legenda-texto">Tendência de alta/melhoria</span>
+              </div>
+              <div class="legenda-item">
+                <span class="legenda-emoji">📉</span>
+                <span class="legenda-texto">Tendência de baixa/piora</span>
+              </div>
+              <div class="legenda-item">
+                <span class="legenda-emoji">➡️</span>
+                <span class="legenda-texto">Tendência estável</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -492,6 +509,25 @@
               <!-- Preenchido via JavaScript -->
             </tbody>
           </table>
+          
+          <!-- Legenda da Tabela de Unidades -->
+          <div class="tabela-legenda">
+            <h4>Legenda de Tendência:</h4>
+            <div class="legenda-itens">
+              <div class="legenda-item">
+                <span class="legenda-emoji">📈</span>
+                <span class="legenda-texto">Tendência de alta/melhoria</span>
+              </div>
+              <div class="legenda-item">
+                <span class="legenda-emoji">📉</span>
+                <span class="legenda-texto">Tendência de baixa/piora</span>
+              </div>
+              <div class="legenda-item">
+                <span class="legenda-emoji">➡️</span>
+                <span class="legenda-texto">Tendência estável</span>
+              </div>
+            </div>
+          </div>
         </div>
         
         <!-- Cards Detalhados por Unidade -->
@@ -804,15 +840,15 @@
                 </div>
                 
                 <div class="priority-item priority-high">
-                  <span class="priority-title">Tratamento Interpessoal</span>
-                  <span class="priority-status">85.4% - ATENÇÃO</span>
-                  <p>Treinamento sobre feedback privado</p>
-                </div>
-                
-                <div class="priority-item priority-high">
                   <span class="priority-title">Remuneração</span>
                   <span class="priority-status">59.4% - ALTO</span>
                   <p>Análise de mercado e reajustes</p>
+                </div>
+                
+                <div class="priority-item priority-medium">
+                  <span class="priority-title">Tratamento Interpessoal</span>
+                  <span class="priority-status">85.4% - ATENÇÃO</span>
+                  <p>Treinamento sobre feedback privado</p>
                 </div>
               </div>
             </div>
