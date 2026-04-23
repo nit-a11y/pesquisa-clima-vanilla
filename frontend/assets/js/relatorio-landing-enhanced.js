@@ -494,9 +494,14 @@ class RelatorioLandingEnhanced {
     // Obter categorias únicas
     const categoriasUnicas = [...new Set(comentarios2026.map(c => c.categoria))];
     
-    document.getElementById('totalComentarios').textContent = totalComentarios;
-    document.getElementById('mediaAvaliacoes').textContent = (mediaSentimento / 3 * 5).toFixed(1); // Converter para escala 1-5
-    document.getElementById('totalCategorias').textContent = categoriasUnicas.length;
+    // Verificar se elementos existem antes de definir conteúdo
+    const totalComentariosEl = document.getElementById('totalComentarios');
+    const mediaAvaliacoesEl = document.getElementById('mediaAvaliacoes');
+    const totalCategoriasEl = document.getElementById('totalCategorias');
+    
+    if (totalComentariosEl) totalComentariosEl.textContent = totalComentarios;
+    if (mediaAvaliacoesEl) mediaAvaliacoesEl.textContent = (mediaSentimento / 3 * 5).toFixed(1); // Converter para escala 1-5
+    if (totalCategoriasEl) totalCategoriasEl.textContent = categoriasUnicas.length;
   }
 
   /**
@@ -706,11 +711,16 @@ class RelatorioLandingEnhanced {
     
     const total = positivos + neutros + negativos;
     
-    document.getElementById('percentualPositivo').textContent = 
+    // Verificar se elementos existem antes de definir conteúdo
+    const percentualPositivoEl = document.getElementById('percentualPositivo');
+    const percentualNeutroEl = document.getElementById('percentualNeutro');
+    const percentualNegativoEl = document.getElementById('percentualNegativo');
+    
+    if (percentualPositivoEl) percentualPositivoEl.textContent = 
       total > 0 ? Math.round((positivos / total) * 100) + '%' : '0%';
-    document.getElementById('percentualNeutro').textContent = 
+    if (percentualNeutroEl) percentualNeutroEl.textContent = 
       total > 0 ? Math.round((neutros / total) * 100) + '%' : '0%';
-    document.getElementById('percentualNegativo').textContent = 
+    if (percentualNegativoEl) percentualNegativoEl.textContent = 
       total > 0 ? Math.round((negativos / total) * 100) + '%' : '0%';
   }
 

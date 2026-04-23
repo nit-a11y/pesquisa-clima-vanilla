@@ -78,12 +78,12 @@ function renderAdminView({
           </button>
           
           <button 
-            onclick="window.open('dashboard-comparativo-embedded.html', '_blank')" 
+            onclick="window.open('relatorio-clima-2026.html', '_blank')" 
             class="btn btn-secondary btn-sm"
-            title="Abrir Dashboard Comparativo 2025 vs 2026"
+            title="Abrir Relatório Clima 2026"
           >
             ${icons.barChart}
-            Dashboard Comparativo
+            Relatório Clima 2026
           </button>
           
                   </div>
