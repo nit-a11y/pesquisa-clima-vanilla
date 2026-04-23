@@ -1,30 +1,7 @@
-name: Deploy to VPS
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    
-    - name: Debug secrets
-      run: |
-        echo "Host: ${{ secrets.HOST }}"
-        echo "Username: ${{ secrets.USERNAME }}"
-        echo "SSH Key exists: ${{ secrets.SSH_KEY != '' }}"
-    
-    - name: Deploy to server
-      uses: appleboy/ssh-action@v0.1.4
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        script: |
-          echo "Connected successfully!"
-          cd /var/www/sistemas/pesquisa-clima
-          git pull origin main
-          npm install --production
-          pm2 restart pesquisa-clima
+# Workflow desativado - Deploy manual via SSH
+# Para fazer deploy: 
+# 1. ssh root@147.93.10.11
+# 2. cd /var/www/sistemas/pesquisa-clima
+# 3. git pull origin main
+# 4. npm install --production
+# 5. pm2 restart pesquisa-clima
