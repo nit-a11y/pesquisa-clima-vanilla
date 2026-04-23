@@ -1,68 +1,22 @@
-name: Deploy to GitHub Pages
+name: Deploy to VPS
 
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:
-
-# Set permissions
-permissions:
-  contents: write
-  pages: write
-  id-token: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Build to gh-pages branch
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          
-          # Create gh-pages branch if it doesn't exist
-          git checkout --orphan gh-pages
-          git rm -rf .
-          
-          # Copy frontend files FIRST (before cleaning)
-          cp -r frontend/* ./
-          
-          # Create index.html redirect
-          cat > index.html << 'EOF'
-          <!DOCTYPE html>
-          <html lang="pt-BR">
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>Pesquisa de Clima - Nordeste Locações</title>
-              <meta http-equiv="refresh" content="0; url=landing.html">
-          </head>
-          <body>
-              <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif;">
-                  <div style="text-align: center;">
-                      <h1>🌟 Pesquisa de Clima Organizacional</h1>
-                      <p>Redirecionando para a pesquisa...</p>
-                  </div>
-              </div>
-          </body>
-          </html>
-          EOF
-          
-          # Add and commit
-          git add .
-          git commit -m "Deploy to GitHub Pages"
-          
-          # Force push to gh-pages
-          git push origin gh-pages --force
+    - uses: actions/checkout@v2
+    - name: Deploy to server
+      uses: appleboy/ssh-action@v0.1.4
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd /var/www/sistemas/pesquisa-clima
+          git pull origin main
+          npm install --production
+          pm2 restart pesquisa-clima
