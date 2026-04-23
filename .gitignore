@@ -37,3 +37,6 @@ Thumbs.db
 build/
 dist/
 coverage/
+
+# Dados de pesquisa 2025 (não fazer deploy)
+pesquisa de clima (dados de 2025 + analises)/

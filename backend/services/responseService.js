@@ -129,7 +129,7 @@ export async function getAdminStats(unitFilter = null) {
   return calculateStats(responses, totalResult?.total || 0);
 }
 
-// Calcular favorabilidade e desfavorabilidade
+// Calcular favorabilidade e desfavorabilidade (METODOLOGIA IDÊNTICA À DE 2025)
 function calculateFavorability(responses, questionId) {
   const responsesWithQ = responses.filter(r => r.answers && r.answers[questionId]);
   
@@ -153,8 +153,14 @@ function calculateFavorability(responses, questionId) {
   });
   
   const total = responsesWithQ.length;
-  const favorabilidade = ((distribuicao[3] + distribuicao[4]) / total) * 100;
-  const desfavorabilidade = ((distribuicao[1] + distribuicao[2]) / total) * 100;
+  
+  // METODOLOGIA 2025: Concordo Sempre (4) + Concordo (3) = Satisfação
+  const satisfacao = distribuicao[4] + distribuicao[3];  // Concordo Sempre + Concordo
+  const insatisfacao = distribuicao[1] + distribuicao[2];  // Discordo Sempre + Discordo
+  
+  // Cálculo idêntico ao de 2025
+  const favorabilidade = (satisfacao / total) * 100;
+  const desfavorabilidade = (insatisfacao / total) * 100;
   
   return {
     favorabilidade: favorabilidade.toFixed(1),
@@ -305,7 +311,7 @@ function calculateCriticalAlerts(responses, questionStats) {
         }
         return score === 1;
       }).length;
-      return responsesWithQ.length > 0 && (discordCount / responsesWithQ.length) > 0.3;
+      return responsesWithQ.length > 0 && (discordCount / responsesWithQ.length) > 0.1;
     })
     .map(q => {
       const responsesWithQ = responses.filter(r => r.answers && r.answers[q.question_id]);
