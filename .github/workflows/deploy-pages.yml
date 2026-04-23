@@ -9,6 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    
+    - name: Debug secrets
+      run: |
+        echo "Host: ${{ secrets.HOST }}"
+        echo "Username: ${{ secrets.USERNAME }}"
+        echo "SSH Key exists: ${{ secrets.SSH_KEY != '' }}"
+    
     - name: Deploy to server
       uses: appleboy/ssh-action@v0.1.4
       with:
@@ -16,6 +23,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         script: |
+          echo "Connected successfully!"
           cd /var/www/sistemas/pesquisa-clima
           git pull origin main
           npm install --production
