@@ -1,7 +1,17 @@
-# Workflow desativado - Deploy manual via SSH
-# Para fazer deploy: 
-# 1. ssh root@147.93.10.11
-# 2. cd /var/www/sistemas/pesquisa-clima
-# 3. git pull origin main
-# 4. npm install --production
-# 5. pm2 restart pesquisa-clima
+name: Deploy Manual (Desativado)
+
+on:
+  workflow_dispatch:  # Só executa manualmente
+
+jobs:
+  no-op:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy Instructions
+      run: |
+        echo "Workflow desativado - Use deploy manual:"
+        echo "1. ssh root@147.93.10.11"
+        echo "2. cd /var/www/sistemas/pesquisa-clima"
+        echo "3. git pull origin main"
+        echo "4. npm install --production"
+        echo "5. pm2 restart pesquisa-clima"
