@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Comentários da Pesquisa de Clima 2026 - Nordeste Locações</title>
   <meta name="description" content="Todos os comentários da pesquisa de clima organizacional 2026">
+  <link rel="icon" type="image/svg+xml" href="assets/images/nordeste-logo.svg">
   
   <link rel="stylesheet" href="assets/css/relatorio-landing.css">
   
@@ -1428,13 +1429,31 @@
           }
           
           if (this.filtros.unidade !== 'todas') {
-            var filtroUnidade = this.filtros.unidade;
-            var filtroUnidadeNorm = filtroUnidade.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+            var filtroUnidadeNorm = this.filtros.unidade.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
             filtered = filtered.filter(function(p) {
               return p.comentarios.some(function(c) { 
                 var uniNorm = c.unidade.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
                 return uniNorm === filtroUnidadeNorm;
               });
+            }).map(function(p) {
+              var comentariosFiltrados = p.comentarios.filter(function(c) { 
+                var uniNorm = c.unidade.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+                return uniNorm === filtroUnidadeNorm;
+              });
+              var notaMedia = 0;
+              if (comentariosFiltrados.length > 0) {
+                var soma = comentariosFiltrados.reduce(function(sum, c) { return sum + c.nota; }, 0);
+                notaMedia = soma / comentariosFiltrados.length;
+              }
+              return {
+                pergunta_id: p.pergunta_id,
+                pergunta_texto: p.pergunta_texto,
+                categoria: p.categoria,
+                comentarios: comentariosFiltrados,
+                notaMedia: notaMedia,
+                totalComentarios: comentariosFiltrados.length,
+                distribuicao: p.distribuicao
+              };
             });
           }
           
@@ -1715,8 +1734,19 @@
         },
         
         openModal: function(perguntaId) {
+          var card = document.querySelector('[data-pergunta-id="' + perguntaId + '"]');
           var pergunta = this.perguntas.find(function(p) { return p.pergunta_id === perguntaId; });
           if (!pergunta) return;
+          
+          var comentarios = pergunta.comentarios;
+          
+          if (this.filtros.unidade !== 'todas') {
+            var filtroUnidadeNorm = this.filtros.unidade.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+            comentarios = comentarios.filter(function(c) { 
+              var uniNorm = c.unidade.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+              return uniNorm === filtroUnidadeNorm;
+            });
+          }
           
           // Preencher dados do modal
           document.getElementById('modalTitle').textContent = pergunta.pergunta_texto;
@@ -1724,10 +1754,10 @@
           document.getElementById('modalCategoria').textContent = pergunta.categoria;
           
           // Calcular estatísticas
-          var totalComentarios = pergunta.comentarios.length;
-          var positivos = pergunta.comentarios.filter(function(c) { return c.sentimento === 'positivo'; }).length;
-          var negativos = pergunta.comentarios.filter(function(c) { return c.sentimento === 'negativo'; }).length;
-          var somaNotas = pergunta.comentarios.reduce(function(sum, c) { return sum + c.nota; }, 0);
+          var totalComentarios = comentarios.length;
+          var positivos = comentarios.filter(function(c) { return c.sentimento === 'positivo'; }).length;
+          var negativos = comentarios.filter(function(c) { return c.sentimento === 'negativo'; }).length;
+          var somaNotas = comentarios.reduce(function(sum, c) { return sum + c.nota; }, 0);
           var mediaNotas = totalComentarios > 0 ? somaNotas / totalComentarios : 0;
           
           // Atualizar estatísticas
@@ -1739,12 +1769,12 @@
           // Preencher distribuição
           this.preencherDistribuicaoModal(pergunta.distribuicao);
           
-          // Preencher comentários
-          this.preencherComentariosModal(pergunta.comentarios);
+          // Preencher comentários filtrados
+          this.preencherComentariosModal(comentarios);
           
           // Mostrar modal
           document.getElementById('modalOverlay').classList.add('active');
-          document.body.style.overflow = 'hidden'; // Prevenir scroll do fundo
+          document.body.style.overflow = 'hidden';
         },
         
         closeModal: function() {
