@@ -30,6 +30,12 @@
       --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
     }
     
+    .page-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
     * {
       margin: 0;
       padding: 0;
@@ -42,13 +48,15 @@
       color: var(--text-primary);
       line-height: 1.6;
       min-height: 100vh;
+      max-width: 1400px;
+      margin: 0 auto;
     }
     
     /* Header otimizado */
     .header {
       background: var(--bg-card);
       border-bottom: 1px solid var(--border);
-      padding: 1rem 1.5rem;
+      padding: 1rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -102,7 +110,7 @@
     .stats-bar {
       background: var(--bg-card);
       border-bottom: 1px solid var(--border);
-      padding: 1rem 1.5rem;
+      padding: 1rem 2rem;
     }
     
     .stats-grid {
@@ -258,9 +266,21 @@
     
     /* Conteúdo principal */
     .main {
-      max-width: 100%;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 1.5rem;
+      padding: 2rem;
+    }
+    
+    .quick-nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+    }
+    
+    .filters-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
     }
     
     /* Indicador de progresso */
@@ -853,7 +873,7 @@
     
     .modal-stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
       margin-bottom: 2rem;
     }
@@ -1065,7 +1085,8 @@
   </style>
 </head>
 <body>
-  <header class="header">
+  <div class="page-wrapper">
+    <header class="header">
     <div class="header-brand">
       <img src="assets/images/nordeste-logo.svg" alt="Nordeste Locações">
       <span>Nordeste Locações</span>
@@ -1149,7 +1170,7 @@
           <option value="nota-asc">Pior Avaliação</option>
         </select>
       </div>
-      <button class="filter-btn" id="applyFilter">Aplicar Filtros</button>
+      <button class="filter-btn" id="applyFilter">Limpar Filtros</button>
     </div>
   </div>
   
@@ -1609,11 +1630,31 @@
         
         configurarFiltros: function() {
           var self = this;
+          
+          var categoriaFilter = document.getElementById('categoriaFilter');
+          var sentimentoFilter = document.getElementById('sentimentoFilter');
+          var ordemFilter = document.getElementById('ordemFilter');
+          
+          function aplicarFiltros() {
+            self.filtros.categoria = categoriaFilter.value;
+            self.filtros.sentimento = sentimentoFilter.value;
+            self.filtros.ordem = ordemFilter.value;
+            self.expandedCards.clear();
+            self.renderizar();
+          }
+          
+          categoriaFilter.addEventListener('change', aplicarFiltros);
+          sentimentoFilter.addEventListener('change', aplicarFiltros);
+          ordemFilter.addEventListener('change', aplicarFiltros);
+          
           document.getElementById('applyFilter').addEventListener('click', function() {
-            self.filtros.categoria = document.getElementById('categoriaFilter').value;
-            self.filtros.sentimento = document.getElementById('sentimentoFilter').value;
-            self.filtros.ordem = document.getElementById('ordemFilter').value;
-            self.expandedCards.clear(); // Limpar cards expandidos ao filtrar
+            categoriaFilter.value = 'todas';
+            sentimentoFilter.value = 'todos';
+            ordemFilter.value = 'numero-asc';
+            self.filtros.categoria = 'todas';
+            self.filtros.sentimento = 'todos';
+            self.filtros.ordem = 'numero-asc';
+            self.expandedCards.clear();
             self.renderizar();
           });
         },
@@ -1792,4 +1833,5 @@
     })();
   </script>
 </body>
+</div>
 </html>

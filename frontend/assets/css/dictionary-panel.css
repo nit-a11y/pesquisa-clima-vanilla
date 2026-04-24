@@ -11,15 +11,12 @@
   --font-weight-bold: 700;
   --font-weight-extrabold: 800;
   
-  --color-primary: #000000;
-  --color-secondary: #000000;
-  --color-tertiary: #000000;
-  --color-muted: #000000;
-  --color-light: #000000;
-  --color-accent: #000000;
-  --color-success: #000000;
-  --color-warning: #000000;
-  --color-danger: #000000;
+  --dictionary-text: #1f2937;
+  --dictionary-text-muted: #6b7280;
+  --dictionary-bg: #ffffff;
+  --dictionary-bg-secondary: #f8fafc;
+  --dictionary-border: #e2e8f0;
+  --dictionary-accent: #6366f1;
   
   --font-size-xs: 11px;
   --font-size-sm: 12px;
@@ -65,12 +62,12 @@
   width: 420px;
   max-height: calc(100vh - 120px);
   min-height: 300px;
-  background: white;
+  background: var(--dictionary-bg);
   border-radius: 12px;
   box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   transition: transform 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--dictionary-border);
 }
 
 .dictionary-panel.open .dictionary-container {
@@ -136,8 +133,8 @@
 /* Navegação */
 .dictionary-nav {
   display: flex;
-  background: #f8fafc;
-  border-bottom: 1px solid #e2e8f0;
+  background: var(--dictionary-bg-secondary);
+  border-bottom: 1px solid var(--dictionary-border);
   padding: 0 16px;
   overflow-x: auto;
   scrollbar-width: thin;
@@ -149,7 +146,7 @@
   background: none;
   border: none;
   border-bottom: 2px solid transparent;
-  color: var(--color-muted);
+  color: var(--dictionary-text-muted);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
   cursor: pointer;
@@ -162,14 +159,14 @@
 }
 
 .nav-btn:hover {
-  color: var(--color-secondary);
+  color: var(--dictionary-text);
   background: rgba(99, 102, 241, 0.05);
-  border-bottom-color: #e2e8f0;
+  border-bottom-color: var(--dictionary-border);
 }
 
 .nav-btn.active {
-  color: var(--color-accent);
-  border-bottom-color: var(--color-accent);
+  color: var(--dictionary-accent);
+  border-bottom-color: var(--dictionary-accent);
   background: rgba(99, 102, 241, 0.05);
   font-weight: var(--font-weight-bold);
 }
@@ -206,7 +203,7 @@
 .dictionary-section h3 {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-extrabold);
-  color: var(--color-primary);
+  color: var(--dictionary-text);
   margin-bottom: 16px;
   display: flex;
   align-items: center;
@@ -217,9 +214,9 @@
 
 /* Cards de Métricas */
 .metric-card {
-  background: transparent;
-  border: 1px solid #e2e8f0;
-  border-left: 4px solid #6366f1;
+  background: var(--dictionary-bg);
+  border: 1px solid var(--dictionary-border);
+  border-left: 4px solid var(--dictionary-accent);
   border-radius: 0 10px 10px 0;
   padding: 14px;
   margin-bottom: 12px;
@@ -230,7 +227,7 @@
 
 .metric-card:hover {
   border-color: #cbd5e1;
-  border-left-color: #6366f1;
+  border-left-color: var(--dictionary-accent);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transform: translateY(-1px);
 }
@@ -238,7 +235,7 @@
 .metric-card h4 {
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
+  color: var(--dictionary-text);
   margin-bottom: 6px;
   display: flex;
   align-items: center;
@@ -248,7 +245,7 @@
 }
 
 .metric-card p {
-  color: var(--color-primary);
+  color: var(--dictionary-text);
   line-height: 1.5;
   margin-bottom: 12px;
   font-size: var(--font-size-base);
@@ -259,7 +256,7 @@
 .metric-card ul {
   margin: 0;
   padding-left: 20px;
-  color: var(--color-primary);
+  color: var(--dictionary-text);
   line-height: 1.6;
   font-size: var(--font-size-base);
   font-family: inherit;
@@ -271,40 +268,40 @@
 }
 
 .metric-card li strong {
-  color: var(--color-primary);
+  color: var(--dictionary-text);
   font-weight: var(--font-weight-bold);
 }
 
 /* Fórmulas e Exemplos */
 .formula {
-  background: transparent;
-  border-left: 4px solid #6366f1;
+  background: var(--dictionary-bg-secondary);
+  border-left: 4px solid var(--dictionary-accent);
   padding: 16px;
   border-radius: 0 8px 8px 0;
   margin: 16px 0;
   font-family: 'Courier New', monospace;
   font-size: var(--font-size-sm);
-  color: var(--color-primary);
+  color: var(--dictionary-text);
 }
 
 .formula strong {
-  color: var(--color-primary);
+  color: var(--dictionary-text);
   font-weight: var(--font-weight-bold);
 }
 
 .example {
-  background: transparent;
+  background: var(--dictionary-bg-secondary);
   border-left: 4px solid #eab308;
   padding: 16px;
   border-radius: 0 8px 8px 0;
   margin: 16px 0;
   font-size: var(--font-size-sm);
-  color: var(--color-primary);
+  color: var(--dictionary-text);
   font-family: var(--font-family-base);
 }
 
 .example strong {
-  color: var(--color-primary);
+  color: var(--dictionary-text);
   font-weight: var(--font-weight-bold);
 }
 
@@ -323,22 +320,22 @@
   gap: 12px;
   padding: 12px;
   border-radius: 8px;
-  background: white;
-  border: 1px solid #e2e8f0;
+  background: var(--dictionary-bg);
+  border: 1px solid var(--dictionary-border);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-normal);
 }
 
 .scale-item.excellent {
-  border-left: 4px solid var(--color-success);
+  border-left: 4px solid #22c55e;
 }
 
 .scale-item.attention {
-  border-left: 4px solid var(--color-warning);
+  border-left: 4px solid #eab308;
 }
 
 .scale-item.critical {
-  border-left: 4px solid var(--color-danger);
+  border-left: 4px solid #ef4444;
 }
 
 .scale-color {
@@ -346,7 +343,7 @@
 }
 
 .scale-item strong {
-  color: var(--color-primary);
+  color: var(--dictionary-text);
   font-weight: var(--font-weight-bold);
 }
 
@@ -356,8 +353,8 @@
 .alert-explanation,
 .heatmap-explanation,
 .suggestions-explanation {
-  background: transparent;
-  border-left: 4px solid #6366f1;
+  background: var(--dictionary-bg-secondary);
+  border-left: 4px solid var(--dictionary-accent);
   border-radius: 0 8px 8px 0;
   padding: 16px;
   margin: 16px 0;
@@ -379,7 +376,7 @@
 .alert-explanation li,
 .heatmap-explanation li,
 .suggestions-explanation li {
-  color: var(--color-primary);
+  color: var(--dictionary-text);
   margin-bottom: 8px;
   font-weight: var(--font-weight-normal);
   font-family: inherit;
@@ -390,7 +387,7 @@
 .alert-explanation li strong,
 .heatmap-explanation li strong,
 .suggestions-explanation li strong {
-  color: var(--color-primary);
+  color: var(--dictionary-text);
   font-weight: var(--font-weight-bold);
 }
 
@@ -655,36 +652,46 @@
   }
 }
 
-/* Dark mode support (opcional) */
+/* Dark mode support */
 @media (prefers-color-scheme: dark) {
+  :root {
+    --dictionary-text: #f1f5f9;
+    --dictionary-text-muted: #94a3b8;
+    --dictionary-bg: #1e293b;
+    --dictionary-bg-secondary: #0f172a;
+    --dictionary-border: #334155;
+    --dictionary-accent: #818cf8;
+  }
+  
   .dictionary-container {
-    background: #1e293b;
-    color: #f1f5f9;
+    background: var(--dictionary-bg);
+    border-color: var(--dictionary-border);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
   }
   
   .dictionary-nav {
-    background: #0f172a;
-    border-bottom-color: #334155;
+    background: var(--dictionary-bg-secondary);
+    border-bottom-color: var(--dictionary-border);
   }
   
   .nav-btn {
-    color: #94a3b8;
+    color: var(--dictionary-text-muted);
   }
   
   .nav-btn:hover {
-    color: #f1f5f9;
+    color: var(--dictionary-text);
     background: rgba(99, 102, 241, 0.1);
   }
   
   .nav-btn.active {
-    color: #818cf8;
-    border-bottom-color: #818cf8;
+    color: var(--dictionary-accent);
+    border-bottom-color: var(--dictionary-accent);
     background: rgba(99, 102, 241, 0.1);
   }
   
   .metric-card {
-    background: #0f172a;
-    border-color: #334155;
+    background: var(--dictionary-bg-secondary);
+    border-color: var(--dictionary-border);
   }
   
   .metric-card:hover {
@@ -692,15 +699,75 @@
   }
   
   .metric-card h4 {
-    color: #f1f5f9;
+    color: var(--dictionary-text);
   }
   
   .metric-card p,
   .metric-card ul {
-    color: #94a3b8;
+    color: var(--dictionary-text-muted);
+  }
+  
+  .metric-card li strong {
+    color: var(--dictionary-text);
   }
   
   .dictionary-section h3 {
-    color: #f1f5f9;
+    color: var(--dictionary-text);
+  }
+  
+  .formula,
+  .example {
+    background: var(--dictionary-bg-secondary);
+    color: var(--dictionary-text-muted);
+  }
+  
+  .formula strong,
+  .example strong {
+    color: var(--dictionary-text);
+  }
+  
+  .scale-item {
+    background: var(--dictionary-bg-secondary);
+    border-color: var(--dictionary-border);
+  }
+  
+  .scale-item strong {
+    color: var(--dictionary-text);
+  }
+  
+  .chart-explanation,
+  .ranking-explanation,
+  .alert-explanation,
+  .heatmap-explanation,
+  .suggestions-explanation {
+    background: var(--dictionary-bg-secondary);
+  }
+  
+  .chart-explanation li,
+  .ranking-explanation li,
+  .alert-explanation li,
+  .heatmap-explanation li,
+  .suggestions-explanation li {
+    color: var(--dictionary-text-muted);
+  }
+  
+  .chart-explanation li strong,
+  .ranking-explanation li strong,
+  .alert-explanation li strong,
+  .heatmap-explanation li strong,
+  .suggestions-explanation li strong {
+    color: var(--dictionary-text);
+  }
+  
+  .dictionary-content::-webkit-scrollbar-track {
+    background: var(--dictionary-bg-secondary);
+  }
+  
+  .dictionary-content::-webkit-scrollbar-thumb {
+    background: #475569;
+  }
+  
+  .dictionary-content::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
   }
 }

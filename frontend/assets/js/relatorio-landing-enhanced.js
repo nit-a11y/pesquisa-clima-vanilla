@@ -383,10 +383,7 @@ class RelatorioLandingEnhanced {
             <tr>
               <td><strong>${this.formatarNomePilar(pilar)}</strong></td>
               ${unidades.map(u => `
-                <td>
-                  <span class="pilar-valor">${u.pilares[pilar].favorabilidade}%</span>
-                  <span class="pilar-status">${u.pilares[pilar].status}</span>
-                </td>
+                <td>${u.pilares[pilar].favorabilidade}%<br><small>${u.pilares[pilar].status}</small></td>
               `).join('')}
             </tr>
           `).join('')}

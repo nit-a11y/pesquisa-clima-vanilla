@@ -2629,6 +2629,7 @@ a:focus-visible {
   background-color: var(--gray-50);
   border-radius: 0.5rem;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .legend-item {

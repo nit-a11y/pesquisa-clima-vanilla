@@ -227,6 +227,21 @@ body {
   line-height: 1.1;
   margin-bottom: 3rem;
   letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.hero-description {
+  font-size: 1.5rem;
+  color: #ffffff;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff, #fecaca);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .typewriter {
@@ -281,24 +296,21 @@ body {
   font-size: 3rem;
   font-weight: 900;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, var(--primary-red), var(--primary-red-dark));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #ffffff;
 }
 
 .metric-comparison {
   font-size: 0.8rem;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: #ffffff;
   margin-top: 0.25rem;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .metric-label {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #ffffff;
   margin-bottom: 0.5rem;
   opacity: 0.9;
 }
@@ -306,8 +318,8 @@ body {
 .metric-trend {
   font-size: 0.875rem;
   font-weight: 700;
-  color: var(--success-green);
-  background: rgba(34, 197, 94, 0.25); /* mais opaco */
+  color: #ffffff;
+  background: rgba(34, 197, 94, 0.9);
   padding: 0.25rem 0.75rem;
   border-radius: 1rem;
   display: inline-block;
@@ -319,7 +331,7 @@ body {
 }
 
 .diagnostico-principal {
-  background: rgba(255, 255, 255, 0.4); /* mesmo tom dos cards */
+  background: rgba(255, 255, 255, 0.4);
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 1rem;
   padding: 1.5rem;
@@ -329,9 +341,27 @@ body {
 .diagnostico-label {
   display: block;
   font-size: 0.875rem;
-  font-weight: 700; /* negrito */
+  font-weight: 700;
+  color: #ffffff;
   opacity: 0.9;
   margin-bottom: 0.5rem;
+}
+
+.diagnostico-texto {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #ffffff;
+}
+
+.diagnostico-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #ffffff;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
   color: var(--text-primary);
 }
 
@@ -339,6 +369,7 @@ body {
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.4;
+  color: #ffffff;
 }
 
 .scroll-indicator {
@@ -552,6 +583,21 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
 }
 
 /* Resumo Section */
@@ -1271,7 +1317,11 @@ body {
 }
 
 .legenda-emoji {
-  font-size: 1rem;
+  font-size: 1.5rem;
+}
+
+.trend-icon {
+  font-size: 1.5rem;
 }
 
 .legenda-texto {
@@ -1279,7 +1329,7 @@ body {
 }
 
 .btn-outline {
-  background: transparent;
+  background: #ffffff;
   color: var(--primary-red);
   border: 2px solid var(--primary-red);
 }
@@ -1334,7 +1384,7 @@ body {
 }
 
 .visao-danger {
-  border-left: 4px solid var(--danger-red);
+  border-left: 4px solid #2563eb;
 }
 
 .visao-neutral {
@@ -1364,8 +1414,8 @@ body {
 }
 
 .visao-danger .card-icon {
-  background: rgba(239, 68, 68, 0.1);
-  color: var(--danger-red);
+  background: rgba(59, 130, 246, 0.15);
+  color: #2563eb;
 }
 
 .visao-neutral .card-icon {
@@ -1386,11 +1436,11 @@ body {
 
 .improvement-name, .worse-name {
   font-weight: 600;
-  color: var(--text-primary);
+  color: #1e40af;
 }
 
 .improvement-variation {
-  color: var(--success-green);
+  color: #1d4ed8;
   font-weight: 600;
 }
 
@@ -1400,6 +1450,25 @@ body {
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
+}
+
+.worse-status:contains("CRÍTICO") {
+  background: rgba(59, 130, 246, 0.15);
+  color: #2563eb;
+}
+
+.worse-status:contains("ALTO") {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.status-critico {
+  background: #2563eb;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
 .worse-status:contains("CRÍTICO") {
@@ -1423,17 +1492,17 @@ body {
 
 .bar-current {
   height: 100%;
-  background: var(--primary-red);
+  background: #3b82f6;
 }
 
 .improvement-values, .worse-value {
   font-size: 0.875rem;
-  color: var(--text-secondary);
+  color: #1f2937;
 }
 
 .worse-details {
   font-size: 0.875rem;
-  color: var(--warning-yellow);
+  color: #6b7280;
   margin-top: 0.5rem;
 }
 
@@ -1561,6 +1630,12 @@ body {
   color: var(--text-secondary);
 }
 
+.tabela-comparativo td:empty::before,
+.tabela-unidades td:empty::before,
+.tabela-pilares td:empty::before {
+  font-size: 2.25rem;
+}
+
 .trend-positive {
   color: var(--success-green);
   font-weight: 600;
@@ -1606,7 +1681,7 @@ body {
 }
 
 .trend-icon {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 
 /* Insights Grid */
@@ -2036,11 +2111,14 @@ body {
 }
 
 .pilar-valor {
-  font-size: 0.8rem; /* aumentado */
-  font-weight: 700; /* mais negrito */
-  color: #dc2626;
-  text-align: right;
-  min-width: 45px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.pilar-status {
+  font-size: 0.75rem;
+  color: #666;
 }
 
 /* Tabela Comparativa de Pilares */
@@ -2073,16 +2151,39 @@ body {
 .pilares-comparativo td {
   padding: 0.8rem 0.5rem;
   text-align: center;
-  border: 1px solid rgba(156, 163, 175, 0.2);
+  border: 1px solid #e5e7eb;
   font-size: 0.85rem;
   vertical-align: middle;
   background: rgba(255, 255, 255, 0.7);
-  transition: all 0.3s ease;
+}
+
+.pilares-comparativo td small {
+  font-size: 0.7rem;
+  color: #666;
+}
+
+.tabela-comparativo th:last-child,
+.tabela-unidades th:last-child,
+.tabela-pilares th:last-child,
+.pilares-comparativo th:last-child {
+  font-size: 0.8rem;
+}
+
+.tabela-comparativo td:last-child,
+.tabela-unidades td:last-child,
+.tabela-pilares td:last-child,
+.pilares-comparativo td:last-child {
+  font-size: 1.5rem;
+}
+
+.pilares-comparativo td br {
+  display: block;
+  content: "";
+  margin: 2px 0;
 }
 
 .pilares-comparativo td:hover {
-  background: rgba(239, 68, 68, 0.1);
-  transform: scale(1.02);
+  background: rgba(59, 130, 246, 0.05);
 }
 
 .pilares-comparativo th {
@@ -2188,17 +2289,13 @@ body {
 .tabela-unidades td {
   padding: 0.8rem 0.5rem;
   text-align: center;
-  border: 1px solid rgba(156, 163, 175, 0.2);
   font-size: 0.85rem;
   vertical-align: middle;
-  background: rgba(255, 255, 255, 0.7);
-  transition: all 0.3s ease;
 }
 
 .tabela-pilares td:hover,
 .tabela-unidades td:hover {
-  background: rgba(239, 68, 68, 0.1);
-  transform: scale(1.02);
+  background: rgba(59, 130, 246, 0.05);
 }
 
 .tabela-pilares th,
@@ -2246,6 +2343,10 @@ body {
 .variacao-negativa {
   color: #dc2626;
   font-weight: 600;
+}
+
+.trend-icon {
+  font-size: 1.5rem;
 }
 
 .status-excelente {
@@ -3418,7 +3519,7 @@ body {
 }
 
 .trend-row .trend-icon {
-  font-size: 20px;
+  font-size: 1.5rem;
 }
 
 .trend-row strong {
