@@ -164,11 +164,16 @@ function renderQuestionInBlock(question, currentAnswer, onRate, onComment, quest
       <div class="comment-block-section visible" 
            id="comment-section-${question.id}">
         <div class="comment-block-wrapper">
-          <label class="comment-block-label">
+          <label 
+            class="comment-block-label"
+            for="comment-${question.id}"
+          >
             ${icons.messageSquare}
             Quer compartilhar mais sobre sua resposta? (opcional)
           </label>
           <textarea
+            id="comment-${question.id}"
+            name="comment-${question.id}"
             class="comment-block-input"
             placeholder="Digite seu comentário aqui..."
             onblur="${onComment}(this.value, ${question.id})"

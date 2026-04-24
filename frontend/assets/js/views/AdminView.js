@@ -32,7 +32,7 @@ function renderAdminView({
     `;
   }
   
-  const avgPillar = stats.pillarStats?.reduce((a, b) => a + b.average, 0) / (stats.pillarStats?.length || 1) || 0;
+  const avgSatisfaction = stats.globalSatisfaction || 0;
   const questionWithMostComments = stats.questionStats?.reduce((prev, current) => 
     (prev?.comment_count > current?.comment_count) ? prev : current, stats.questionStats[0]);
   
@@ -53,6 +53,8 @@ function renderAdminView({
         
         <div class="admin-header-right">
           <select 
+            id="adminUnitFilter"
+            name="adminUnitFilter"
             class="admin-filter"
             onchange="${onFilterUnit}(this.value)"
           >
@@ -78,6 +80,16 @@ function renderAdminView({
           </button>
           
           <button 
+            id="dictionaryHelpBtn"
+            class="btn btn-outline btn-sm"
+            title="Abrir Dicionário de Métricas"
+            onclick="openDictionaryPanel()"
+          >
+            ${icons.helpCircle}
+            Dicionário
+          </button>
+          
+          <button 
             onclick="window.open('relatorio-clima-2026.html', '_blank')" 
             class="btn btn-secondary btn-sm"
             title="Abrir Relatório Clima 2026"
@@ -86,6 +98,7 @@ function renderAdminView({
             Relatório Clima 2026
           </button>
           
+                    
                   </div>
       </header>
       
@@ -102,49 +115,45 @@ function renderAdminView({
       ` : ''}
       
       <main class="admin-main">
-        <!-- Cards de estatísticas -->
-        <div class="stats-grid">
-          ${renderStatsCard({
-            label: 'Total de Respostas',
-            value: stats.totalResponses || 0,
-            icon: 'users',
-            color: 'blue',
-            delay: 0
-          })}
-          ${renderStatsCard({
-            label: 'Média de Satisfação',
-            value: `${avgPillar.toFixed(1)} (${((avgPillar - 1) / 3 * 100).toFixed(1)}%)`,
-            icon: 'trendingUp',
-            color: 'yellow',
-            delay: 0.1
-          })}
-          ${renderStatsCard({
-            label: 'Satisfação Geral',
-            value: `${stats.globalFavorability?.toFixed(1) || 0}%`,
-            icon: 'thumbsUp',
-            color: 'green',
-            sub: '% Concordo + Concordo Muito',
-            delay: 0.15
-          })}
-                    ${renderStatsCard({
-            label: 'Questão + Comentada',
-            value: `Q${questionWithMostComments?.question_id || '-'}`,
-            icon: 'messageSquare',
-            color: 'red',
-            sub: `${questionWithMostComments?.comment_count || 0} comentários`,
-            delay: 0.3
-          })}
-        </div>
-        
-        <!-- Heatmap por Pilar -->
-        <div class="heatmap-section">
-          <div class="card">
-            <h3 class="card-title">
-              ${icons.barChart}
-              Heatmap de Desempenho por Pilar
-            </h3>
-            <div class="heatmap-container">
-              ${renderHeatmap(stats.pillarStats || [])}
+        <!-- Cards e Heatmap alinhados -->
+        <div class="stats-heatmap-aligned">
+          <!-- Cards de estatísticas -->
+          <div class="stats-grid">
+            ${renderStatsCard({
+              label: 'Total de Respostas',
+              value: stats.totalResponses || 0,
+              icon: 'users',
+              color: 'blue',
+              delay: 0
+            })}
+            ${renderStatsCard({
+              label: 'Satisfação Geral',
+              value: `${avgSatisfaction.toFixed(1)}%`,
+              sub: '% Concordo + Concordo Muito',
+              icon: 'trendingUp',
+              color: avgSatisfaction >= 75 ? 'green' : avgSatisfaction >= 50 ? 'yellow' : 'red',
+              delay: 0.1
+            })}
+            ${renderStatsCard({
+              label: 'Questão + Comentada',
+              value: `Q${questionWithMostComments?.question_id || '-'}`,
+              icon: 'messageSquare',
+              color: 'red',
+              sub: `${questionWithMostComments?.comment_count || 0} comentários`,
+              delay: 0.3
+            })}
+          </div>
+          
+          <!-- Heatmap por Pilar -->
+          <div class="heatmap-section">
+            <div class="card">
+              <h3 class="card-title">
+                ${icons.barChart}
+                Heatmap de Desempenho por Pilar
+              </h3>
+              <div class="heatmap-container">
+                ${renderHeatmap(stats.pillarStats || [])}
+              </div>
             </div>
           </div>
         </div>
@@ -165,7 +174,7 @@ function renderAdminView({
           })}
           
           ${renderChartContainer({
-            title: 'Favorabilidade por Pilar',
+            title: 'Satisfação por Pilar',
             icon: 'barChart',
             chartId: 'pillarChart'
           })}
@@ -239,12 +248,12 @@ function renderAdminView({
                     ${questionSortBy === 'comments' ? (questionSortOrder === 'asc' ? '↑' : '↓') : ''}
                   </button>
                   <button 
-                    onclick="${onSortQuestions}('average')" 
-                    class="btn btn-outline btn-xs ${questionSortBy === 'average' ? 'active' : ''}"
-                    title="Ordenar por média de avaliação"
+                    onclick="${onSortQuestions}('satisfaction')" 
+                    class="btn btn-outline btn-xs ${questionSortBy === 'satisfaction' ? 'active' : ''}"
+                    title="Ordenar por satisfação"
                   >
-                    ${icons.trendingUp} Média 
-                    ${questionSortBy === 'average' ? (questionSortOrder === 'asc' ? '↑' : '↓') : ''}
+                    ${icons.trendingUp} Satisfação 
+                    ${questionSortBy === 'satisfaction' ? (questionSortOrder === 'asc' ? '↑' : '↓') : ''}
                   </button>
                 </div>
               </div>
@@ -306,9 +315,9 @@ function renderAdminView({
                   } else if (questionSortBy === 'comments') {
                     const order = questionSortOrder === 'asc' ? 1 : -1;
                     return ((aStat?.comment_count || 0) - (bStat?.comment_count || 0)) * order;
-                  } else if (questionSortBy === 'average') {
+                  } else if (questionSortBy === 'satisfaction') {
                     const order = questionSortOrder === 'asc' ? 1 : -1;
-                    return ((aStat?.average || 0) - (bStat?.average || 0)) * order;
+                    return ((aStat?.satisfaction || 0) - (bStat?.satisfaction || 0)) * order;
                   }
                   
                   // Default: ordenar por comentários (mantido para compatibilidade)
@@ -328,9 +337,9 @@ function renderAdminView({
                         ${isInverted ? `<span class="q-inverted-badge" title="Pergunta invertida: Concordo = negativo, Discordo = positivo">↔️ Invertida</span>` : ''}
                       </div>
                       <div class="question-meta">
-                        ${qStat?.average ? `
-                          <span class="q-average" style="color: ${getScoreColor(qStat.average)}">
-                            ${qStat.average.toFixed(1)}
+                        ${qStat?.satisfaction ? `
+                          <span class="q-average" style="color: ${getSatisfactionColor(qStat.satisfaction)}">
+                            ${qStat.satisfaction.toFixed(1)}%
                           </span>
                         ` : ''}
                         ${qStat?.comment_count > 0 ? `
@@ -386,17 +395,24 @@ function renderAdminView({
         </svg>
       </div>
       
-      <div class="widget-header">
-        <div class="widget-title">
-          ${icons.messageSquare}
-          <span class="nitai-badge">Nitai - Assistente de Clima</span>
+      <header class="admin-header">
+        <div class="header-content">
+          <h1 class="page-title">
+            ${icons.barChart}
+            Painel Administrativo NIT
+          </h1>
+          <div class="header-actions">
+            <button id="dictionaryHelpBtn" class="btn btn-outline" title="Abrir Dicionário de Métricas">
+              ${icons.helpCircle}
+              Dicionário
+            </button>
+            <button onclick="${onBack}()" class="btn btn-outline">
+              ${icons.arrowLeft}
+              Voltar ao Dashboard
+            </button>
+          </div>
         </div>
-        <div class="widget-controls">
-          <button onclick="window.toggleNitaiChat()" class="btn btn-outline btn-xs">
-            ${icons.x}
-          </button>
-        </div>
-      </div>
+      </header>
       
       <div class="widget-body">
         <div class="widget-actions">
@@ -415,6 +431,7 @@ function renderAdminView({
         <div class="widget-input">
           <textarea 
             id="widgetChatInput" 
+            name="widgetChatInput"
             placeholder="💬 Converse com a Nitai sobre liderança, cultura, benefícios..."
             onkeypress="window.handleWidgetChatKeyPress(event)"
             class="widget-input-textarea"
@@ -442,6 +459,12 @@ function getScoreColor(score) {
   return 'var(--red-500)';
 }
 
+function getSatisfactionColor(satisfaction) {
+  if (satisfaction >= 75) return 'var(--green-500)';
+  if (satisfaction >= 50) return 'var(--yellow-500)';
+  return 'var(--red-500)';
+}
+
 function renderHeatmap(pillarStats) {
   if (!pillarStats || pillarStats.length === 0) {
     return '<p class="no-data">Sem dados disponíveis</p>';
@@ -465,7 +488,7 @@ function renderHeatmap(pillarStats) {
     <div class="heatmap-table">
       <div class="heatmap-row heatmap-header">
         <div class="heatmap-cell">Pilar</div>
-        <div class="heatmap-cell">Favorabilidade</div>
+        <div class="heatmap-cell">Satisfação</div>
         <div class="heatmap-cell">Status</div>
       </div>
       ${pillarStats.map(pillar => `
@@ -475,12 +498,12 @@ function renderHeatmap(pillarStats) {
               pillar.pillar === 'Gestão do Capital Humano' ? 'Gestão de Pessoas' : 
               pillar.pillar}
           </div>
-          <div class="heatmap-cell ${getColorClass(pillar.favorabilidade)}">
-            ${parseFloat(pillar.favorabilidade || 0).toFixed(1)}%
+          <div class="heatmap-cell ${getColorClass(pillar.satisfaction || pillar.favorabilidade)}">
+            ${parseFloat(pillar.satisfaction || pillar.favorabilidade || 0).toFixed(1)}%
           </div>
           <div class="heatmap-cell">
-            ${getEmoji(pillar.favorabilidade)} ${parseFloat(pillar.favorabilidade || 0) >= 75 ? 'Ótimo' : 
-              parseFloat(pillar.favorabilidade || 0) >= 50 ? 'Atenção' : 'Crítico'}
+            ${getEmoji(pillar.satisfaction || pillar.favorabilidade)} ${parseFloat(pillar.satisfaction || pillar.favorabilidade || 0) >= 75 ? 'Ótimo' : 
+              parseFloat(pillar.satisfaction || pillar.favorabilidade || 0) >= 50 ? 'Atenção' : 'Crítico'}
           </div>
         </div>
       `).join('')}
@@ -504,7 +527,7 @@ function renderHeatmap(pillarStats) {
 
 function renderWorstQuestions(questionStats, allQuestions) {
   const worstQuestions = [...questionStats]
-    .sort((a, b) => (a.favorabilidade || 0) - (b.favorabilidade || 0))
+    .sort((a, b) => (a.satisfaction || 0) - (b.satisfaction || 0))
     .slice(0, 5);
   
   if (worstQuestions.length === 0) {
@@ -515,13 +538,13 @@ function renderWorstQuestions(questionStats, allQuestions) {
     <div class="ranking-table">
       <div class="ranking-header">
         <div>Pergunta</div>
-        <div>Favorabilidade</div>
+        <div>Satisfação</div>
       </div>
       ${worstQuestions.map((q, index) => {
         const question = allQuestions.find(qq => qq.id === q.question_id);
         const questionText = question ? question.text.substring(0, 80) + '...' : 'Pergunta não encontrada';
-        const favorability = q.favorabilidade || 0;
-        const colorClass = favorability >= 75 ? 'ranking-green' : favorability >= 50 ? 'ranking-yellow' : 'ranking-red';
+        const satisfaction = q.favorabilidade || q.satisfaction || 0;
+        const colorClass = satisfaction >= 75 ? 'ranking-green' : satisfaction >= 50 ? 'ranking-yellow' : 'ranking-red';
         
         return `
           <div class="ranking-row">
@@ -533,7 +556,7 @@ function renderWorstQuestions(questionStats, allQuestions) {
               </div>
             </div>
             <div class="ranking-value ${colorClass}">
-              ${favorability.toFixed(1)}%
+              ${satisfaction.toFixed(1)}%
             </div>
           </div>
         `;
@@ -544,7 +567,7 @@ function renderWorstQuestions(questionStats, allQuestions) {
 
 function renderBestQuestions(questionStats, allQuestions) {
   const bestQuestions = [...questionStats]
-    .sort((a, b) => (b.favorabilidade || 0) - (a.favorabilidade || 0))
+    .sort((a, b) => (b.satisfaction || 0) - (a.satisfaction || 0))
     .slice(0, 5);
   
   if (bestQuestions.length === 0) {
@@ -555,13 +578,13 @@ function renderBestQuestions(questionStats, allQuestions) {
     <div class="ranking-table">
       <div class="ranking-header">
         <div>Pergunta</div>
-        <div>Favorabilidade</div>
+        <div>Satisfação</div>
       </div>
       ${bestQuestions.map((q, index) => {
         const question = allQuestions.find(qq => qq.id === q.question_id);
         const questionText = question ? question.text.substring(0, 80) + '...' : 'Pergunta não encontrada';
-        const favorability = q.favorabilidade || 0;
-        const colorClass = favorability >= 75 ? 'ranking-green' : favorability >= 50 ? 'ranking-yellow' : 'ranking-red';
+        const satisfaction = q.favorabilidade || q.satisfaction || 0;
+        const colorClass = satisfaction >= 75 ? 'ranking-green' : satisfaction >= 50 ? 'ranking-yellow' : 'ranking-red';
         
         return `
           <div class="ranking-row">
@@ -573,7 +596,7 @@ function renderBestQuestions(questionStats, allQuestions) {
               </div>
             </div>
             <div class="ranking-value ${colorClass}">
-              ${favorability.toFixed(1)}%
+              ${satisfaction.toFixed(1)}%
             </div>
           </div>
         `;
@@ -584,6 +607,7 @@ function renderBestQuestions(questionStats, allQuestions) {
 
 window.renderAdminView = renderAdminView;
 window.getScoreColor = getScoreColor;
+window.getSatisfactionColor = getSatisfactionColor;
 window.renderHeatmap = renderHeatmap;
 window.renderWorstQuestions = renderWorstQuestions;
 window.renderBestQuestions = renderBestQuestions;

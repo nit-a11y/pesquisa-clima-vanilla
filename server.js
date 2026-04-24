@@ -59,6 +59,10 @@ app.get('/relatorio/:id', (req, res) => {
   res.sendFile(path.join(__dirname, 'frontend/relatorio.html'));
 });
 
+app.get('/pco-admin-dynamic', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend/pco-admin-dynamic.html'));
+});
+
 app.get('/health', (req, res) => {
   res.json({ 
     status: 'ok', 
