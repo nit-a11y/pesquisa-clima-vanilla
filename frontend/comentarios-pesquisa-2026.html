@@ -432,6 +432,25 @@
       color: var(--text-secondary);
     }
     
+    .pergunta-unidades {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    
+    .unidade-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.5rem;
+      background: #e0f2fe;
+      color: #0369a1;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    
     .stat-badge {
       display: flex;
       align-items: center;
@@ -1161,6 +1180,16 @@
         </select>
       </div>
       <div class="filter-group">
+        <span class="filter-label">Unidade:</span>
+        <select class="filter-select" id="unidadeFilter">
+          <option value="todas">Todas as Unidades</option>
+          <option value="Eusébio">Eusébio</option>
+          <option value="Fortaleza">Fortaleza</option>
+          <option value="São Luís">São Luís</option>
+          <option value="Juazeiro do Norte">Juazeiro do Norte</option>
+        </select>
+      </div>
+      <div class="filter-group">
         <span class="filter-label">Ordenar:</span>
         <select class="filter-select" id="ordemFilter">
           <option value="numero-asc">Número (1-45)</option>
@@ -1290,6 +1319,7 @@
         filtros: {
           categoria: 'todas',
           sentimento: 'todos',
+          unidade: 'todas',
           ordem: 'numero-asc'
         },
         expandedCards: new Set(),
@@ -1397,6 +1427,17 @@
             }.bind(this));
           }
           
+          if (this.filtros.unidade !== 'todas') {
+            var filtroUnidade = this.filtros.unidade;
+            var filtroUnidadeNorm = filtroUnidade.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+            filtered = filtered.filter(function(p) {
+              return p.comentarios.some(function(c) { 
+                var uniNorm = c.unidade.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+                return uniNorm === filtroUnidadeNorm;
+              });
+            });
+          }
+          
           var ordem = this.filtros.ordem;
           if (ordem === 'numero-asc') {
             filtered.sort(function(a, b) { return a.pergunta_id - b.pergunta_id; });
@@ -1450,6 +1491,14 @@
           var isExpanded = this.expandedCards.has(pergunta.pergunta_id);
           var estrelasHtml = this.renderizarEstrelas(pergunta.notaMedia);
           
+          var unidadesUnicas = [];
+          pergunta.comentarios.forEach(function(c) {
+            if (unidadesUnicas.indexOf(c.unidade) === -1) {
+              unidadesUnicas.push(c.unidade);
+            }
+          });
+          var unidadesHtml = unidadesUnicas.map(function(u) { return '<span class="unidade-tag">' + u + '</span>'; }).join('');
+          
           return '<div class="pergunta-card ' + (isExpanded ? 'expanded' : '') + '" data-pergunta-id="' + pergunta.pergunta_id + '">' +
             '<div class="pergunta-header" onclick="app.openModal(' + pergunta.pergunta_id + ')">' +
               '<div class="pergunta-header-content">' +
@@ -1469,6 +1518,7 @@
                       '<span>' + pergunta.notaMedia.toFixed(1) + '</span>' +
                     '</div>' +
                   '</div>' +
+                  '<div class="pergunta-unidades">' + unidadesHtml + '</div>' +
                 '</div>' +
                 '<div class="pergunta-actions">' +
                   '<button class="expand-btn">' +
@@ -1633,11 +1683,13 @@
           
           var categoriaFilter = document.getElementById('categoriaFilter');
           var sentimentoFilter = document.getElementById('sentimentoFilter');
+          var unidadeFilter = document.getElementById('unidadeFilter');
           var ordemFilter = document.getElementById('ordemFilter');
           
           function aplicarFiltros() {
             self.filtros.categoria = categoriaFilter.value;
             self.filtros.sentimento = sentimentoFilter.value;
+            self.filtros.unidade = unidadeFilter.value;
             self.filtros.ordem = ordemFilter.value;
             self.expandedCards.clear();
             self.renderizar();
@@ -1645,14 +1697,17 @@
           
           categoriaFilter.addEventListener('change', aplicarFiltros);
           sentimentoFilter.addEventListener('change', aplicarFiltros);
+          unidadeFilter.addEventListener('change', aplicarFiltros);
           ordemFilter.addEventListener('change', aplicarFiltros);
           
           document.getElementById('applyFilter').addEventListener('click', function() {
             categoriaFilter.value = 'todas';
             sentimentoFilter.value = 'todos';
+            unidadeFilter.value = 'todas';
             ordemFilter.value = 'numero-asc';
             self.filtros.categoria = 'todas';
             self.filtros.sentimento = 'todos';
+            self.filtros.unidade = 'todas';
             self.filtros.ordem = 'numero-asc';
             self.expandedCards.clear();
             self.renderizar();
