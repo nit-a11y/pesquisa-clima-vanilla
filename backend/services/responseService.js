@@ -223,24 +223,39 @@ function calculateStats(responses, totalCount) {
     });
   });
 
-  const unitStatsFinal = Object.entries(unitStats).map(([unit, data]) => ({
-    unit,
-    average: data.scores.reduce((a, b) => a + b, 0) / data.scores.length || 0,
-    count: data.total
-  }));
+  const unitStatsFinal = Object.entries(unitStats).map(([unit, data]) => {
+    // Calcular satisfação geral para unidade
+    const unitResponses = responses.filter(r => r.unidade === unit);
+    const unitQuestions = Object.keys(questionStats);
+    let totalSatisfaction = 0;
+    let validQuestions = 0;
+    
+    unitQuestions.forEach(qId => {
+      const favorabilityData = calculateFavorability(unitResponses, parseInt(qId));
+      if (favorabilityData.favorabilidade > 0 || favorabilityData.desfavorabilidade > 0) {
+        totalSatisfaction += parseFloat(favorabilityData.favorabilidade);
+        validQuestions++;
+      }
+    });
+    
+    return {
+      unit,
+      average: data.scores.reduce((a, b) => a + b, 0) / data.scores.length || 0,
+      satisfaction: validQuestions > 0 ? (totalSatisfaction / validQuestions).toFixed(1) : 0,
+      count: data.total
+    };
+  });
 
   const pillarStatsFinal = Object.entries(pillarStats).map(([pillar, data]) => {
-    // Calcular favorabilidade agregada para o pilar
+    // Calcular favorabilidade agregada para o pilar (usando mesma fórmula)
     const pillarQuestions = questions.filter(q => q.pillar === pillar).map(q => q.id);
-    let totalFavorabilidade = 0;
-    let totalDesfavorabilidade = 0;
+    let totalSatisfaction = 0;
     let validQuestions = 0;
     
     pillarQuestions.forEach(qId => {
       const favorabilityData = calculateFavorability(responses, qId);
       if (favorabilityData.favorabilidade > 0 || favorabilityData.desfavorabilidade > 0) {
-        totalFavorabilidade += parseFloat(favorabilityData.favorabilidade);
-        totalDesfavorabilidade += parseFloat(favorabilityData.desfavorabilidade);
+        totalSatisfaction += parseFloat(favorabilityData.favorabilidade);
         validQuestions++;
       }
     });
@@ -248,9 +263,10 @@ function calculateStats(responses, totalCount) {
     return {
       pillar,
       average: data.scores.reduce((a, b) => a + b, 0) / data.scores.length || 0,
+      satisfaction: validQuestions > 0 ? (totalSatisfaction / validQuestions).toFixed(1) : 0,
       count: data.total,
-      favorabilidade: validQuestions > 0 ? (totalFavorabilidade / validQuestions).toFixed(1) : 0,
-      desfavorabilidade: validQuestions > 0 ? (totalDesfavorabilidade / validQuestions).toFixed(1) : 0
+      favorabilidade: validQuestions > 0 ? (totalSatisfaction / validQuestions).toFixed(1) : 0,
+      desfavorabilidade: validQuestions > 0 ? (100 - (totalSatisfaction / validQuestions)).toFixed(1) : 0
     };
   });
 
@@ -259,12 +275,15 @@ function calculateStats(responses, totalCount) {
       const questionId = parseInt(qId);
       const favorabilityData = calculateFavorability(responses, questionId);
       
+      const satisfactionValue = parseFloat(favorabilityData.favorabilidade) || 0;
+      
       return {
         question_id: questionId,
         average: data.scores.reduce((a, b) => a + b, 0) / data.scores.length || 0,
+        satisfaction: satisfactionValue,
         count: data.total,
         comment_count: data.comments.length,
-        favorabilidade: parseFloat(favorabilityData.favorabilidade),
+        favorabilidade: satisfactionValue,
         desfavorabilidade: parseFloat(favorabilityData.desfavorabilidade),
         distribuicao: favorabilityData.distribuicao
       };
@@ -272,17 +291,29 @@ function calculateStats(responses, totalCount) {
     .sort((a, b) => a.question_id - b.question_id);
 
   const bottlenecks = [...questionStatsFinal]
-    .sort((a, b) => a.average - b.average)
+    .sort((a, b) => a.satisfaction - b.satisfaction)
     .slice(0, 3);
 
   const criticalAlerts = calculateCriticalAlerts(responses, questionStatsFinal);
   const engagementRate = calculateEngagementRate(responses, questionStatsFinal);
   
-  // Calcular favorabilidade global usando todas as perguntas
+  // Calcular satisfação global - usar média dos pilares como alternativa mais confiável
+  let globalSatisfaction = 0;
+  
+  // Tentativa 1: Média das perguntas (pode falhar com poucos dados)
   const allQuestionsFavorability = questionStatsFinal.map(q => q.favorabilidade || 0);
-  const globalFavorability = allQuestionsFavorability.length > 0
+  const questionsAvg = allQuestionsFavorability.length > 0
     ? (allQuestionsFavorability.reduce((sum, f) => sum + f, 0) / allQuestionsFavorability.length).toFixed(1)
     : 0;
+  
+  // Tentativa 2: Média dos pilares (mais confiável com poucos dados)
+  const pillarSatisfactions = pillarStatsFinal.map(p => parseFloat(p.satisfaction) || 0);
+  const pillarsAvg = pillarSatisfactions.length > 0
+    ? (pillarSatisfactions.reduce((sum, s) => sum + s, 0) / pillarSatisfactions.length).toFixed(1)
+    : 0;
+  
+  // Usar a média dos pilares se for maior que 0, senão usar média das perguntas
+  globalSatisfaction = parseFloat(pillarsAvg > 0 ? pillarsAvg : questionsAvg);
 
   return {
     totalResponses: totalCount,
@@ -292,7 +323,8 @@ function calculateStats(responses, totalCount) {
     criticalAlerts,
     bottlenecks,
     engagementRate,
-    globalFavorability: parseFloat(globalFavorability)
+    globalSatisfaction: globalSatisfaction,
+    globalFavorability: globalSatisfaction
   };
 }
 
