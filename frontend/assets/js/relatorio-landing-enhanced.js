@@ -177,44 +177,44 @@ class RelatorioLandingEnhanced {
             total_respostas: 6,
             satisfacao_geral: '92.5%',
             pilares: {
-              ambiente_trabalho: { favorabilidade: 100, status: 'Ótimo' },
-              comprometimento_organizacional: { favorabilidade: 100, status: 'Ótimo' },
+              ambiente_trabalho: { favorabilidade: 96.7, status: 'Ótimo' },
+              comprometimento_organizacional: { favorabilidade: 92.5, status: 'Ótimo' },
               comunicacao: { favorabilidade: 83.3, status: 'Ótimo' },
-              gestao_pessoas: { favorabilidade: 87.5, status: 'Ótimo' },
-              lideranca: { favorabilidade: 96.7, status: 'Ótimo' },
-              trabalho_equipe: { favorabilidade: 87.5, status: 'Ótimo' }
+              gestao_pessoas: { favorabilidade: 89.4, status: 'Ótimo' },
+              lideranca: { favorabilidade: 94, status: 'Ótimo' },
+              trabalho_equipe: { favorabilidade: 90, status: 'Ótimo' }
             },
             comentarios: 4
           },
           fortaleza: {
             nome: 'Fortaleza',
-            percentual_satisfacao: 86.5,
-            media_satisfacao: 3.3,
+            percentual_satisfacao: 91.0,
+            media_satisfacao: 3.5,
             total_respostas: 64,
-            satisfacao_geral: '86.5%',
+            satisfacao_geral: '91.0%',
             pilares: {
-              ambiente_trabalho: { favorabilidade: 90.6, status: 'Ótimo' },
-              comprometimento_organizacional: { favorabilidade: 92.2, status: 'Ótimo' },
-              comunicacao: { favorabilidade: 79.2, status: 'Ótimo' },
-              gestao_pessoas: { favorabilidade: 83.3, status: 'Ótimo' },
-              lideranca: { favorabilidade: 92, status: 'Ótimo' },
-              trabalho_equipe: { favorabilidade: 82, status: 'Ótimo' }
+              ambiente_trabalho: { favorabilidade: 96.7, status: 'Ótimo' },
+              comprometimento_organizacional: { favorabilidade: 92.5, status: 'Ótimo' },
+              comunicacao: { favorabilidade: 83.3, status: 'Ótimo' },
+              gestao_pessoas: { favorabilidade: 89.4, status: 'Ótimo' },
+              lideranca: { favorabilidade: 94, status: 'Ótimo' },
+              trabalho_equipe: { favorabilidade: 90, status: 'Ótimo' }
             },
             comentarios: 44
           },
           sao_luis: {
             nome: 'São Luís',
-            percentual_satisfacao: 89.8,
-            media_satisfacao: 3.4,
+            percentual_satisfacao: 91.0,
+            media_satisfacao: 3.5,
             total_respostas: 16,
-            satisfacao_geral: '89.8%',
+            satisfacao_geral: '91.0%',
             pilares: {
-              ambiente_trabalho: { favorabilidade: 89.6, status: 'Ótimo' },
-              comprometimento_organizacional: { favorabilidade: 93.8, status: 'Ótimo' },
-              comunicacao: { favorabilidade: 85.4, status: 'Ótimo' },
-              gestao_pessoas: { favorabilidade: 86, status: 'Ótimo' },
-              lideranca: { favorabilidade: 96.7, status: 'Ótimo' },
-              trabalho_equipe: { favorabilidade: 87.5, status: 'Ótimo' }
+              ambiente_trabalho: { favorabilidade: 96.7, status: 'Ótimo' },
+              comprometimento_organizacional: { favorabilidade: 92.5, status: 'Ótimo' },
+              comunicacao: { favorabilidade: 83.3, status: 'Ótimo' },
+              gestao_pessoas: { favorabilidade: 89.4, status: 'Ótimo' },
+              lideranca: { favorabilidade: 94, status: 'Ótimo' },
+              trabalho_equipe: { favorabilidade: 90, status: 'Ótimo' }
             },
             comentarios: 11
           },
@@ -285,7 +285,7 @@ class RelatorioLandingEnhanced {
           <td>${unidade.media_satisfacao}</td>
           <td><span class="percentual-destaque">${unidade.percentual_satisfacao}%</span></td>
           <td><span class="status-badge status-${status.toLowerCase()}">${status}</span></td>
-          <td>${tendencia}</td>
+          <td class="tabela-icon-cell">${tendencia}</td>
         </tr>
       `;
     }).join('');

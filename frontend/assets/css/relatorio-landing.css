@@ -32,6 +32,9 @@
   --transition-fast: 0.15s ease;
   --transition-base: 0.3s ease;
   --transition-slow: 0.5s ease;
+  
+  /* Variável centralizada para ícones de tendência */
+  --trend-icon-size: 2.25rem;
 }
 
 * {
@@ -1317,11 +1320,28 @@ body {
 }
 
 .legenda-emoji {
-  font-size: 1.5rem;
+  font-size: var(--trend-icon-size);
 }
 
 .trend-icon {
-  font-size: 1.5rem;
+  font-size: var(--trend-icon-size);
+}
+
+/* Classe para ícones diretamente nas células das tabelas */
+.tabela-icon-cell {
+  font-size: var(--trend-icon-size);
+  text-align: center;
+}
+
+/* Classe para ícones nos cards de unidades */
+.unidade-tendencia {
+  font-size: var(--trend-icon-size);
+}
+
+/* Garantir que ícones nas tabelas usem o tamanho correto */
+.tabela-comparativo .trend-icon,
+.tabela-unidades .tabela-icon-cell {
+  font-size: var(--trend-icon-size) !important;
 }
 
 .legenda-texto {
@@ -1681,7 +1701,7 @@ body {
 }
 
 .trend-icon {
-  font-size: 1.5rem;
+  font-size: var(--trend-icon-size);
 }
 
 /* Insights Grid */
@@ -2152,7 +2172,9 @@ body {
   padding: 0.8rem 0.5rem;
   text-align: center;
   border: 1px solid #e5e7eb;
-  font-size: 0.85rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
   vertical-align: middle;
   background: rgba(255, 255, 255, 0.7);
 }
@@ -2160,6 +2182,7 @@ body {
 .pilares-comparativo td small {
   font-size: 0.7rem;
   color: #666;
+  font-weight: 400;
 }
 
 .tabela-comparativo th:last-child,
@@ -2169,12 +2192,6 @@ body {
   font-size: 0.8rem;
 }
 
-.tabela-comparativo td:last-child,
-.tabela-unidades td:last-child,
-.tabela-pilares td:last-child,
-.pilares-comparativo td:last-child {
-  font-size: 1.5rem;
-}
 
 .pilares-comparativo td br {
   display: block;
@@ -2346,7 +2363,7 @@ body {
 }
 
 .trend-icon {
-  font-size: 1.5rem;
+  font-size: var(--trend-icon-size);
 }
 
 .status-excelente {
@@ -3519,7 +3536,7 @@ body {
 }
 
 .trend-row .trend-icon {
-  font-size: 1.5rem;
+  font-size: var(--trend-icon-size);
 }
 
 .trend-row strong {
