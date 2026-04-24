@@ -1340,8 +1340,15 @@ body {
 
 /* Garantir que ícones nas tabelas usem o tamanho correto */
 .tabela-comparativo .trend-icon,
-.tabela-unidades .tabela-icon-cell {
+.tabela-unidades .tabela-icon-cell,
+.tabela-pilares .trend-icon {
   font-size: var(--trend-icon-size) !important;
+}
+
+/* Ícones diretamente nas células da tabela Comparativo Detalhado por Pilar */
+.tabela-pilares td:last-child {
+  font-size: var(--trend-icon-size) !important;
+  text-align: center;
 }
 
 .legenda-texto {
