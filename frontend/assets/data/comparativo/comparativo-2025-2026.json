@@ -199,9 +199,10 @@
   "analise_pioras": [
     {
       "categoria": "Benefícios",
-      "destaque": "NOVO PROBLEMA CRÍTICO",
+      "destaque": "NOVO PROBLEMA CRÍTICO - PRIMEIRA MEDIÇÃO",
       "descricao": "Benefícios tornaram-se a principal fonte de insatisfação (58.3%)",
       "impacto": "64 comentários negativos, risco de turnover",
+      "nota_metodologica": "Em 2025, tema NÃO era medido diretamente (sem %). Aparecia apenas em comentários qualitativos com intensidade moderada. Q15 (Benefícios) foi adicionada em 2026.",
       "fatores_piora": [
         "Inflação impactando vale alimentação",
         "Expectativas não atendidas",

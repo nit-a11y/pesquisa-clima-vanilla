@@ -1,0 +1,79 @@
+		
+AMBIENTE DE TRABALHO		
+PERGUNTA	% SATISFAÇÃO	% INSATISFAÇÃO
+1) Este é um lugar (ambiente físico) agradável para trabalhar.	88%	12%
+2) Eu recebo os equipamentos e recursos necessários para realizar o meu trabalho.	84%	16%
+45) Este é um lugar agradável para se trabalhar.	95%	5%
+	88,8%	11,2%
+		
+		
+COMPROMETIMENTO ORGANIZACIONAL		
+PERGUNTA	% SATISFAÇÃO	% INSATISFAÇÃO
+3) As pessoas aqui estão dispostas a fazer um pouco além da sua obrigação para concluir um trabalho.	82%	18%
+9) Meu trabalho tem um sentido especial. Para mim, não é só “mais um emprego”.	98%	2%
+11) Tenho orgulho de contar com as pessoas que trabalho aqui.	92%	8%
+12) As pessoas aqui têm vontade de vir para o trabalho.	80%	20%
+	88,0%	12,0%
+		
+		
+COMUNICAÇÃO		
+PERGUNTA	% SATISFAÇÃO	% INSATISFAÇÃO
+14) Existem canais de comunicação bem definidos para que os colaboradores possam expressar suas sugestões e reivindicações.	55%	45%
+26) O seu líder lhe mantém informado sobre assuntos importantes e sobre mudanças na empresa.	91%	9%
+41) A Diretoria da empresa é aberta a sugestões e é fácil falar com ela.	87%	13%
+46) Existe fofoca por aqui.	25%	75%
+	64,7%	35,3%
+		
+		
+GESTÃO DO CAPITAL HUMANO		
+PERGUNTA	% SATISFAÇÃO	% INSATISFAÇÃO
+5) A empresa oferece treinamentos ou oportunidades de desenvolvimento para o meu crescimento profissional.	73%	27%
+6) Você tem uma visão clara de para onde estamos indo (futuro da empresa) e como fazer para chegar lá.	86%	14%
+7) A empresa demonstra reconhecimento pelo bom trabalho e pelo esforço extra.	74%	26%
+8) As pessoas aqui nesta empresa são remuneradas adequadamente em relação a outras empresas do mesmo segmento de mercado.	49%	51%
+10) Quando é contratado um funcionário novo, as pessoas fazem com que ele se sinta bem-vindo.	95%	5%
+13) Eu me sinto à vontade na empresa, sem precisar fingir que sou outra pessoa.	91%	9%
+15) Você acredita que a empresa só promoveria uma demissão em massa como último recurso.	87%	13%
+16) As pessoas são encorajadas a equilibrar sua vida profissional e pessoal.	82%	18%
+35) As pessoas aqui na empresa são bem tratadas independentemente da sua idade, cor, religião ou sexo.	99%	1%
+36) Você alguma vez já foi humilhado pelo seu líder ou presenciou alguma humilhação.	83%	17%
+39) Nós sempre comemoramos as metas atingidas e os eventos especiais.	67%	33%
+42) Você tem um bom relacionamento com a Diretoria da empresa.	92%	8%
+43) Eu sou bem tratado, independente de minha função na empresa.	99%	1%
+44) Sinto que sou valorizado aqui e que posso fazer a diferença.	84%	16%
+47) Percebo um clima de rivalidade (competição interna) aqui.	60%	40%
+48) Pretendo trabalhar aqui ainda por muito tempo.	85%	15%
+49) Existe um bom relacionamento entre as áreas da empresa (equipes das diferentes expertises de conhecimento).	82%	18%
+50) Levando-se tudo em conta, eu diria que este é um excelente lugar para trabalhar.	87%	13%
+	81,8%	18,2%
+		
+		
+LIDERANÇA		
+PERGUNTA	% SATISFAÇÃO	% INSATISFAÇÃO
+17) Você sabe com clareza quem é seu líder (superior imediato).	96%	4%
+18) O seu líder (superior imediato) deixa claro o que ele espera do seu trabalho.	87%	13%
+19) O seu líder demonstra comprometimento com o negócio da empresa (interesse no crescimento da empresa).	92%	8%
+20) O seu líder é honesto e ético na condução dos negócios.	96%	4%
+21) O seu líder demonstra interesse sincero por você como pessoa e não somente como empregado.	79%	21%
+22) É fácil se aproximar do seu líder e é também fácil de falar com ele.	98%	2%
+23) O seu líder treina as pessoas com o foco nas suas necessidades.	80%	20%
+24) O seu líder reconhece os erros como oportunidades de aprendizado.	91%	9%
+25) O seu líder demonstra interesse nas ideias e sugestões que você e seus companheiros apresentam e toma ações com base nelas.	90%	10%
+27) O seu líder tem uma visão clara de para onde estamos indo (futuro da empresa) e o que fazer para chegar lá.	88%	12%
+28) O seu líder confia no bom trabalho das pessoas sem precisar vigiá-las.	83%	17%
+29) O seu líder envolve as pessoas em decisões que afetam atividades e seu ambiente de trabalho.	74%	26%
+30) O seu líder trata todos da mesma forma, sem proteger ninguém.	73%	27%
+31) O seu líder sabe coordenar pessoas e distribuir tarefas adequadamente.	86%	14%
+32) O seu líder dá autonomia às pessoas.	92%	8%
+33) O seu líder age de acordo com o que fala.	83%	17%
+34) O seu líder dá feedback (crítica construtiva) sobre o desempenho de seu trabalho.	95%	5%
+	87,2%	12,8%
+		
+		
+TRABALHO EM EQUIPE		
+PERGUNTA	% SATISFAÇÃO	% INSATISFAÇÃO
+4) Pode-se contar com a colaboração das pessoas por aqui.	87%	13%
+37) Aqui as pessoas se importam umas com as outras.	75%	25%
+38) Existe um sentimento de equipe por aqui.	86%	14%
+40) As pessoas fazem “politicagem” (puxa saco) como forma de obter resultados.	61%	39%
+	77,2%	22,8%

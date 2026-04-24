@@ -8,13 +8,15 @@
     "nota_metodologica": "Satisfação usa % de concordância (mesma metodologia 2025)"
   },
   "resumo_executivo": {
-    "satisfacao_geral": "88.4%",
-    "favorabilidade": "88.4%",
+    "satisfacao_geral": "87.9%",
     "media_escore": 3.3,
     "total_perguntas": 45,
     "status_geral": "Positivo com evolução confirmada",
     "variacao_respondentes": "+4.3% vs 2025",
-    "variacao_satisfacao": "+5.57pp vs 2025 (mesma metodologia)"
+    "variacao_satisfacao": "+5.02pp vs 2025 (mesma metodologia)",
+    "questao_mais_comentada": "Q15",
+    "total_comentarios_questao_mais_comentada": 64,
+    "metodologia_calculo": "% Concordo + Concordo Muito"
   },
   "pilares_2026": [
     {
@@ -29,7 +31,7 @@
         "Comunicação eficaz (96.9%)",
         "Interesse sincero (97.9%)"
       ],
-      "variacao_vs_2025": "+8.3pp"
+      "variacao_vs_2025": "+6.1pp"
     },
     {
       "nome": "Comprometimento Organizacional",
@@ -42,7 +44,7 @@
         "Forte comprometimento",
         "Vontade de permanecer"
       ],
-      "variacao_vs_2025": "+8.0pp"
+      "variacao_vs_2025": "+5.0pp"
     },
     {
       "nome": "Ambiente de Trabalho",
@@ -55,7 +57,7 @@
         "Boas condições",
         "Recursos adequados"
       ],
-      "variacao_vs_2025": "+4.7pp"
+      "variacao_vs_2025": "+2.9pp"
     },
     {
       "nome": "Gestão do Capital Humano",
@@ -68,7 +70,7 @@
         "Remuneração (59.4%)",
         "Reconhecimento (72.9%)"
       ],
-      "variacao_vs_2025": "+4.6pp"
+      "variacao_vs_2025": "+2.8pp"
     },
     {
       "nome": "Trabalho em Equipe",
@@ -80,7 +82,7 @@
         "Politicagem (65.6%)",
         "Competição interna"
       ],
-      "variacao_vs_2025": "+6.1pp"
+      "variacao_vs_2025": "+6.9pp"
     },
     {
       "nome": "Comunicação",
@@ -92,37 +94,37 @@
         "Canais mais definidos (67.7%)",
         "Comunicação da liderança (96.9%)"
       ],
-      "variacao_vs_2025": "+12.9pp"
+      "variacao_vs_2025": "+16.2pp"
     }
   ],
   "top_melhores_perguntas_2026": [
     {
       "posicao": 1,
-      "favorabilidade": "99.0%",
+      "satisfacao": "99.0%",
       "pergunta": "Q27: Você sabe com clareza quem é seu líder (superior imediato)",
       "pilar": "Liderança"
     },
     {
       "posicao": 2,
-      "favorabilidade": "97.9%",
+      "satisfacao": "97.9%",
       "pergunta": "Q29: Seu líder demonstra comprometimento com o negócio, agindo com ética e honestidade",
       "pilar": "Liderança"
     },
     {
       "posicao": 3,
-      "favorabilidade": "96.9%",
+      "satisfacao": "96.9%",
       "pergunta": "Q10: O seu líder lhe mantém informado sobre assuntos importantes e sobre mudanças na empresa",
       "pilar": "Liderança"
     },
     {
       "posicao": 4,
-      "favorabilidade": "96.9%",
+      "satisfacao": "96.9%",
       "pergunta": "Q16: Quando é contratado um funcionário novo, as pessoas fazem com que ele se sinta bem-vindo",
       "pilar": "Gestão do Capital Humano"
     },
     {
       "posicao": 5,
-      "favorabilidade": "96.9%",
+      "satisfacao": "96.9%",
       "pergunta": "Q19: As pessoas aqui na empresa são bem tratadas independentemente da sua idade, cor, religião ou sexo",
       "pilar": "Gestão do Capital Humano"
     }
@@ -130,7 +132,7 @@
   "top_piores_perguntas_2026": [
     {
       "posicao": 1,
-      "favorabilidade": "58.3%",
+      "satisfacao": "58.3%",
       "pergunta": "Q15: Estou satisfeito com o pacote de benefícios que a empresa oferece",
       "pilar": "Gestão do Capital Humano",
       "comentarios": 64,
@@ -138,31 +140,59 @@
     },
     {
       "posicao": 2,
-      "favorabilidade": "59.4%",
+      "satisfacao": "59.4%",
       "pergunta": "Q14: As pessoas aqui nesta empresa são remuneradas adequadamente em relação a outras empresas do mesmo segmento de mercado",
       "pilar": "Gestão do Capital Humano",
       "urgencia": "Alta"
     },
     {
       "posicao": 3,
-      "favorabilidade": "65.6%",
+      "satisfacao": "65.6%",
       "pergunta": "Q45: As pessoas fazem 'politicagem' (puxa saco) como forma de obter resultados",
       "pilar": "Trabalho em Equipe",
       "urgencia": "Média"
     },
     {
       "posicao": 4,
-      "favorabilidade": "67.7%",
+      "satisfacao": "67.7%",
       "pergunta": "Q8: Existem canais de comunicação bem definidos para que os colaboradores possam expressar suas sugestões e reivindicações",
       "pilar": "Comunicação",
       "urgencia": "Alerta"
     },
     {
       "posicao": 5,
-      "favorabilidade": "72.9%",
+      "satisfacao": "72.9%",
       "pergunta": "Q21: Nós sempre comemoramos as metas atingidas e os eventos especiais",
       "pilar": "Gestão do Capital Humano",
       "urgencia": "Alerta"
+    }
+  ],
+  "alertas_criticos_2026": [
+    {
+      "pergunta": "Q14",
+      "percentual_discordam_muito": "13%",
+      "descricao": "As pessoas aqui nesta empresa são remuneradas adequadamente em relação a outras empresas do mesmo segmento de mercado.",
+      "pilar": "Gestão do Capital Humano",
+      "urgencia": "Crítica",
+      "sugestoes_estrategicas": [
+        "Revisar política salarial",
+        "Pesquisa de mercado de remuneração",
+        "Implementar plano de reajustes",
+        "Criar política de bonificação"
+      ]
+    },
+    {
+      "pergunta": "Q45",
+      "percentual_concordam_muito": "16%",
+      "descricao": "As pessoas fazem 'politicagem' (puxa saco) como forma de obter resultados.",
+      "pilar": "Trabalho em Equipe",
+      "urgencia": "Crítica",
+      "sugestoes_estrategicas": [
+        "Investigar causas raiz dos problemas identificados",
+        "Implementar melhorias nos processos de liderança",
+        "Revisar políticas de gestão de pessoas",
+        "Promover treinamentos de conscientização"
+      ]
     }
   ],
   "areas_criticas_2026": [
@@ -180,26 +210,37 @@
     {
       "nome": "Remuneração",
       "satisfacao": "59.4%",
-      "urgencia": "Alta",
+      "urgencia": "Crítica",
       "problemas": [
         "Abaixo do mercado",
-        "Falta de competitividade",
+        "13% discordam muito",
         "Impacta retenção"
       ],
       "impacto": "Risco de perda de talentos"
     },
     {
-      "nome": "Assédio",
-      "satisfacao": "9.38%",
-      "urgencia": "Crítica",
+      "nome": "Politicagem",
+      "satisfacao": "65.6%",
+      "urgencia": "Alta",
       "problemas": [
-        "Casos de humilhação reportados",
-        "~9 pessoas afetadas",
-        "Ambiente psicológico prejudicado"
+        "16% concordam muito (problema)",
+        "Cultura de puxa-saco",
+        "Impacta trabalho em equipe"
       ],
-      "impacto": "Risco legal e cultural"
+      "impacto": "Risco de desmotivação e injustiça"
     }
   ],
+  "distribuicao_respostas_2026": {
+    "escala_likert": {
+      "concordo_muito": "Percentual de respostas 'Concordo Muito'",
+      "concordo": "Percentual de respostas 'Concordo'",
+      "discordo": "Percentual de respostas 'Discordo'",
+      "discordo_muito": "Percentual de respostas 'Discordo Muito'",
+      "nao_aplicavel": "Percentual de respostas 'Não se aplica'"
+    },
+    "metodologia": "% Concordo + Concordo Muito = Satisfação",
+    "exemplo_calculo": "87.9% = Média ponderada de todas as perguntas"
+  },
   "comentarios_qualitativos_2026": {
     "sugestoes_melhoria": {
       "beneficios": "Revisão completa do pacote de benefícios",
@@ -222,17 +263,6 @@
   "plano_acao_2026": [
     {
       "prioridade": "Crítica",
-      "area": "Assédio",
-      "acoes": [
-        "Investigação imediata de casos reportados",
-        "Implementação de canal de denúncias",
-        "Treinamento sobre respeito e diversidade"
-      ],
-      "prazo": "1 semana",
-      "responsavel": "RH + Diretoria"
-    },
-    {
-      "prioridade": "Crítica",
       "area": "Benefícios",
       "acoes": [
         "Pesquisa de mercado de benefícios",
@@ -244,7 +274,7 @@
       "responsavel": "RH + Financeiro"
     },
     {
-      "prioridade": "Alta",
+      "prioridade": "Crítica",
       "area": "Remuneração",
       "acoes": [
         "Pesquisa salarial de mercado",
@@ -256,15 +286,27 @@
       "responsavel": "RH + Financeiro"
     },
     {
+      "prioridade": "Crítica",
+      "area": "Politicagem (Trabalho em Equipe)",
+      "acoes": [
+        "Investigar causas raiz dos problemas identificados",
+        "Implementar melhorias nos processos de liderança",
+        "Revisar políticas de gestão de pessoas",
+        "Promover treinamentos de conscientização"
+      ],
+      "prazo": "45 dias",
+      "responsavel": "Liderança + RH"
+    },
+    {
       "prioridade": "Alta",
       "area": "Comunicação",
       "acoes": [
-        "Mapeamento de canais existentes",
-        "Criação de canais formais",
-        "Reuniões semanais de alinhamento",
-        "Sistema de feedback anônimo"
+        "Promover dinâmicas de integração entre equipes",
+        "Revisar processos internos para reduzir atritos",
+        "Fortalecer canais de comunicação",
+        "Estabelecer reuniões periódicas de alinhamento"
       ],
-      "prazo": "45 dias",
+      "prazo": "30 dias",
       "responsavel": "Liderança + RH"
     }
   ]

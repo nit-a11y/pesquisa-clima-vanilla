@@ -1,0 +1,278 @@
+{
+  "metadata": {
+    "ano": "2025",
+    "fonte": "frontend/assets/data/comparativostxt/analise-2025.txt",
+    "data_analise": "24/04/2026",
+    "total_respondentes": 92,
+    "versao": "1.0.0",
+    "nota_metodologica": "Satisfação usa % de concordância (Concordo + Concordo Sempre)"
+  },
+  "resumo_executivo": {
+    "satisfacao_geral": "82.88%",
+    "media_escore": 3.2,
+    "total_perguntas": 50,
+    "status_geral": "Positivo com pontos de atenção",
+    "metodologia_calculo": "% Concordo + Concordo Sempre = Satisfação"
+  },
+  "pilares_2025": [
+    {
+      "nome": "Ambiente de Trabalho",
+      "satisfacao": "88.8%",
+      "status": "Ótimo",
+      "perguntas": 3,
+      "foco": "Condições físicas, recursos, ambiente geral",
+      "destaques": [
+        "Lugar agradável para trabalhar (88%)",
+        "Equipamentos e recursos adequados (84%)",
+        "Excelente lugar para trabalhar (95%)"
+      ]
+    },
+    {
+      "nome": "Comprometimento Organizacional",
+      "satisfacao": "88.0%",
+      "status": "Ótimo",
+      "perguntas": 4,
+      "foco": "Engajamento, orgulho, vontade de trabalhar",
+      "destaques": [
+        "Trabalho tem sentido especial (98%)",
+        "Orgulho das pessoas (92%)",
+        "Disposição para ir trabalhar (80%)"
+      ]
+    },
+    {
+      "nome": "Gestão do Capital Humano",
+      "satisfacao": "81.8%",
+      "status": "Bom",
+      "perguntas": 18,
+      "foco": "Desenvolvimento, reconhecimento, valorização",
+      "desafios": [
+        "Remuneração adequada (49%)",
+        "Reconhecimento pelo esforço (74%)",
+        "Treinamentos e desenvolvimento (73%)"
+      ]
+    },
+    {
+      "nome": "Comunicação",
+      "satisfacao": "64.7%",
+      "status": "Atenção",
+      "perguntas": 4,
+      "foco": "Canais de comunicação, relacionamento com diretoria",
+      "desafios": [
+        "Canais bem definidos (55%)",
+        "Fofoca no ambiente (25%)",
+        "Comunicação da liderança (91%)"
+      ]
+    },
+    {
+      "nome": "Liderança",
+      "satisfacao": "87.2%",
+      "status": "Ótimo",
+      "perguntas": 17,
+      "foco": "Relacionamento com líder, comunicação, feedback",
+      "destaques": [
+        "Clareza sobre líder (96%)",
+        "Ética e honestidade (96%)",
+        "Acesso e comunicação (98%)"
+      ]
+    },
+    {
+      "nome": "Trabalho em Equipe",
+      "satisfacao": "77.2%",
+      "status": "Bom",
+      "perguntas": 4,
+      "foco": "Colaboração, espírito de equipe, relacionamento",
+      "desafios": [
+        "Colaboração das pessoas (87%)",
+        "Politicagem (61%)",
+        "Sentimento de equipe (86%)"
+      ]
+    }
+  ],
+  "top_melhores_perguntas_2025": [
+    {
+      "posicao": 1,
+      "satisfacao": "99.0%",
+      "pergunta": "Q43: Eu sou bem tratado, independente de minha função na empresa",
+      "pilar": "Gestão do Capital Humano"
+    },
+    {
+      "posicao": 2,
+      "satisfacao": "99.0%",
+      "pergunta": "Q35: As pessoas aqui na empresa são bem tratadas independentemente da sua idade, cor, religião ou sexo",
+      "pilar": "Gestão do Capital Humano"
+    },
+    {
+      "posicao": 3,
+      "satisfacao": "98.0%",
+      "pergunta": "Q22: É fácil se aproximar do seu líder e é também fácil de falar com ele",
+      "pilar": "Liderança"
+    },
+    {
+      "posicao": 4,
+      "satisfacao": "98.0%",
+      "pergunta": "Q9: Meu trabalho tem um sentido especial. Para mim, não é só 'mais um emprego'",
+      "pilar": "Comprometimento Organizacional"
+    },
+    {
+      "posicao": 5,
+      "satisfacao": "96.0%",
+      "pergunta": "Q17: Você sabe com clareza quem é seu líder (superior imediato)",
+      "pilar": "Liderança"
+    }
+  ],
+  "top_piores_perguntas_2025": [
+    {
+      "posicao": 1,
+      "satisfacao": "25.0%",
+      "pergunta": "Q46: Existe fofoca por aqui",
+      "pilar": "Comunicação",
+      "urgencia": "Crítica"
+    },
+    {
+      "posicao": 2,
+      "satisfacao": "49.0%",
+      "pergunta": "Q8: As pessoas aqui nesta empresa são remuneradas adequadamente em relação a outras empresas do mesmo segmento de mercado",
+      "pilar": "Gestão do Capital Humano",
+      "urgencia": "Crítica"
+    },
+    {
+      "posicao": 3,
+      "satisfacao": "61.0%",
+      "pergunta": "Q40: As pessoas fazem 'politicagem' (puxa saco) como forma de obter resultados",
+      "pilar": "Trabalho em Equipe",
+      "urgencia": "Alta"
+    },
+    {
+      "posicao": 4,
+      "satisfacao": "67.0%",
+      "pergunta": "Q39: Nós sempre comemoramos as metas atingidas e os eventos especiais",
+      "pilar": "Gestão do Capital Humano",
+      "urgencia": "Alerta"
+    },
+    {
+      "posicao": 5,
+      "satisfacao": "73.0%",
+      "pergunta": "Q7: A empresa demonstra reconhecimento pelo bom trabalho e pelo esforço extra",
+      "pilar": "Gestão do Capital Humano",
+      "urgencia": "Alerta"
+    }
+  ],
+  "areas_criticas_2025": [
+    {
+      "nome": "Comunicação Interna",
+      "satisfacao": "64.7%",
+      "urgencia": "Alta",
+      "problemas": [
+        "Fofoca excessiva (25% satisfação)",
+        "Canais mal definidos (55% satisfação)",
+        "Falta de clareza na comunicação"
+      ],
+      "impacto": "Afeta o clima organizacional e colaboração"
+    },
+    {
+      "nome": "Remuneração",
+      "satisfacao": "49.0%",
+      "urgencia": "Crítica",
+      "problemas": [
+        "Salário abaixo do mercado",
+        "Falta de competitividade",
+        "Impacta retenção de talentos"
+      ],
+      "impacto": "Risco de turnover e desmotivação"
+    },
+    {
+      "nome": "Politicagem",
+      "satisfacao": "61.0%",
+      "urgencia": "Alta",
+      "problemas": [
+        "Cultura de puxa-saco",
+        "Competição interna prejudicial",
+        "Afeta trabalho em equipe"
+      ],
+      "impacto": "Desmotivação e injustiça percebida"
+    }
+  ],
+  "comentarios_qualitativos_2025": {
+    "sugestoes_melhoria": [
+      "Melhorar vale alimentação e benefícios",
+      "Revisar política salarial",
+      "Criar canais de comunicação eficazes",
+      "Oferecer mais treinamentos",
+      "Melhorar infraestrutura física"
+    ],
+    "pontos_fortes": [
+      "Bom ambiente de trabalho",
+      "Liderança acessível e ética",
+      "Tratamento igualitário",
+      "Estabilidade no emprego",
+      "Bons relacionamentos"
+    ],
+    "preocupacoes": [
+      "Fofoca e politicagem",
+      "Remuneração não competitiva",
+      "Falta de reconhecimento",
+      "Comunicação ineficaz",
+      "Infraestrutura inadequada"
+    ]
+  },
+  "plano_acao_2025": [
+    {
+      "prioridade": "Crítica",
+      "area": "Remuneração e Benefícios",
+      "acoes": [
+        "Pesquisa salarial de mercado",
+        "Revisar política de benefícios",
+        "Aumentar vale alimentação",
+        "Criar plano de carreira"
+      ],
+      "prazo": "90 dias",
+      "responsavel": "RH + Diretoria"
+    },
+    {
+      "prioridade": "Alta",
+      "area": "Comunicação Interna",
+      "acoes": [
+        "Implementar canal de denúncias",
+        "Criar canais formais de comunicação",
+        "Programa de integração",
+        "Reuniões periódicas de alinhamento"
+      ],
+      "prazo": "60 dias",
+      "responsavel": "RH + Liderança"
+    },
+    {
+      "prioridade": "Alta",
+      "area": "Cultura Organizacional",
+      "acoes": [
+        "Programa anti-fofoca",
+        "Treinamento sobre ética",
+        "Fortalecer trabalho em equipe",
+        "Reconhecimento por desempenho"
+      ],
+      "prazo": "45 dias",
+      "responsavel": "RH + Liderança"
+    }
+  ],
+  "comparativo_2025_vs_2024": {
+    "satisfacao_geral": {
+      "2025": "82.88%",
+      "2024": "75.83%",
+      "variacao": "+7.05pp"
+    },
+    "respondentes": {
+      "2025": 163,
+      "2024": 92,
+      "variacao": "+77%"
+    },
+    "pilares_melhorados": [
+      "Liderança: +8.3pp",
+      "Comunicação: +12.9pp",
+      "Trabalho em Equipe: +6.1pp"
+    ],
+    "desafios_persistentes": [
+      "Remuneração abaixo do mercado",
+      "Fofoca e politicagem",
+      "Canais de comunicação"
+    ]
+  }
+}

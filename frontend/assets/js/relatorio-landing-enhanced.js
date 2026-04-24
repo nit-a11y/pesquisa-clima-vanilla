@@ -77,25 +77,25 @@ class RelatorioLandingEnhanced {
   carregarDadosMock() {
     this.dados = {
       ano2025: {
-        metadata: { ano: "2025", total_respondentes: 92, satisfacao_geral: "82.83%" },
+        metadata: { ano: "2025", total_respondentes: 92, satisfacao_geral: "82.88%" },
         pilares: [
-          { nome: "Liderança", satisfacao: 85, status: "Bom" },
-          { nome: "Comunicação", satisfacao: 68, status: "Atenção" },
-          { nome: "Comprometimento", satisfacao: 85, status: "Bom" },
-          { nome: "Ambiente de Trabalho", satisfacao: 78, status: "Bom" },
-          { nome: "Trabalho em Equipe", satisfacao: 82, status: "Bom" },
-          { nome: "Gestão do Capital Humano", satisfacao: 76, status: "Bom" }
+          { nome: "Ambiente de Trabalho", satisfacao: 88.8, status: "Ótimo" },
+          { nome: "Comprometimento Organizacional", satisfacao: 88.0, status: "Ótimo" },
+          { nome: "Gestão do Capital Humano", satisfacao: 81.8, status: "Bom" },
+          { nome: "Comunicação", satisfacao: 64.7, status: "Atenção" },
+          { nome: "Liderança", satisfacao: 87.2, status: "Ótimo" },
+          { nome: "Trabalho em Equipe", satisfacao: 77.2, status: "Bom" }
         ]
       },
       ano2026: {
-        metadata: { ano: "2026", total_respondentes: 96, satisfacao_geral: "88.4%" },
+        metadata: { ano: "2026", total_respondentes: 96, satisfacao_geral: "87.9%" },
         pilares: [
-          { nome: "Liderança", satisfacao: 93.3, status: "Excelente", variacao_vs_2025: "+8.3pp" },
-          { nome: "Comunicação", satisfacao: 80.9, status: "Bom", variacao_vs_2025: "+12.9pp" },
-          { nome: "Comprometimento", satisfacao: 93.0, status: "Excelente", variacao_vs_2025: "+8.0pp" },
-          { nome: "Ambiente de Trabalho", satisfacao: 79.5, status: "Bom", variacao_vs_2025: "+1.5pp" },
-          { nome: "Trabalho em Equipe", satisfacao: 84.2, status: "Bom", variacao_vs_2025: "+2.2pp" },
-          { nome: "Gestão do Capital Humano", satisfacao: 58.3, status: "Crítico", variacao_vs_2025: "-17.7pp" }
+          { nome: "Liderança", satisfacao: 93.3, status: "Excelente", variacao_vs_2025: "+6.1pp" },
+          { nome: "Comprometimento Organizacional", satisfacao: 93.0, status: "Excelente", variacao_vs_2025: "+5.0pp" },
+          { nome: "Ambiente de Trabalho", satisfacao: 91.7, status: "Ótimo", variacao_vs_2025: "+2.9pp" },
+          { nome: "Gestão do Capital Humano", satisfacao: 84.6, status: "Bom", variacao_vs_2025: "+2.8pp" },
+          { nome: "Trabalho em Equipe", satisfacao: 84.1, status: "Bom", variacao_vs_2025: "+6.9pp" },
+          { nome: "Comunicação", satisfacao: 80.9, status: "Bom", variacao_vs_2025: "+16.2pp" }
         ],
         pontos_criticos: [
           { area: "Benefícios", valor: 58.3, status: "CRÍTICO", comentarios: 64 },
@@ -172,23 +172,67 @@ class RelatorioLandingEnhanced {
         unidades: {
           eusebio: {
             nome: 'Eusébio',
-            percentual_satisfacao: 83.5,
-            total_respostas: 6
+            percentual_satisfacao: 92.5,
+            media_satisfacao: 3.5,
+            total_respostas: 6,
+            satisfacao_geral: '92.5%',
+            pilares: {
+              ambiente_trabalho: { favorabilidade: 100, status: 'Ótimo' },
+              comprometimento_organizacional: { favorabilidade: 100, status: 'Ótimo' },
+              comunicacao: { favorabilidade: 83.3, status: 'Ótimo' },
+              gestao_pessoas: { favorabilidade: 87.5, status: 'Ótimo' },
+              lideranca: { favorabilidade: 96.7, status: 'Ótimo' },
+              trabalho_equipe: { favorabilidade: 87.5, status: 'Ótimo' }
+            },
+            comentarios: 4
           },
           fortaleza: {
             nome: 'Fortaleza',
-            percentual_satisfacao: 76.3,
-            total_respostas: 64
-          },
-          juazeiro_do_norte: {
-            nome: 'Juazeiro do Norte',
-            percentual_satisfacao: 81.8,
-            total_respostas: 10
+            percentual_satisfacao: 86.5,
+            media_satisfacao: 3.3,
+            total_respostas: 64,
+            satisfacao_geral: '86.5%',
+            pilares: {
+              ambiente_trabalho: { favorabilidade: 90.6, status: 'Ótimo' },
+              comprometimento_organizacional: { favorabilidade: 92.2, status: 'Ótimo' },
+              comunicacao: { favorabilidade: 79.2, status: 'Ótimo' },
+              gestao_pessoas: { favorabilidade: 83.3, status: 'Ótimo' },
+              lideranca: { favorabilidade: 92, status: 'Ótimo' },
+              trabalho_equipe: { favorabilidade: 82, status: 'Ótimo' }
+            },
+            comentarios: 44
           },
           sao_luis: {
             nome: 'São Luís',
-            percentual_satisfacao: 79.3,
-            total_respostas: 16
+            percentual_satisfacao: 89.8,
+            media_satisfacao: 3.4,
+            total_respostas: 16,
+            satisfacao_geral: '89.8%',
+            pilares: {
+              ambiente_trabalho: { favorabilidade: 89.6, status: 'Ótimo' },
+              comprometimento_organizacional: { favorabilidade: 93.8, status: 'Ótimo' },
+              comunicacao: { favorabilidade: 85.4, status: 'Ótimo' },
+              gestao_pessoas: { favorabilidade: 86, status: 'Ótimo' },
+              lideranca: { favorabilidade: 96.7, status: 'Ótimo' },
+              trabalho_equipe: { favorabilidade: 87.5, status: 'Ótimo' }
+            },
+            comentarios: 11
+          },
+          juazeiro_do_norte: {
+            nome: 'Juazeiro do Norte',
+            percentual_satisfacao: 91.0,
+            media_satisfacao: 3.5,
+            total_respostas: 10,
+            satisfacao_geral: '91.0%',
+            pilares: {
+              ambiente_trabalho: { favorabilidade: 96.7, status: 'Ótimo' },
+              comprometimento_organizacional: { favorabilidade: 92.5, status: 'Ótimo' },
+              comunicacao: { favorabilidade: 83.3, status: 'Ótimo' },
+              gestao_pessoas: { favorabilidade: 89.4, status: 'Ótimo' },
+              lideranca: { favorabilidade: 94, status: 'Ótimo' },
+              trabalho_equipe: { favorabilidade: 90, status: 'Ótimo' }
+            },
+            comentarios: 5
           }
         }
       };
@@ -216,10 +260,14 @@ class RelatorioLandingEnhanced {
     const unidades = Object.values(this.dadosUnidades.unidades);
     console.log('Unidades processadas:', unidades);
     
+    // Ordenar por satisfação (maior para menor)
+    unidades.sort((a, b) => b.percentual_satisfacao - a.percentual_satisfacao);
+    
     tbody.innerHTML = unidades.map(unidade => {
       // Status baseado na realidade dos dados
-      let status = 'Bom';
-      if (unidade.percentual_satisfacao >= 85) status = 'Ótimo';
+      let status = unidade.status_geral || 'Bom';
+      if (unidade.percentual_satisfacao >= 90) status = 'Excelente';
+      else if (unidade.percentual_satisfacao >= 85) status = 'Ótimo';
       else if (unidade.percentual_satisfacao < 75) status = 'Atenção';
       
       // Tendências baseadas na realidade
@@ -254,8 +302,9 @@ class RelatorioLandingEnhanced {
     
     container.innerHTML = unidades.map(unidade => {
       // Status baseado na realidade dos dados
-      let status = 'Bom';
-      if (unidade.percentual_satisfacao >= 85) status = 'Ótimo';
+      let status = unidade.status_geral || 'Bom';
+      if (unidade.percentual_satisfacao >= 90) status = 'Excelente';
+      else if (unidade.percentual_satisfacao >= 85) status = 'Ótimo';
       else if (unidade.percentual_satisfacao < 75) status = 'Atenção';
       
       // Tendências baseadas na realidade
@@ -284,7 +333,7 @@ class RelatorioLandingEnhanced {
                 <span class="metrica-label">Média</span>
               </div>
               <div class="metrica-item">
-                <span class="metrica-valor satisfacao-geral">${unidade.satisfacao_geral}%</span>
+                <span class="metrica-valor satisfacao-geral">${unidade.satisfacao_geral}</span>
                 <span class="metrica-label">Satisfação Geral</span>
               </div>
             </div>
@@ -775,8 +824,8 @@ class RelatorioLandingEnhanced {
       }
     });
     
-    // Limpar todos os canvases
-    const canvasIds = ['comparativoGeralChart', 'comparativoDetalhadoChart', 'evolucaoTemporalChart', 'analiseSetorialChart'];
+    // Limpar canvases (removidos: comparativoDetalhadoChart, evolucaoTemporalChart)
+    const canvasIds = ['comparativoGeralChart'];
     canvasIds.forEach(id => this.limparCanvas(id));
   }
 
@@ -794,7 +843,8 @@ class RelatorioLandingEnhanced {
     
     // Inicializar sem delay para evitar problemas
     this.initComparativoGeral();
-    this.initEvolucaoTemporal();
+    // Removido: Timeline e Evolução Temporal
+    // Removido: Gráfico Comparativo Detalhado
     // Gráfico detalhado será inicializado após carregamento dos dados das unidades
     // Removido: this.initAnaliseSetorial() - não necessário na versão simplificada
     
@@ -958,78 +1008,11 @@ class RelatorioLandingEnhanced {
   }
 
   /**
-   * Gráfico de evolução temporal
+   * Gráfico de evolução temporal - REMOVIDO
    */
-  initEvolucaoTemporal() {
-    const ctx = document.getElementById('evolucaoTemporalChart');
-    if (!ctx) return;
-    
-    // Limpar canvas completamente
-    this.limparCanvas('evolucaoTemporalChart');
-
-    const labels = ['Fev/2025', 'Mar/2025', 'Abr/2025', 'Mai/2025', 'Jun/2025', 'Jul/2025', 'Ago/2025', 'Set/2025', 'Out/2025', 'Nov/2025', 'Dez/2025', 'Jan/2026', 'Fev/2026', 'Mar/2026', 'Abr/2026'];
-    
-    // Simular evolução com base nos dados reais
-    const dadosEvolucao = labels.map((label, index) => {
-      if (index < 1) return 82.83; // Valor inicial 2025
-      if (index === labels.length - 1) return 88.4; // Valor final 2026
-      // Simular progresso gradual
-      const progresso = index / (labels.length - 1);
-      return 82.83 + (88.4 - 82.83) * progresso + (Math.random() - 0.5) * 2;
-    });
-
-    this.charts.evolucaoTemporal = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Índice de Satisfação',
-          data: dadosEvolucao,
-          borderColor: 'rgba(220, 38, 38, 1)',
-          backgroundColor: 'rgba(220, 38, 38, 0.1)',
-          borderWidth: 3,
-          fill: true,
-          tension: 0.4,
-          pointRadius: 4,
-          pointBackgroundColor: 'rgba(220, 38, 38, 1)',
-          pointBorderColor: '#fff',
-          pointBorderWidth: 2
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: true,
-        aspectRatio: 2,
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            callbacks: {
-              label: (context) => `Satisfação: ${context.parsed.y.toFixed(1)}%`
-            }
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: false,
-            min: 75,
-            max: 95,
-            grid: { color: '#E5E7EB' },
-            ticks: {
-              font: { weight: '600' },
-              callback: (value) => value + '%'
-            }
-          },
-          x: {
-            grid: { display: false },
-            ticks: { 
-              font: { weight: '600', size: 11 },
-              maxRotation: 45
-            }
-          }
-        }
-      }
-    });
-  }
+  /*initEvolucaoTemporal() {
+    // Seção removida do relatório
+  }*/
 
   /**
    * Gráfico de análise setorial
@@ -1261,6 +1244,38 @@ window.mudarTipoGrafico = () => {
   }
 };
 
+/**
+ * Inicializar painel lateral do dicionário de dados
+ */
+function initDicionarioModal() {
+  const btnDicionario = document.getElementById('btnDicionario');
+  const sidePanel = document.getElementById('sidePanel');
+  const closeSidePanel = document.getElementById('closeSidePanel');
+
+  if (!btnDicionario || !sidePanel) return;
+
+  // Abrir painel
+  btnDicionario.addEventListener('click', function() {
+    sidePanel.classList.add('active');
+  });
+
+  // Fechar painel pelo botão X
+  if (closeSidePanel) {
+    closeSidePanel.addEventListener('click', closeSidePanelFn);
+  }
+
+  // Fechar painel com ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && sidePanel.classList.contains('active')) {
+      closeSidePanelFn();
+    }
+  });
+
+  function closeSidePanelFn() {
+    sidePanel.classList.remove('active');
+  }
+}
+
 // Exportações
 window.exportarPDF = () => {
   console.log('Exportando PDF...');
@@ -1322,7 +1337,10 @@ window.relatorioLanding = null;
 
 document.addEventListener('DOMContentLoaded', function() {
   window.relatorioLanding = new RelatorioLandingEnhanced();
-  
+
+  // Inicializar modal do dicionário
+  initDicionarioModal();
+
   // Adicionar scroll progress bar
   window.addEventListener('scroll', function() {
     const scrollProgress = document.querySelector('.scroll-progress');

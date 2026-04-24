@@ -2688,7 +2688,7 @@ class DictionaryPanel {
                 <h4>🏗️ Estrutura da Análise</h4>
                 <ul>
                   <li><strong>7 Pilares:</strong> Ambiente, Comprometimento, Comunicação, Gestão, Liderança, Trabalho em Equipe, Capital Humano</li>
-                  <li><strong>50 Questões:</strong> Distribuídas entre os pilares</li>
+                  <li><strong>45 Questões:</strong> Distribuídas entre os pilares</li>
                   <li><strong>Análise Individual:</strong> Cada questão tem sua própria métrica</li>
                 </ul>
               </div>

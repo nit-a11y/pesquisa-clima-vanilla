@@ -1,0 +1,268 @@
+{
+  "metadata": {
+    "ano": "2026",
+    "fonte": "frontend/assets/data/comparativostxt/dados 2026 por unidade para atualizar .txt",
+    "data_analise": "24/04/2026",
+    "total_unidades": 4,
+    "total_respondentes_geral": 96,
+    "versao": "1.0.0",
+    "nota_metodologica": "Satisfação usa % de concordância (Concordo + Concordo Muito)"
+  },
+  "resumo_geral": {
+    "satisfacao_geral_consolidada": "87.7%",
+    "media_respondentes_por_unidade": 24,
+    "unidade_maior_satisfacao": "Eusébio (92.5%)",
+    "unidade_menor_satisfacao": "Fortaleza (86.5%)",
+    "variacao_entre_unidades": "6.0pp"
+  },
+  "unidades": [
+    {
+      "nome": "Eusébio",
+      "total_respostas": 6,
+      "media_satisfacao": "3.5",
+      "satisfacao_geral": "92.5%",
+      "status_geral": "Excelente",
+      "pilares": {
+        "ambiente_trabalho": {
+          "satisfacao": "100.0%",
+          "status": "Ótimo"
+        },
+        "comprometimento_organizacional": {
+          "satisfacao": "100.0%",
+          "status": "Ótimo"
+        },
+        "comunicacao": {
+          "satisfacao": "83.3%",
+          "status": "Ótimo"
+        },
+        "gestao_pessoas": {
+          "satisfacao": "87.5%",
+          "status": "Ótimo"
+        },
+        "lideranca": {
+          "satisfacao": "96.7%",
+          "status": "Ótimo"
+        },
+        "trabalho_equipe": {
+          "satisfacao": "87.5%",
+          "status": "Ótimo"
+        }
+      },
+      "questao_mais_comentada": {
+        "numero": "Q15",
+        "total_comentarios": 4
+      }
+    },
+    {
+      "nome": "Fortaleza",
+      "total_respostas": 64,
+      "media_satisfacao": "3.3",
+      "satisfacao_geral": "86.5%",
+      "status_geral": "Ótimo",
+      "pilares": {
+        "ambiente_trabalho": {
+          "satisfacao": "90.6%",
+          "status": "Ótimo"
+        },
+        "comprometimento_organizacional": {
+          "satisfacao": "92.2%",
+          "status": "Ótimo"
+        },
+        "comunicacao": {
+          "satisfacao": "79.2%",
+          "status": "Ótimo"
+        },
+        "gestao_pessoas": {
+          "satisfacao": "83.3%",
+          "status": "Ótimo"
+        },
+        "lideranca": {
+          "satisfacao": "92.0%",
+          "status": "Ótimo"
+        },
+        "trabalho_equipe": {
+          "satisfacao": "82.0%",
+          "status": "Ótimo"
+        }
+      },
+      "questao_mais_comentada": {
+        "numero": "Q15",
+        "total_comentarios": 44
+      }
+    },
+    {
+      "nome": "São Luís",
+      "total_respostas": 16,
+      "media_satisfacao": "3.4",
+      "satisfacao_geral": "89.8%",
+      "status_geral": "Excelente",
+      "pilares": {
+        "ambiente_trabalho": {
+          "satisfacao": "89.6%",
+          "status": "Ótimo"
+        },
+        "comprometimento_organizacional": {
+          "satisfacao": "93.8%",
+          "status": "Ótimo"
+        },
+        "comunicacao": {
+          "satisfacao": "85.4%",
+          "status": "Ótimo"
+        },
+        "gestao_pessoas": {
+          "satisfacao": "86.0%",
+          "status": "Ótimo"
+        },
+        "lideranca": {
+          "satisfacao": "96.7%",
+          "status": "Ótimo"
+        },
+        "trabalho_equipe": {
+          "satisfacao": "87.5%",
+          "status": "Ótimo"
+        }
+      },
+      "questao_mais_comentada": {
+        "numero": "Q15",
+        "total_comentarios": 11
+      }
+    },
+    {
+      "nome": "Juazeiro do Norte",
+      "total_respostas": 10,
+      "media_satisfacao": "3.5",
+      "satisfacao_geral": "91.0%",
+      "status_geral": "Excelente",
+      "pilares": {
+        "ambiente_trabalho": {
+          "satisfacao": "96.7%",
+          "status": "Ótimo"
+        },
+        "comprometimento_organizacional": {
+          "satisfacao": "92.5%",
+          "status": "Ótimo"
+        },
+        "comunicacao": {
+          "satisfacao": "83.3%",
+          "status": "Ótimo"
+        },
+        "gestao_pessoas": {
+          "satisfacao": "89.4%",
+          "status": "Ótimo"
+        },
+        "lideranca": {
+          "satisfacao": "94.0%",
+          "status": "Ótimo"
+        },
+        "trabalho_equipe": {
+          "satisfacao": "90.0%",
+          "status": "Ótimo"
+        }
+      },
+      "questao_mais_comentada": {
+        "numero": "Q15",
+        "total_comentarios": 5
+      }
+    }
+  ],
+  "analise_comparativa": {
+    "ranking_satisfacao_unidades": [
+      {
+        "posicao": 1,
+        "unidade": "Eusébio",
+        "satisfacao": "92.5%",
+        "total_respostas": 6,
+        "tendencia": "📈"
+      },
+      {
+        "posicao": 2,
+        "unidade": "Juazeiro do Norte",
+        "satisfacao": "91.0%",
+        "total_respostas": 10,
+        "tendencia": "📈"
+      },
+      {
+        "posicao": 3,
+        "unidade": "São Luís",
+        "satisfacao": "89.8%",
+        "total_respostas": 16,
+        "tendencia": "➡️"
+      },
+      {
+        "posicao": 4,
+        "unidade": "Fortaleza",
+        "satisfacao": "86.5%",
+        "total_respostas": 64,
+        "tendencia": "➡️"
+      }
+    ],
+    "pilares_desempenho": {
+      "ambiente_trabalho": {
+        "media_geral": "94.2%",
+        "melhor_unidade": "Juazeiro do Norte (96.7%)",
+        "pior_unidade": "São Luís (89.6%)",
+        "variacao": "7.1pp"
+      },
+      "comprometimento_organizacional": {
+        "media_geral": "94.6%",
+        "melhor_unidade": "Eusébio (100.0%)",
+        "pior_unidade": "Juazeiro do Norte (92.5%)",
+        "variacao": "7.5pp"
+      },
+      "comunicacao": {
+        "media_geral": "82.8%",
+        "melhor_unidade": "São Luís (85.4%)",
+        "pior_unidade": "Fortaleza (79.2%)",
+        "variacao": "6.2pp"
+      },
+      "gestao_pessoas": {
+        "media_geral": "86.6%",
+        "melhor_unidade": "Juazeiro do Norte (89.4%)",
+        "pior_unidade": "Fortaleza (83.3%)",
+        "variacao": "6.1pp"
+      },
+      "lideranca": {
+        "media_geral": "94.9%",
+        "melhor_unidade": "Eusébio (96.7%)",
+        "pior_unidade": "Fortaleza (92.0%)",
+        "variacao": "4.7pp"
+      },
+      "trabalho_equipe": {
+        "media_geral": "86.8%",
+        "melhor_unidade": "Juazeiro do Norte (90.0%)",
+        "pior_unidade": "Fortaleza (82.0%)",
+        "variacao": "8.0pp"
+      }
+    }
+  },
+  "insights_estrategicos": [
+    {
+      "tipo": "Diferença Regional",
+      "titulo": "Eusébio lidera em satisfação apesar do menor volume",
+      "descricao": "Com 92.5% de satisfação geral, Eusébio apresenta a melhor performance, com 100% em Ambiente de Trabalho e Comprometimento Organizacional.",
+      "impacto": "Alto - Excelente referência organizacional",
+      "recomendacao": "Documentar boas práticas e replicar para outras unidades"
+    },
+    {
+      "tipo": "Desafio Estratégico",
+      "titulo": "Fortaleza requer atenção prioritária",
+      "descricao": "Com 64 respondentes (67% do total), Fortaleza tem a menor satisfação (86.5%) e os pilares mais baixos, especialmente Comunicação (79.2%).",
+      "impacto": "Crítico - Maior volume de colaboradores",
+      "recomendacao": "Foco prioritário em ações para Fortaleza, especialmente em comunicação e gestão de pessoas"
+    },
+    {
+      "tipo": "Ponto Forte",
+      "titulo": "Liderança como pilar de excelência",
+      "descricao": "Todas as unidades mantêm liderança acima de 92%, com média geral de 94.9%. Eusébio lidera com 96.7%.",
+      "impacto": "Positivo - Pilar estabilizador organizacional",
+      "recomendacao": "Manter programas de desenvolvimento e replicar boas práticas"
+    },
+    {
+      "tipo": "Oportunidade",
+      "titulo": "Ambiente de Trabalho uniformemente forte",
+      "descricao": "Média de 94.2% com variação de apenas 7.1pp entre unidades. Todas acima de 89%.",
+      "impacto": "Positivo - Base sólida para outras melhorias",
+      "recomendacao": "Usar como exemplo para outros pilares"
+    }
+  ]
+}

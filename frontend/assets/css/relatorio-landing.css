@@ -287,6 +287,14 @@ body {
   background-clip: text;
 }
 
+.metric-comparison {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+  opacity: 0.8;
+}
+
 .metric-label {
   font-size: 1rem;
   font-weight: 600;
@@ -3197,5 +3205,287 @@ body {
   .contato-actions,
   .encerramento-actions {
     flex-direction: column;
+  }
+}
+
+/* ========================================
+ * PAINEL LATERAL - DICIONÁRIO DE DADOS
+ * ======================================== */
+
+.fab-dicionario {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--primary-red);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+}
+
+.fab-dicionario:hover {
+  background: var(--primary-red-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.fab-icon {
+  font-size: 18px;
+}
+
+.fab-label {
+  display: inline;
+}
+
+/* ========================================
+ * PAINEL LATERAL - DICIONÁRIO DE DADOS
+ * ======================================== */
+
+.side-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  background: white;
+  z-index: 10000;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+.side-panel.active {
+  transform: translateX(0);
+}
+
+.side-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background: var(--primary-red);
+  color: white;
+  flex-shrink: 0;
+}
+
+.side-panel-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.side-panel-close {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.side-panel-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.side-panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.dic-section {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dic-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.dic-section h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dic-section p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.dic-item {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  padding-left: 12px;
+  border-left: 3px solid var(--primary-red);
+}
+
+.dic-item strong {
+  color: var(--text-primary);
+}
+
+.dic-item code {
+  background: var(--bg-tertiary);
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: block;
+  margin-top: 8px;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.dic-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pillar-dic {
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 10px 14px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-red);
+}
+
+.status-table {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 8px;
+  background: var(--bg-secondary);
+  border-radius: 6px;
+}
+
+.status-row .status-badge {
+  min-width: 80px;
+  text-align: center;
+  font-size: 11px;
+  padding: 4px 8px;
+}
+
+.trend-table {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.trend-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.trend-row .trend-icon {
+  font-size: 20px;
+}
+
+.trend-row strong {
+  display: block;
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.trend-row small {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.dic-alert {
+  background: #fef3c7;
+  border: 1px solid #fbbf24;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 13px;
+  color: #92400e;
+  margin-bottom: 12px;
+}
+
+.dic-list {
+  margin-top: 8px;
+  padding-left: 18px;
+}
+
+.dic-list li {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+/* ========================================
+ * RESPONSIVIDADE DO PAINEL
+ * ======================================== */
+
+@media (max-width: 640px) {
+  .fab-dicionario {
+    bottom: 16px;
+    right: 16px;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .fab-label {
+    display: none;
+  }
+
+  .side-panel {
+    max-width: 100%;
+  }
+
+  .side-panel-header {
+    padding: 16px 20px;
+  }
+
+  .side-panel-body {
+    padding: 20px;
+  }
+
+  .status-row {
+    flex-wrap: wrap;
+  }
+
+  .status-row .status-badge {
+    min-width: 70px;
   }
 }

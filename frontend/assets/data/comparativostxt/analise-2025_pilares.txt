@@ -1,0 +1,12 @@
+PILAR	PERGUNTA		
+GESTÃO DO CAPITAL HUMANO	7) A empresa demonstra reconhecimento pelo bom trabalho e pelo esforço extra.	74%	
+GESTÃO DO CAPITAL HUMANO	39) Nós sempre comemoramos as metas atingidas e os eventos especiais.	67%	
+TRABALHO EM EQUIPE	37) Aqui as pessoas se importam umas com as outras.	75%	
+GESTÃO DO CAPITAL HUMANO	8) As pessoas aqui nesta empresa são remuneradas adequadamente em relação a outras empresas do mesmo segmento de mercado.	49%	
+LIDERANÇA	29) O seu líder envolve as pessoas em decisões que afetam atividades e seu ambiente de trabalho.	74%	
+LIDERANÇA	30) O seu líder trata todos da mesma forma, sem proteger ninguém.	73%	
+GESTÃO DO CAPITAL HUMANO	5) A empresa oferece treinamentos ou oportunidades de desenvolvimento para o meu crescimento profissional.	73%	
+GESTÃO DO CAPITAL HUMANO	47) Percebo um clima de rivalidade (competição interna) aqui.	60%	
+TRABALHO EM EQUIPE	40) As pessoas fazem “politicagem” (puxa saco) como forma de obter resultados.	61%	
+COMUNICAÇÃO	14) Existem canais de comunicação bem definidos para que os colaboradores possam expressar suas sugestões e reivindicações.	55%	
+COMUNICAÇÃO	46) Existe fofoca por aqui.	25%	

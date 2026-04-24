@@ -51,9 +51,11 @@ Esta pasta contém as análises comparativas detalhadas entre os dados da pesqui
 ### ⚠️ Novos Problemas Críticos (2026)
 
 1. **Benefícios:** 58.3% (CRÍTICO)
+   - **Primeira medição em 2026** (Q15 adicionada este ano)
    - 64 comentários negativos
    - Principal fonte de insatisfação
    - Impacto direto no turnover
+   - **Nota:** Em 2025, tema presente apenas em comentários qualitativos (sem %), com intensidade moderada
 
 2. **Remuneração:** 59.4% (ALTA)
    - Abaixo do mercado

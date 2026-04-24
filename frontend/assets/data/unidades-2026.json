@@ -4,10 +4,31 @@
       "nome": "Eusébio",
       "total_respostas": 6,
       "media_satisfacao": 3.5,
-      "percentual_satisfacao": 83.5,
-      "satisfacao_geral": 92.2,
+      "percentual_satisfacao": 92.5,
+      "satisfacao_geral": "92.5%",
       "questao_comentada": "Q15",
       "comentarios": 4,
+      "status_geral": "Excelente",
+      "alertas_criticos": [
+        "Q14: Remuneração (17% discordam muito)",
+        "Q15: Benefícios (17% discordam muito)",
+        "Q20: Humilhação (17% concordam muito - invertida)",
+        "Q45: Politicagem (17% concordam muito - invertida)"
+      ],
+      "top_piores": [
+        "Q9: Sugestões não ouvidas (66.7%)",
+        "Q14: Remuneração (66.7%)",
+        "Q15: Benefícios (66.7%)",
+        "Q21: Comemoração metas (66.7%)",
+        "Q22: Valorização (66.7%)"
+      ],
+      "top_melhores": [
+        "Q1: Ambiente físico (100%)",
+        "Q2: Equipamentos (100%)",
+        "Q3: Clima adequado (100%)",
+        "Q4: Disposição extra (100%)",
+        "Q5: Sentido do trabalho (100%)"
+      ],
       "pilares": {
         "ambiente_trabalho": {
           "favorabilidade": 100.0,
@@ -39,10 +60,30 @@
       "nome": "Fortaleza",
       "total_respostas": 64,
       "media_satisfacao": 3.3,
-      "percentual_satisfacao": 76.3,
-      "satisfacao_geral": 87.1,
+      "percentual_satisfacao": 86.5,
+      "satisfacao_geral": "86.5%",
       "questao_comentada": "Q15",
       "comentarios": 44,
+      "status_geral": "Ótimo",
+      "alertas_criticos": [
+        "Q45: Politicagem (20% concordam muito - invertida)",
+        "Q14: Remuneração (50% - CRÍTICO)",
+        "Q15: Benefícios (54.7% - CRÍTICO)"
+      ],
+      "top_piores": [
+        "Q14: Remuneração (50%)",
+        "Q15: Benefícios (54.7%)",
+        "Q45: Politicagem (56.3%)",
+        "Q21: Comemoração metas (62.5%)",
+        "Q8: Canais comunicação (64.1%)"
+      ],
+      "top_melhores": [
+        "Q27: Clareza sobre líder (100%)",
+        "Q17: À vontade na empresa (98.4%)",
+        "Q19: Tratamento igualitário (96.9%)",
+        "Q29: Ética e honestidade (96.9%)",
+        "Q33: Erros como aprendizado (96.9%)"
+      ],
       "pilares": {
         "ambiente_trabalho": {
           "favorabilidade": 90.6,
@@ -74,10 +115,30 @@
       "nome": "São Luís",
       "total_respostas": 16,
       "media_satisfacao": 3.4,
-      "percentual_satisfacao": 79.3,
-      "satisfacao_geral": 90.6,
+      "percentual_satisfacao": 89.8,
+      "satisfacao_geral": "89.8%",
       "questao_comentada": "Q15",
       "comentarios": 11,
+      "status_geral": "Excelente",
+      "alertas_criticos": [
+        "Q14: Remuneração (31% discordam muito - CRÍTICO)",
+        "Q11: Treinamentos (13% discordam muito)",
+        "Q15: Benefícios (50%)"
+      ],
+      "top_piores": [
+        "Q15: Benefícios (50%)",
+        "Q8: Canais comunicação (68.8%)",
+        "Q14: Remuneração (68.8%)",
+        "Q11: Treinamentos (75%)",
+        "Q13: Reconhecimento (75%)"
+      ],
+      "top_melhores": [
+        "Q2: Equipamentos adequados (100%)",
+        "Q7: Engajamento (100%)",
+        "Q10: Líder informa (100%)",
+        "Q16: Acolhimento (100%)",
+        "Q20: Sem humilhação (100%)"
+      ],
       "pilares": {
         "ambiente_trabalho": {
           "favorabilidade": 89.6,
@@ -109,10 +170,28 @@
       "nome": "Juazeiro do Norte",
       "total_respostas": 10,
       "media_satisfacao": 3.5,
-      "percentual_satisfacao": 81.8,
-      "satisfacao_geral": 91.3,
+      "percentual_satisfacao": 91.0,
+      "satisfacao_geral": "91.0%",
       "questao_comentada": "Q15",
       "comentarios": 5,
+      "status_geral": "Excelente",
+      "alertas_criticos": [
+        "Q23: Rivalidade interna (40% - CRÍTICO - invertida)"
+      ],
+      "top_piores": [
+        "Q23: Rivalidade (40%)",
+        "Q11: Treinamentos (60%)",
+        "Q9: Sugestões ouvidas (70%)",
+        "Q4: Disposição extra (80%)",
+        "Q8: Canais comunicação (80%)"
+      ],
+      "top_melhores": [
+        "Q1: Ambiente físico (100%)",
+        "Q3: Clima adequado (100%)",
+        "Q5: Sentido do trabalho (100%)",
+        "Q7: Engajamento (100%)",
+        "Q10: Líder informa (100%)"
+      ],
       "pilares": {
         "ambiente_trabalho": {
           "favorabilidade": 96.7,

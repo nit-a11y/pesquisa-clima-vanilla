@@ -1,0 +1,654 @@
+{
+  "metadata": {
+    "ano": "2026",
+    "fonte": "frontend/assets/data/comparativostxt/dados 2026 por unidade para atualizar .txt",
+    "data_analise": "24/04/2026",
+    "total_unidades": 4,
+    "total_respondentes_geral": 186,
+    "versao": "1.0.0",
+    "nota_metodologica": "Satisfação usa % de concordância (Concordo + Concordo Muito)"
+  },
+  "resumo_geral": {
+    "satisfacao_geral_consolidada": "89.7%",
+    "media_respondentes_por_unidade": 46.5,
+    "unidade_maior_satisfacao": "Juazeiro do Norte (91.0%)",
+    "unidade_menor_satisfacao": "Eusébio (92.5%)",
+    "variacao_entre_unidades": "2.5pp"
+  },
+  "unidades": [
+    {
+      "nome": "Eusébio",
+      "total_respostas": 6,
+      "media_satisfacao": "3.5",
+      "satisfacao_geral": "92.5%",
+      "status_geral": "Excelente",
+      "pilares": {
+        "ambiente_trabalho": { "satisfacao": "100.0%", "status": "Ótimo" },
+        "comprometimento_organizacional": { "satisfacao": "100.0%", "status": "Ótimo" },
+        "comunicacao": { "satisfacao": "83.3%", "status": "Ótimo" },
+        "gestao_pessoas": { "satisfacao": "87.5%", "status": "Ótimo" },
+        "lideranca": { "satisfacao": "96.7%", "status": "Ótimo" },
+        "trabalho_equipe": { "satisfacao": "87.5%", "status": "Ótimo" }
+      },
+      "alertas_criticos": [
+        {
+          "questao": "Q14",
+          "descricao": "As pessoas aqui nesta empresa são remuneradas adequadamente em relação a outras empresas do mesmo segmento de mercado.",
+          "pilar": "Gestão do Capital Humano",
+          "percentual_discordam_muito": "17%",
+          "sugestoes_estrategicas": [
+            "Promover dinâmicas de integração entre equipes",
+            "Revisar processos internos para reduzir atritos",
+            "Fortalecer canais de comunicação",
+            "Estabelecer reuniões periódicas de alinhamento"
+          ]
+        },
+        {
+          "questao": "Q15",
+          "descricao": "Estou satisfeito com o pacote de benefícios que a empresa oferece.",
+          "pilar": "Gestão do Capital Humano",
+          "percentual_discordam_muito": "17%",
+          "sugestoes_estrategicas": [
+            "Promover dinâmicas de integração entre equipes",
+            "Revisar processos internos para reduzir atritos",
+            "Fortalecer canais de comunicação",
+            "Estabelecer reuniões periódicas de alinhamento"
+          ]
+        },
+        {
+          "questao": "Q20",
+          "descricao": "Você alguma vez já foi humilhado pelo seu líder ou presenciou alguma humilhação.",
+          "pilar": "Gestão do Capital Humano",
+          "percentual_concordam_muito": "17%",
+          "invertida": true,
+          "sugestoes_estrategicas": [
+            "Investigar causas raiz dos problemas identificados",
+            "Implementar melhorias nos processos de liderança",
+            "Revisar políticas de gestão de pessoas",
+            "Promover treinamentos de conscientização"
+          ]
+        },
+        {
+          "questao": "Q45",
+          "descricao": "As pessoas fazem 'politicagem' (puxa saco) como forma de obter resultados.",
+          "pilar": "Trabalho em Equipe",
+          "percentual_concordam_muito": "17%",
+          "invertida": true,
+          "sugestoes_estrategicas": [
+            "Investigar causas raiz dos problemas identificados",
+            "Implementar melhorias nos processos de liderança",
+            "Revisar políticas de gestão de pessoas",
+            "Promover treinamentos de conscientização"
+          ]
+        }
+      ],
+      "questao_mais_comentada": {
+        "numero": "Q15",
+        "total_comentarios": 4
+      },
+      "top_piores_perguntas": [
+        {
+          "posicao": 1,
+          "questao": "Q9: Quando faço uma sugestão ou reclamação, sinto que ela é ouvida e gera alguma ação.",
+          "pilar": "Comunicação",
+          "satisfacao": "66.7%"
+        },
+        {
+          "posicao": 2,
+          "questao": "Q14: As pessoas aqui nesta empresa são remuneradas adequadamente em relação a outras empresas do mesmo segmento de mercado.",
+          "pilar": "Gestão do Capital Humano",
+          "satisfacao": "66.7%"
+        },
+        {
+          "posicao": 3,
+          "questao": "Q15: Estou satisfeito com o pacote de benefícios que a empresa oferece.",
+          "pilar": "Gestão do Capital Humano",
+          "satisfacao": "66.7%"
+        },
+        {
+          "posicao": 4,
+          "questao": "Q21: Nós sempre comemoramos as metas atingidas e os eventos especiais.",
+          "pilar": "Gestão do Capital Humano",
+          "satisfacao": "66.7%"
+        },
+        {
+          "posicao": 5,
+          "questao": "Q22: Sinto que sou valorizado aqui e que posso fazer a diferença.",
+          "pilar": "Gestão do Capital Humano",
+          "satisfacao": "66.7%"
+        }
+      ],
+      "top_melhores_perguntas": [
+        {
+          "posicao": 1,
+          "questao": "Q1: O ambiente físico é agradável e adequado para trabalhar.",
+          "pilar": "Ambiente de Trabalho",
+          "satisfacao": "100.0%"
+        },
+        {
+          "posicao": 2,
+          "questao": "Q2: Eu recebo os equipamentos e recursos necessários para realizar o meu trabalho.",
+          "pilar": "Ambiente de Trabalho",
+          "satisfacao": "100.0%"
+        },
+        {
+          "posicao": 3,
+          "questao": "Q3: Este é um lugar agradável e possui um clima adequado para se trabalhar.",
+          "pilar": "Ambiente de Trabalho",
+          "satisfacao": "100.0%"
+        },
+        {
+          "posicao": 4,
+          "questao": "Q4: As pessoas aqui estão dispostas a fazer um pouco além da sua obrigação para concluir um trabalho.",
+          "pilar": "Comprometimento Organizacional",
+          "satisfacao": "100.0%"
+        },
+        {
+          "posicao": 5,
+          "questao": "Q5: Meu trabalho tem um sentido especial. Para mim, não é só 'mais um emprego'.",
+          "pilar": "Comprometimento Organizacional",
+          "satisfacao": "100.0%"
+        }
+      ]
+    },
+    {
+      "nome": "Fortaleza",
+      "total_respostas": 64,
+      "satisfacao_geral": "86.5%",
+      "status_geral": "Ótimo",
+      "pilares": {
+        "ambiente_trabalho": {
+          "satisfacao": "90.6%",
+          "status": "Ótimo"
+        },
+        "comprometimento_organizacional": {
+          "satisfacao": "92.2%",
+          "status": "Ótimo"
+        },
+        "comunicacao": {
+          "satisfacao": "79.2%",
+          "status": "Ótimo"
+        },
+        "gestao_pessoas": {
+          "satisfacao": "83.3%",
+          "status": "Ótimo"
+        },
+        "lideranca": {
+          "satisfacao": "92.0%",
+          "status": "Ótimo"
+        },
+        "trabalho_equipe": {
+          "satisfacao": "82.0%",
+          "status": "Ótimo"
+        }
+      },
+      "alertas_criticos": [
+        {
+          "questao": "Q45",
+          "descricao": "As pessoas fazem 'politicagem' (puxa saco) como forma de obter resultados.",
+          "pilar": "Trabalho em Equipe",
+          "percentual_concordam_muito": "20%",
+          "invertida": true,
+          "sugestoes_estrategicas": [
+            "Investigar causas raiz dos problemas identificados",
+            "Implementar melhorias nos processos de liderança",
+            "Revisar políticas de gestão de pessoas",
+            "Promover treinamentos de conscientização"
+          ]
+        }
+      ],
+      "questao_mais_comentada": {
+        "numero": "Q15",
+        "total_comentarios": 44
+      },
+      "top_piores_perguntas": [
+        {
+          "posicao": 1,
+          "questao": "Q14: As pessoas aqui nesta empresa são remuneradas adequadamente em relação a outras empresas do mesmo segmento de mercado.",
+          "pilar": "Gestão do Capital Humano",
+          "satisfacao": "50.0%"
+        },
+        {
+          "posicao": 2,
+          "questao": "Q15: Estou satisfeito com o pacote de benefícios que a empresa oferece.",
+          "pilar": "Gestão do Capital Humano",
+          "satisfacao": "54.7%"
+        },
+        {
+          "posicao": 3,
+          "questao": "Q45: As pessoas fazem 'politicagem' (puxa saco) como forma de obter resultados.",
+          "pilar": "Trabalho em Equipe",
+          "satisfacao": "56.3%"
+        },
+        {
+          "posicao": 4,
+          "questao": "Q21: Nós sempre comemoramos as metas atingidas e os eventos especiais.",
+          "pilar": "Gestão do Capital Humano",
+          "satisfacao": "62.5%"
+        },
+        {
+          "posicao": 5,
+          "questao": "Q8: Existem canais de comunicação bem definidos para que os colaboradores possam expressar suas sugestões e reivindicações.",
+          "pilar": "Comunicação",
+          "satisfacao": "64.1%"
+        }
+      ],
+      "top_melhores_perguntas": [
+        {
+          "posicao": 1,
+          "questao": "Q27: Você sabe com clareza quem é seu líder (superior imediato).",
+          "pilar": "Liderança",
+          "satisfacao": "100.0%"
+        },
+        {
+          "posicao": 2,
+          "questao": "Q17: Eu me sinto à vontade na empresa, sem precisar fingir que sou outra pessoa.",
+          "pilar": "Gestão do Capital Humano",
+          "satisfacao": "98.4%"
+        },
+        {
+          "posicao": 3,
+          "questao": "Q19: As pessoas aqui na empresa são bem tratadas independentemente da sua idade, cor, religião ou sexo.",
+          "pilar": "Gestão do Capital Humano",
+          "satisfacao": "96.9%"
+        },
+        {
+          "posicao": 4,
+          "questao": "Q29: Seu líder demonstra comprometimento com o negócio, agindo com ética e honestidade na condução das atividades.",
+          "pilar": "Liderança",
+          "satisfacao": "96.9%"
+        },
+        {
+          "posicao": 5,
+          "questao": "Q33: O seu líder reconhece os erros como oportunidades de aprendizado.",
+          "pilar": "Liderança",
+          "satisfacao": "96.9%"
+        }
+      ]
+    },
+    {
+      "nome": "São Luis",
+      "total_respostas": 16,
+      "satisfacao_geral": "89.8%",
+      "status_geral": "Excelente",
+      "pilares": {
+        "ambiente_trabalho": {
+          "satisfacao": "89.6%",
+          "status": "Ótimo"
+        },
+        "comprometimento_organizacional": {
+          "satisfacao": "93.8%",
+          "status": "Ótimo"
+        },
+        "comunicacao": {
+          "satisfacao": "85.4%",
+          "status": "Ótimo"
+        },
+        "gestao_pessoas": {
+          "satisfacao": "86.0%",
+          "status": "Ótimo"
+        },
+        "lideranca": {
+          "satisfacao": "96.7%",
+          "status": "Ótimo"
+        },
+        "trabalho_equipe": {
+          "satisfacao": "87.5%",
+          "status": "Ótimo"
+        }
+      },
+      "alertas_criticos": [
+        {
+          "questao": "Q11",
+          "descricao": "A empresa oferece treinamentos ou oportunidades de desenvolvimento para o meu crescimento profissional.",
+          "pilar": "Gestão do Capital Humano",
+          "percentual_discordam_muito": "13%",
+          "sugestoes_estrategicas": [
+            "Promover dinâmicas de integração entre equipes",
+            "Revisar processos internos para reduzir atritos",
+            "Fortalecer canais de comunicação",
+            "Estabelecer reuniões periódicas de alinhamento"
+          ]
+        },
+        {
+          "questao": "Q14",
+          "descricao": "As pessoas aqui nesta empresa são remuneradas adequadamente em relação a outras empresas do mesmo segmento de mercado.",
+          "pilar": "Gestão do Capital Humano",
+          "percentual_discordam_muito": "31%",
+          "sugestoes_estrategicas": [
+            "Promover dinâmicas de integração entre equipes",
+            "Revisar processos internos para reduzir atritos",
+            "Fortalecer canais de comunicação",
+            "Estabelecer reuniões periódicas de alinhamento"
+          ]
+        },
+        {
+          "questao": "Q15",
+          "descricao": "Estou satisfeito com o pacote de benefícios que a empresa oferece.",
+          "pilar": "Gestão do Capital Humano",
+          "percentual_discordam_muito": "13%",
+          "sugestoes_estrategicas": [
+            "Promover dinâmicas de integração entre equipes",
+            "Revisar processos internos para reduzir atritos",
+            "Fortalecer canais de comunicação",
+            "Estabelecer reuniões periódicas de alinhamento"
+          ]
+        },
+        {
+          "questao": "Q43",
+          "descricao": "Aqui as pessoas se importam umas com as outras.",
+          "pilar": "Trabalho em Equipe",
+          "percentual_discordam_muito": "13%",
+          "sugestoes_estrategicas": [
+            "Promover dinâmicas de integração entre equipes",
+            "Revisar processos internos para reduzir atritos",
+            "Fortalecer canais de comunicação",
+            "Estabelecer reuniões periódicas de alinhamento"
+          ]
+        }
+      ],
+      "questao_mais_comentada": {
+        "numero": "Q15",
+        "total_comentarios": 11
+      },
+      "top_piores_perguntas": [
+        {
+          "posicao": 1,
+          "questao": "Q15: Estou satisfeito com o pacote de benefícios que a empresa oferece.",
+          "pilar": "Gestão do Capital Humano",
+          "satisfacao": "50.0%"
+        },
+        {
+          "posicao": 2,
+          "questao": "Q8: Existem canais de comunicação bem definidos para que os colaboradores possam expressar suas sugestões e reivindicações.",
+          "pilar": "Comunicação",
+          "satisfacao": "68.8%"
+        },
+        {
+          "posicao": 3,
+          "questao": "Q14: As pessoas aqui nesta empresa são remuneradas adequadamente em relação a outras empresas do mesmo segmento de mercado.",
+          "pilar": "Gestão do Capital Humano",
+          "satisfacao": "68.8%"
+        },
+        {
+          "posicao": 4,
+          "questao": "Q11: A empresa oferece treinamentos ou oportunidades de desenvolvimento para o meu crescimento profissional.",
+          "pilar": "Gestão do Capital Humano",
+          "satisfacao": "75.0%"
+        },
+        {
+          "posicao": 5,
+          "questao": "Q13: A empresa demonstra reconhecimento pelo bom trabalho e pelo esforço extra.",
+          "pilar": "Gestão do Capital Humano",
+          "satisfacao": "75.0%"
+        }
+      ],
+      "top_melhores_perguntas": [
+        {
+          "posicao": 1,
+          "questao": "Q2: Eu recebo os equipamentos e recursos necessários para realizar o meu trabalho.",
+          "pilar": "Ambiente de Trabalho",
+          "satisfacao": "100.0%"
+        },
+        {
+          "posicao": 2,
+          "questao": "Q7: Eu me sinto motivado e engajado com o meu trabalho na Nordeste Locações.",
+          "pilar": "Comprometimento Organizacional",
+          "satisfacao": "100.0%"
+        },
+        {
+          "posicao": 3,
+          "questao": "Q10: O seu líder lhe mantém informado sobre assuntos importantes e sobre mudanças na empresa.",
+          "pilar": "Comunicação",
+          "satisfacao": "100.0%"
+        },
+        {
+          "posicao": 4,
+          "questao": "Q16: Quando é contratado um funcionário novo, as pessoas fazem com que ele se sinta bem-vindo.",
+          "pilar": "Gestão do Capital Humano",
+          "satisfacao": "100.0%"
+        },
+        {
+          "posicao": 5,
+          "questao": "Q20: Você alguma vez já foi humilhado pelo seu líder ou presenciou alguma humilhação.",
+          "pilar": "Gestão do Capital Humano",
+          "satisfacao": "100.0%",
+          "invertida": true
+        }
+      ]
+    },
+    {
+      "nome": "Juazeiro do Norte",
+      "total_respostas": 10,
+      "satisfacao_geral": "91.0%",
+      "status_geral": "Excelente",
+      "pilares": {
+        "ambiente_trabalho": {
+          "satisfacao": "96.7%",
+          "status": "Ótimo"
+        },
+        "comprometimento_organizacional": {
+          "satisfacao": "92.5%",
+          "status": "Ótimo"
+        },
+        "comunicacao": {
+          "satisfacao": "83.3%",
+          "status": "Ótimo"
+        },
+        "gestao_pessoas": {
+          "satisfacao": "89.4%",
+          "status": "Ótimo"
+        },
+        "lideranca": {
+          "satisfacao": "94.0%",
+          "status": "Ótimo"
+        },
+        "trabalho_equipe": {
+          "satisfacao": "90.0%",
+          "status": "Ótimo"
+        }
+      },
+      "alertas_criticos": [
+        {
+          "questao": "Q23",
+          "descricao": "Percebo um clima de rivalidade (competição interna) aqui.",
+          "pilar": "Gestão do Capital Humano",
+          "percentual_concordam_muito": "20%",
+          "invertida": true,
+          "sugestoes_estrategicas": [
+            "Investigar causas raiz dos problemas identificados",
+            "Implementar melhorias nos processos de liderança",
+            "Revisar políticas de gestão de pessoas",
+            "Promover treinamentos de conscientização"
+          ]
+        }
+      ],
+      "questao_mais_comentada": {
+        "numero": "Q15",
+        "total_comentarios": 5
+      },
+      "top_piores_perguntas": [
+        {
+          "posicao": 1,
+          "questao": "Q23: Percebo um clima de rivalidade (competição interna) aqui.",
+          "pilar": "Gestão do Capital Humano",
+          "satisfacao": "40.0%"
+        },
+        {
+          "posicao": 2,
+          "questao": "Q11: A empresa oferece treinamentos ou oportunidades de desenvolvimento para o meu crescimento profissional.",
+          "pilar": "Gestão do Capital Humano",
+          "satisfacao": "60.0%"
+        },
+        {
+          "posicao": 3,
+          "questao": "Q9: Quando faço uma sugestão ou reclamação, sinto que ela é ouvida e gera alguma ação.",
+          "pilar": "Comunicação",
+          "satisfacao": "70.0%"
+        },
+        {
+          "posicao": 4,
+          "questao": "Q4: As pessoas aqui estão dispostas a fazer um pouco além da sua obrigação para concluir um trabalho.",
+          "pilar": "Comprometimento Organizacional",
+          "satisfacao": "80.0%"
+        },
+        {
+          "posicao": 5,
+          "questao": "Q8: Existem canais de comunicação bem definidos para que os colaboradores possam expressar suas sugestões e reivindicações.",
+          "pilar": "Comunicação",
+          "satisfacao": "80.0%"
+        }
+      ],
+      "top_melhores_perguntas": [
+        {
+          "posicao": 1,
+          "questao": "Q1: O ambiente físico é agradável e adequado para trabalhar.",
+          "pilar": "Ambiente de Trabalho",
+          "satisfacao": "100.0%"
+        },
+        {
+          "posicao": 2,
+          "questao": "Q3: Este é um lugar agradável e possui um clima adequado para se trabalhar.",
+          "pilar": "Ambiente de Trabalho",
+          "satisfacao": "100.0%"
+        },
+        {
+          "posicao": 3,
+          "questao": "Q5: Meu trabalho tem um sentido especial. Para mim, não é só 'mais um emprego'.",
+          "pilar": "Comprometimento Organizacional",
+          "satisfacao": "100.0%"
+        },
+        {
+          "posicao": 4,
+          "questao": "Q7: Eu me sinto motivado e engajado com o meu trabalho na Nordeste Locações.",
+          "pilar": "Comprometimento Organizacional",
+          "satisfacao": "100.0%"
+        },
+        {
+          "posicao": 5,
+          "questao": "Q10: O seu líder lhe mantém informado sobre assuntos importantes e sobre mudanças na empresa.",
+          "pilar": "Comunicação",
+          "satisfacao": "100.0%"
+        }
+      ]
+    }
+  ],
+  "analise_comparativa": {
+    "ranking_satisfacao_unidades": [
+      {
+        "posicao": 1,
+        "unidade": "Juazeiro do Norte",
+        "satisfacao": "91.0%",
+        "total_respostas": 10
+      },
+      {
+        "posicao": 2,
+        "unidade": "Eusébio",
+        "satisfacao": "92.5%",
+        "total_respostas": 6
+      },
+      {
+        "posicao": 3,
+        "unidade": "São Luis",
+        "satisfacao": "89.8%",
+        "total_respostas": 16
+      },
+      {
+        "posicao": 4,
+        "unidade": "Fortaleza",
+        "satisfacao": "86.5%",
+        "total_respostas": 64
+      }
+    ],
+    "pilares_desempenho": {
+      "ambiente_trabalho": {
+        "media_geral": "94.2%",
+        "melhor_unidade": "Juazeiro do Norte (96.7%)",
+        "pior_unidade": "São Luis (89.6%)",
+        "variacao": "7.1pp"
+      },
+      "comprometimento_organizacional": {
+        "media_geral": "94.6%",
+        "melhor_unidade": "Eusébio (100.0%)",
+        "pior_unidade": "Juazeiro do Norte (92.5%)",
+        "variacao": "7.5pp"
+      },
+      "comunicacao": {
+        "media_geral": "82.8%",
+        "melhor_unidade": "São Luis (85.4%)",
+        "pior_unidade": "Fortaleza (79.2%)",
+        "variacao": "6.2pp"
+      },
+      "gestao_pessoas": {
+        "media_geral": "86.6%",
+        "melhor_unidade": "Juazeiro do Norte (89.4%)",
+        "pior_unidade": "Fortaleza (83.3%)",
+        "variacao": "6.1pp"
+      },
+      "lideranca": {
+        "media_geral": "94.9%",
+        "melhor_unidade": "Eusébio (96.7%)",
+        "pior_unidade": "Fortaleza (92.0%)",
+        "variacao": "4.7pp"
+      },
+      "trabalho_equipe": {
+        "media_geral": "86.8%",
+        "melhor_unidade": "Juazeiro do Norte (90.0%)",
+        "pior_unidade": "Fortaleza (82.0%)",
+        "variacao": "8.0pp"
+      }
+    },
+    "alertas_criticos_consolidados": {
+      "remuneracao": {
+        "unidades_afetadas": ["Fortaleza", "São Luis"],
+        "media_discordam_muito": "24%",
+        "gravidade": "Alta"
+      },
+      "beneficios": {
+        "unidades_afetadas": ["Fortaleza", "São Luis", "Juazeiro do Norte"],
+        "media_discordam_muito": "14%",
+        "gravidade": "Média"
+      },
+      "politicagem": {
+        "unidades_afetadas": ["Fortaleza", "São Luis"],
+        "media_concordam_muito": "18%",
+        "gravidade": "Alta"
+      },
+      "treinamento": {
+        "unidades_afetadas": ["São Luis", "Juazeiro do Norte"],
+        "media_discordam_muito": "17%",
+        "gravidade": "Média"
+      }
+    }
+  },
+  "insights_estrategicos": [
+    {
+      "tipo": "Diferença Regional",
+      "titulo": "Fortaleza apresenta maior desafio",
+      "descricao": "Com 64 respondentes (34% do total), Fortaleza tem a menor satisfação (86.5%) e os alertas críticos mais graves, especialmente em remuneração (50% satisfação).",
+      "impacto": "Alto - Representa maior parte dos colaboradores",
+      "recomendacao": "Foco prioritário em ações para Fortaleza, especialmente em Gestão de Pessoas"
+    },
+    {
+      "tipo": "Ponto Forte",
+      "titulo": "Liderança como pilar de excelência",
+      "descricao": "Todas as unidades mantêm liderança acima de 92%, com média geral de 94.9%. Eusébio lidera com 96.7%.",
+      "impacto": "Positivo - Pilar estabilizador organizacional",
+      "recomendacao": "Manter programas de desenvolvimento e replicar boas práticas"
+    },
+    {
+      "tipo": "Oportunidade",
+      "titulo": "Ambiente de Trabalho uniformemente forte",
+      "descricao": "Média de 94.2% com variação de apenas 7.1pp entre unidades. Todas acima de 89%.",
+      "impacto": "Positivo - Base sólida para outras melhorias",
+      "recomendacao": "Usar como exemplo para outros pilares"
+    },
+    {
+      "tipo": "Alerta Crítico",
+      "titulo": "Remuneração como principal gargalo",
+      "descricao": "Fortaleza e São Luis apresentam satisfação abaixo de 70% em remuneração, com até 31% discordando muito.",
+      "impacto": "Crítico - Risco de turnover e desmotivação",
+      "recomendacao": "Ação imediata: revisão salarial e pesquisa de mercado"
+    }
+  ]
+}

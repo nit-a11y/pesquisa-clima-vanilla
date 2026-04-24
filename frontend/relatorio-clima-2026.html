@@ -21,8 +21,153 @@
 </head>
 <body>
   <!-- Scroll Progress Bar -->
-  <div class="scroll-progress"></div>
-  
+<div class="scroll-progress"></div>
+
+  <!-- Botão Flutuante - Dicionário -->
+  <button class="fab-dicionario" id="btnDicionario" title="Dicionário de Dados">
+    <span class="fab-icon">📊</span>
+    <span class="fab-label">Dicionário</span>
+  </button>
+
+  <!-- Painel Lateral - Dicionário de Dados -->
+  <div class="side-panel" id="sidePanel">
+    <div class="side-panel-header">
+      <h2>📊 Dicionário de Dados</h2>
+      <button class="side-panel-close" id="closeSidePanel">&times;</button>
+    </div>
+    <div class="side-panel-body">
+      <div class="dic-section">
+        <h3>🎯 O que é a Pesquisa de Clima?</h3>
+        <p>A Pesquisa de Clima Organizacional mede a percepção dos colaboradores sobre o ambiente de trabalho, identificando pontos fortes e áreas de melhoria para ações estratégicas.</p>
+      </div>
+
+      <div class="dic-section">
+        <h3>📈 Metodologia de Cálculo</h3>
+        <div class="dic-item">
+          <strong>Escala Likert:</strong> 4 pontos (Concordo Sempre, Concordo, Discordo, Discordo Sempre)
+        </div>
+        <div class="dic-item">
+          <strong>Pontuação:</strong> Concordo + Concordo Sempre = 1 ponto | Discordo + Discordo Sempre = 0 pontos
+        </div>
+        <div class="dic-item">
+          <strong>Cálculo da Satisfação:</strong><br>
+          <code>Satisfação = (Concordo + Concordo Sempre) ÷ Total × 100%</code>
+        </div>
+        <div class="dic-item">
+          <strong>Exemplo:</strong> Se 80 de 100 respostas são "Concordo" ou "Concordo Sempre", a satisfação é 80%
+        </div>
+      </div>
+
+      <div class="dic-section">
+        <h3>🏗️ Estrutura dos Pilares</h3>
+        <div class="dic-pillars">
+          <div class="pillar-dic"><strong>1. Ambiente de Trabalho</strong> — Condições físicas, recursos e infraestrutura</div>
+          <div class="pillar-dic"><strong>2. Comprometimento Organizacional</strong> — Engajamento, orgulho e vontade de permanecer</div>
+          <div class="pillar-dic"><strong>3. Comunicação</strong> — Canais, transparência e relacionamento com liderança</div>
+          <div class="pillar-dic"><strong>4. Gestão do Capital Humano</strong> — Desenvolvimento, reconhecimento, remuneração e benefícios</div>
+          <div class="pillar-dic"><strong>5. Liderança</strong> — Relacionamento com líder, feedback e suporte</div>
+          <div class="pillar-dic"><strong>6. Trabalho em Equipe</strong> — Colaboração, espírito de equipe e relacionamento interpessoal</div>
+        </div>
+      </div>
+
+      <div class="dic-section">
+        <h3>📋 Classificação de Status</h3>
+        <div class="status-table">
+          <div class="status-row">
+            <span class="status-badge status-excelente">Excelente</span>
+            <span>≥ 90% — Pilar de excelência organizacional</span>
+          </div>
+          <div class="status-row">
+            <span class="status-badge status-otimo">Ótimo</span>
+            <span>≥ 75% — Pilar forte, manter e melhorar</span>
+          </div>
+          <div class="status-row">
+            <span class="status-badge status-bom">Bom</span>
+            <span>≥ 60% — Requer atenção e ações de melhoria</span>
+          </div>
+          <div class="status-row">
+            <span class="status-badge status-atencao">Atenção</span>
+            <span>≥ 50% — Problema significativo, ação necessária</span>
+          </div>
+          <div class="status-row">
+            <span class="status-badge status-critico">Crítico</span>
+            <span>< 50% — Risco imediato, ação urgente</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dic-section">
+        <h3>📐 Legenda de Tendências</h3>
+        <div class="trend-table">
+          <div class="trend-row">
+            <span class="trend-icon">📈</span>
+            <div>
+              <strong>Alta/Melhoria</strong><br>
+              <small>Pilar evoluiu positivamente entre os períodos</small>
+            </div>
+          </div>
+          <div class="trend-row">
+            <span class="trend-icon">📉</span>
+            <div>
+              <strong>Baixa/Piora</strong><br>
+              <small>Pilar regrediu entre os períodos</small>
+            </div>
+          </div>
+          <div class="trend-row">
+            <span class="trend-icon">➡️</span>
+            <div>
+              <strong>Estável</strong><br>
+              <small>Pilar manteve-se consistente</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dic-section">
+        <h3>🔍 Nota sobre Comparativos 2025 vs 2026</h3>
+        <div class="dic-alert">
+          <strong>⚠️ Importante:</strong> As comparações entre 2025 e 2026 referem-se aos <strong>dados gerais consolidados</strong>. Em 2025 não havia filtro de resposta por unidade.
+        </div>
+        <div class="dic-item">
+          <strong>Em 2025:</strong> 92 respondentes — Dados consolidados sem分开 por unidade
+        </div>
+        <div class="dic-item">
+          <strong>Em 2026:</strong> 96 respondentes — Dados disponíveis por unidade (Eusébio, Fortaleza, São Luís, Juazeiro do Norte)
+        </div>
+      </div>
+
+      <div class="dic-section">
+        <h3>📊 Questão Mais Comentada</h3>
+        <div class="dic-item">
+          <strong>Q15 — Benefícios:</strong> Principal ponto de atenção com 64 comentários negativos (58.3%). Esta questão foi <strong>adicionada pela primeira vez em 2026</strong>.
+        </div>
+      </div>
+
+      <div class="dic-section">
+        <h3>💡 Perguntas com Escala Invertida</h3>
+        <div class="dic-item">Onde <strong>Concordo indica satisfação negativa</strong>:</div>
+        <ul class="dic-list">
+          <li>Q20 — "Você alguma vez já foi humilhado pelo seu líder?"</li>
+          <li>Q23 — "Percebo um clima de rivalidade aqui"</li>
+          <li>Q45 — "As pessoas fazem politicagem como forma de obter resultados"</li>
+        </ul>
+      </div>
+
+      <div class="dic-section">
+        <h3>📁 Fonte dos Dados</h3>
+        <div class="dic-item">
+          <strong>Dados 2025:</strong> Pesquisa de Clima — Fevereiro/2025 (92 respondentes)
+        </div>
+        <div class="dic-item">
+          <strong>Dados 2026:</strong> Pesquisa de Clima — Abril/2026 (96 respondentes)
+        </div>
+        <div class="dic-item">
+          <strong>Responsável:</strong> Núcleo de Inteligência e Tecnologia (NIT)
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Loading Screen -->
   <div id="loadingScreen" class="loading-screen">
     <div class="loading-content">
@@ -31,15 +176,6 @@
       <p>Processando dados da pesquisa de clima organizacional</p>
     </div>
   </div>
-
-  <!-- Header -->
-  <header class="header">
-    <nav class="nav">
-      <div class="nav-brand">
-        <img src="assets/images/nordeste-logo.svg" alt="Nordeste Locações" class="brand-logo">
-      </div>
-          </nav>
-  </header>
 
   <main class="main">
     <!-- 1. Hero Section -->
@@ -76,27 +212,31 @@
           <!-- KPIs Principais -->
           <div class="hero-metrics">
             <div class="metric-card">
-              <div class="metric-value">88.4%</div>
+              <div class="metric-value">87.9%</div>
               <div class="metric-label">Índice de Satisfação</div>
-              <div class="metric-trend">+5.57pp</div>
+              <div class="metric-trend">+5.02pp</div>
+              <div class="metric-comparison">82.88% → 87.9%</div>
             </div>
             
             <div class="metric-card">
               <div class="metric-value">96</div>
               <div class="metric-label">Participação</div>
               <div class="metric-trend">+4.3%</div>
+              <div class="metric-comparison">92 → 96</div>
             </div>
             
             <div class="metric-card">
               <div class="metric-value">3</div>
               <div class="metric-label">Pontos Críticos</div>
-              <div class="metric-trend">+2</div>
+              <div class="metric-trend">+1</div>
+              <div class="metric-comparison">2 → 3</div>
             </div>
             
             <div class="metric-card">
-              <div class="metric-value">83.0%</div>
-              <div class="metric-label">Favorabilidade Geral</div>
-              <div class="metric-trend">+6.2pp</div>
+              <div class="metric-value">85.4%</div>
+              <div class="metric-label">Tratamento Interpessoal</div>
+              <div class="metric-trend">+2.6pp</div>
+              <div class="metric-comparison">82.8% → 85.4%</div>
             </div>
           </div>
           
@@ -104,7 +244,7 @@
             <div class="diagnostico-principal">
               <span class="diagnostico-label">Diagnóstico Principal:</span>
               <div class="diagnostico-texto">
-                Evolução significativa com +5.57pp de satisfação, mas atenção crítica necessária para benefícios e remuneração.
+                Evolução positiva com +5.02pp de satisfação, mas atenção crítica necessária para benefícios (58.3%) e remuneração (59.4%).
               </div>
             </div>
             
@@ -144,37 +284,37 @@
               <div class="improvement-item">
                 <div class="improvement-data">
                   <span class="improvement-name">Comunicação Interna</span>
-                  <span class="improvement-variation">+12.9pp</span>
+                  <span class="improvement-variation">+16.2pp</span>
                 </div>
                 <div class="improvement-bar">
-                  <div class="bar-previous" style="width: 68%"></div>
+                  <div class="bar-previous" style="width: 64.7%"></div>
                   <div class="bar-current" style="width: 80.9%"></div>
                 </div>
-                <span class="improvement-values">68% → 80.9%</span>
+                <span class="improvement-values">64.7% → 80.9%</span>
               </div>
               
               <div class="improvement-item">
                 <div class="improvement-data">
                   <span class="improvement-name">Liderança</span>
-                  <span class="improvement-variation">+8.3pp</span>
+                  <span class="improvement-variation">+6.1pp</span>
                 </div>
                 <div class="improvement-bar">
-                  <div class="bar-previous" style="width: 85%"></div>
+                  <div class="bar-previous" style="width: 87.2%"></div>
                   <div class="bar-current" style="width: 93.3%"></div>
                 </div>
-                <span class="improvement-values">85% → 93.3%</span>
+                <span class="improvement-values">87.2% → 93.3%</span>
               </div>
               
               <div class="improvement-item">
                 <div class="improvement-data">
-                  <span class="improvement-name">Comprometimento</span>
-                  <span class="improvement-variation">+8.0pp</span>
+                  <span class="improvement-name">Comprometimento Organizacional</span>
+                  <span class="improvement-variation">+5.0pp</span>
                 </div>
                 <div class="improvement-bar">
-                  <div class="bar-previous" style="width: 85%"></div>
+                  <div class="bar-previous" style="width: 88.0%"></div>
                   <div class="bar-current" style="width: 93.0%"></div>
                 </div>
-                <span class="improvement-values">85% → 93.0%</span>
+                <span class="improvement-values">88.0% → 93.0%</span>
               </div>
             </div>
           </div>
@@ -192,34 +332,37 @@
                   <span class="worse-status">CRÍTICO</span>
                 </div>
                 <div class="worse-bar">
+                  <div class="bar-previous" style="width: 0%"></div>
                   <div class="bar-current" style="width: 58.3%"></div>
                 </div>
-                <span class="worse-value">58.3% (novo ponto crítico)</span>
-                <div class="worse-details">64 comentários negativos</div>
+                <span class="worse-value">58.3% (primeira medição em 2026)</span>
+                <div class="worse-details">Nota: Em 2025, tema presente apenas em comentários (sem %). Q15 adicionada em 2026</div>
               </div>
               
               <div class="worse-item">
                 <div class="worse-data">
                   <span class="worse-name">Remuneração</span>
-                  <span class="worse-status">ALTO</span>
+                  <span class="worse-status">CRÍTICO</span>
                 </div>
                 <div class="worse-bar">
+                  <div class="bar-previous" style="width: 49%"></div>
                   <div class="bar-current" style="width: 59.4%"></div>
                 </div>
-                <span class="worse-value">59.4% (abaixo mercado)</span>
+                <span class="worse-value">59.4% (melhoria de 49% → 59.4%, mas ainda crítico)</span>
                 <div class="worse-details">Risco de turnover</div>
               </div>
               
               <div class="worse-item">
                 <div class="worse-data">
-                  <span class="worse-name">Tratamento Interpessoal</span>
-                  <span class="worse-status">ATENÇÃO</span>
+                  <span class="worse-name">Politicagem</span>
+                  <span class="worse-status">ALTO</span>
                 </div>
                 <div class="worse-bar">
-                  <div class="bar-current" style="width: 85.4%"></div>
+                  <div class="bar-previous" style="width: 61%"></div>
+                  <div class="bar-current" style="width: 65.6%"></div>
                 </div>
-                <span class="worse-value">85.4% (feedbacks públicos)</span>
-                <div class="worse-details">12 comentários sobre desconforto</div>
+                <span class="worse-value">65.6% (piora de 61% → 65.6%)</span>
+                <div class="worse-details">16% concordam muito (problema)</div>
               </div>
             </div>
           </div>
@@ -227,7 +370,7 @@
           <!-- Estável -->
           <div class="visao-card visao-neutral">
             <div class="card-header">
-              <span class="card-icon">➖</span>
+              <span class="card-icon">✅</span>
               <h3>Estável</h3>
             </div>
             <div class="card-content">
@@ -270,51 +413,51 @@
             <tbody>
               <tr>
                 <td>Liderança</td>
-                <td>85%</td>
+                <td>87.2%</td>
                 <td>93.3%</td>
-                <td class="variacao-positiva">+8.3pp</td>
+                <td class="variacao-positiva">+6.1pp</td>
                 <td><span class="status-excelente">Excelente</span></td>
                 <td>📈</td>
               </tr>
               <tr>
                 <td>Comunicação</td>
-                <td>68%</td>
+                <td>64.7%</td>
                 <td>80.9%</td>
-                <td class="variacao-positiva">+12.9pp</td>
+                <td class="variacao-positiva">+16.2pp</td>
                 <td><span class="status-bom">Bom</span></td>
                 <td>📈</td>
               </tr>
               <tr>
-                <td>Comprometimento</td>
-                <td>85%</td>
-                <td>93%</td>
-                <td class="variacao-positiva">+8.0pp</td>
+                <td>Comprometimento Organizacional</td>
+                <td>88.0%</td>
+                <td>93.0%</td>
+                <td class="variacao-positiva">+5.0pp</td>
                 <td><span class="status-excelente">Excelente</span></td>
                 <td>📈</td>
               </tr>
               <tr>
                 <td>Ambiente de Trabalho</td>
-                <td>78%</td>
-                <td>79.5%</td>
-                <td class="variacao-positiva">+1.5pp</td>
-                <td><span class="status-bom">Bom</span></td>
+                <td>88.8%</td>
+                <td>91.7%</td>
+                <td class="variacao-positiva">+2.8pp</td>
+                <td><span class="status-excelente">Excelente</span></td>
                 <td>📈</td>
               </tr>
               <tr>
                 <td>Trabalho em Equipe</td>
-                <td>82%</td>
-                <td>84.2%</td>
-                <td class="variacao-positiva">+2.2pp</td>
+                <td>77.2%</td>
+                <td>84.1%</td>
+                <td class="variacao-positiva">+6.9pp</td>
                 <td><span class="status-bom">Bom</span></td>
                 <td>📈</td>
               </tr>
               <tr>
                 <td>Gestão do Capital Humano</td>
-                <td>76%</td>
-                <td>58.3%</td>
-                <td class="variacao-negativa">-17.7pp</td>
-                <td><span class="status-critico">Crítico</span></td>
-                <td>📉</td>
+                <td>81.8%</td>
+                <td>84.6%</td>
+                <td class="variacao-positiva">+2.8pp</td>
+                <td><span class="status-bom">Bom</span></td>
+                <td>📈</td>
               </tr>
             </tbody>
           </table>
@@ -338,6 +481,32 @@
             </div>
           </div>
         </div>
+
+        <!-- Cards Antes vs Depois -->
+        <div class="antes-depois-grid">
+          <div class="antes-card">
+            <h4>Antes (2025)</h4>
+            <ul class="antes-list">
+              <li>Comunicação: 64.7% (atenção)</li>
+              <li>Liderança: 87.2% (ótimo)</li>
+              <li>Comprometimento: 88.0% (ótimo)</li>
+            </ul>
+          </div>
+          
+          <div class="seta-transformacao">
+            <span>→</span>
+            <small>Transformação</small>
+          </div>
+          
+          <div class="depois-card">
+            <h4>Depois (2026)</h4>
+            <ul class="depois-list">
+              <li>Comunicação: 80.9% (bom)</li>
+              <li>Liderança: 93.3% (excelente)</li>
+              <li>Comprometimento: 93.0% (excelente)</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -355,7 +524,7 @@
           <div class="insight-card insight-positive">
             <div class="insight-header">
               <span class="insight-icon">🚀</span>
-              <h3>Comunicação +12.9%</h3>
+              <h3>Comunicação +16.2pp</h3>
             </div>
             <div class="insight-content">
               <p class="insight-description">
@@ -365,8 +534,8 @@
               <div class="insight-evidence">
                 <span class="evidence-label">Evidências:</span>
                 <ul class="evidence-list">
-                  <li>Reuniões mensais implementadas</li>
-                  <li>Canais de comunicação mais definidos</li>
+                  <li>Canais mais definidos (67.7% vs 55% anterior)</li>
+                  <li>Comunicação da liderança (96.9%)</li>
                   <li>Aumento da transparência organizacional</li>
                 </ul>
               </div>
@@ -381,7 +550,7 @@
           <div class="insight-card insight-positive">
             <div class="insight-header">
               <span class="insight-icon">👥</span>
-              <h3>Liderança +8.3%</h3>
+              <h3>Liderança +6.1pp</h3>
             </div>
             <div class="insight-content">
               <p class="insight-description">
@@ -393,7 +562,7 @@
                 <ul class="evidence-list">
                   <li>99% de clareza sobre quem é o líder</li>
                   <li>97.9% de ética e honestidade</li>
-                  <li>Programas de desenvolvimento implementados</li>
+                  <li>96.9% de comunicação eficaz</li>
                 </ul>
               </div>
               <div class="insight-recommendation">
@@ -413,18 +582,30 @@
               <p class="insight-description">
                 A pressão inflacionária e a necessidade de revisão da política de benefícios 
                 criaram o ponto crítico principal da organização, com 64 comentários negativos.
+                <strong>Em 2025, este tema não possuía pergunta específica</strong> — aparecia apenas 
+                como sugestão de melhoria nos comentários ("Melhoria em vale alimentação, academia, 
+                combustível"), com intensidade moderada. Com a inclusão da <strong>Q15 em 2026</strong>, 
+                descobriu-se que <strong>58.3% estão insatisfitos</strong> com o pacote atual.
               </p>
+              <div class="insight-evidence">
+                <span class="evidence-label">Nota Metodológica:</span>
+                <ul class="evidence-list">
+                  <li><strong>2025:</strong> Tema presente apenas em comentários qualitativos (sem %)</li>
+                  <li><strong>2026:</strong> Q15 específica sobre Benefícios — resultado: 58.3%</li>
+                  <li><strong>64 comentários</strong> negativos registrados</li>
+                </ul>
+              </div>
               <div class="insight-evidence">
                 <span class="evidence-label">Evidências:</span>
                 <ul class="evidence-list">
                   <li>64 comentários negativos sobre benefícios</li>
-                  <li>Reclamações sobre vale alimentação</li>
-                  <li>Sugestões de academia e plano de saúde</li>
+                  <li>Vale alimentação defasado com inflação</li>
+                  <li>Sugestões de academia, plano de saúde e auxílio combustível</li>
                 </ul>
               </div>
               <div class="insight-recommendation">
                 <span class="rec-label">Recomendação:</span>
-                <p class="rec-text">Ação imediata: revisão completa considerando inflação e mercado</p>
+                <p class="rec-text">Ação imediata: revisão completa do pacote considerando inflação e mercado</p>
               </div>
             </div>
           </div>
@@ -488,7 +669,7 @@
     <section class="section" id="analise-setorial">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Análise por Unidade</h2>
+          <h2 class="section-title">Análise por Unidade 2026</h2>
           <p class="section-subtitle">Visão comparativa detalhada por localização</p>
         </div>
         
@@ -545,261 +726,7 @@
       </div>
     </section>
 
-    <!-- 6. Análise Comparativa Detalhada -->
-    <section class="section" id="comparativo-detalhado">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Análise Comparativa Detalhada</h2>
-          <p class="section-subtitle">Comparativo unidade por pilar - Pesquisa 2026</p>
-        </div>
-        
-        <!-- Gráfico Principal -->
-        <div class="chart-main">
-          <canvas id="comparativoDetalhadoChart"></canvas>
-        </div>
-        
-              </div>
-    </section>
-
-    <!-- 7. Evolução Histórica -->
-    <section class="section" id="evolucao-historica">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Evolução Histórica</h2>
-          <p class="section-subtitle">A jornada de transformação 2025 → 2026</p>
-        </div>
-        
-        <!-- Timeline -->
-        <div class="timeline-container">
-          <div class="timeline-line"></div>
-          
-          <div class="timeline-item">
-            <div class="timeline-marker marker-2025"></div>
-            <div class="timeline-content">
-              <h3>Fevereiro 2025</h3>
-              <p>Pesquisa inicial com 82.83% de satisfação</p>
-              <div class="timeline-metrics">
-                <span class="metric">92 respondentes</span>
-                <span class="metric">6 pilares analisados</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="timeline-item">
-            <div class="timeline-marker marker-action"></div>
-            <div class="timeline-content">
-              <h3>Março - Maio 2025</h3>
-              <p>Implementação das ações de melhoria</p>
-              <div class="timeline-actions">
-                <span class="action">Reuniões mensais</span>
-                <span class="action">Desenvolvimento de líderes</span>
-                <span class="action">Canais de comunicação</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="timeline-item">
-            <div class="timeline-marker marker-2026"></div>
-            <div class="timeline-content">
-              <h3>Abril 2026</h3>
-              <p>Nova pesquisa com 88.4% de satisfação</p>
-              <div class="timeline-metrics">
-                <span class="metric">96 respondentes</span>
-                <span class="metric">+5.57pp de evolução</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Gráfico de Linha -->
-        <div class="chart-container">
-          <h3 class="chart-title">Índice de Satisfação ao Longo do Tempo</h3>
-          <canvas id="evolucaoTemporalChart"></canvas>
-        </div>
-        
-        <!-- Cards Antes vs Depois -->
-        <div class="antes-depois-grid">
-          <div class="antes-card">
-            <h4>Antes (2025)</h4>
-            <ul class="antes-list">
-              <li>Comunicação: 68% (crítico)</li>
-              <li>Liderança: 85% (bom)</li>
-              <li>Comprometimento: 85% (bom)</li>
-            </ul>
-          </div>
-          
-          <div class="seta-transformacao">
-            <span>→</span>
-            <small>Transformação</small>
-          </div>
-          
-          <div class="depois-card">
-            <h4>Depois (2026)</h4>
-            <ul class="depois-list">
-              <li>Comunicação: 80.9% (bom)</li>
-              <li>Liderança: 93.3% (excelente)</li>
-              <li>Comprometimento: 93.0% (excelente)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. Plano de Ação -->
-    <section class="section" id="plano-acao">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Plano de Ação Estratégico</h2>
-          <p class="section-subtitle">Ações estruturadas para evolução contínua</p>
-        </div>
-        
-        <div class="plano-timeline">
-          <!-- Curto Prazo -->
-          <div class="plano-fase fase-imediato">
-            <div class="fase-header">
-              <span class="fase-icon">🚨</span>
-              <h3>Curto Prazo (0-3 meses)</h3>
-              <span class="fase-badge">Crítico</span>
-            </div>
-            <div class="fase-content">
-              <div class="acao-item">
-                <div class="acao-header">
-                  <span class="acao-priority">Média</span>
-                  <span class="acao-title">Treinamento de Lideranças</span>
-                </div>
-                <p class="acao-description">Capacitação sobre feedback privado e comunicação respeitosa em equipe</p>
-                <div class="acao-responsavel">
-                  <span class="responsavel-label">Responsável:</span>
-                  <span class="responsavel-nome">RH + Lideranças</span>
-                </div>
-                <div class="acao-kpi">
-                  <span class="kpi-label">KPI:</span>
-                  <span class="kpi-meta">100% dos líderes treinados em 60 dias</span>
-                </div>
-              </div>
-              
-              <div class="acao-item">
-                <div class="acao-header">
-                  <span class="acao-priority">Alta</span>
-                  <span class="acao-title">Revisão de Benefícios</span>
-                </div>
-                <p class="acao-description">Análise completa da política de benefícios considerando inflação e mercado</p>
-                <div class="acao-responsavel">
-                  <span class="responsavel-label">Responsável:</span>
-                  <span class="responsavel-nome">RH + Diretoria</span>
-                </div>
-                <div class="acao-kpi">
-                  <span class="kpi-label">KPI:</span>
-                  <span class="kpi-meta">Satisfação > 75% em 90 dias</span>
-                </div>
-              </div>
-              
-              <div class="acao-item">
-                <div class="acao-header">
-                  <span class="acao-priority">Média</span>
-                  <span class="acao-title">Comunicação Transparente</span>
-                </div>
-                <p class="acao-description">Comunicação clara sobre as ações sendo implementadas</p>
-                <div class="acao-responsavel">
-                  <span class="responsavel-label">Responsável:</span>
-                  <span class="responsavel-nome">Liderança + Marketing</span>
-                </div>
-                <div class="acao-kpi">
-                  <span class="kpi-label">KPI:</span>
-                  <span class="kpi-meta">100% dos colaboradores informados</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Médio Prazo -->
-          <div class="plano-fase fase-medio">
-            <div class="fase-header">
-              <span class="fase-icon">⚙️</span>
-              <h3>Médio Prazo (3-6 meses)</h3>
-              <span class="fase-badge">Estrutural</span>
-            </div>
-            <div class="fase-content">
-              <div class="acao-item">
-                <div class="acao-header">
-                  <span class="acao-priority">Alta</span>
-                  <span class="acao-title">Análise Salarial</span>
-                </div>
-                <p class="acao-description">Estudo de mercado e plano de reajuste estruturado</p>
-                <div class="acao-responsavel">
-                  <span class="responsavel-label">Responsável:</span>
-                  <span class="responsavel-nome">RH + Finanças</span>
-                </div>
-                <div class="acao-kpi">
-                  <span class="kpi-label">KPI:</span>
-                  <span class="kpi-meta">Competitividade salarial em 6 meses</span>
-                </div>
-              </div>
-              
-              <div class="acao-item">
-                <div class="acao-header">
-                  <span class="acao-priority">Média</span>
-                  <span class="acao-title">Programa Cultural</span>
-                </div>
-                <p class="acao-description">Programa anti-politicagem e fortalecimento cultural</p>
-                <div class="acao-responsavel">
-                  <span class="responsavel-label">Responsável:</span>
-                  <span class="responsavel-nome">Comitê de Clima</span>
-                </div>
-                <div class="acao-kpi">
-                  <span class="kpi-label">KPI:</span>
-                  <span class="kpi-meta">Redução de 50% em politicagem</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Longo Prazo -->
-          <div class="plano-fase fase-longo">
-            <div class="fase-header">
-              <span class="fase-icon">🚀</span>
-              <h3>Longo Prazo (6-12 meses)</h3>
-              <span class="fase-badge">Estratégico</span>
-            </div>
-            <div class="fase-content">
-              <div class="acao-item">
-                <div class="acao-header">
-                  <span class="acao-priority">Média</span>
-                  <span class="acao-title">Programa de Reconhecimento</span>
-                </div>
-                <p class="acao-description">Sistema estruturado de reconhecimento e recompensas</p>
-                <div class="acao-responsavel">
-                  <span class="responsavel-label">Responsável:</span>
-                  <span class="responsavel-nome">RH + Lideranças</span>
-                </div>
-                <div class="acao-kpi">
-                  <span class="kpi-label">KPI:</span>
-                  <span class="kpi-meta">Programa implementado em 12 meses</span>
-                </div>
-              </div>
-              
-              <div class="acao-item">
-                <div class="acao-header">
-                  <span class="acao-priority">Baixa</span>
-                  <span class="acao-title">Acompanhamento Contínuo</span>
-                </div>
-                <p class="acao-description">Sistema de pulse surveys para monitoramento constante</p>
-                <div class="acao-responsavel">
-                  <span class="responsavel-label">Responsável:</span>
-                  <span class="responsavel-nome">Comitê de Clima</span>
-                </div>
-                <div class="acao-kpi">
-                  <span class="kpi-label">KPI:</span>
-                  <span class="kpi-meta">Pesquisas trimestrais ativas</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 8. Comitê de Clima -->
+    <!-- 7. Comitê de Clima -->
     <section class="section" id="comite-clima">
       <div class="container">
         <div class="section-header">
@@ -899,102 +826,6 @@
         </div>
         
               </div>
-    </section>
-
-    <!-- 9. Sugestões para 2027 -->
-    <section class="section" id="sugestoes-futuro">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Visão de Futuro 2027</h2>
-          <p class="section-subtitle">Sugestões estratégicas para próxima pesquisa</p>
-        </div>
-        
-        <div class="futuro-grid">
-          <!-- Melhorias Metodológicas -->
-          <div class="futuro-card">
-            <div class="card-header">
-              <span class="card-icon">📈</span>
-              <h3>Melhorias Metodológicas</h3>
-            </div>
-            <div class="card-content">
-              <ul class="futuro-list">
-                <li>Aumentar taxa de resposta > 95%</li>
-                <li>Incluir perguntas sobre bem-estar mental</li>
-                <li>Adicionar análise por nível hierárquico</li>
-                <li>Implementar pulse surveys trimestrais</li>
-                <li>Criar benchmarking com mercado</li>
-              </ul>
-            </div>
-          </div>
-          
-          <!-- Novas Dimensões -->
-          <div class="futuro-card">
-            <div class="card-header">
-              <span class="card-icon">🔍</span>
-              <h3>Novas Dimensões de Análise</h3>
-            </div>
-            <div class="card-content">
-              <ul class="futuro-list">
-                <li>Diversidade e Inclusão</li>
-                <li>Sustentabilidade e ESG</li>
-                <li>Inovação e Tecnologia</li>
-                <li>Aprendizagem e Desenvolvimento</li>
-                <li>Qualidade de Vida no Trabalho</li>
-              </ul>
-            </div>
-          </div>
-          
-          <!-- Tecnologia e Inovação -->
-          <div class="futuro-card">
-            <div class="card-header">
-              <span class="card-icon">💡</span>
-              <h3>Tecnologia e Inovação</h3>
-            </div>
-            <div class="card-content">
-              <ul class="futuro-list">
-                <li>Dashboard em tempo real</li>
-                <li>Análise preditiva com IA</li>
-                <li>Aplicativo mobile para feedback</li>
-                <li>Integração com sistemas de RH</li>
-                <li>Análise de sentimento automática</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Projeções -->
-        <div class="projecoes-container">
-          <h3>Projeções para 2027</h3>
-          <div class="projecoes-grid">
-            <div class="projecao-card projection-optimistic">
-              <h4>Cenário Otimista</h4>
-              <div class="projecao-metrics">
-                <span class="metric">Satisfação > 85%</span>
-                <span class="metric">Benefícios > 80%</span>
-                <span class="metric">Turnover < 10%</span>
-              </div>
-            </div>
-            
-            <div class="projecao-card projection-realistic">
-              <h4>Cenário Realista</h4>
-              <div class="projecao-metrics">
-                <span class="metric">Satisfação ~80%</span>
-                <span class="metric">Benefícios ~70%</span>
-                <span class="metric">Turnover ~12%</span>
-              </div>
-            </div>
-            
-            <div class="projecao-card projection-pessimistic">
-              <h4>Cenário Pessimista</h4>
-              <div class="projecao-metrics">
-                <span class="metric">Satisfação < 75%</span>
-                <span class="metric">Benefícios < 60%</span>
-                <span class="metric">Turnover > 15%</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- 10. Encerramento -->
