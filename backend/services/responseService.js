@@ -433,8 +433,18 @@ export async function getAllComentariosWithQuestions(unitFilter = null) {
     });
   });
 
-  const comentariosAgrupados = {};
+  // Inicializar todas as 45 perguntas
+  const todasPerguntas = {};
+  questions.forEach(q => {
+    todasPerguntas[q.id] = {
+      pergunta_id: q.id,
+      pergunta_texto: q.text,
+      categoria: q.pillar,
+      comentarios: []
+    };
+  });
   
+  // Processar comentários existentes
   rows.forEach(row => {
     try {
       const answers = JSON.parse(row.answers || '{}');
@@ -443,7 +453,6 @@ export async function getAllComentariosWithQuestions(unitFilter = null) {
         if (typeof data === 'object' && data.comment && data.comment.trim()) {
           const qid = parseInt(questionId);
           const comentario = data.comment.trim();
-          const pergunta = questions.find(q => q.id === qid);
           let sentimento = 'neutro';
           let nota = data.score || 0;
           
@@ -453,22 +462,15 @@ export async function getAllComentariosWithQuestions(unitFilter = null) {
             sentimento = 'positivo';
           }
           
-          if (!comentariosAgrupados[qid]) {
-            comentariosAgrupados[qid] = {
-              pergunta_id: qid,
-              pergunta_texto: pergunta?.text || '',
-              categoria: pergunta?.pillar || '',
-              comentarios: []
-            };
+          if (todasPerguntas[qid]) {
+            todasPerguntas[qid].comentarios.push({
+              comentario: comentario,
+              sentimento: sentimento,
+              nota: nota,
+              unidade: row.unidade,
+              data: row.timestamp
+            });
           }
-          
-          comentariosAgrupados[qid].comentarios.push({
-            comentario: comentario,
-            sentimento: sentimento,
-            nota: nota,
-            unidade: row.unidade,
-            data: row.timestamp
-          });
         }
       });
     } catch (error) {
@@ -476,7 +478,8 @@ export async function getAllComentariosWithQuestions(unitFilter = null) {
     }
   });
 
-  return Object.values(comentariosAgrupados);
+  // Retornar todas as perguntas (incluindo as sem comentários)
+  return Object.values(todasPerguntas);
 }
 
 // Helper para parse seguro de JSON

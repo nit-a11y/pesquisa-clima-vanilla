@@ -12,15 +12,22 @@
   
   <style>
     :root {
-      --primary: #6366f1;
-      --secondary: #8b5cf6;
-      --success: #10b981;
-      --warning: #f59e0b;
-      --danger: #ef4444;
-      --dark: #1e293b;
+      --primary: #2563eb;
+      --secondary: #7c3aed;
+      --success: #16a34a;
+      --warning: #ea580c;
+      --danger: #dc2626;
+      --dark: #0f172a;
       --light: #f8fafc;
       --gray: #64748b;
       --border: #e2e8f0;
+      --bg-card: #ffffff;
+      --bg-hover: #f1f5f9;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
     }
     
     * {
@@ -30,22 +37,25 @@
     }
     
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--light);
-      color: var(--dark);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
+      color: var(--text-primary);
       line-height: 1.6;
+      min-height: 100vh;
     }
     
+    /* Header otimizado */
     .header {
-      background: white;
+      background: var(--bg-card);
       border-bottom: 1px solid var(--border);
-      padding: 1rem 2rem;
+      padding: 1rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: var(--shadow-sm);
     }
     
     .header-brand {
@@ -55,13 +65,19 @@
     }
     
     .header-brand img {
-      height: 40px;
+      height: 32px;
     }
     
     .header-brand span {
       font-weight: 700;
-      font-size: 1.25rem;
-      color: var(--dark);
+      font-size: 1.125rem;
+      color: var(--text-primary);
+    }
+    
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
     
     .header-back {
@@ -73,52 +89,118 @@
       font-weight: 600;
       padding: 0.5rem 1rem;
       border-radius: 8px;
-      transition: background 0.2s;
+      transition: all 0.2s;
+      font-size: 0.875rem;
     }
     
     .header-back:hover {
-      background: #f1f5f9;
+      background: var(--bg-hover);
+      transform: translateY(-1px);
     }
     
+    /* Barra de estatísticas compacta */
     .stats-bar {
-      background: white;
+      background: var(--bg-card);
       border-bottom: 1px solid var(--border);
-      padding: 1.5rem 2rem;
+      padding: 1rem 1.5rem;
     }
     
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      max-width: 100%;
     }
     
     .stat-item {
       text-align: center;
+      padding: 0.5rem;
+      background: var(--bg-hover);
+      border-radius: 8px;
     }
     
     .stat-value {
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: 800;
       color: var(--primary);
+      display: block;
     }
     
     .stat-label {
-      font-size: 0.875rem;
-      color: var(--gray);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
     
+    /* Navegação rápida */
+    .quick-nav {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      position: sticky;
+      top: 73px;
+      z-index: 90;
+    }
+    
+    .quick-nav-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      overflow-x: auto;
+      padding: 0.5rem 0;
+    }
+    
+    .quick-nav-title {
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+    
+    .quick-nav-pills {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: nowrap;
+    }
+    
+    .nav-pill {
+      padding: 0.25rem 0.75rem;
+      background: var(--bg-hover);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    
+    .nav-pill:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+    
+    .nav-pill.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    
+    /* Filtros otimizados */
     .filters {
-      background: white;
-      padding: 1rem 2rem;
+      background: var(--bg-card);
+      padding: 1rem 1.5rem;
       border-bottom: 1px solid var(--border);
     }
     
     .filters-container {
-      max-width: 1200px;
-      margin: 0 auto;
       display: flex;
+      align-items: center;
       gap: 1rem;
       flex-wrap: wrap;
     }
@@ -132,149 +214,356 @@
     .filter-label {
       font-weight: 600;
       font-size: 0.875rem;
-      color: var(--gray);
+      color: var(--text-secondary);
     }
     
     .filter-select {
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 2rem 0.5rem 0.75rem;
       border: 1px solid var(--border);
       border-radius: 8px;
       font-size: 0.875rem;
-      background: white;
-      min-width: 200px;
+      background: var(--bg-card);
+      min-width: 180px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .filter-select:hover {
+      border-color: var(--primary);
+    }
+    
+    .filter-select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
     }
     
     .filter-btn {
-      padding: 0.5rem 1rem;
-      border: 1px solid var(--border);
+      padding: 0.5rem 1.25rem;
+      border: 1px solid var(--primary);
       border-radius: 8px;
-      background: white;
+      background: var(--primary);
+      color: white;
       cursor: pointer;
       font-size: 0.875rem;
-      font-weight: 500;
+      font-weight: 600;
       transition: all 0.2s;
     }
     
     .filter-btn:hover {
-      border-color: var(--primary);
-      color: var(--primary);
+      background: #1d4ed8;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
     }
     
+    /* Conteúdo principal */
     .main {
-      max-width: 1200px;
+      max-width: 100%;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 1.5rem;
     }
     
-    .perguntas-grid {
-      display: grid;
-      gap: 2rem;
+    /* Indicador de progresso */
+    .progress-indicator {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .progress-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .progress-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+    
+    .progress-bar {
+      flex: 1;
+      min-width: 200px;
+      height: 8px;
+      background: var(--bg-hover);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+    
+    .progress-stats {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.875rem;
+    }
+    
+    .progress-stat {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.5rem;
+      background: var(--bg-hover);
+      border-radius: 4px;
+    }
+    
+    /* Layout de perguntas otimizado */
+    .perguntas-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
     
     .pergunta-card {
-      background: white;
-      border-radius: 16px;
-      padding: 1.5rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      background: var(--bg-card);
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid var(--border);
     }
     
+    .pergunta-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    
+    .pergunta-card.expanded {
+      box-shadow: var(--shadow-lg);
+    }
+    
+    /* Header da pergunta */
     .pergunta-header {
+      padding: 1rem 1.25rem;
+      background: linear-gradient(135deg, #f8fafc, #ffffff);
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .pergunta-header:hover {
+      background: linear-gradient(135deg, #f1f5f9, #f8fafc);
+    }
+    
+    .pergunta-header-content {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 1rem;
       gap: 1rem;
-      flex-wrap: wrap;
+    }
+    
+    .pergunta-info {
+      flex: 1;
     }
     
     .pergunta-meta {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
       flex-wrap: wrap;
     }
     
     .pergunta-id {
       background: var(--primary);
       color: white;
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
       font-size: 0.75rem;
       font-weight: 700;
+      min-width: 45px;
+      text-align: center;
     }
     
     .pergunta-categoria {
-      background: #f1f5f9;
-      color: var(--gray);
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
+      background: #e0e7ff;
+      color: #4338ca;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
       font-size: 0.75rem;
       font-weight: 600;
     }
     
-    .pergunta-nota {
+    .pergunta-texto {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+    
+    .pergunta-stats {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+    
+    .stat-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.5rem;
+      background: var(--bg-hover);
+      border-radius: 6px;
+    }
+    
+    .pergunta-actions {
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
     
-    .nota-valor {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--dark);
-    }
-    
-    .nota-stars {
+    .expand-btn {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      border-radius: 6px;
       display: flex;
-      gap: 0.125rem;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
     }
     
-    .star {
-      width: 20px;
-      height: 20px;
-      color: #fbbf24;
+    .expand-btn:hover {
+      background: var(--bg-hover);
+      border-color: var(--primary);
     }
     
-    .star.empty {
-      color: #d1d5db;
+    .expand-icon {
+      transition: transform 0.3s ease;
     }
     
-    .pergunta-texto {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--dark);
+    .expand-icon.rotated {
+      transform: rotate(180deg);
+    }
+    
+    /* Conteúdo da pergunta */
+    .pergunta-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    
+    .pergunta-content.expanded {
+      max-height: 2000px;
+    }
+    
+    .pergunta-content-inner {
+      padding: 1.25rem;
+    }
+    
+    /* Distribuição de notas */
+    .notas-distribuicao {
+      background: var(--bg-hover);
+      border-radius: 8px;
+      padding: 1rem;
       margin-bottom: 1rem;
-      line-height: 1.5;
+    }
+    
+    .distribuicao-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 0.75rem;
+    }
+    
+    .distribuicao-bars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+    }
+    
+    .nota-bar {
+      text-align: center;
+    }
+    
+    .nota-bar-fill {
+      height: 8px;
+      background: var(--primary);
+      border-radius: 4px;
+      margin-bottom: 0.25rem;
+      transition: all 0.3s ease;
+    }
+    
+    .nota-bar-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+    
+    .nota-bar-value {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    /* Lista de comentários */
+    .comentarios-section {
+      margin-top: 1rem;
+    }
+    
+    .comentarios-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .comentarios-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-secondary);
     }
     
     .comentarios-count {
       font-size: 0.875rem;
-      color: var(--gray);
-      margin-bottom: 1rem;
+      color: var(--primary);
+      font-weight: 600;
     }
     
     .reviews-list {
       display: grid;
-      gap: 1rem;
+      gap: 0.75rem;
     }
     
     .review-card {
-      background: #f8fafc;
-      border-radius: 12px;
-      padding: 1rem;
-      border-left: 4px solid var(--border);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem;
+      transition: all 0.2s;
+    }
+    
+    .review-card:hover {
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-1px);
     }
     
     .review-card.positivo {
-      border-left-color: var(--success);
+      border-left: 3px solid var(--success);
     }
     
     .review-card.negativo {
-      border-left-color: var(--danger);
+      border-left: 3px solid var(--danger);
     }
     
     .review-card.neutro {
-      border-left-color: var(--gray);
+      border-left: 3px solid var(--gray);
     }
     
     .review-header {
@@ -284,6 +573,13 @@
       margin-bottom: 0.5rem;
       flex-wrap: wrap;
       gap: 0.5rem;
+    }
+    
+    .review-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
     }
     
     .review-sentimento {
@@ -297,12 +593,12 @@
     }
     
     .review-sentimento.positivo {
-      background: #d1fae5;
-      color: #065f46;
+      background: #dcfce7;
+      color: #166534;
     }
     
     .review-sentimento.negativo {
-      background: #fee2e2;
+      background: #fef2f2;
       color: #991b1b;
     }
     
@@ -313,89 +609,459 @@
     
     .review-unidade {
       font-size: 0.75rem;
-      color: var(--gray);
-      background: #f1f5f9;
+      color: var(--text-secondary);
+      background: var(--bg-hover);
       padding: 0.25rem 0.5rem;
       border-radius: 4px;
     }
     
     .review-date {
       font-size: 0.75rem;
-      color: var(--gray);
+      color: var(--text-secondary);
     }
     
     .review-text {
-      font-size: 0.9375rem;
-      color: var(--dark);
+      font-size: 0.875rem;
+      color: var(--text-primary);
       line-height: 1.5;
+      margin-top: 0.5rem;
     }
     
-    .pagination {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
-    
-    .page-btn {
-      min-width: 40px;
-      height: 40px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: white;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.2s;
-    }
-    
-    .page-btn:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-    }
-    
-    .page-btn.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-    
-    .page-btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-    
+    /* Loading e estados */
     .loading {
       text-align: center;
       padding: 4rem;
-      color: var(--gray);
+      color: var(--text-secondary);
     }
     
+    .empty-state {
+      text-align: center;
+      padding: 4rem;
+      color: var(--text-secondary);
+    }
+    
+    .empty-state-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+    
+    /* Responsivo */
     @media (max-width: 768px) {
+      .header {
+        padding: 0.75rem 1rem;
+      }
+      
+      .header-brand span {
+        font-size: 1rem;
+      }
+      
       .stats-grid {
         grid-template-columns: repeat(2, 1fr);
       }
       
-      .pergunta-header {
-        flex-direction: column;
+      .quick-nav {
+        top: 60px;
       }
       
-      .header {
-        padding: 1rem;
+      .quick-nav-container {
+        gap: 0.5rem;
+      }
+      
+      .filters-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .filter-select {
+        width: 100%;
       }
       
       .main {
         padding: 1rem;
       }
       
-      .filters-container {
+      .pergunta-header-content {
         flex-direction: column;
+        align-items: flex-start;
       }
       
-      .filter-select {
-        width: 100%;
+      .pergunta-actions {
+        align-self: flex-end;
+      }
+      
+      .distribuicao-bars {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
+    
+    /* Animações */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .pergunta-card {
+      animation: fadeIn 0.3s ease;
+    }
+    
+    /* Scrollbar personalizada */
+    .quick-nav-container::-webkit-scrollbar {
+      height: 4px;
+    }
+    
+    .quick-nav-container::-webkit-scrollbar-track {
+      background: var(--bg-hover);
+      border-radius: 2px;
+    }
+    
+    .quick-nav-container::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    
+    /* Modal bonito */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      padding: 1rem;
+    }
+    
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal {
+      background: var(--bg-card);
+      border-radius: 20px;
+      max-width: 900px;
+      width: 100%;
+      max-height: 90vh;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      transform: scale(0.9) translateY(20px);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .modal-overlay.active .modal {
+      transform: scale(1) translateY(0);
+    }
+    
+    .modal-header {
+      padding: 2rem 2rem 1rem;
+      background: linear-gradient(135deg, #f8fafc, #ffffff);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .modal-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .modal-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--bg-hover);
+      border-radius: 10px;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    
+    .modal-badge.id {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .modal-badge.categoria {
+      background: #e0e7ff;
+      color: #4338ca;
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: var(--bg-hover);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .modal-close:hover {
+      background: var(--danger);
+      color: white;
+      transform: rotate(90deg);
+    }
+    
+    .modal-body {
+      padding: 2rem;
+      overflow-y: auto;
+      flex: 1;
+    }
+    
+    .modal-section {
+      margin-bottom: 2rem;
+    }
+    
+    .modal-section-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .modal-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .modal-stat-card {
+      background: var(--bg-hover);
+      padding: 1rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+    
+    .modal-stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: block;
+    }
+    
+    .modal-stat-label {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+    
+    .modal-distribuicao {
+      background: var(--bg-hover);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    
+    .modal-distribuicao-bars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .modal-nota-bar {
+      text-align: center;
+    }
+    
+    .modal-nota-fill {
+      height: 60px;
+      background: var(--primary);
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .modal-nota-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.2), transparent);
+    }
+    
+    .modal-nota-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    
+    .modal-nota-value {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    
+    .modal-comentarios {
+      display: grid;
+      gap: 1rem;
+    }
+    
+    .modal-comentario-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .modal-comentario-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+    }
+    
+    .modal-comentario-card.positivo::before {
+      background: var(--success);
+    }
+    
+    .modal-comentario-card.negativo::before {
+      background: var(--danger);
+    }
+    
+    .modal-comentario-card.neutro::before {
+      background: var(--gray);
+    }
+    
+    .modal-comentario-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateX(4px);
+    }
+    
+    .modal-comentario-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      gap: 1rem;
+    }
+    
+    .modal-comentario-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    
+    .modal-comentario-sentimento {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    
+    .modal-comentario-sentimento.positivo {
+      background: #dcfce7;
+      color: #166534;
+    }
+    
+    .modal-comentario-sentimento.negativo {
+      background: #fef2f2;
+      color: #991b1b;
+    }
+    
+    .modal-comentario-sentimento.neutro {
+      background: #f3f4f6;
+      color: #4b5563;
+    }
+    
+    .modal-comentario-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+    
+    .modal-comentario-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
+    
+    .modal-empty-state {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-secondary);
+    }
+    
+    .modal-empty-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+    
+    /* Responsivo do modal */
+    @media (max-width: 768px) {
+      .modal {
+        max-height: 95vh;
+        margin: 0.5rem;
+      }
+      
+      .modal-header {
+        padding: 1.5rem 1.5rem 1rem;
+      }
+      
+      .modal-title {
+        font-size: 1.25rem;
+      }
+      
+      .modal-body {
+        padding: 1.5rem;
+      }
+      
+      .modal-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .modal-distribuicao-bars {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
   </style>
 </head>
 <body>
@@ -433,10 +1099,27 @@
     </div>
   </div>
   
+  <!-- Navegação rápida por pilares -->
+  <div class="quick-nav">
+    <div class="quick-nav-container">
+      <span class="quick-nav-title">Navegação Rápida:</span>
+      <div class="quick-nav-pills" id="quickNavPills">
+        <a href="#" class="nav-pill" data-pilar="todas">Todas</a>
+        <a href="#" class="nav-pill" data-pilar="Ambiente de Trabalho">Ambiente</a>
+        <a href="#" class="nav-pill" data-pilar="Comprometimento Organizacional">Comprometimento</a>
+        <a href="#" class="nav-pill" data-pilar="Comunicação">Comunicação</a>
+        <a href="#" class="nav-pill" data-pilar="Gestão do Capital Humano">Gestão</a>
+        <a href="#" class="nav-pill" data-pilar="Liderança">Liderança</a>
+        <a href="#" class="nav-pill" data-pilar="Trabalho em Equipe">Equipe</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Filtros otimizados -->
   <div class="filters">
     <div class="filters-container">
       <div class="filter-group">
-        <span class="filter-label">Filtrar:</span>
+        <span class="filter-label">Categoria:</span>
         <select class="filter-select" id="categoriaFilter">
           <option value="todas">Todas as Categorias</option>
           <option value="Ambiente de Trabalho">Ambiente de Trabalho</option>
@@ -451,14 +1134,15 @@
         <span class="filter-label">Sentimento:</span>
         <select class="filter-select" id="sentimentoFilter">
           <option value="todos">Todos</option>
-          <option value="positivo">Positivos (4)</option>
+          <option value="positivo">Positivos (4-5)</option>
           <option value="neutro">Neutros (3)</option>
           <option value="negativo">Negativos (1-2)</option>
         </select>
       </div>
       <div class="filter-group">
-        <span class="filter-label">Ordenar por:</span>
+        <span class="filter-label">Ordenar:</span>
         <select class="filter-select" id="ordemFilter">
+          <option value="numero-asc">Número (1-45)</option>
           <option value="comentarios-desc">Mais Comentadas</option>
           <option value="comentarios-asc">Menos Comentadas</option>
           <option value="nota-desc">Melhor Avaliação</option>
@@ -469,34 +1153,133 @@
     </div>
   </div>
   
+  <!-- Indicador de progresso -->
+  <div class="progress-indicator">
+    <div class="progress-content">
+      <div class="progress-info">
+        <span>📊 Progresso da Análise:</span>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+      </div>
+      <div class="progress-stats">
+        <div class="progress-stat">
+          <span>📝</span>
+          <span id="visibleCount">0</span>
+          <span>/</span>
+          <span id="totalCount">45</span>
+        </div>
+        <div class="progress-stat">
+          <span>💬</span>
+          <span id="totalComentariosBadge">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <main class="main">
-    <div class="perguntas-grid" id="perguntasContainer">
+    <div class="perguntas-container" id="perguntasContainer">
       <div class="loading">Carregando comentários...</div>
     </div>
-    
-    <div class="pagination" id="pagination"></div>
   </main>
   
+  <!-- Modal Bonito -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <button class="modal-close" onclick="app.closeModal()">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+      
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle">Título da Pergunta</h2>
+        <div class="modal-meta">
+          <div class="modal-badge id">
+            <span>📝</span>
+            <span id="modalId">P1</span>
+          </div>
+          <div class="modal-badge categoria">
+            <span>🏷️</span>
+            <span id="modalCategoria">Categoria</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-body">
+        <!-- Estatísticas -->
+        <div class="modal-section">
+          <div class="modal-stats-grid">
+            <div class="modal-stat-card">
+              <span class="modal-stat-value" id="modalTotalComentarios">0</span>
+              <span class="modal-stat-label">Total de Comentários</span>
+            </div>
+            <div class="modal-stat-card">
+              <span class="modal-stat-value" id="modalMediaNotas">0.0</span>
+              <span class="modal-stat-label">Média das Notas</span>
+            </div>
+            <div class="modal-stat-card">
+              <span class="modal-stat-value" id="modalPositivos">0%</span>
+              <span class="modal-stat-label">Feedbacks Positivos</span>
+            </div>
+            <div class="modal-stat-card">
+              <span class="modal-stat-value" id="modalNegativos">0%</span>
+              <span class="modal-stat-label">Feedbacks Negativos</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Distribuição de Notas -->
+        <div class="modal-section">
+          <h3 class="modal-section-title">
+            <span>📊</span>
+            <span>Distribuição das Notas</span>
+          </h3>
+          <div class="modal-distribuicao">
+            <div class="modal-distribuicao-bars" id="modalDistribuicao">
+              <!-- Será preenchido dinamicamente -->
+            </div>
+          </div>
+        </div>
+        
+        <!-- Comentários -->
+        <div class="modal-section">
+          <h3 class="modal-section-title">
+            <span>💬</span>
+            <span>Comentários Detalhados</span>
+          </h3>
+          <div class="modal-comentarios" id="modalComentarios">
+            <!-- Será preenchido dinamicamente -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <script>
+    // Tornar o app disponível globalmente
+    var app;
+    
     (function() {
       var API_URL = '/api/admin/comentarios';
       
-      var app = {
+      app = {
         dados: null,
         perguntas: [],
         filtros: {
           categoria: 'todas',
           sentimento: 'todos',
-          ordem: 'comentarios-desc'
+          ordem: 'numero-asc'
         },
-        paginaAtual: 1,
-        itensPorPagina: 10,
+        expandedCards: new Set(),
         
         async init() {
           await this.carregarDados();
           this.calcularEstatisticas();
           this.renderizar();
           this.configurarFiltros();
+          this.configurarNavegacaoRapida();
+          this.configurarEventosModal();
         },
         
         async carregarDados() {
@@ -524,10 +1307,19 @@
           var self = this;
           this.perguntas = this.dados.map(function(p) {
             var notaMedia = 0;
+            var distribuicao = { 1: 0, 2: 0, 3: 0, 4: 0 };
+            
             if (p.comentarios.length > 0) {
-              notaMedia = p.comentarios.reduce(function(sum, c) {
+              var soma = p.comentarios.reduce(function(sum, c) {
                 return sum + c.nota;
-              }, 0) / p.comentarios.length;
+              }, 0);
+              notaMedia = soma / p.comentarios.length;
+              
+              // Calcular distribuição
+              p.comentarios.forEach(function(c) {
+                var nota = Math.min(4, Math.max(1, c.nota));
+                distribuicao[nota]++;
+              });
             }
             
             totalComentarios += p.comentarios.length;
@@ -540,16 +1332,35 @@
               categoria: p.categoria,
               comentarios: p.comentarios,
               notaMedia: notaMedia,
-              totalComentarios: p.comentarios.length
+              totalComentarios: p.comentarios.length,
+              distribuicao: distribuicao
             };
           });
           
+          // Atualizar estatísticas principais
           document.getElementById('totalPerguntas').textContent = this.perguntas.length;
           document.getElementById('totalComentarios').textContent = totalComentarios;
           
           var mediaGeral = totalComentarios > 0 ? somaNotas / totalComentarios : 0;
           document.getElementById('mediaGeral').textContent = mediaGeral.toFixed(1);
           document.getElementById('comentariosPositivos').textContent = Math.round((positivos / totalComentarios) * 100) + '%';
+          
+          // Atualizar indicador de progresso
+          this.atualizarProgresso();
+        },
+        
+        atualizarProgresso() {
+          var filtered = this.filtrarPerguntas();
+          var totalComentarios = filtered.reduce(function(sum, p) { return sum + p.totalComentarios; }, 0);
+          
+          // Atualizar contador de perguntas visíveis
+          document.getElementById('visibleCount').textContent = filtered.length;
+          document.getElementById('totalCount').textContent = '45'; // Total fixo de perguntas
+          document.getElementById('totalComentariosBadge').textContent = totalComentarios;
+          
+          // Atualizar barra de progresso
+          var progresso = (filtered.length / 45) * 100; // 45 é o total de perguntas
+          document.getElementById('progressFill').style.width = progresso + '%';
         },
         
         filtrarPerguntas() {
@@ -566,7 +1377,9 @@
           }
           
           var ordem = this.filtros.ordem;
-          if (ordem === 'comentarios-desc') {
+          if (ordem === 'numero-asc') {
+            filtered.sort(function(a, b) { return a.pergunta_id - b.pergunta_id; });
+          } else if (ordem === 'comentarios-desc') {
             filtered.sort(function(a, b) { return b.totalComentarios - a.totalComentarios; });
           } else if (ordem === 'comentarios-asc') {
             filtered.sort(function(a, b) { return a.totalComentarios - b.totalComentarios; });
@@ -583,63 +1396,160 @@
           var filtered = this.filtrarPerguntas();
           var container = document.getElementById('perguntasContainer');
           
-          var inicio = (this.paginaAtual - 1) * this.itensPorPagina;
-          var fim = inicio + this.itensPorPagina;
-          var paginated = filtered.slice(inicio, fim);
-          
-          if (paginated.length === 0) {
-            container.innerHTML = '<div class="loading">Nenhum comentário encontrado com os filtros selecionados.</div>';
+          if (filtered.length === 0) {
+            container.innerHTML = this.renderizarEmptyState();
+            this.atualizarProgresso(); // Atualizar progresso mesmo com estado vazio
             return;
           }
           
           var self = this;
-          container.innerHTML = paginated.map(function(p) { return self.renderizarPergunta(p); }).join('');
+          container.innerHTML = filtered.map(function(p) { return self.renderizarPergunta(p); }).join('');
           
-          this.renderizarPagination(filtered.length);
-        },
-        
-        renderizarPergunta: function(pergunta) {
-          var stars = this.renderizarStars(pergunta.notaMedia);
-          
-          var comentariosOrdenados = pergunta.comentarios.slice(0, 5).sort(function(a, b) {
-            if (a.sentimento === 'negativo' && b.sentimento !== 'negativo') return 1;
-            if (b.sentimento === 'positivo' && a.sentimento !== 'positivo') return -1;
-            return 0;
+          // Restaurar estado de expansão
+          this.expandedCards.forEach(function(perguntaId) {
+            var card = document.querySelector('[data-pergunta-id="' + perguntaId + '"]');
+            if (card) {
+              self.toggleCard(perguntaId);
+            }
           });
           
-          var reviewsHtml = comentariosOrdenados.map(function(c) { return this.renderizarReview(c); }.bind(this)).join('');
-          
-          return '<div class="pergunta-card">' +
-            '<div class="pergunta-header">' +
-              '<div class="pergunta-meta">' +
-                '<span class="pergunta-id">P' + pergunta.pergunta_id + '</span>' +
-                '<span class="pergunta-categoria">' + pergunta.categoria + '</span>' +
-              '</div>' +
-              '<div class="pergunta-nota">' +
-                '<span class="nota-valor">' + pergunta.notaMedia.toFixed(1) + '</span>' +
-                '<div class="nota-stars">' + stars + '</div>' +
-              '</div>' +
-            '</div>' +
-            '<div class="pergunta-texto">' + pergunta.pergunta_texto + '</div>' +
-            '<div class="comentarios-count">' + pergunta.totalComentarios + ' comentário' + (pergunta.totalComentarios !== 1 ? 's' : '') + '</div>' +
-            '<div class="reviews-list">' + reviewsHtml + '</div>' +
+          // Atualizar indicador de progresso
+          this.atualizarProgresso();
+        },
+        
+        renderizarEmptyState() {
+          return '<div class="empty-state">' +
+            '<div class="empty-state-icon">📝</div>' +
+            '<h3>Nenhum comentário encontrado</h3>' +
+            '<p>Tente ajustar os filtros para ver os comentários disponíveis.</p>' +
           '</div>';
         },
         
-        renderizarStars: function(nota) {
+        renderizarPergunta: function(pergunta) {
+          var isExpanded = this.expandedCards.has(pergunta.pergunta_id);
+          var estrelasHtml = this.renderizarEstrelas(pergunta.notaMedia);
+          
+          return '<div class="pergunta-card ' + (isExpanded ? 'expanded' : '') + '" data-pergunta-id="' + pergunta.pergunta_id + '">' +
+            '<div class="pergunta-header" onclick="app.openModal(' + pergunta.pergunta_id + ')">' +
+              '<div class="pergunta-header-content">' +
+                '<div class="pergunta-info">' +
+                  '<div class="pergunta-meta">' +
+                    '<span class="pergunta-id">P' + pergunta.pergunta_id + '</span>' +
+                    '<span class="pergunta-categoria">' + pergunta.categoria + '</span>' +
+                  '</div>' +
+                  '<div class="pergunta-texto">' + pergunta.pergunta_texto + '</div>' +
+                  '<div class="pergunta-stats">' +
+                    '<div class="stat-badge">' +
+                      '<span>💬</span>' +
+                      '<span>' + pergunta.totalComentarios + ' comentário' + (pergunta.totalComentarios !== 1 ? 's' : '') + '</span>' +
+                    '</div>' +
+                    '<div class="stat-badge">' +
+                      '<span>⭐</span>' +
+                      '<span>' + pergunta.notaMedia.toFixed(1) + '</span>' +
+                    '</div>' +
+                  '</div>' +
+                '</div>' +
+                '<div class="pergunta-actions">' +
+                  '<button class="expand-btn">' +
+                    '<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">' +
+                      '<path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m6 0l-3-3m3 3l-3 3"/>' +
+                    '</svg>' +
+                  '</button>' +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        },
+        
+        renderizarEstrelas: function(nota) {
           var estrelas = Math.round(nota);
           if (estrelas < 1) estrelas = 1;
           if (estrelas > 4) estrelas = 4;
           
-          var html = '';
+          var html = '<div style="display: flex; gap: 2px;">';
           for (var i = 1; i <= 4; i++) {
             if (i <= estrelas) {
-              html += '<svg class="star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>';
+              html += '<span style="color: #fbbf24;">⭐</span>';
             } else {
-              html += '<svg class="star empty" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>';
+              html += '<span style="color: #d1d5db;">⭐</span>';
             }
           }
+          html += '</div>';
           return html;
+        },
+        
+        renderizarDistribuicao: function(distribuicao) {
+          var total = Object.values(distribuicao).reduce(function(sum, count) { return sum + count; }, 0);
+          
+          if (total === 0) {
+            return '<div class="notas-distribuicao">' +
+              '<div class="distribuicao-title">Distribuição das Notas</div>' +
+              '<div style="text-align: center; color: var(--text-secondary); font-size: 0.875rem;">Sem dados suficientes</div>' +
+            '</div>';
+          }
+          
+          var bars = '';
+          for (var nota = 1; nota <= 4; nota++) {
+            var count = distribuicao[nota] || 0;
+            var percentage = total > 0 ? (count / total * 100) : 0;
+            var height = Math.max(4, percentage * 0.8); // Mínimo 4px de altura
+            
+            bars += '<div class="nota-bar">' +
+              '<div class="nota-bar-fill" style="height: ' + height + 'px; background: ' + this.getNotaColor(nota) + ';"></div>' +
+              '<div class="nota-bar-label">' + nota + '⭐</div>' +
+              '<div class="nota-bar-value">' + count + '</div>' +
+            '</div>';
+          }
+          
+          return '<div class="notas-distribuicao">' +
+            '<div class="distribuicao-title">Distribuição das Notas</div>' +
+            '<div class="distribuicao-bars">' + bars + '</div>' +
+          '</div>';
+        },
+        
+        getNotaColor: function(nota) {
+          var colors = {
+            1: '#dc2626', // Vermelho para notas baixas
+            2: '#ea580c', // Laranja
+            3: '#f59e0b', // Amarelo
+            4: '#16a34a'  // Verde para notas altas
+          };
+          return colors[nota] || '#64748b';
+        },
+        
+        renderizarComentarios: function(comentarios) {
+          if (comentarios.length === 0) {
+            return '<div class="comentarios-section">' +
+              '<div class="comentarios-header">' +
+                '<span class="comentarios-title">Comentários</span>' +
+                '<span class="comentarios-count">0 comentários</span>' +
+              '</div>' +
+              '<div style="text-align: center; color: var(--text-secondary); font-size: 0.875rem; padding: 1rem;">Nenhum comentário para esta pergunta.</div>' +
+            '</div>';
+          }
+          
+          // Ordenar comentários: negativos primeiro, depois neutros, depois positivos
+          var comentariosOrdenados = comentarios.slice().sort(function(a, b) {
+            var prioridadeA = a.sentimento === 'negativo' ? 0 : (a.sentimento === 'neutro' ? 1 : 2);
+            var prioridadeB = b.sentimento === 'negativo' ? 0 : (b.sentimento === 'neutro' ? 1 : 2);
+            
+            if (prioridadeA !== prioridadeB) {
+              return prioridadeA - prioridadeB;
+            }
+            
+            // Se mesma prioridade, ordenar por data (mais recente primeiro)
+            return new Date(b.data) - new Date(a.data);
+          });
+          
+          var comentariosHtml = comentariosOrdenados.map(function(c) { return this.renderizarReview(c); }.bind(this)).join('');
+          
+          return '<div class="comentarios-section">' +
+            '<div class="comentarios-header">' +
+              '<span class="comentarios-title">Comentários</span>' +
+              '<span class="comentarios-count">' + comentarios.length + ' comentário' + (comentarios.length !== 1 ? 's' : '') + '</span>' +
+            '</div>' +
+            '<div class="reviews-list">' + comentariosHtml + '</div>' +
+          '</div>';
         },
         
         renderizarReview: function(comentario) {
@@ -649,10 +1559,12 @@
           
           return '<div class="review-card ' + comentario.sentimento + '">' +
             '<div class="review-header">' +
-              '<span class="review-sentimento ' + comentario.sentimento + '">' +
-                this.getEmojiSentimento(comentario.sentimento) + ' ' + this.getLabelSentimento(comentario.sentimento) +
-              '</span>' +
-              '<span class="review-unidade">' + comentario.unidade + '</span>' +
+              '<div class="review-meta">' +
+                '<span class="review-sentimento ' + comentario.sentimento + '">' +
+                  this.getEmojiSentimento(comentario.sentimento) + ' ' + this.getLabelSentimento(comentario.sentimento) +
+                '</span>' +
+                '<span class="review-unidade">' + comentario.unidade + '</span>' +
+              '</div>' +
               '<span class="review-date">' + data + ' • ' + label + '</span>' +
             '</div>' +
             '<div class="review-text">' + comentario.comentario + '</div>' +
@@ -677,34 +1589,22 @@
           return map[sentimento] || 'Desconhecido';
         },
         
-        renderizarPagination: function(total) {
-          var totalPaginas = Math.ceil(total / this.itensPorPagina);
-          var pagination = document.getElementById('pagination');
+        toggleCard: function(perguntaId) {
+          var card = document.querySelector('[data-pergunta-id="' + perguntaId + '"]');
+          var content = card.querySelector('.pergunta-content');
+          var icon = card.querySelector('.expand-icon');
           
-          if (totalPaginas <= 1) {
-            pagination.innerHTML = '';
-            return;
+          if (this.expandedCards.has(perguntaId)) {
+            this.expandedCards.delete(perguntaId);
+            content.classList.remove('expanded');
+            icon.classList.remove('rotated');
+            card.classList.remove('expanded');
+          } else {
+            this.expandedCards.add(perguntaId);
+            content.classList.add('expanded');
+            icon.classList.add('rotated');
+            card.classList.add('expanded');
           }
-          
-          var html = '';
-          html += '<button class="page-btn" onclick="app.mudarPagina(' + (this.paginaAtual - 1) + ')" ' + (this.paginaAtual === 1 ? 'disabled' : '') + '>‹</button>';
-          
-          var inicio = Math.max(1, this.paginaAtual - 2);
-          var fim = Math.min(totalPaginas, this.paginaAtual + 2);
-          
-          for (var i = inicio; i <= fim; i++) {
-            html += '<button class="page-btn ' + (i === this.paginaAtual ? 'active' : '') + '" onclick="app.mudarPagina(' + i + ')">' + i + '</button>';
-          }
-          
-          html += '<button class="page-btn" onclick="app.mudarPagina(' + (this.paginaAtual + 1) + ')" ' + (this.paginaAtual === totalPaginas ? 'disabled' : '') + '>›</button>';
-          
-          pagination.innerHTML = html;
-        },
-        
-        mudarPagina: function(pagina) {
-          this.paginaAtual = pagina;
-          this.renderizar();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
         },
         
         configurarFiltros: function() {
@@ -713,9 +1613,178 @@
             self.filtros.categoria = document.getElementById('categoriaFilter').value;
             self.filtros.sentimento = document.getElementById('sentimentoFilter').value;
             self.filtros.ordem = document.getElementById('ordemFilter').value;
-            self.paginaAtual = 1;
+            self.expandedCards.clear(); // Limpar cards expandidos ao filtrar
             self.renderizar();
           });
+        },
+        
+        openModal: function(perguntaId) {
+          var pergunta = this.perguntas.find(function(p) { return p.pergunta_id === perguntaId; });
+          if (!pergunta) return;
+          
+          // Preencher dados do modal
+          document.getElementById('modalTitle').textContent = pergunta.pergunta_texto;
+          document.getElementById('modalId').textContent = 'P' + pergunta.pergunta_id;
+          document.getElementById('modalCategoria').textContent = pergunta.categoria;
+          
+          // Calcular estatísticas
+          var totalComentarios = pergunta.comentarios.length;
+          var positivos = pergunta.comentarios.filter(function(c) { return c.sentimento === 'positivo'; }).length;
+          var negativos = pergunta.comentarios.filter(function(c) { return c.sentimento === 'negativo'; }).length;
+          var somaNotas = pergunta.comentarios.reduce(function(sum, c) { return sum + c.nota; }, 0);
+          var mediaNotas = totalComentarios > 0 ? somaNotas / totalComentarios : 0;
+          
+          // Atualizar estatísticas
+          document.getElementById('modalTotalComentarios').textContent = totalComentarios;
+          document.getElementById('modalMediaNotas').textContent = mediaNotas.toFixed(1);
+          document.getElementById('modalPositivos').textContent = totalComentarios > 0 ? Math.round((positivos / totalComentarios) * 100) + '%' : '0%';
+          document.getElementById('modalNegativos').textContent = totalComentarios > 0 ? Math.round((negativos / totalComentarios) * 100) + '%' : '0%';
+          
+          // Preencher distribuição
+          this.preencherDistribuicaoModal(pergunta.distribuicao);
+          
+          // Preencher comentários
+          this.preencherComentariosModal(pergunta.comentarios);
+          
+          // Mostrar modal
+          document.getElementById('modalOverlay').classList.add('active');
+          document.body.style.overflow = 'hidden'; // Prevenir scroll do fundo
+        },
+        
+        closeModal: function() {
+          document.getElementById('modalOverlay').classList.remove('active');
+          document.body.style.overflow = ''; // Restaurar scroll do fundo
+        },
+        
+        preencherDistribuicaoModal: function(distribuicao) {
+          var container = document.getElementById('modalDistribuicao');
+          var total = Object.values(distribuicao).reduce(function(sum, count) { return sum + count; }, 0);
+          
+          if (total === 0) {
+            container.innerHTML = '<div style="text-align: center; color: var(--text-secondary); grid-column: 1/-1;">Sem dados suficientes para mostrar distribuição</div>';
+            return;
+          }
+          
+          var html = '';
+          for (var nota = 1; nota <= 4; nota++) {
+            var count = distribuicao[nota] || 0;
+            var percentage = total > 0 ? (count / total * 100) : 0;
+            var height = Math.max(20, percentage * 0.8); // Mínimo 20px de altura
+            
+            html += '<div class="modal-nota-bar">' +
+              '<div class="modal-nota-fill" style="height: ' + height + 'px; background: ' + this.getNotaColor(nota) + ';">' +
+                '<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: 600;">' + count + '</div>' +
+              '</div>' +
+              '<div class="modal-nota-label">' + nota + '⭐</div>' +
+              '<div class="modal-nota-value">' + percentage.toFixed(1) + '%</div>' +
+            '</div>';
+          }
+          
+          container.innerHTML = html;
+        },
+        
+        preencherComentariosModal: function(comentarios) {
+          var container = document.getElementById('modalComentarios');
+          
+          if (comentarios.length === 0) {
+            container.innerHTML = '<div class="modal-empty-state">' +
+              '<div class="modal-empty-icon">💬</div>' +
+              '<h3>Nenhum comentário encontrado</h3>' +
+              '<p>Esta pergunta não recebeu comentários dos colaboradores.</p>' +
+            '</div>';
+            return;
+          }
+          
+          // Ordenar comentários: negativos primeiro, depois neutros, depois positivos
+          var comentariosOrdenados = comentarios.slice().sort(function(a, b) {
+            var prioridadeA = a.sentimento === 'negativo' ? 0 : (a.sentimento === 'neutro' ? 1 : 2);
+            var prioridadeB = b.sentimento === 'negativo' ? 0 : (b.sentimento === 'neutro' ? 1 : 2);
+            
+            if (prioridadeA !== prioridadeB) {
+              return prioridadeA - prioridadeB;
+            }
+            
+            // Se mesma prioridade, ordenar por data (mais recente primeiro)
+            return new Date(b.data) - new Date(a.data);
+          });
+          
+          var html = comentariosOrdenados.map(function(c) { return this.renderizarComentarioModal(c); }.bind(this)).join('');
+          container.innerHTML = html;
+        },
+        
+        renderizarComentarioModal: function(comentario) {
+          var dataObj = new Date(comentario.data);
+          var data = dataObj.toLocaleDateString('pt-BR');
+          var hora = dataObj.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+          var label = comentario.nota + (comentario.nota === 1 ? ' estrela' : ' estrelas');
+          
+          return '<div class="modal-comentario-card ' + comentario.sentimento + '">' +
+            '<div class="modal-comentario-header">' +
+              '<div class="modal-comentario-meta">' +
+                '<div class="modal-comentario-sentimento ' + comentario.sentimento + '">' +
+                  this.getEmojiSentimento(comentario.sentimento) + ' ' + this.getLabelSentimento(comentario.sentimento) +
+                '</div>' +
+                '<div class="modal-comentario-info">' +
+                  '<span>📍</span>' +
+                  '<span>' + comentario.unidade + '</span>' +
+                  '<span>📅</span>' +
+                  '<span>' + data + ' ' + hora + '</span>' +
+                  '<span>⭐</span>' +
+                  '<span>' + label + '</span>' +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="modal-comentario-text">' + comentario.comentario + '</div>' +
+          '</div>';
+        },
+        
+        configurarEventosModal: function() {
+          var self = this;
+          
+          // Fechar modal ao clicar fora
+          document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+              self.closeModal();
+            }
+          });
+          
+          // Fechar modal com a tecla ESC
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('modalOverlay').classList.contains('active')) {
+              self.closeModal();
+            }
+          });
+        },
+        
+        configurarNavegacaoRapida: function() {
+          var self = this;
+          var pills = document.querySelectorAll('.nav-pill');
+          
+          pills.forEach(function(pill) {
+            pill.addEventListener('click', function(e) {
+              e.preventDefault();
+              
+              // Remover classe active de todas as pills
+              pills.forEach(function(p) { p.classList.remove('active'); });
+              
+              // Adicionar classe active à pill clicada
+              this.classList.add('active');
+              
+              // Aplicar filtro
+              var pilar = this.getAttribute('data-pilar');
+              if (pilar === 'todas') {
+                self.filtros.categoria = 'todas';
+              } else {
+                self.filtros.categoria = pilar;
+              }
+              
+              self.expandedCards.clear(); // Limpar cards expandidos
+              self.renderizar();
+            });
+          });
+          
+          // Marcar "Todas" como active inicialmente
+          document.querySelector('.nav-pill[data-pilar="todas"]').classList.add('active');
         }
       };
       
