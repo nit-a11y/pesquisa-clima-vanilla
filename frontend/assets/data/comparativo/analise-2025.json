@@ -18,74 +18,97 @@
   "pilares_2025": [
     {
       "nome": "Liderança",
-      "satisfacao_media": "85%",
-      "status": "Bom",
+      "satisfacao_media": "87.2%",
+      "status": "Ótimo",
       "perguntas": [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34],
       "foco": "Relacionamento com líder, comunicação, feedback",
       "destaques": [
-        "Relacionamento sólido com liderança",
-        "Comunicação estabelecida",
-        "Feedback presente"
+        "É fácil se aproximar do líder (98%)",
+        "Clareza sobre quem é o líder (96%)",
+        "Líder é honesto e ético (96%)",
+        "Feedback sobre desempenho (95%)"
+      ],
+      "desafios": [
+        "Líder trata todos da mesma forma (73%)",
+        "Líder envolve pessoas em decisões (74%)"
       ]
     },
     {
       "nome": "Ambiente de Trabalho",
-      "satisfacao_media": "87%",
+      "satisfacao_media": "88.8%",
       "status": "Ótimo",
       "perguntas": [1, 2, 45],
       "foco": "Condições físicas, recursos, ambiente geral",
       "destaques": [
-        "Ambiente físico adequado",
-        "Recursos disponíveis",
-        "Condições favoráveis"
+        "Lugar agradável para trabalhar (95%)",
+        "Ambiente físico agradável (88%)"
+      ],
+      "desafios": [
+        "Equipamentos e recursos necessários (84%)"
       ]
     },
     {
       "nome": "Comprometimento Organizacional",
-      "satisfacao_media": "85%",
-      "status": "Bom",
+      "satisfacao_media": "88.0%",
+      "status": "Ótimo",
       "perguntas": [3, 9, 10, 11, 12, 13],
       "foco": "Engajamento, orgulho, vontade de trabalhar",
       "destaques": [
-        "Alto engajamento",
-        "Orgulho de trabalhar",
-        "Vontade de permanecer"
+        "Trabalho tem sentido especial (98%)",
+        "Orgulho de trabalhar com as pessoas (92%)"
+      ],
+      "desafios": [
+        "Vontade de vir para o trabalho (80%)"
       ]
     },
     {
       "nome": "Gestão do Capital Humano",
-      "satisfacao_media": "80%",
+      "satisfacao_media": "81.8%",
       "status": "Bom",
-      "perguntas": [5, 6, 7, 8, 15, 16, 43, 44, 48, 50],
+      "perguntas": [5, 6, 7, 8, 13, 14, 15, 16, 35, 36, 39, 42, 43, 44, 47, 48, 49, 50],
       "foco": "Desenvolvimento, reconhecimento, valorização",
       "destaques": [
-        "Oportunidades de desenvolvimento",
-        "Reconhecimento presente",
-        "Valorização profissional"
+        "Bem tratado independentemente da função (99%)",
+        "Bem tratado independentemente de idade/cor/religião (99%)",
+        "Bom relacionamento com diretoria (92%)",
+        "Acolhimento de novos funcionários (95%)"
+      ],
+      "desafios": [
+        "Remuneração adequada vs mercado (49%) - CRÍTICO",
+        "Reconhecimento pelo bom trabalho (74%)",
+        "Treinamentos para desenvolvimento (73%)",
+        "Clima de rivalidade/competição interna (60%)",
+        "Celebração de metas e eventos (67%)"
       ]
     },
     {
       "nome": "Trabalho em Equipe",
-      "satisfacao_media": "78%",
-      "status": "Atenção",
-      "perguntas": [4, 37, 38, 39, 40, 49],
+      "satisfacao_media": "77.2%",
+      "status": "Bom",
+      "perguntas": [4, 37, 38, 40],
       "foco": "Colaboração, espírito de equipe, relacionamento",
+      "destaques": [
+        "Colaboração das pessoas (87%)",
+        "Sentimento de equipe (86%)"
+      ],
       "desafios": [
-        "Rivalidade interna detectada",
-        "Politicagem presente",
-        "Clima competitivo"
+        "Politicagem (puxa saco) para obter resultados (61%) - ALERTA",
+        "Pessoas se importam umas com as outras (75%)"
       ]
     },
     {
       "nome": "Comunicação",
-      "satisfacao_media": "68%",
+      "satisfacao_media": "64.7%",
       "status": "Crítico",
-      "perguntas": [14, 41, 42, 46, 47],
+      "perguntas": [14, 26, 41, 46],
       "foco": "Canais de comunicação, relacionamento com diretoria",
+      "destaques": [
+        "Líder mantém informado sobre assuntos importantes (91%)",
+        "Diretoria é aberta a sugestões (87%)"
+      ],
       "desafios": [
-        "Canais mal definidos",
-        "Comunicação com diretoria fraca",
-        "Falta de transparência"
+        "Fofoca por aqui (25%) - CRÍTICO",
+        "Canais bem definidos para sugestões/reivindicações (55%) - CRÍTICO"
       ]
     }
   ],
