@@ -1675,7 +1675,7 @@ body {
   .pencil-line {
     display: none;
   }
-}
+
 
 @media (max-width: 480px) {
   .container {
