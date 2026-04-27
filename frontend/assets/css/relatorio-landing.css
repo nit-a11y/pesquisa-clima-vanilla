@@ -97,11 +97,13 @@ body {
   position: relative;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0 4rem 80px 4rem;
+  text-align: center;
+  background: linear-gradient(135deg, #E53935 0%, #B71C1C 100%);
   overflow: hidden;
-  background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-dark) 100%);
-  padding: 120px 4rem 80px 4rem; /* Espaço aumentado e padding lateral */
 }
 
 .hero-background {
@@ -111,15 +113,14 @@ body {
   width: 100%;
   height: 100%;
   z-index: 1;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
 }
 
 .particles {
-  display: none; /* Removido completamente */
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(180deg); }
+  display: none;
 }
 
 .gradient-overlay {
@@ -138,16 +139,28 @@ body {
   color: white;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 6rem 4rem 4rem 4rem;
+  padding: 0 4rem;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 .hero-header {
   display: flex;
+  flex-direction: row;
+  align-items: flex-start;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 4rem;
-  padding: 1rem 0;
+  margin-bottom: 1rem;
+  gap: 2rem;
+  padding: 0.5rem 2rem;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .logo {
@@ -160,77 +173,447 @@ body {
   height: 50px;
   border-radius: 8px;
 }
-
 .logo h1 {
   font-size: 1.5rem;
   font-weight: 700;
 }
 
+/* Logo com borda estilo desenho animado */
 .hero-logo-destaque {
-  background: rgba(255, 255, 255, 0.15);
-  padding: 1.5rem 2rem;
-  border-radius: 1rem;
-  border: 2px solid rgba(156, 163, 175, 0.4); /* borda cinza arredondada */
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  transition: all var(--transition-base);
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  backdrop-filter: none;
+  transition: none;
+  position: relative;
+  margin-bottom: 2rem;
 }
 
-.hero-logo-destaque:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  border-color: rgba(156, 163, 175, 0.6);
+.hero-logo-destaque img {
+  width: 180px;
+  height: auto;
+  opacity: 1;
+  transition: none;
+  filter: none;
+  border: 3px solid #000000;
+  border-radius: 8px;
+  box-shadow: 0 4px 0 #000000, 0 8px 0 #000000;
+  transform: rotate(-2deg);
 }
 
+.hero-logo-destaque:hover img {
+  transform: rotate(-2deg) scale(1.05);
+  border: 3px solid #000000;
+  box-shadow: 0 4px 0 #000000, 0 8px 0 #000000;
+}
+
+/* Esconder o nome da empresa - não compete com título principal */
 .nome-destaque {
-  font-size: 2.5rem !important;
-  font-weight: 900 !important;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #ffffff, rgba(255, 255, 255, 0.9));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  display: none;
 }
 
 .relatorio-meta {
   text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
 }
 
 .badge {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background: rgba(40, 40, 40, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+  border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 2rem;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   backdrop-filter: blur(10px);
-  margin-bottom: 0.5rem;
-  /* Gradiente igual ao nome Nordeste Locações */
-  background: linear-gradient(135deg, #ffffff, rgba(255, 255, 255, 0.9));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #ffffff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .date {
   display: block;
-  font-size: 0.875rem;
+  font-size: 1rem;
+  font-weight: 400;
   opacity: 0.8;
+  letter-spacing: 0.5px;
 }
 
 .hero-main {
   margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-title {
-  font-size: clamp(3rem, 10vw, 5.5rem);
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 3rem;
-  letter-spacing: -0.02em;
+  font-size: clamp(48px, 6vw, 64px);
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  margin-bottom: 2rem;
   color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Bloco principal - título com estilo desenho animado */
+.hero-box {
+  border: 3px solid #ffffff;
+  border-radius: 8px;
+  padding: 25px 60px;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 0 #ffffff, 0 8px 0 #ffffff;
+  position: relative;
+  overflow: hidden;
+  max-width: 900px;
+  transform: rotate(1deg);
+}
+
+/* Segundo retângulo - subtítulo com estilo desenho animado */
+.hero-box-secondary {
+  border: 3px solid #ffffff;
+  border-radius: 8px;
+  padding: 15px 30px;
+  margin-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 0 #ffffff, 0 8px 0 #ffffff;
+  position: relative;
+  max-width: 500px;
+  transform: rotate(-1deg);
+}
+
+.hero-box-secondary .subtitle {
+  font-size: 22px;
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.3rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.hero-box-secondary .date {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Elementos decorativos do background */
+.hero-geometric {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-geometric .shape {
+  position: absolute;
+  opacity: 0.2;
+}
+
+/* Círculos - Estilo Desenho Animado */
+.hero-geometric .circle-1 {
+  top: 35%;
+  right: 3%;
+  width: 180px;
+  height: 180px;
+  border: 3px solid #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 0 #ffffff, 0 8px 0 #ffffff;
+  transform: rotate(3deg);
+  animation: floatSlow 12s ease-in-out infinite;
+}
+
+.hero-geometric .circle-2 {
+  top: 8%;
+  left: 2%;
+  width: 140px;
+  height: 140px;
+  border: 3px solid #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 0 #ffffff, 0 8px 0 #ffffff;
+  transform: rotate(-2deg);
+  animation: floatSlow 10s ease-in-out infinite reverse;
+}
+
+.hero-geometric .circle-3 {
+  top: 15%;
+  right: 12%;
+  width: 90px;
+  height: 90px;
+  border: 3px solid #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 0 #ffffff, 0 8px 0 #ffffff;
+  transform: rotate(1deg);
+  animation: spin 20s linear infinite;
+}
+
+.hero-geometric .circle-4 {
+  top: 45%;
+  left: 8%;
+  width: 110px;
+  height: 110px;
+  border: 3px solid #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 0 #ffffff, 0 8px 0 #ffffff;
+  transform: rotate(-1deg);
+  animation: floatSlow 15s ease-in-out infinite;
+}
+
+/* Linhas diagonais - Estilo Desenho Animado */
+.hero-geometric .line-1 {
+  top: 10%;
+  left: 15%;
+  width: 180px;
+  height: 3px;
+  background: #ffffff;
+  transform: rotate(-15deg);
+  box-shadow: 0 2px 0 #ffffff, 0 4px 0 #ffffff;
+  border-radius: 2px;
+}
+
+.hero-geometric .line-2 {
+  top: 18%;
+  right: 10%;
+  width: 160px;
+  height: 3px;
+  background: #ffffff;
+  transform: rotate(25deg);
+  box-shadow: 0 2px 0 #ffffff, 0 4px 0 #ffffff;
+  border-radius: 2px;
+}
+
+.hero-geometric .line-3 {
+  top: 50%;
+  left: 8%;
+  width: 140px;
+  height: 3px;
+  background: #ffffff;
+  transform: rotate(10deg);
+  box-shadow: 0 2px 0 #ffffff, 0 4px 0 #ffffff;
+  border-radius: 2px;
+}
+
+.hero-geometric .line-4 {
+  top: 12%;
+  right: 18%;
+  width: 120px;
+  height: 3px;
+  background: #ffffff;
+  transform: rotate(-20deg);
+  box-shadow: 0 2px 0 #ffffff, 0 4px 0 #ffffff;
+  border-radius: 2px;
+}
+
+/* Quadrados */
+.hero-geometric .square-1 {
+  top: 20%;
+  left: 8%;
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transform: rotate(25deg);
+  animation: floatSlow 11s ease-in-out infinite;
+}
+
+.hero-geometric .square-2 {
+  bottom: 15%;
+  right: 10%;
+  width: 80px;
+  height: 80px;
+  border: 2px solid rgba(183, 28, 28, 0.3);
+  transform: rotate(-15deg);
+}
+
+.hero-geometric .square-3 {
+  top: 50%;
+  left: 70%;
+  width: 60px;
+  height: 60px;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  transform: rotate(30deg);
+}
+
+/* Triângulos */
+.hero-geometric .triangle-1 {
+  top: 35%;
+  left: 3%;
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 80px solid rgba(229, 57, 53, 0.15);
+  transform: rotate(-10deg);
+}
+
+.hero-geometric .triangle-2 {
+  bottom: 40%;
+  right: 8%;
+  width: 0;
+  height: 0;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-bottom: 70px solid rgba(255, 255, 255, 0.1);
+  transform: rotate(20deg);
+}
+
+/* Ícones decorativos */
+.hero-geometric .icon-1 {
+  top: 12%;
+  left: 25%;
+  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.12);
+  animation: floatSlow 14s ease-in-out infinite;
+}
+
+.hero-geometric .icon-2 {
+  bottom: 18%;
+  right: 20%;
+  font-size: 2.5rem;
+  color: rgba(229, 57, 53, 0.15);
+  animation: floatSlow 12s ease-in-out infinite reverse;
+}
+
+.hero-geometric .icon-3 {
+  top: 55%;
+  left: 15%;
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.1);
+  animation: floatSlow 16s ease-in-out infinite;
+}
+
+.hero-geometric .icon-4 {
+  top: 25%;
+  right: 40%;
+  font-size: 2.5rem;
+  color: rgba(183, 28, 28, 0.12);
+  animation: floatSlow 13s ease-in-out infinite reverse;
+}
+
+.hero-geometric .icon-5 {
+  bottom: 30%;
+  left: 45%;
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.08);
+}
+
+.hero-geometric .icon-6 {
+  top: 70%;
+  right: 15%;
+  font-size: 3rem;
+  color: rgba(229, 57, 53, 0.1);
+  animation: floatSlow 15s ease-in-out infinite;
+}
+
+/* Pontos decorativos */
+.hero-geometric .dot-1 {
+  top: 20%;
+  left: 45%;
+  width: 8px;
+  height: 8px;
+  background: rgba(229, 57, 53, 0.3);
+  border-radius: 50%;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.hero-geometric .dot-2 {
+  bottom: 45%;
+  right: 30%;
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.hero-geometric .dot-3 {
+  top: 65%;
+  left: 25%;
+  width: 10px;
+  height: 10px;
+  background: rgba(183, 28, 28, 0.25);
+  border-radius: 50%;
+  animation: pulse 3.5s ease-in-out infinite reverse;
+}
+
+.hero-geometric .dot-4 {
+  top: 45%;
+  right: 12%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  animation: pulse 5s ease-in-out infinite;
+}
+
+/* Setas */
+.hero-geometric .arrow-1 {
+  top: 45%;
+  left: 5%;
+  width: 40px;
+  height: 40px;
+  border-right: 3px solid rgba(255, 255, 255, 0.15);
+  border-top: 3px solid rgba(255, 255, 255, 0.15);
+  transform: rotate(45deg);
+}
+
+.hero-geometric .arrow-2 {
+  bottom: 25%;
+  right: 18%;
+  width: 35px;
+  height: 35px;
+  border-right: 2px solid rgba(229, 57, 53, 0.2);
+  border-top: 2px solid rgba(229, 57, 53, 0.2);
+  transform: rotate(-45deg);
+}
+
+/* Meias luas */
+.hero-geometric .crescent-1 {
+  top: 8%;
+  left: 40%;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  box-shadow: 15px 15px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.hero-geometric .crescent-2 {
+  bottom: 10%;
+  right: 40%;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: -10px 10px 0 0 rgba(229, 57, 53, 0.12);
+}
+
+/* Animações */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-25px) rotate(5deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.3); }
 }
 
 .hero-description {
@@ -258,23 +641,29 @@ body {
 }
 
 .hero-metrics {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 3rem;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
   margin-bottom: 4rem;
+  justify-content: center;
+  width: 100%;
+  max-width: 1100px;
 }
 
 .metric-card {
-  background: rgba(255, 255, 255, 0.4); /* meio-termo de transparência */
+  background: rgba(255, 255, 255, 0.4);
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 1.25rem;
-  padding: 2rem 1.5rem;
+  padding: 1.5rem 2rem;
   text-align: center;
   backdrop-filter: blur(20px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
+  flex: 1;
+  min-width: 200px;
+  max-width: 280px;
 }
 
 .metric-card::before {
@@ -364,8 +753,6 @@ body {
   color: #ffffff;
   opacity: 0.9;
   margin-bottom: 0.5rem;
-}
-  color: var(--text-primary);
 }
 
 .diagnostico-texto {
@@ -592,15 +979,38 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.2);
+  background: transparent;
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 2rem;
-  font-weight: 600;
-  font-size: 0.875rem;
-  margin-bottom: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0;
+  border-radius: 0;
+  font-weight: 800;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  border: none;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+  background: linear-gradient(90deg, #ffffff 0%, #ffffff 75%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
+
+.hero-description {
+  font-size: 1.25rem;
+  color: #ffffff;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+  max-width: 700px;
+  line-height: 1.6;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff, #fecaca);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Resumo Section */
@@ -1138,15 +1548,107 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .hero-header {
-    flex-direction: column;
-    gap: 2rem;
-    text-align: center;
+  .hero-section {
+    padding: 0 1rem 60px 1rem;
   }
   
-  .hero-metrics {
-    grid-template-columns: 1fr;
+  .hero-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    padding: 1rem;
+    align-items: center;
+    position: relative;
+    top: auto;
   }
+  
+  .relatorio-meta {
+    align-items: center;
+  }
+  
+  .hero-logo-destaque img {
+    width: 60px;
+  }
+  
+  .hero-title {
+    font-size: 32px;
+    letter-spacing: 1px;
+  }
+  
+  .hero-box {
+    padding: 20px 30px;
+    border-radius: 8px;
+    transform: rotate(0.5deg);
+  }
+  
+  .hero-badge {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-box-secondary {
+    padding: 12px 20px;
+    border-radius: 8px;
+    transform: rotate(-0.5deg);
+  }
+  
+  .hero-box-secondary .subtitle {
+    font-size: 16px;
+  }
+  
+  .hero-box-secondary .date {
+    font-size: 14px;
+  }
+  
+.hero-metrics {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .metric-card {
+    min-width: 140px;
+    flex: 1 1 calc(50% - 0.5rem);
+    padding: 1rem;
+  }
+  
+  .metric-value {
+    font-size: 2rem;
+  }
+  
+  /* Esconder elementos decorativos no mobile */
+  .hero-geometric .shape {
+    display: none;
+  }
+  
+  .hero-geometric .circle-1,
+  .hero-geometric .circle-2,
+  .hero-geometric .icon-1,
+  .hero-geometric .icon-2 {
+    display: block;
+    width: 80px;
+    height: 80px;
+    opacity: 0.1;
+  }
+  
+  .hero-geometric .circle-3 {
+    display: block;
+    width: 60px;
+    height: 60px;
+    opacity: 0.1;
+  }
+  
+  .hero-geometric .line-1,
+  .hero-geometric .line-2 {
+    display: block;
+    width: 100px;
+  }
+  
+  .hero-geometric .dot-1,
+  .hero-geometric .dot-2 {
+    display: block;
+  }
+}
   
   .diagnostico-content {
     grid-template-columns: 1fr;
@@ -1168,6 +1670,10 @@ body {
   
   .footer-meta {
     text-align: center;
+  }
+  
+  .pencil-line {
+    display: none;
   }
 }
 
@@ -2232,15 +2738,16 @@ body {
 
 .pilares-comparativo td:first-child {
   text-align: left;
-  font-weight: 700;
-  color: #1f2937;
-  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+  padding: 0.8rem 0.5rem;
+  font-size: 1.2rem;
   width: 25%;
   white-space: normal;
   line-height: 1.3;
   vertical-align: middle;
-  background: rgba(243, 244, 246, 0.8);
-  border-left: 4px solid var(--primary-red);
+  background: rgba(249, 250, 251, 0.5);
+  border-left: 2px solid rgba(220, 38, 38, 0.3);
   padding-left: 1rem;
 }
 
@@ -2347,15 +2854,15 @@ body {
 .tabela-pilares td:first-child,
 .tabela-unidades td:first-child {
   text-align: left;
-  font-weight: 700;
-  color: #1f2937;
-  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+  font-size: 1.2rem;
   width: 25%;
   white-space: normal;
   line-height: 1.3;
   vertical-align: middle;
-  background: rgba(243, 244, 246, 0.8);
-  border-left: 4px solid var(--primary-red);
+  background: rgba(249, 250, 251, 0.5);
+  border-left: 2px solid rgba(220, 38, 38, 0.3);
   padding-left: 1rem;
 }
 
