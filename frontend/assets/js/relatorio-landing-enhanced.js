@@ -72,35 +72,35 @@ class RelatorioLandingEnhanced {
   }
 
   /**
-   * Dados mock para desenvolvimento
+   * Dados mock para desenvolvimento - CORRIGIDO com valores oficiais dos JSONs
    */
   carregarDadosMock() {
     this.dados = {
       ano2025: {
-        metadata: { ano: "2025", total_respondentes: 92, satisfacao_geral: "82.88%" },
+        metadata: { ano: "2025", total_respondentes: 92, satisfacao_geral: "82.83%" },
         pilares: [
-          { nome: "Ambiente de Trabalho", satisfacao: 88.8, status: "Ótimo" },
-          { nome: "Comprometimento Organizacional", satisfacao: 88.0, status: "Ótimo" },
-          { nome: "Gestão do Capital Humano", satisfacao: 81.8, status: "Bom" },
-          { nome: "Comunicação", satisfacao: 64.7, status: "Atenção" },
-          { nome: "Liderança", satisfacao: 87.2, status: "Ótimo" },
-          { nome: "Trabalho em Equipe", satisfacao: 77.2, status: "Bom" }
+          { nome: "Liderança", satisfacao: 85.0, status: "Bom" },
+          { nome: "Comunicação", satisfacao: 68.0, status: "Crítico" },
+          { nome: "Comprometimento Organizacional", satisfacao: 85.0, status: "Bom" },
+          { nome: "Ambiente de Trabalho", satisfacao: 87.0, status: "Ótimo" },
+          { nome: "Trabalho em Equipe", satisfacao: 78.0, status: "Atenção" },
+          { nome: "Gestão do Capital Humano", satisfacao: 80.0, status: "Bom" }
         ]
       },
       ano2026: {
         metadata: { ano: "2026", total_respondentes: 96, satisfacao_geral: "87.9%" },
         pilares: [
-          { nome: "Liderança", satisfacao: 93.3, status: "Excelente", variacao_vs_2025: "+6.1pp" },
-          { nome: "Comprometimento Organizacional", satisfacao: 93.0, status: "Excelente", variacao_vs_2025: "+5.0pp" },
-          { nome: "Ambiente de Trabalho", satisfacao: 91.7, status: "Ótimo", variacao_vs_2025: "+2.9pp" },
-          { nome: "Gestão do Capital Humano", satisfacao: 84.6, status: "Bom", variacao_vs_2025: "+2.8pp" },
-          { nome: "Trabalho em Equipe", satisfacao: 84.1, status: "Bom", variacao_vs_2025: "+6.9pp" },
-          { nome: "Comunicação", satisfacao: 80.9, status: "Bom", variacao_vs_2025: "+16.2pp" }
+          { nome: "Liderança", satisfacao: 93.3, status: "Ótimo", variacao_vs_2025: "+8.3pp" },
+          { nome: "Comunicação", satisfacao: 80.9, status: "Ótimo", variacao_vs_2025: "+12.9pp" },
+          { nome: "Comprometimento Organizacional", satisfacao: 93.0, status: "Ótimo", variacao_vs_2025: "+8.0pp" },
+          { nome: "Ambiente de Trabalho", satisfacao: 91.7, status: "Ótimo", variacao_vs_2025: "+4.7pp" },
+          { nome: "Trabalho em Equipe", satisfacao: 84.1, status: "Ótimo", variacao_vs_2025: "+6.1pp" },
+          { nome: "Gestão do Capital Humano", satisfacao: 84.6, status: "Ótimo", variacao_vs_2025: "+4.6pp" }
         ],
         pontos_criticos: [
-          { area: "Benefícios", valor: 58.3, status: "CRÍTICO", comentarios: 64 },
-          { area: "Remuneração", valor: 59.4, status: "ALTO", comentarios: 45 },
-          { area: "Tratamento Interpessoal", valor: 85.4, status: "Atenção", comentarios: 12 }
+          { area: "Benefícios", valor: 58.3, status: "CRÍTICO", comentarios: 64, nota: "Primeira medição com Q15 específica" },
+          { area: "Remuneração", valor: 59.4, status: "ALTO", comentarios: 45, variacao_vs_2025: "-9.08pp", nota: "Piora significativa vs 2025 (68.48%)" },
+          { area: "Politicagem", valor: 65.6, status: "ALTO", comentarios: 12, variacao_vs_2025: "+4.73pp", nota: "Piora vs 2025 (60.87%)" }
         ]
       },
       comparativo: {

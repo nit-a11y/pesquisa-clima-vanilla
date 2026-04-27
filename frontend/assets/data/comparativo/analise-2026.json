@@ -8,19 +8,19 @@
     "nota_metodologica": "Satisfação usa % de concordância (mesma metodologia 2025)"
   },
   "resumo_executivo": {
-    "satisfacao_geral": "88.4%",
+    "satisfacao_geral": "87.9%",
     "Media_de_satisfacao": "77.8%",
     "media_escore": 3.3,
     "total_perguntas": 45,
     "status_geral": "Positivo com evolução confirmada",
     "variacao_respondentes": "+4.3% vs 2025",
-    "variacao_satisfacao": "+5.57pp vs 2025 (mesma metodologia)"
+    "variacao_satisfacao": "+5.07pp vs 2025 (mesma metodologia)"
   },
   "pilares_2026": [
     {
       "nome": "Liderança",
       "satisfacao": "93.3%",
-      "status": "Excelente",
+      "status": "Ótimo",
       "perguntas": 15,
       "foco": "Relacionamento com líder, comunicação, feedback",
       "destaques": [
@@ -32,9 +32,21 @@
       "variacao_vs_2025": "+8.3pp"
     },
     {
+      "nome": "Comunicação",
+      "satisfacao": "80.9%",
+      "status": "Ótimo",
+      "perguntas": 5,
+      "foco": "Canais de comunicação, relacionamento com diretoria",
+      "melhorias": [
+        "Canais mais definidos (67.7%)",
+        "Comunicação da liderança (96.9%)"
+      ],
+      "variacao_vs_2025": "+12.9pp"
+    },
+    {
       "nome": "Comprometimento Organizacional",
       "satisfacao": "93.0%",
-      "status": "Excelente",
+      "status": "Ótimo",
       "perguntas": 6,
       "foco": "Engajamento, orgulho, vontade de trabalhar",
       "destaques": [
@@ -47,7 +59,7 @@
     {
       "nome": "Ambiente de Trabalho",
       "satisfacao": "91.7%",
-      "status": "Excelente",
+      "status": "Ótimo",
       "perguntas": 3,
       "foco": "Condições físicas, recursos, ambiente geral",
       "destaques": [
@@ -58,22 +70,9 @@
       "variacao_vs_2025": "+4.7pp"
     },
     {
-      "nome": "Gestão do Capital Humano",
-      "satisfacao": "84.6%",
-      "status": "Bom",
-      "perguntas": 10,
-      "foco": "Desenvolvimento, reconhecimento, valorização",
-      "desafios": [
-        "Benefícios (58.3%)",
-        "Remuneração (59.4%)",
-        "Reconhecimento (72.9%)"
-      ],
-      "variacao_vs_2025": "+4.6pp"
-    },
-    {
       "nome": "Trabalho em Equipe",
       "satisfacao": "84.1%",
-      "status": "Bom",
+      "status": "Ótimo",
       "perguntas": 6,
       "foco": "Colaboração, espírito de equipe, relacionamento",
       "desafios": [
@@ -83,16 +82,17 @@
       "variacao_vs_2025": "+6.1pp"
     },
     {
-      "nome": "Comunicação",
-      "satisfacao": "80.9%",
-      "status": "Bom",
-      "perguntas": 5,
-      "foco": "Canais de comunicação, relacionamento com diretoria",
-      "melhorias": [
-        "Canais mais definidos (67.7%)",
-        "Comunicação da liderança (96.9%)"
+      "nome": "Gestão do Capital Humano",
+      "satisfacao": "84.6%",
+      "status": "Ótimo",
+      "perguntas": 10,
+      "foco": "Desenvolvimento, reconhecimento, valorização",
+      "desafios": [
+        "Benefícios (58.3%)",
+        "Remuneração (59.4%)",
+        "Reconhecimento (72.9%)"
       ],
-      "variacao_vs_2025": "+12.9pp"
+      "variacao_vs_2025": "+4.6pp"
     }
   ],
   "top_melhores_perguntas_2026": [
